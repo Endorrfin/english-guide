@@ -1,0 +1,622 @@
+📔 dictionary
+
+
+
+Definitions stage 2:
+1. Decision vs solution 
+2. circumstances
+3. nuances
+4. cohesion
+5. fairness
+6. accommodate
+7. Personal circumstances
+8. essential
+9. indispensable
+10. project setbacks
+11. collaborative effort
+12. software glitch
+13. wasted effort
+14. deadlines overlapped unexpectedly
+15. pressure and confusion
+16. recognize
+17. assigning blame
+18. ultimately ensuring
+19. toward
+20. gist
+21. precise
+22. physically gathering
+23. simultaneously
+24. tight
+25. came up
+26. influence vs impact
+
+
+Definitions stage 1:
+1. Issue
+2. Deadline
+3. Outcomes
+4. Assign to
+5. Priority
+6. Decision
+7. Resolve
+8. Determination
+9. Summary
+10. Minutes of notes
+11. Reliable
+12. encourage
+13. preferences
+14. excuses
+15. worth notingworth noting
+16. Emphasize
+17. referencing
+18. data-driven
+19. impact vs influence
+20. willingness
+21. excuses
+22. stay sharp
+23. Conduct 
+24. Overal
+25. Support vs Maintain
+26. Allocation vs Assignment
+27. Transparent 
+28. Jump in
+29. Dive into
+30. Complex vs complexity vs difficult vs hard
+31. Summarize
+32. statement
+33. postponed
+34. compatibility issues
+35. Pleased vs satisfaction
+36. revised targets
+37. more persuasive
+38. Forecast vs predictions
+39. coping strategy
+40. fluctuations
+41. acknowledge
+42. encourage
+43. whenever
+44. strong observation
+45. engagement
+46. employees admit
+47. assertive
+48. recognise vs realise vs realize
+49. cautious
+50. concerns
+51. encouraged
+52. reflects
+53. acknowledged
+54. arrangement
+55. inferences
+56. Clue
+57. permanent policy
+58. worried
+59. Otherwise
+60. Meanwhile
+61. 
+62. 
+
+
+
+1. necessity - необхідність
+2. top up the number - поповнити номер
+3. willingness - готовність, бажання
+4. unwillingness - небажання, не готовність
+5. side hastle - додаткова робота, підробіток
+6. the most valuable - найцінніший
+7. inner motivation - внутрішня мотивація
+8. outer motivation - зовнішня мотивація
+9. I think otherwise - я думаю інакше
+10. according to - згідно з, відповідно до
+11. to my mind - на мою думку
+12. she is without a doubt - вона без сумніву
+13. in fact - насправді
+14. from my perspective - з моєї точки зору
+15. as far as I’m concerned - як на мене
+16. I was under impression that - я був під враженням, що
+17. in my view - на мій погляд
+18. hopefully - сподіваюся
+19. interestingly - цікаво
+20. obviously - очевидно
+21. personally - особисто
+22. undoubtedly - безсумнівно
+23. unfortunately - на жаль
+24. I’m convinced - я переконаний
+25. I reckon - я вважаю
+26. I doubt - я сумніваюся
+27. I suspect - я підозрюю
+28. each / every - кожен
+29. Unexpectedly - неочікувано
+30. belong to - належать до
+31. spend time / money on - витрачати час, гроші на
+32. popular with - популярний у
+33. famous for - відомий по
+34. look at - дивитись на
+35. look for - шукати
+36. be interested in - цікавитись
+37. be angry with - злитись на
+38. get there - добратись туда
+39. affect on - впливає на
+40. effect - еффект
+41. lack of - відсутність
+42. lack of daily plan - відсутність щоденного плану
+43. cluttered desk - захаращений (захламленный) стіл
+44. work environment - робоче середовище
+45. I'm thinking of living in London for a year - Я думаю пожити в Лондоні рік
+46. convinced - переконаний
+47. Undoubtedly - безсумнівно
+48. cough - кашель
+49. unless - якщо тільки, хіба що
+50. gloves - рукавички
+51. porridge - каша
+52. pomegranate - гранат
+53. bat - кажан
+54. eagle - орел
+55. unripe banana - незрілий банан
+56. gloves - рукавички
+57. oatmeal - вівсянка
+58. hippo - бегемот
+59. cutlery - столові прибори
+60. polite - ввічливий
+61. toothache - зубний біль
+62. quite - цілком
+63. quiet - тихий
+64. quit - кинути
+65. quick - швидкий
+66. quickly - швидко
+67. insist of - наполягати на
+68. lack of - відсутність
+69. popular with - популярні серед
+70. Undoubtedly - Безсумнівно
+71. overcast - похмуро
+72. cloudy - хмарно
+73. put into - покласти в
+74. a queue - черга
+75. walk around the corner - пройти за кут
+76. among - серед
+77. between - між
+78. divide into - розділити на
+79. There is no hope of talking - надії на розмову немає
+80. developed countries - розвинені країни
+81. cause of - причина
+82. reason - причина
+83. talk about - говорити про
+84. be disappointed with - бути розчарованим
+85. be satisfied with - бути задоволеним
+86. be capable of - бути здатним
+87. desert - постеля
+88. dessert - десерт
+89. comfortable chair - зручне крісло
+90. convenient situation - зручна ситуація
+91. beside - поруч
+92. besides - крім того
+93. alone - поодинці
+94. along - разом
+95. quite big - досить великий
+96. quite tasty - досить смачний,
+97. enough - досить
+98. work hard - наполегливо працювати
+99. hardly - ледь, ледь
+100.  among - серед
+101.  next to - наступний, або біля чогось
+102.  waste of time - марна трата часу
+103.  traffic lights - світлофори
+104.  polluted - забруднені
+105.  injury - травма
+106.  therefore - тому
+107. frozen water - заморожена вода
+108. get to a place - дістатися місця
+109. go on foot  - йти пішки
+110. be just a few steps from - бути лише за кілька кроків від
+111. calm down - заспокойся
+112. fast-paced world - швидкоплинний світ
+113. captivate audience - захопити аудиторію
+114. once upon a time - колись давно
+115. truly unique - справді унікальний
+116.  pros and cons - плюси і мінуси
+117.  persuade - убеждать
+118.  ethical - етичный
+119.  How dare you - Як ти смієш
+120. How long does it take - Скільки це займає часу
+121. therefore - тому
+122. persistent - наполегливий, стійкий
+123. attitude - ставлення
+124. altitude - висота
+125. tend to - прагнути
+126. approach - підхід
+127. resolutions - резолюцій
+128. declutter - расхламление
+129. procrastinating - прокрастинація, зволікання
+130. plummet - різко впасти
+131. bet - ставка
+132.  in advance - 
+133.  dynamically [daɪ'næmɪk(ə)lɪ] - 
+134.  dynamic - 
+135.  change dramatically - 
+136.  vital part of our lives - 
+137.  controversial - 
+138.  expenses - 
+139.  identity - 
+140. identify - 
+141. traits of personality - риси особистості
+142. dialect - діалект
+143. spend time on their own - проводити час на самоті
+144. make him pay attention to her - змусити його звернути на неї увагу
+145. resist - чинити опір
+146. he looks happy being distracted - він виглядає щасливим коли відволікається
+147. posture - постава
+148. explore - досліджувати
+149. anniversary - річниця
+150. instant coffee - розчинна кава
+151. pown-shop
+152. simultaneously
+153. dust the furniture
+154. lack of memory
+155. didaction
+156. bare pure line
+157. stripes
+158. treasures
+159. persuading
+160. succeced
+161. bark loudly
+162. bare and pure line 
+163. access 
+164. take off the shoes 
+165. get -around
+166. has its roots in 
+167. patterns 
+168. simplicity 
+169. appreciate 
+170. be thoughtful 
+171. refer to
+172. environmental impact
+173. slack 
+174. pretend
+175. binge-watch TV series 
+176. throw away 
+177. leave the ta running
+178. leave the light on
+179. squid game
+180. household chores
+181. talk on business
+182. keep up with news
+183. compassion 
+184. compassionate
+185. form a new habit
+186. smoker 
+187. non-smoker
+188. cereals 
+189. ready-made food
+190. messy or tidy
+191. I put off
+192. social butterfly
+193. loneliness - самотність
+194. compromise - компроміс
+195. pile up - накопичувати
+196. recipe - рецепт
+197. defrost - розморожування
+198. sheep dog / shepherd - вівчарка
+199. stay up late - залишатися допізна
+200. its a piece of cake  - це шматок пирога
+201. it took me a while to - мені знадобився деякий час
+202. What made you stop? - що змусило вас зупинитися?
+203. survive - вижити
+204. in no time - в найкоротші терміни
+205. in no while - миттєво
+206. technophile - технофіл
+207. tawdry - безглуздий, (безвкусный)
+208. puny - мізерний
+209. overlook - не помітити, ігнорувати, пропускати
+210. arrange - організовувати, упорядковувати, влаштовувати
+211. distress - горе, лихо, страждання
+212. arouse - викликати емоції, збудити, пробуджувати
+213. prickly - колючий, дратівливий
+214. rope - мотузка, канат
+215. take up cycling - зайнятися велоспортом
+216. plant - рослина, саджати (завод)
+217. grapes - виноград
+218. vigorous - енергійний, жвавий, бадьорий
+
+
+
+
+
+📓 Dictionary
+
+
+1. Take a nap - подрімати
+2. Inspiration - натхнення
+3. Enjoy - насолоджуватись
+4. Don’t mind - не звертати уваги
+5. Rely on - покладатися на
+6. Wrong - неправильно
+7. Beginning of - почток
+8. Fake - підробка
+9. A lot of channels - багато каналів
+10. News is - новини є
+11. If I’m not mistaken - якщо я не помиляюся
+12. dumbbells - гантелі
+13. gym bench - лава в спортзалі
+14. At all - зовсім
+15. cocoa - какао
+16. I am happy - я щасливий
+17. Can’t complain
+18. Had a nap
+19. At noon
+20. In advance
+21. Answer
+22. None
+23. Both
+24. Exercise(v)
+25. I’m going to
+26. Ask
+27. Question
+28. Applauds
+29. Only
+30. Passion 
+31. if they do what they love
+32. Leisure
+33. Earn
+34. recognition
+35. Valuable
+36. Appreciate
+37. irreplaceable
+38. Outlook
+39. Used to
+40. One more point
+41. Among
+42. against
+43. despite
+44. I’m going to Ask
+45. Question
+46. Applauds
+47. Only
+48. passion
+49. if they do what they love
+50. Leisure
+51. Earn
+52. recognition
+53. Valuable
+54. Appreciate
+55. irreplaceable
+56. Outlook
+57. Used to
+58. One more point
+59. Among
+60. against
+61. despite
+62. thanks to
+63. Be hidden
+64. dissatisfied
+65. solve a problem
+66. demand
+67. Notice
+68. prioritize
+69. They prioritize important tasks
+70. delegate tasks
+71. Research
+72. Per year
+73. Surrounded by
+74. to doubt
+75. narrow specialization
+76. face failure
+77. bored
+78. Boring
+79. hardly ever
+80. Not yet
+81. Unwind
+82. Put off
+83. Addiction
+84. get out of
+85. necessitives
+86. Necessity
+87. Doubt
+88. Pumpkin
+89. Nursery school
+90. Skip
+91. Only
+92. Sick
+93. ill
+94. Backyard
+95. In summertime
+96. Pick up
+97. gather
+98. Guitar
+99. Look at
+100. Focused on
+101. Carefree
+102. easy-going
+103. feels nostalgic
+104. talk on the phone
+105. Because of
+106. Temper
+107. Shy
+108. Satisfied
+109. detach myself
+110. excited about / looking forward to
+111. Underground
+112. Pie
+113. Cuisine
+114. Fat
+115. famous for
+116. pancakes
+117. cottage cheese
+118. topped with (jam)
+119. covered with (jam)
+120. Garlic
+121. Garlic
+122. The tastiest
+123. Pasta
+124. Be used to
+125. Ever
+126. Variety of choice/food
+127. Dish
+128. Neglect
+129. a side dish
+130. main course
+131. starter / appetizer
+132. Last
+133. Invite
+134. Really like
+135. Play
+136. Perfomance
+137. Twisted plot
+138. Stray dog
+139. Downside
+140. Kennel
+141. Fence
+142. Fenced
+143. Waste of time
+144. Headache
+145. Fell asleep
+146. Exhausted
+147. Cure
+148. Treatment
+149. reserve
+150. wedding
+151. Strangers
+152. Accurate
+153. A lot of
+154. Lots of
+155. acquaintance
+156. Outcome
+157. Return
+158. Appreciate
+159. Second hand books
+160. Sell
+161. As a present
+162. Sick leave
+163. X-ray
+164. Lungs
+165. pediatrician
+166. to do list
+167. at all,
+168. Terrace
+169. indicator
+170. involvement
+171. shadows
+172. Weird
+173. Confusing
+174. Gatherings
+175. Hardly ever
+176. Blanket
+177. In the middle of
+178. Split
+179. halves
+180. mature
+181. Trip
+182. minimum basic income
+183. Nearest future
+184. Unreasonably
+
+
+
+
+
+
+
+1. Outfit - образ комплект одягу
+2. Casual - повсякденний, неформальний
+3. Make a right choice - зробити правильний вибір
+4. Purchase - покупка
+5. Suitable - підходящий, відповідний
+6. intrusive - навʼязливий
+7. Invisible - невидимий
+8. Point of view - точка зору
+9. aisle - (прохід у магазині, літаку)
+10. observation - спостереження, зауваження
+11. an exception - вийняток
+12. In need - в потребі
+13. DIY (do it yourself) - зроби сам
+14. Department store - універмаг
+15. enrich - збагачувати
+16. repetitive work - монотонна, повторювана робота
+17. Stable - стабільний
+18. Income - дохід
+19. drafts - чернетки, протяги (залежно від контексту)
+20. Once - одного разу, як тільки
+21. assemble a team - зібрати команду
+22. predicted - передбачений
+23. It depends on - це залежить від
+24. Involved - залучений
+25. Rates - тарифи, ставки
+26. Pros & cons - плюси і мінуси
+27. Advantages and disadvantages of - переваги та недоліки
+28. Commute - їздити на роботу / дорога на роботу
+29. Spend time +ING - проводити час, поблячи щось
+30. Obstacles - перешкоди
+31. On foot - пішки
+32. distractions - відволікаючі чинники
+33. cohesion - згуртованість
+34. Gig work - гіг-робота, тимчасові підробітки
+35. Lower - нижчий, знижувати
+36. charity - благодійність, благодійна організація
+37. Gain - здобувати прибуток
+38. leadership - лідерство
+39. Trait - риси характеру
+
+
+
+
+
+
+
+
+
+
+
+FEELINGS AND EMOTIONS
+1. PUZZLED - збентежений (озадаченный)
+2. RELAXED - розслаблений
+3. HYSTERICAL - істеричний
+4. PROUD - гордий
+5. RESERVED - стриманий
+6. RELIEVED - полегшений
+7. DISAPPOINTED - розчарованний
+8. FURIOUS - розлючений (разьяренный)
+9. TIRED - втомлений (усталый)
+10. GUILTY - винний (виновный)
+11. BEWILDERED - збентежений (растерянный)
+12. BORED - нудьгуючий (скучающий)
+13. CALM - спокійний
+14. DEPRESSED - пригнічений (подавленный)
+15. DEVASTATED - спустошений (опустошенный)
+16. ECSTATIC - несамовитий, шалений, екстатичний (восторженный)
+17. EXCITED - збуджений, піднесенний, схвильований (возбужденный, возбужденный)
+18. HOPEFUL - сповнений надії (полный надежды)
+19. NEUTRAL - нейтральний (нейтральный)
+20. TERRIFIED - наляканий (испуганный)
+21. CONFIDENT - 
+22. SAD
+23. DEVASTATED
+24. ANNOYED
+25. ANGRY
+26. FURIOUS
+27. SHOCKED
+28. NERVOUS
+29. CONFUSED
+30. SPEECHLESS
+31. BORED
+32. EMBARRASSED
+33. SILLY
+
+
+green-eyed
+is associated with
+wheat
+embroidered shirt
+pure
+
+owe
+Pantry
+Wood
+Firewood
+Path
+Warm up
+Start
+Gear
+
+
+to plant
+hired people
+bush
+
