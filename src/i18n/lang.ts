@@ -1,0 +1,29 @@
+// src/i18n/lang.ts — language context + useLang hook (ported from ../database guide, standard §4.5).
+// CHANGED (S0.1): bootstrapped at S0 so scripts/smoke.ts (which imports LangProvider) typechecks.
+import { createContext, useContext } from 'react';
+import type { Lang, Localized } from '../data/types';
+
+export type { Lang };
+
+export const LANG_KEY = 'englishguide.lang';
+
+export type LangContextValue = {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  toggle: () => void;
+  /** Resolve a Localized value in the current language. */
+  t: (value: Localized) => string;
+};
+
+export const LangCtx = createContext<LangContextValue | null>(null);
+
+export function useLang(): LangContextValue {
+  const ctx = useContext(LangCtx);
+  if (!ctx) throw new Error('useLang must be used within <LangProvider>');
+  return ctx;
+}
+
+/** Resolve a Localized value for a language, falling back to EN (UA may lag during authoring). */
+export function pick(value: Localized, lang: Lang): string {
+  return value[lang] || value.en;
+}
