@@ -10,3 +10,4 @@ scripts/_*
 
 # Out-of-standard reference material — never committed inside a guide
 _examples/
+words.txt

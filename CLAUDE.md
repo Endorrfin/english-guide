@@ -61,7 +61,8 @@ scripts/     check-data.ts · run-tests.ts · smoke.ts · gen-words-index.ts (wi
              test-exercise.ts · test-srs.ts (ported)
 public/      favicon.svg · .nojekyll
 .github/workflows/deploy.yml
-CLAUDE.md · PROJECT-BRIEF.md · CURRICULUM.md · README.md · words.txt (raw backlog, see §12)
+CLAUDE.md · PROJECT-BRIEF.md · CURRICULUM.md · README.md
+_examples/words-backlog.txt (gitignored raw backlog, see §12)
 ```
 
 **Deviations from the standard, sanctioned by the owner:** repo/package/Pages path is
@@ -135,16 +136,16 @@ Owner says (any session): *"add words: thrive, endeavor, grasp …"* (optionally
 1) dedupes against ALL word files (existing card → extend/see-also instead of duplicating);
 2) writes golden cards to `src/data/words/custom.ts` (`source:'custom'`) — or the level file if the
 word is an unshipped Oxford item; 3) regenerates the words index; 4) runs `check:data`; 5) reports
-the added ids. New cards enter SRS as *new* (NEW_PER_DAY caps the queue). `words.txt` is the raw
-backlog for these sessions.
+the added ids. New cards enter SRS as *new* (NEW_PER_DAY caps the queue). `_examples/words-backlog.txt`
+is the raw backlog for these sessions (moved from root `words.txt` in S1).
 
 ## 11. Deploy
 
 GitHub Pages via Actions (`.github/workflows/deploy.yml`): typecheck → lint → check:data → test →
 smoke → build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `vite base:'./'` +
 `public/.nojekyll` = sub-path-safe. Repo **`endorrfin/english-guide`** (exists). **Agent sessions never
-push** — the owner deploys. NOTE: CI stays red until S1 ships the golden module (check:data/smoke need
-`concepts.ts` + the shell) — push to `main` after S1 verify is green.
+push** — the owner deploys. NOTE (updated S1): S1 shipped the shell + golden module and the full
+gate is green in a scratch verify — the first push containing S1 turns CI green.
 
 ## 12. Gotchas / constraints
 
@@ -152,9 +153,10 @@ push** — the owner deploys. NOTE: CI stays red until S1 ships the golden modul
   fresh `--outDir dist-sN` (gitignored) or `build.emptyOutDir:false`; verify in a scratch copy.
 - Don't run git against the live repo from the sandbox. Owner runs `npm install` (native darwin-arm64).
 - Exclude `_examples/` from git/deploy.
-- **`words.txt` is the owner's personal raw backlog (~580 entries).** The repo is public — owner
-  decides: keep it committed, or move to `_examples/words-backlog.txt` (gitignored). Until decided,
-  don't publish derived personal data beyond cleaned dictionary cards.
+- **words.txt → `_examples/words-backlog.txt` (gitignored) — owner decision, S1.** The raw personal
+  backlog (~580 entries) stays out of the public repo; `git rm --cached words.txt` on the S1 commit
+  removes it from tracking (it remains in old history unless rewritten — owner accepted). Never
+  publish derived personal data beyond cleaned dictionary cards.
 - `speechSynthesis` voices differ per browser/OS; `lib/tts.ts` must feature-detect and degrade to a
   disabled button with a tooltip — never throw.
 - **`tsc -b` typechecks `scripts/` too** (tsconfig.node.json project ref): `check-data.ts` + `smoke.ts`
@@ -188,3 +190,28 @@ S12: map polish · mental-models gallery · module meta-split · bilingual QA ·
   `englishguide.lang`), `lib/registry.tsx` (empty `sims`/`figures` + `lazyNamed`), plus empty
   `components/{sims,figures}/` with `.gitkeep`. Verified on the owner's tree: **typecheck ✓ lint ✓**
   (check:data/test/smoke expected ✓ locally; `build` stays red until S1 ships `index.html` + shell).
+- **S1 (golden)** — The guide is live-ready. **Shell:** dark-editorial theme (CEFR-ramp tokens),
+  hash router (`#/map · #/m · #/dictionary · #/practice · #/review · #/irregular`), TopBar with
+  global search (modules + topics + words, tiered ranking), Sidebar, CEFR landing map, EN/UA toggle,
+  a11y (skip-link, focus management, ARIA, reduced-motion). `concepts.ts` filled: 5 sections + 34
+  modules (m17 authored; 33 bilingual-titled stubs render header + ComingSoon → whole map navigable).
+  **Golden m17-modal-system:** 4 topics (5-rules table · nine-modals distancing map · function×time
+  grid · negation scope), 7 UA-speaker pitfalls, 17 drills, verified sources. **★modal-navigator:**
+  10 functions × 3 times = 30 cells (68 ranked answers + near-misses, 2 explicit N/A), pure engine
+  `lib/modals.ts` + content `data/modalNavigator.ts`, golden test; `modal-map` SVG figure.
+  **Exercise engine** `lib/exercise.ts`: canonical() with contraction equivalence (mustn't=must not,
+  can't=cannot=can not, 'll/'ve/'re/'m/'d-better; ambiguous 's/'d never guessed) — golden-tested;
+  ExerciseSet UI (gap+MCQ, localStorage progress on stable ids) + `#/practice` hub. **Dictionary v1**
+  (search EN+UA, level/kind/POS filters, expandable cards, en-US TTS via `lib/tts.ts`, deep-link
+  highlight) + **W1: 150 golden A1 cards** (Oxford seed; US IPA; 7 tagged examples 4/1/1/1;
+  agent-generated in 6 batches, merged + spot-checked). **QA:** check:data extended (words contract,
+  exercises, authored-module golden bar, counts 5/34/150; registry parser re-anchored on record
+  declarations — the template's word-split broke once comments mentioned "sims"); smoke wired
+  (109 checks: components EN+UK, 4 route pages, all 34 module pages, `<App/>` across 9 hashes).
+  **`npm run verify` ✓ green end-to-end** in the cloud scratch copy + the built app was
+  screenshot-checked in headless Chromium (map/m17/navigator/dictionary/practice, EN + UA, 0 page
+  errors). words.txt moved to `_examples/words-backlog.txt` (owner decision). Sources web-verified
+  (Cambridge modal pages, British Council modal refs, Merriam-Webster shall). Owner next:
+  `npm install` → `npm run verify` → commit on `s1-golden-modal-system` → push → merge to `main`
+  (first green deploy); `git rm --cached words.txt` + drop the two stale `.gitkeep` files in
+  `src/components/{sims,figures}/`.
