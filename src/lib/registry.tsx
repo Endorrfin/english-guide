@@ -27,6 +27,10 @@ export const sims: Record<string, LazyComp> = {
 /** Figures by kebab key. */
 export const figures: Record<string, LazyComp> = {
   'modal-map': lazyNamed(() => import('../components/figures/ModalMap'), 'ModalMap'),
+  // CHANGED (S2): m18–m20 figures.
+  'ability-timeline': lazyNamed(() => import('../components/figures/AbilityTimeline'), 'AbilityTimeline'),
+  'obligation-source': lazyNamed(() => import('../components/figures/ObligationSource'), 'ObligationSource'),
+  'advice-ladder': lazyNamed(() => import('../components/figures/AdviceLadder'), 'AdviceLadder'),
 };
 
 export function getSim(key: string): LazyComp | undefined {
