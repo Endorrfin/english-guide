@@ -66,14 +66,19 @@ function ok(cond: boolean, msg: string): void {
   }
 }
 
-// TODO (wire to your guide): technical terms that stay English in both langs make the best canaries.
-const SIM_CANARIES: Record<string, string[]> = {};
-const FIG_CANARIES: Record<string, string[]> = {};
+// CHANGED (S1): canaries — grammar terms stay English in both langs, so they are stable across
+// the EN/UK passes while the surrounding chrome differs.
+const SIM_CANARIES: Record<string, string[]> = {
+  ModalNavigator: ['Modal Navigator', 'must'],
+};
+const FIG_CANARIES: Record<string, string[]> = {
+  ModalMap: ['had to', 'could'],
+};
 
 async function main(): Promise<void> {
-  // TODO (wire to your guide): import paths/names. Standard naming = registry records `sims`/`figures`
-  // in src/lib/registry, the language provider `LangProvider` in src/i18n, and `MODULES` in src/data/concepts.
+  // CHANGED (S1): wired — LangProvider + AppStateProvider (level filter/sidebar/known state).
   const { LangProvider } = await import("../src/i18n/LangProvider");
+  const { AppStateProvider } = await import("../src/components/AppStateProvider");
   const { MODULES } = await import("../src/data/concepts");
   const { sims, figures } = await import("../src/lib/registry");
 
@@ -81,8 +86,7 @@ async function main(): Promise<void> {
 
   function ssr(el: ReactNode, lang: "en" | "uk"): string {
     currentLang = lang;
-    // TODO (wire to your guide): if you have extra providers (e.g. AppStateProvider), nest them here.
-    return renderToStaticMarkup(h(LangProvider, null, el));
+    return renderToStaticMarkup(h(LangProvider, null, h(AppStateProvider, null, el)));
   }
 
   function check(label: string, el: ReactNode, lang: "en" | "uk", min: number, includes: string[] = []): void {
@@ -131,24 +135,50 @@ async function main(): Promise<void> {
   }
 
   // ── Layer B: route pages (server-renderable shells) ────────────────────────────────────────────────
-  // TODO (wire to your guide): import + render each route page (e.g. the landing map, mental-models,
-  // glossary, decide). Pass props they need; assert a stable canary on the EN pass where apt. Example:
-  //   const { LandscapeMap } = await import("../src/components/map/LandscapeMap");
-  //   for (const lang of langs) check("LandscapeMap", h(LandscapeMap), lang, 1500);
+  // CHANGED (S1): wired — landing map, Dictionary v1, Practice hub, ComingSoon.
+  const { LandscapeMap } = await import("../src/components/map/LandscapeMap");
+  const { DictionaryPage } = await import("../src/components/pages/DictionaryPage");
+  const { PracticePage } = await import("../src/components/pages/PracticePage");
+  const { ComingSoon } = await import("../src/components/pages/ComingSoon");
+  for (const lang of langs) {
+    check("LandscapeMap", h(LandscapeMap), lang, 1500, lang === "en" ? ["Modal", "34"] : ["Modal"]);
+    check("DictionaryPage", h(DictionaryPage), lang, 800);
+    check("PracticePage", h(PracticePage), lang, 800);
+    check("ComingSoon", h(ComingSoon), lang, 100);
+  }
 
-  // ── Layer C: per-module page header/TOC/nav for all modules (lazy body blocks → Suspense fallback) ──
-  // TODO (wire to your guide): import your ModulePage and render the header for every module.
-  //   const { ModulePage } = await import("../src/components/module/ModulePage");
-  //   for (const m of MODULES) for (const lang of langs) check(`ModulePage:${m.id}`, h(ModulePage, { id: m.id }), lang, 300);
-  void MODULES;
+  // ── Layer C: per-module page for all modules (authored bodies + stub headers) ──────────────────────
+  // CHANGED (S1): wired — every module renders in both languages; lazy sim/figure chunks resolve to
+  // their Suspense fallbacks under the legacy SSR API, which is exactly what we assert survives.
+  const { ModulePage } = await import("../src/components/module/ModulePage");
+  for (const m of MODULES) {
+    for (const lang of langs) check(`ModulePage:${m.id}`, h(ModulePage, { moduleId: m.id }), lang, 300);
+  }
+  // The golden module renders its full body — assert content canaries beyond the header.
+  for (const lang of langs) {
+    check("ModulePage:m17(full)", h(ModulePage, { moduleId: "m17-modal-system" }), lang, 8000, [
+      "must",
+      "had to",
+    ]);
+  }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
-  // TODO (wire to your guide): import App (default or named) and walk representative + bogus hashes.
-  //   const App = (await import("../src/App")).default;
-  //   for (const hash of ["", "#/map", "#/m/<id>", "#/does-not-exist"]) {
-  //     (g.location as { hash: string }).hash = hash;
-  //     check(`App ${hash || "(empty)"}`, h(App), "en", 3000);
-  //   }
+  // CHANGED (S1): wired — representative + bogus hashes through the real <App/>.
+  const { App } = await import("../src/App");
+  for (const hash of [
+    "",
+    "#/map",
+    "#/m/m17-modal-system",
+    "#/m/m17-modal-system/function-x-time-grid",
+    "#/dictionary",
+    "#/practice",
+    "#/review",
+    "#/irregular",
+    "#/does-not-exist",
+  ]) {
+    (g.location as { hash: string }).hash = hash;
+    check(`App ${hash || "(empty)"}`, h(App), "en", 3000);
+  }
 
   console.log("— SSR / render smoke —");
   console.log(`  components: ${simCount} sims + ${figCount} figures, each rendered EN + UK`);

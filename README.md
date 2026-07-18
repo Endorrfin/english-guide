@@ -73,8 +73,12 @@ sim/figure key in `src/lib/registry.tsx`. **Words:** add golden cards to `src/da
 ## Status
 
 **S0** — scaffolded (guide-factory Tier-1 template): structure, CEFR content contract, meta-docs.
-S1 ships the golden module `m17-modal-system` + the `modal-navigator` sim, the exercise engine and
-Dictionary v1 (~150 A1 words).
+**S1 (golden) — shipped:** the full app shell (dark editorial theme, CEFR map, EN/UA toggle, global
+search over modules **and** words), the golden module `m17-modal-system` (4 topics, 17 drills,
+UA-speaker pitfalls) with the ★ `modal-navigator` sim (10 functions × 3 times, near-misses included)
+and the `modal-map` figure, the golden-tested exercise engine (contraction-equivalent answers:
+*mustn't* = *must not*), and **Dictionary v1 with 150 golden A1 cards** (US IPA · TTS · 7 tagged
+examples each). Next: S2–S3 complete the Modal Verbs section (`m18`–`m22`).
 
 ---
 
