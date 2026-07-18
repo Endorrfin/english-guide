@@ -169,7 +169,9 @@ gate is green in a scratch verify — the first push containing S1 turns CI gree
 ## 13. Session roadmap
 
 S1 **golden**: `m17-modal-system` + `modal-navigator` + shell/theme/nav/i18n + `lib/exercise.ts`
-(+golden test) + Dictionary v1 + words W1 (~150 A1). → S2–S3: `m18`–`m22` + modal drill set. →
+(+golden test) + Dictionary v1 + words W1 (~150 A1). → **S2 (done): `m18`–`m20`** (ability/permission,
+obligation/necessity, advice/criticism) + 3 SVG figures. → S3: `m21` (+`deduction-lab` ★sim) + `m22`
+(finishes Modal Verbs) + any cross-section modal drill polish. →
 S4: dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 S5–S6: m1–m8 + W2 (~1,000). → S7–S8: m9–m16 + `conditionals-machine` + `tense-timeline` + W3. →
 S9–S10: m23–m30 + `article-tree` + W4 (~3,000). → S11: m31–m34 + `word-formation-lab` + W5 idioms. →
@@ -215,3 +217,26 @@ S12: map polish · mental-models gallery · module meta-split · bilingual QA ·
   `npm install` → `npm run verify` → commit on `s1-golden-modal-system` → push → merge to `main`
   (first green deploy); `git rm --cached words.txt` + drop the two stale `.gitkeep` files in
   `src/components/{sims,figures}/`.
+- **S2 — `m18`–`m20` (Modal Verbs continues).** Authored three golden B1 modules, each 4 topics with
+  the full block mix (prose · table · compare · callout · figure) and ≥15 drills:
+  **m18 Ability & permission** (can/could · be able to · may/might permission · managed to; spine =
+  the single-success trap: affirmative *could* ✗ → *was able to / managed to*, `couldn't` covers all
+  past; 16 drills), **m19 Obligation & necessity** (must vs have to = internal/external source · need
+  to/needn't · the mustn't≠don't-have-to negation cliff · past `had to` + the *must have*=deduction
+  trap; 16 drills), **m20 Advice & criticism** (should/ought to · had better warning + its 3 traps ·
+  should have + V3 for past criticism/regret · the advice strength ladder & softeners; 16 drills).
+  **3 new SVG figures** (bilingual, theme tokens, reduced-motion-safe), registered in `registry.tsx`:
+  `ability-timeline` (AbilityTimeline), `obligation-source` (ObligationSource), `advice-ladder`
+  (AdviceLadder). `concepts.ts`: the three stubs replaced with real imports (still 5/34; now 4 authored).
+  All 65 modal drills flow into `#/practice` via tags (`modals`, `ability`, `permission`, `obligation`,
+  `no-necessity`, `advice`, `past`, `negation`, …) — the cross-section modal drill set emerges from the
+  tags. **Facts web-verified** (British Council Past ability + Modals permission/obligation; Cambridge
+  grammar must / have-got-to / had-better / should / ought-to / can / be-able-to; Test-English
+  needn't-vs-didn't-need-to) — `sources` filled per module (≥4 each). **Verification (data + logic, per
+  owner's call this session):** `check:data` ✓ (5 sections · 34 modules · 4 authored · 65 exercises ·
+  150 words · all bilingual · registry + seeAlso resolve), `test-exercise` ✓, `test-modals` ✓, and a
+  scoped strict `tsc` on the three data modules ✓ — all in the cloud scratch copy. **NOT run here**
+  (owner runs locally): full `tsc -b` across the app, `eslint`, `smoke` (SSR-renders the 3 new figures
+  EN+UK — files==keys now 4 figures / 4 keys), `vite build`. Owner next: `npm run verify` locally →
+  commit on `s2-modals-ability-obligation-advice` → push. Deferred to S3: `m21` + the `deduction-lab`
+  ★sim, then `m22`.

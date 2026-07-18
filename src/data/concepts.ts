@@ -5,6 +5,11 @@
 // The module meta-split arrives in a later session (like the database guide's S19).
 import type { Level, Localized, Module, Section } from './types';
 import { m17 } from './modules/m17-modal-system';
+// CHANGED (S2): m18–m20 authored — Modal Verbs section continues (ability/permission,
+// obligation/necessity, advice/criticism). Imports replace the former stub() entries below.
+import { m18 } from './modules/m18-ability-permission';
+import { m19 } from './modules/m19-obligation-necessity';
+import { m20 } from './modules/m20-advice-criticism';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
@@ -78,9 +83,9 @@ export const modules: Module[] = [
 
   // Section III — Modal Verbs ★ flagship (B1–B2)
   m17,
-  stub('m18-ability-permission', 18, 's3-modal-verbs', 2, 'b1', { en: 'Ability & permission', uk: 'Уміння і дозвіл' }),
-  stub('m19-obligation-necessity', 19, 's3-modal-verbs', 3, 'b1', { en: 'Obligation & necessity', uk: 'Обовʼязок і необхідність' }),
-  stub('m20-advice-criticism', 20, 's3-modal-verbs', 4, 'b1', { en: 'Advice & criticism', uk: 'Порада і критика' }),
+  m18, // CHANGED (S2): authored
+  m19, // CHANGED (S2): authored
+  m20, // CHANGED (S2): authored
   stub('m21-deduction-probability', 21, 's3-modal-verbs', 5, 'b2', { en: 'Deduction & probability', uk: 'Висновки і ймовірність' }, true),
   stub('m22-requests-politeness', 22, 's3-modal-verbs', 6, 'b1', { en: 'Requests, offers & politeness', uk: 'Прохання, пропозиції і ввічливість' }),
 

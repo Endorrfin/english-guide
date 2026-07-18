@@ -78,7 +78,12 @@ search over modules **and** words), the golden module `m17-modal-system` (4 topi
 UA-speaker pitfalls) with the ★ `modal-navigator` sim (10 functions × 3 times, near-misses included)
 and the `modal-map` figure, the golden-tested exercise engine (contraction-equivalent answers:
 *mustn't* = *must not*), and **Dictionary v1 with 150 golden A1 cards** (US IPA · TTS · 7 tagged
-examples each). Next: S2–S3 complete the Modal Verbs section (`m18`–`m22`).
+examples each).
+**S2 — shipped:** three more Modal Verbs modules — `m18` Ability & permission, `m19` Obligation &
+necessity, `m20` Advice & criticism — each 4 topics, ≥15 drills, UA-speaker pitfalls, verified sources,
+and a dedicated SVG figure (`ability-timeline`, `obligation-source`, `advice-ladder`). 65 modal drills
+now feed the `#/practice` hub by tag. Next (S3): `m21` Deduction & probability with the ★ `deduction-lab`
+sim, then `m22` Requests & politeness to finish the section.
 
 ---
 
