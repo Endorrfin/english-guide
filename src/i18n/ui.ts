@@ -129,6 +129,8 @@ export const ui = {
   },
   readingSearchPlaceholder: { en: 'Search all texts…', uk: 'Пошук усіх текстів…' },
   readingTextsLabel: { en: 'texts', uk: 'текстів' },
+  readingCategoriesLabel: { en: 'categories', uk: 'категорій' },
+  readingGoalNote: { en: 'toward the 100-text goal', uk: 'до цілі у 100 текстів' },
   readingNoResults: { en: 'No texts match your search', uk: 'Жоден текст не збігається з пошуком' },
   readingOriginal: { en: 'Original (EN)', uk: 'Оригінал (EN)' },
   readingTranslation: { en: 'Translation (UA)', uk: 'Переклад (UA)' },

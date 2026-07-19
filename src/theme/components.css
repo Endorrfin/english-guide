@@ -1969,3 +1969,42 @@
   .rd-cat-blurb { display: none; }
   .rd-nav { grid-template-columns: 1fr; }
 }
+
+/* ── Deduction Lab (m21, S4): extends the .mn-* sim layout with a certainty meter ── */
+.dl-level {
+  justify-content: flex-start;
+}
+.dl-pct {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--tx3);
+  min-width: 2.6rem;
+}
+.mn-func[aria-checked='true'] .dl-pct {
+  color: var(--amber);
+}
+.dl-meter {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--s3);
+  overflow: hidden;
+  margin: 0.1rem 0 0.5rem;
+}
+.dl-meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--amber);
+  transition: width var(--dur) var(--ease);
+}
+.dl-gloss {
+  color: var(--tx2);
+  font-size: 0.9rem;
+  margin: 0 0 0.7rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dl-meter-fill {
+    transition: none;
+  }
+}

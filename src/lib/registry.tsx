@@ -22,6 +22,8 @@ export function lazyNamed<T extends Record<string, unknown>>(
 /** Signature sims by kebab key (S1+: 'modal-navigator', 'conditionals-machine', …). */
 export const sims: Record<string, LazyComp> = {
   'modal-navigator': lazyNamed(() => import('../components/sims/ModalNavigator'), 'ModalNavigator'),
+  // CHANGED (S4): m21's ★ deduction-lab sim (certainty × time).
+  'deduction-lab': lazyNamed(() => import('../components/sims/DeductionLab'), 'DeductionLab'),
 };
 
 /** Figures by kebab key. */
@@ -31,6 +33,9 @@ export const figures: Record<string, LazyComp> = {
   'ability-timeline': lazyNamed(() => import('../components/figures/AbilityTimeline'), 'AbilityTimeline'),
   'obligation-source': lazyNamed(() => import('../components/figures/ObligationSource'), 'ObligationSource'),
   'advice-ladder': lazyNamed(() => import('../components/figures/AdviceLadder'), 'AdviceLadder'),
+  // CHANGED (S4): m21 + m22 figures.
+  'certainty-scale': lazyNamed(() => import('../components/figures/CertaintyScale'), 'CertaintyScale'),
+  'politeness-ladder': lazyNamed(() => import('../components/figures/PolitenessLadder'), 'PolitenessLadder'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

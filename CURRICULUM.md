@@ -143,20 +143,24 @@ and comprehension questions.
 - **Category taxonomy (18):** life · values · discipline · study · work · health · family · relationships ·
   friendship · upbringing · everyday · sport · leisure · rest · technology · travel · countries · other.
   The index renders only categories that have texts.
-- **Locked decisions (S3, revised R3):** full **EN + UA** per text · **mixed** questions (2–3 MCQ + 1–2 open) ·
-  **content is ORIGINAL, owner-authored** (safe to publish). The screenshot backlog (third-party FB-community
-  posts) is kept **only as private topic inspiration** in `_examples/` — NOT transcribed verbatim into the
-  deployed site (attribution ≠ a licence; a translation is a derivative work). Earlier verbatim R1/R2 texts
-  were **replaced** with original texts in R3.
+- **Locked decisions (S3):** full **EN + UA** per text · **mixed** questions (2–3 MCQ + 1–2 open) ·
+  texts **transcribed from the owner's screenshot backlog**, with **per-text `source` attribution**
+  (the owner manages content-rights decisions). Green-title series → **Mind Boost English** (FB community,
+  `facebook.com/profile.php?id=61584114885870`); others per the visible footer (Learn With Sonali,
+  English Growth Academy, Mind Boost English `.com`).
 
 ### Reading waves (content pipeline)
 
 | Wave | Content | Result |
 |---|---|---|
-| R1 (S3) | Golden slice: data model + pages + first bilingual texts | shipped |
-| R2 (S3) | more bilingual texts across categories | shipped |
-| R3 | **Pivot to original content**: replaced all verbatim texts with 16 ORIGINAL bilingual texts (2 per category × study/values/family/everyday/work/discipline/life/upbringing) | 16 original |
-| R4… | Keep authoring ORIGINAL short texts (owner + agent), broadening categories; meta-split (slim index + lazy chunks) once large | → 1000+ |
+| R1 (S3) | Golden slice: data model + pages + first transcribed bilingual texts | shipped |
+| R2 (S3) | more transcribed bilingual texts across categories | shipped |
+| R3 | Backfilled `source` attribution across the set; added the grand-total counter on `#/reading` (all texts + categories) | 18 texts |
+| R4 | **Grow to 100 texts** — transcribe the backlog in waves, broadening categories | → 100 (target) |
+| R5… | Continue transcribing; meta-split (slim index + lazy chunks) once large | → 1000+ |
 
-Every wave: original texts only, unique stable ids, bilingual title/body, resolvable category + seeAlso,
-3–5 questions, `check:data` green.
+**Progress: 18 / 100.** The `#/reading` page shows the live grand total + per-category counts.
+
+Every wave: unique stable ids, bilingual title/body, resolvable category + seeAlso, 3–5 questions,
+`check:data` green. Dedupe multi-screenshot captures; route non-narrative reference sheets (e.g. idiom
+tables) to the dictionary idioms wave, not Reading.

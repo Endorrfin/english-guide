@@ -1,89 +1,93 @@
 import type { ReadingText } from '../types';
 
 /*
- * Reading · category: life. ORIGINAL bilingual texts written for this guide (owner-authored,
- * safe to publish). No external source. 2 MCQ + 1 open question each.
+ * Reading · category: life. Texts transcribed from the owner's screenshot backlog, attributed
+ * per `source` (Mind Boost English — Facebook community).
  */
+const MBE_FB = { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' };
+
 export const lifeTexts: ReadingText[] = [
   {
-    id: 'what-is-enough',
-    title: { en: 'What Is Enough', uk: 'Що таке «достатньо»' },
+    id: 'village',
+    title: { en: 'Village', uk: 'Село' },
     category: 'life',
-    level: 'b1',
+    level: 'a2',
     minutes: 1,
-    topics: ['contentment', 'gratitude', 'values'],
+    source: MBE_FB,
+    topics: ['village', 'nature', 'simple-life'],
     body: {
-      en: 'Much of our worry comes from a moving finish line. We reach a goal we once dreamed of, feel satisfied for a day, and then quietly raise the target again. There is nothing wrong with ambition, but a life spent always chasing “more” can pass without ever feeling like enough. The cure is not to stop wanting things; it is to notice what you already have. Once in a while, pause and name three ordinary things that are genuinely good right now — a warm room, a friend, work that means something. Enough is not a certain amount. It is a habit of attention.',
-      uk: 'Значна частина наших тривог походить із рухомої фінішної лінії. Ми досягаємо мети, про яку колись мріяли, день почуваємось задоволеними, а тоді тихо піднімаємо планку знову. В амбіціях немає нічого поганого, але життя, проведене у вічній гонитві за «більше», може минути так і не відчувши, що вже достатньо. Ліки — не перестати чогось хотіти, а помічати те, що вже маєш. Час від часу спиніться й назвіть три звичайні речі, які справді хороші просто зараз, — тепла кімната, друг, робота, що має сенс. «Достатньо» — це не певна кількість. Це звичка уваги.',
+      en: 'A village is a calm and beautiful place where life is simple and close to nature. People in villages live like a family and help each other in daily life. Fresh air, green fields, and peaceful surroundings make village life healthy and stress-free. Villages teach us honesty, hard work, and strong values. Life in a village may be simple, but it is full of peace and happiness.',
+      uk: 'Село — це спокійне й гарне місце, де життя просте й близьке до природи. Люди в селах живуть, наче одна родина, і допомагають одне одному в щоденних справах. Свіже повітря, зелені поля й мирне довкілля роблять сільське життя здоровим і без стресу. Села вчать нас чесності, працьовитості й міцних цінностей. Життя в селі може бути простим, але воно сповнене спокою й щастя.',
     },
     questions: [
       {
         kind: 'mcq',
-        q: { en: 'Where does much of our worry come from, according to the text?', uk: 'Звідки походить значна частина наших тривог, за текстом?' },
+        q: { en: 'How do people in villages live, according to the text?', uk: 'Як, за текстом, живуть люди в селах?' },
         options: [
-          { en: 'A moving finish line — always raising the target', uk: 'Рухома фінішна лінія — постійне підняття планки' },
-          { en: 'Having too few goals', uk: 'Замало цілей' },
-          { en: 'Other people’s opinions only', uk: 'Лише чужі думки' },
+          { en: 'Like a family, helping each other', uk: 'Наче родина, допомагаючи одне одному' },
+          { en: 'Alone and apart', uk: 'Самотньо й окремо' },
+          { en: 'In constant competition', uk: 'У постійному суперництві' },
         ],
         correct: 0,
-        explain: { en: 'We hit a goal, feel satisfied briefly, then quietly raise the target again.', uk: 'Ми досягаємо мети, ненадовго задоволені, а тоді знову тихо піднімаємо планку.' },
+        explain: { en: '“People in villages live like a family and help each other in daily life.”', uk: '«People in villages live like a family…»' },
       },
       {
         kind: 'mcq',
-        q: { en: 'What does the text say “enough” really is?', uk: 'Чим, за текстом, є «достатньо» насправді?' },
+        q: { en: 'What makes village life healthy and stress-free?', uk: 'Що робить сільське життя здоровим і без стресу?' },
         options: [
-          { en: 'A habit of attention', uk: 'Звичкою уваги' },
-          { en: 'A certain amount of money', uk: 'Певною сумою грошей' },
-          { en: 'A prize you win once', uk: 'Призом, який виграєш раз' },
+          { en: 'Fresh air, green fields, and peaceful surroundings', uk: 'Свіже повітря, зелені поля й мирне довкілля' },
+          { en: 'Big crowds and traffic', uk: 'Великі натовпи й затори' },
+          { en: 'Bright city lights', uk: 'Яскраві вогні міста' },
         ],
         correct: 0,
-        explain: { en: '“Enough is not a certain amount. It is a habit of attention.”', uk: '«“Достатньо” — це не певна кількість. Це звичка уваги.»' },
+        explain: { en: '“Fresh air, green fields, and peaceful surroundings make village life healthy and stress-free.”', uk: '«Fresh air, green fields, and peaceful surroundings…»' },
       },
       {
         kind: 'open',
-        q: { en: 'Name three ordinary things in your life right now that are genuinely good.', uk: 'Назвіть три звичайні речі у вашому житті просто зараз, які справді хороші.' },
-        sample: { en: 'Answers will vary. The point is to name concrete, present, ordinary goods (people, health, work, a place) rather than future wishes.', uk: 'Відповіді різнитимуться. Суть — назвати конкретні, теперішні, звичайні блага (люди, здоровʼя, робота, місце), а не майбутні бажання.' },
+        q: { en: 'Would you prefer to live in a village or a city? Give two reasons.', uk: 'Ви б хотіли жити в селі чи в місті? Наведіть дві причини.' },
+        sample: { en: 'Answers will vary. A strong answer takes a side and gives two concrete reasons (e.g., calm and clean air vs. jobs and convenience).', uk: 'Відповіді різнитимуться. Сильна відповідь обирає варіант і дає дві конкретні причини (напр., спокій і чисте повітря проти роботи й зручності).' },
       },
     ],
   },
   {
-    id: 'one-thing-at-a-time',
-    title: { en: 'One Thing at a Time', uk: 'По одній справі за раз' },
+    id: 'poverty',
+    title: { en: 'Poverty', uk: 'Бідність' },
     category: 'life',
     level: 'b1',
     minutes: 1,
-    topics: ['focus', 'calm', 'attention'],
+    source: MBE_FB,
+    topics: ['society', 'poverty', 'kindness'],
     body: {
-      en: 'Doing many things at once feels productive, but it rarely is. Each time we switch tasks, a little attention is lost in the jump, and the work turns out slower and full of small mistakes. Worse, a divided mind is a restless mind: we finish the day tired without knowing quite what we did. Try the opposite. Give one task your whole attention until it reaches a natural stopping point, then move on. Eat when you eat; talk when you talk; work when you work. This is not only more efficient — it is calmer. A life lived one thing at a time feels wider than a life spent doing everything halfway.',
-      uk: 'Робити багато справ одночасно здається продуктивним, але рідко ним є. Щоразу, коли ми перемикаємось, трохи уваги губиться в стрибку, і робота виходить повільнішою й повною дрібних помилок. Гірше, розділений розум — неспокійний розум: ми закінчуємо день утомленими, до пуття не знаючи, що зробили. Спробуйте навпаки. Віддайте одній справі всю увагу до природної точки зупинки, а тоді переходьте далі. Їжте, коли їсте; говоріть, коли говорите; працюйте, коли працюєте. Це не лише ефективніше — це спокійніше. Життя, прожите по одній справі за раз, відчувається ширшим, ніж життя, проведене в усьому наполовину.',
+      en: 'Poverty is one of the biggest challenges in the world. It affects people’s health, education, and opportunities in life. Poor people often struggle for basic needs like food, shelter, and medical care. Poverty is not a choice; it is a condition that needs understanding and support. By providing education, jobs, and kindness, we can reduce poverty. Helping the poor creates a fairer society and brings hope, dignity, and a better future for everyone.',
+      uk: 'Бідність — один із найбільших викликів у світі. Вона впливає на здоровʼя людей, освіту й можливості в житті. Бідні люди часто борються за базові потреби — їжу, житло й медичну допомогу. Бідність — це не вибір; це стан, що потребує розуміння й підтримки. Даючи освіту, роботу й доброту, ми можемо зменшити бідність. Допомога бідним створює справедливіше суспільство й приносить надію, гідність і краще майбутнє для всіх.',
     },
     questions: [
       {
         kind: 'mcq',
-        q: { en: 'What happens each time we switch tasks, according to the text?', uk: 'Що стається щоразу, коли ми перемикаємось, за текстом?' },
+        q: { en: 'How does the text describe poverty?', uk: 'Як текст описує бідність?' },
         options: [
-          { en: 'A little attention is lost in the jump', uk: 'Трохи уваги губиться в стрибку' },
-          { en: 'We become faster and error-free', uk: 'Ми стаємо швидшими й безпомилковими' },
-          { en: 'Nothing changes', uk: 'Нічого не змінюється' },
+          { en: 'Not a choice, but a condition that needs support', uk: 'Не вибір, а стан, що потребує підтримки' },
+          { en: 'A personal choice people make', uk: 'Особистий вибір людей' },
+          { en: 'A small, rare problem', uk: 'Дрібну, рідкісну проблему' },
         ],
         correct: 0,
-        explain: { en: 'Switching loses attention and makes work slower and error-prone.', uk: 'Перемикання губить увагу й робить роботу повільнішою та з помилками.' },
+        explain: { en: '“Poverty is not a choice; it is a condition that needs understanding and support.”', uk: '«Poverty is not a choice; it is a condition that needs understanding and support.»' },
       },
       {
         kind: 'mcq',
-        q: { en: 'What does the text recommend instead of multitasking?', uk: 'Що текст радить замість багатозадачності?' },
+        q: { en: 'According to the text, how can we reduce poverty?', uk: 'За текстом, як ми можемо зменшити бідність?' },
         options: [
-          { en: 'Give one task your whole attention to a natural stop', uk: 'Віддати одній справі всю увагу до природної зупинки' },
-          { en: 'Do five things at once', uk: 'Робити пʼять справ одночасно' },
-          { en: 'Never finish anything', uk: 'Ніколи нічого не завершувати' },
+          { en: 'By providing education, jobs, and kindness', uk: 'Даючи освіту, роботу й доброту' },
+          { en: 'By ignoring it', uk: 'Ігноруючи її' },
+          { en: 'By blaming the poor', uk: 'Звинувачуючи бідних' },
         ],
         correct: 0,
-        explain: { en: 'Focus fully on one task until a natural stopping point, then move on.', uk: 'Зосередься повністю на одній справі до природної зупинки, а тоді далі.' },
+        explain: { en: '“By providing education, jobs, and kindness, we can reduce poverty.”', uk: '«By providing education, jobs, and kindness, we can reduce poverty.»' },
       },
       {
         kind: 'open',
-        q: { en: 'When do you most often multitask, and what could you do one thing at a time instead?', uk: 'Коли ви найчастіше робите кілька справ одночасно і що могли б робити по одній за раз?' },
-        sample: { en: 'Answers will vary — e.g., eating while scrolling; instead, eat without a screen and answer messages afterward.', uk: 'Відповіді різнитимуться — напр., їсти, гортаючи стрічку; натомість їсти без екрана, а на повідомлення відповісти потім.' },
+        q: { en: 'Name one thing an ordinary person could do to help reduce poverty in their community.', uk: 'Назвіть одну річ, яку звичайна людина могла б зробити, щоб зменшити бідність у своїй громаді.' },
+        sample: { en: 'Answers will vary — e.g., volunteering, donating to a food bank, mentoring or teaching a skill, supporting local jobs, treating people with dignity.', uk: 'Відповіді різнитимуться — напр., волонтерство, пожертва до продуктового банку, менторство чи навчання навички, підтримка місцевих робочих місць, ставлення до людей із гідністю.' },
       },
     ],
   },

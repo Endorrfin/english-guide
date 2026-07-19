@@ -175,8 +175,8 @@ obligation/necessity, advice/criticism) + 3 SVG figures. → **S3 (done): Readin
 `ReadingQuestion` data model, `#/reading` accordion + `#/reading/<id>` reader (EN/UA body toggle, TTS,
 MCQ + open questions, mark-as-read, prev/next), check:data + smoke extended, and a **golden batch of 6
 bilingual texts** across 3 categories (study · values · family). Reading grows by **OCR waves** (≈250 →
-1000+ texts) from the owner's screenshot backlog. → **next: finish Modal Verbs** — `m21` (+`deduction-lab`
-★sim) + `m22`. → dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
+1000+ texts) from the owner's screenshot backlog. → **S4 (done): `m21` (+`deduction-lab` ★sim) + `m22`** —
+**Modal Verbs (Section III) COMPLETE** (6/6). → **next: dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Section I (m1–m8) · II (m9–m16) · IV (m23–m30) · V (m31–m34) + their sims + dictionary waves W2–W5,
 **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module + reading meta-splits ·
 bilingual QA · a11y pass.
@@ -275,18 +275,29 @@ bilingual QA · a11y pass.
   deploy assume you hold the rights/permission (per your S3 choice); *My Family* needs a source or a
   rewrite. Owner next: `npm run verify` → commit on `s3-reading-section` → push. Then either continue
   Reading OCR waves (optionally a multi-agent workflow, with explicit opt-in) or resume `m21`+`m22`.
-- **S3 · Reading waves R2–R3 (pivot to original content).** R2 first added more bilingual texts across
-  categories. In R3 the content approach **pivoted**: the screenshot backlog is third-party
-  FB-community material (Mind Boost English et al.), and mass-transcribing it verbatim (+ translating,
-  a derivative work) for the **public** deploy is a copyright risk — attribution is not a licence. Owner
-  decision: **use ORIGINAL, owner-authored texts**; keep the screenshots only as **private inspiration**
-  in `_examples/` (gitignored). All earlier verbatim R1/R2 texts were **replaced** with original ones.
-  Reading now ships **16 original bilingual texts** (2 each × study·values·family·everyday·work·discipline·
-  life·upbringing), each EN+UA with 2 MCQ + 1 open. Reader tweaked to hide the source line when a text has
-  no external source (original content). `ReadingTextPage` smoke id updated to `learning-a-little-every-day`.
-  **Verify (data+logic):** `check:data` ✓ (16 reading texts, all bilingual, links resolve) + scoped strict
-  `tsc` on reading data ✓. Owner runs full `npm run verify` locally. Owner next: `npm run verify` → commit
-  on `s3-reading-original-content` → push. Backlog screenshots (`_examples/text_screenshots/` incl. `🗂️ arhive/`
-  and the `_ascii/` scratch dir) stay private/inspiration; delete `_ascii/` anytime. Non-narrative sheets
-  (e.g. the idioms table) still belong to a future dictionary idioms wave, not Reading. Roadmap: keep
-  authoring original Reading texts; then finish Modal Verbs (`m21` + `deduction-lab`, `m22`).
+- **S4 — `m21` + `m22` (Modal Verbs COMPLETE).** Authored the last two flagship modules, closing
+  Section III (6/6). **m21 Deduction & probability** (b2, signature): the certainty dial — must (sure) →
+  should/will (probable) → may/might/could (possible) → can’t/couldn’t (impossible), present + past
+  (have + V3); spine trap **the negative of deductive must is can’t, never mustn’t** (verified: British
+  Council past-deduction). 4 topics (present-deduction · must-cant-might · past-deduction-must-have-v3 ·
+  certainty-scale), full block mix (prose · table · compare · callout · figure · sim), 16 drills.
+  **m22 Requests, offers & politeness** (b1): politeness = distance (can → could → would → I was
+  wondering if…); Would you mind + -ing with the answer inversion; Shall I/we (BrE) vs US Should I/Want
+  me to/Let me; would rather + bare inf (+ than) vs would prefer + to-inf vs prefer X to Y; would rather
+  + subj + past. 4 topics, full block mix, 16 drills. **★ Deduction Lab sim** — new pure engine
+  `lib/deduction.ts` (certainty × time → verdict, 5 rungs × 2 times = 10 cells / 20 answers) + content
+  `data/deductionLab.ts` + `sims/DeductionLab.tsx` (radiogroups, aria-live, TTS, reduced-motion-safe;
+  reuses `.mn-*` + a `.dl-*` certainty meter) + golden test `scripts/test-deduction.ts` (auto-discovered;
+  asserts no `mustn’t` in negatives). **2 SVG figures** `certainty-scale` (CertaintyScale) + `politeness-ladder`
+  (PolitenessLadder), registered. `concepts.ts`: the two stubs → real imports (now **6 authored**, still 5/34).
+  `smoke.ts`: added the DeductionLab canary **and fixed a pre-existing stale reading fixture** — the golden
+  reading ids were renamed in the owner’s Reading rework (16 texts now), so `ReadingTextPage`/`#/reading/<id>`
+  pointed at the deleted `the-habit-of-reading-daily`; repointed to `learning-a-little-every-day` (baseline
+  smoke was already red on this before S4, unrelated to modals). **Verification: FULL `npm run verify` ✓
+  green end-to-end in the cloud scratch** — typecheck (`tsc -b`) · eslint · check:data (5/34 · **6 authored** ·
+  **97 exercises** · 150 words · 16 reading · all bilingual · registry+links resolve) · test (test-exercise +
+  test-modals + **test-deduction**) · smoke (**2 sims + 6 figures** EN+UK, 131 checks) · vite build. Facts
+  web-verified (British Council past+present deduction; Cambridge requests / would-rather / prefer / must) —
+  `sources` filled (m21 ≥4, m22 ≥4). New sim + both figures also screenshot-checked in headless Chromium.
+  Owner next: `npm run verify` locally → commit on `s4-modals-deduction-requests` → push. Deferred/next:
+  dictionary v2 (lazy chunks + index) + `#/review` SRS + `#/irregular`; W2.

@@ -90,10 +90,11 @@ now feed the `#/practice` hub by tag.
 **S3 — shipped:** the **Reading section (VI)** — `#/reading` accordion + `#/reading/<id>` reader with an
 EN/UA body toggle, TTS, comprehension questions (auto-checked MCQ + open with model answer), and
 mark-as-read; a new `ReadingText`/`ReadingCategory`/`ReadingQuestion` data model and an 18-category
-taxonomy. `check:data` + `smoke` extended for reading. **Content is original, owner-authored** bilingual
-texts (currently 16, two per category across study · values · family · everyday · work · discipline ·
-life · upbringing) — safe to publish. Next: keep adding original texts, then finish Modal Verbs (`m21` +
-the ★ `deduction-lab` sim, `m22`).
+taxonomy, and a live grand-total counter (all texts + per-category counts) on `#/reading`. `check:data` +
+`smoke` extended for reading. **18 / 100 bilingual texts** (target 100) transcribed from the owner's
+backlog with per-text source attribution, across study · values · family · everyday · work ·
+discipline · life · upbringing. Next: grow Reading to 100 in waves, then finish Modal Verbs
+(`m21` + the ★ `deduction-lab` sim, `m22`).
 
 ---
 
