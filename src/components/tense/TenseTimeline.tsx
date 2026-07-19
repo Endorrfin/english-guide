@@ -17,13 +17,19 @@ import type { Localized } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { cx } from '../../lib/utils';
 
-type Zone = 'present' | 'past';
-type AspectKind = 'simple' | 'continuous';
+// CHANGED (T3): zones extended to future + perfect (m9, m10). The perfect zone is not "two aspects
+// of one time" like the others — it contrasts Present Perfect ⤺ vs Past Simple ● (the flagship line
+// of m10): one past event, shown twice, differing only in whether an arrow links it forward to NOW.
+type Zone = 'present' | 'past' | 'future' | 'perfect';
+type AspectKind = 'simple' | 'continuous' | 'perfect';
 
 type Mark =
   | { kind: 'dot'; x: number }
   | { kind: 'wave'; cx: number; hw: number }
-  | { kind: 'tick'; x: number }; // an interrupting event that cuts into a background process
+  | { kind: 'tick'; x: number } // an interrupting event that cuts into a background process
+  // CHANGED (T3): the ⤺ perfect link — a past dot at `from` with an arc reaching forward to `to`
+  // (the reference point, e.g. NOW). This is the visual heart of the perfect aspect (m10).
+  | { kind: 'link'; from: number; to: number };
 
 type Lane = {
   aspect: AspectKind;
@@ -166,9 +172,118 @@ const SPECS: Record<Zone, ZoneSpec> = {
       },
     ],
   },
+  // CHANGED (T3): the future zone (m9) — NOW is on the LEFT; everything is still to come. ● will /
+  // going to names a whole future event; 〜 Future Continuous is a process running at a chosen future
+  // moment (the tick marks that moment X, lit at the contrast beat, like the past interruption).
+  future: {
+    colorVar: 'var(--time-future)',
+    nowX: 100,
+    lanes: [
+      {
+        aspect: 'simple',
+        glyph: '●',
+        name: 'will / going to',
+        gloss: {
+          en: 'a whole future event — a prediction, plan or promise',
+          uk: 'ціла майбутня подія — прогноз, план чи обіцянка',
+        },
+        example: { en: 'The migration will take about an hour.', uk: 'Ця міграція займе близько години.' },
+        revealAt: 1,
+        marks: [
+          { kind: 'dot', x: 250 },
+          { kind: 'dot', x: 430 },
+        ],
+      },
+      {
+        aspect: 'continuous',
+        glyph: '〜',
+        name: 'Future Continuous',
+        gloss: {
+          en: 'a process already in progress at a chosen future moment',
+          uk: 'процес, що вже триває в обраний майбутній момент',
+        },
+        example: { en: "This time tomorrow I'll be presenting the demo.", uk: 'Завтра о цій порі я презентуватиму демо.' },
+        revealAt: 2,
+        marks: [
+          { kind: 'wave', cx: 360, hw: 128 },
+          { kind: 'tick', x: 360 },
+        ],
+      },
+    ],
+    beats: [
+      {
+        en: 'One timeline for the future. NOW is on the left; everything here is still to come.',
+        uk: 'Один таймлайн для майбутнього. NOW ліворуч; усе тут ще попереду.',
+      },
+      {
+        en: '● will / going to: a whole future event — a prediction, plan or promise. “The migration will take an hour.”',
+        uk: '● will / going to: ціла майбутня подія — прогноз, план чи обіцянка. «The migration will take an hour.»',
+      },
+      {
+        en: '〜 Future Continuous: a process that will already be running at a future moment. “This time tomorrow I’ll be presenting.”',
+        uk: '〜 Future Continuous: процес, що вже триватиме в майбутній момент. «This time tomorrow I’ll be presenting.»',
+      },
+      {
+        en: 'Put them together: will names the whole event ●; will be + V-ing drops you INSIDE it at a chosen future moment X — “At nine we’ll be interviewing.”',
+        uk: 'Складіть разом: will називає цілу подію ●; will be + V-ing ставить тебе ВСЕРЕДИНІ неї в обраний майбутній момент X — «At nine we’ll be interviewing.»',
+      },
+    ],
+  },
+  // CHANGED (T3): the perfect zone (m10) — the flagship Present Perfect vs Past Simple line. One past
+  // event, shown twice: ● Past Simple is a closed dot cut off in the past; ⤺ Present Perfect is the
+  // same dot with an arc linking it forward to NOW. Colored with the PRESENT hue on purpose: the
+  // Present Perfect's reference point IS now, so the whole contrast is anchored at the NOW axis.
+  perfect: {
+    colorVar: 'var(--time-present)',
+    nowX: 500,
+    lanes: [
+      {
+        aspect: 'simple',
+        glyph: '●',
+        name: 'Past Simple',
+        gloss: {
+          en: 'a finished event at a known past time — done, and cut off from now',
+          uk: 'завершена подія у відомий минулий час — зроблено й відрізано від тепер',
+        },
+        example: { en: 'I lost my keys yesterday.', uk: 'Я загубив ключі вчора.' },
+        revealAt: 1,
+        marks: [{ kind: 'dot', x: 236 }],
+      },
+      {
+        aspect: 'perfect',
+        glyph: '⤺',
+        name: 'Present Perfect',
+        gloss: {
+          en: 'a past action linked forward to now — the result still matters',
+          uk: 'минула дія, зв’язана вперед із тепер — результат досі важить',
+        },
+        example: { en: "I've lost my keys — they're still lost.", uk: 'Я загубив ключі — вони досі загублені.' },
+        revealAt: 2,
+        marks: [{ kind: 'link', from: 236, to: 500 }],
+      },
+    ],
+    beats: [
+      {
+        en: 'Two ways to view one past event. The dashed line on the right is NOW.',
+        uk: 'Два погляди на одну минулу подію. Пунктир праворуч — це NOW.',
+      },
+      {
+        en: '● Past Simple: a finished event at a known past time — a closed dot, cut off from now. “I lost my keys yesterday.”',
+        uk: '● Past Simple: завершена подія у відомий минулий час — закрита крапка, відрізана від тепер. «I lost my keys yesterday.»',
+      },
+      {
+        en: '⤺ Present Perfect: the same past action, but an arrow links it forward to NOW — the result still matters. “I’ve lost my keys” (still lost).',
+        uk: '⤺ Present Perfect: та сама минула дія, але стрілка в’яже її вперед до NOW — результат досі важить. «I’ve lost my keys» (досі загублені).',
+      },
+      {
+        en: 'Same event, two views: Past Simple ● leaves it in the past; Present Perfect ⤺ pulls it up to NOW. A finished-time word (yesterday) forces the Simple — and Ukrainian has no perfect, so this link is the thing to build.',
+        uk: 'Та сама подія, два погляди: Past Simple ● лишає її в минулому; Present Perfect ⤺ підтягує до NOW. Слово завершеного часу (yesterday) вимагає Simple — а в українській perfect немає, тож саме цей зв’язок і треба збудувати.',
+      },
+    ],
+  },
 };
 
-function LaneMarks({ lane, color, active, beat }: { lane: Lane; color: string; active: boolean; beat: number }) {
+function LaneMarks({ lane, color, active, beat, zone }: { lane: Lane; color: string; active: boolean; beat: number; zone: Zone }) {
   const y = lane.aspect === 'simple' ? SIMPLE_Y : CONT_Y;
   const op = active ? 1 : 0.16;
   return (
@@ -179,7 +294,24 @@ function LaneMarks({ lane, color, active, beat }: { lane: Lane; color: string; a
           return (
             <path key={i} d={wavePath(m.cx, m.hw, y)} fill="none" stroke={color} strokeWidth={3} strokeLinecap="round" />
           );
-        // tick: the interrupting event — only lit at the final "contrast" beat
+        // CHANGED (T3): the ⤺ perfect link — a past dot with an arc reaching forward to the reference
+        // point (NOW). Lit whenever the perfect lane is active, not gated to the final beat like tick.
+        if (m.kind === 'link') {
+          const midX = (m.from + m.to) / 2;
+          return (
+            <g key={i}>
+              <circle cx={m.from} cy={y} r={6.5} fill={color} />
+              <path
+                d={`M ${m.from} ${y} Q ${midX} ${y - 54} ${m.to} ${y}`}
+                fill="none"
+                stroke={color}
+                strokeWidth={2.5}
+                markerEnd={`url(#ttl-link-${zone})`}
+              />
+            </g>
+          );
+        }
+        // tick: the interrupting event / the chosen future moment — only lit at the final "contrast" beat
         const lit = beat >= LAST;
         return (
           <g key={i} className="ttl-fade" opacity={lit ? 1 : 0.001}>
@@ -241,6 +373,10 @@ export function TenseTimeline({ zone }: { zone: Zone }) {
           <marker id={`ttl-arrow-${zone}`} viewBox="0 0 8 8" refX="7" refY="4" markerWidth={7} markerHeight={7} orient="auto">
             <path d="M0 0 L8 4 L0 8 z" fill="var(--line2)" />
           </marker>
+          {/* CHANGED (T3): the perfect link-back arrowhead, in the time hue (m10 perfect zone). */}
+          <marker id={`ttl-link-${zone}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth={6} markerHeight={6} orient="auto">
+            <path d="M0 0 L8 4 L0 8 z" fill={color} />
+          </marker>
         </defs>
 
         {/* per-lane axis */}
@@ -278,7 +414,7 @@ export function TenseTimeline({ zone }: { zone: Zone }) {
         })}
 
         {spec.lanes.map((lane) => (
-          <LaneMarks key={lane.aspect} lane={lane} color={color} active={beat >= lane.revealAt} beat={beat} />
+          <LaneMarks key={lane.aspect} lane={lane} color={color} active={beat >= lane.revealAt} beat={beat} zone={zone} />
         ))}
       </svg>
 

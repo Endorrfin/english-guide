@@ -158,8 +158,10 @@ words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review`
 4. **T1–T4 — Tenses ★ second flagship:** **T1 (done)** skeleton (concepts/types/tokens/DiveSwitcher/
    landing map + check:data/smoke updates) + golden `m6-tense-system` + `tense-navigator` ★ →
    **T2 (done)** `m7`+`m8` + the parametric `TenseTimeline` figure (one core, per-zone wrapper keys
-   `timeline-present`/`timeline-past`) → **T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` +
-   `tense-chooser` + section polish (dive tuning, cross-links, UA-pitfalls sweep).
+   `timeline-present`/`timeline-past`) → **T3 (done)** `m9`+`m10` (+ the per-zone wrapper keys
+   `timeline-future`/`timeline-perfect`; the core gained a ⤺ link-back mark for the perfect zone) →
+   **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish (dive tuning, cross-links,
+   UA-pitfalls sweep).
 5. **Dictionary v2:** per-level lazy chunks + eager search index + `#/review` SRS (port `srs.ts`) +
    `#/irregular`; words → W2 start.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).

@@ -43,6 +43,10 @@ export const figures: Record<string, LazyComp> = {
   // parametric core lives in ../components/tense/TenseTimeline (outside the scanned figures/ dir).
   'timeline-present': lazyNamed(() => import('../components/figures/TenseTimelinePresent'), 'TenseTimelinePresent'),
   'timeline-past': lazyNamed(() => import('../components/figures/TenseTimelinePast'), 'TenseTimelinePast'),
+  // CHANGED (T3): the future + perfect zones of the parametric TenseTimeline (m9, m10) — same
+  // one-export-wrapper pattern as present/past above.
+  'timeline-future': lazyNamed(() => import('../components/figures/TenseTimelineFuture'), 'TenseTimelineFuture'),
+  'timeline-perfect': lazyNamed(() => import('../components/figures/TenseTimelinePerfect'), 'TenseTimelinePerfect'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

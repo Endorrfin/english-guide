@@ -20,6 +20,10 @@ import { m6 } from './modules/m6-tense-system';
 // figure (zones present/past). Imports replace the former stub() entries below.
 import { m7 } from './modules/m7-present-simple-continuous';
 import { m8 } from './modules/m8-past-simple-continuous';
+// CHANGED (T3): m9–m10 authored — Future forms + the Perfect Family (+ the parametric TenseTimeline
+// figure zones future/perfect). Imports replace the former stub() entries below.
+import { m9 } from './modules/m9-future-forms';
+import { m10 } from './modules/m10-perfect-family';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
@@ -90,8 +94,8 @@ export const modules: Module[] = [
   m6, // CHANGED (T1): authored — the GOLDEN module of Section II (+ ★ tense-navigator)
   m7, // CHANGED (T2): authored — Present: Simple & Continuous (+ timeline-present figure)
   m8, // CHANGED (T2): authored — Past: Simple & Continuous (+ timeline-past figure)
-  stub('m9-future-forms', 9, 's6-tenses', 4, 'a2', { en: 'Future: will, going to & Continuous', uk: 'Future: will, going to і Continuous' }),
-  stub('m10-perfect-family', 10, 's6-tenses', 5, 'b1', { en: 'The Perfect Family', uk: 'Родина Perfect' }),
+  m9, // CHANGED (T3): authored — Future: will, going to & Continuous (+ timeline-future figure)
+  m10, // CHANGED (T3): authored — The Perfect Family (+ timeline-perfect figure)
   stub('m11-choosing-narrative', 11, 's6-tenses', 6, 'b2', { en: 'Choosing Tenses & Narrative', uk: 'Вибір tense і нарація' }, true),
 
   // Section III (roman) — Core Grammar (B1) — ids/nums untouched by the restructure
