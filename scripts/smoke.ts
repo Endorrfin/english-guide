@@ -140,11 +140,18 @@ async function main(): Promise<void> {
   const { DictionaryPage } = await import("../src/components/pages/DictionaryPage");
   const { PracticePage } = await import("../src/components/pages/PracticePage");
   const { ComingSoon } = await import("../src/components/pages/ComingSoon");
+  // CHANGED (S3): Reading pages.
+  const { ReadingIndexPage } = await import("../src/components/pages/ReadingIndexPage");
+  const { ReadingTextPage } = await import("../src/components/pages/ReadingTextPage");
   for (const lang of langs) {
     check("LandscapeMap", h(LandscapeMap), lang, 1500, lang === "en" ? ["Modal", "34"] : ["Modal"]);
     check("DictionaryPage", h(DictionaryPage), lang, 800);
     check("PracticePage", h(PracticePage), lang, 800);
     check("ComingSoon", h(ComingSoon), lang, 100);
+    // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
+    // DictionaryPage/PracticePage above. The reader shows the EN body by default, hence the larger min.
+    check("ReadingIndexPage", h(ReadingIndexPage), lang, 500);
+    check("ReadingTextPage", h(ReadingTextPage, { id: "the-habit-of-reading-daily" }), lang, 800);
   }
 
   // ── Layer C: per-module page for all modules (authored bodies + stub headers) ──────────────────────
@@ -171,6 +178,8 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system",
     "#/m/m17-modal-system/function-x-time-grid",
     "#/dictionary",
+    "#/reading",
+    "#/reading/the-habit-of-reading-daily",
     "#/practice",
     "#/review",
     "#/irregular",

@@ -170,13 +170,17 @@ gate is green in a scratch verify — the first push containing S1 turns CI gree
 
 S1 **golden**: `m17-modal-system` + `modal-navigator` + shell/theme/nav/i18n + `lib/exercise.ts`
 (+golden test) + Dictionary v1 + words W1 (~150 A1). → **S2 (done): `m18`–`m20`** (ability/permission,
-obligation/necessity, advice/criticism) + 3 SVG figures. → S3: `m21` (+`deduction-lab` ★sim) + `m22`
-(finishes Modal Verbs) + any cross-section modal drill polish. →
-S4: dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
-S5–S6: m1–m8 + W2 (~1,000). → S7–S8: m9–m16 + `conditionals-machine` + `tense-timeline` + W3. →
-S9–S10: m23–m30 + `article-tree` + W4 (~3,000). → S11: m31–m34 + `word-formation-lab` + W5 idioms. →
-S12: map polish · mental-models gallery · module meta-split · bilingual QA · a11y pass.
-(Re-plan per session allowed; modals stay first. Full detail: CURRICULUM.md §G.)
+obligation/necessity, advice/criticism) + 3 SVG figures. → **S3 (done): Reading — new Section VI**
+(owner-prioritized out of plan order): a page-based system like the Dictionary — `ReadingText`/`ReadingCategory`/
+`ReadingQuestion` data model, `#/reading` accordion + `#/reading/<id>` reader (EN/UA body toggle, TTS,
+MCQ + open questions, mark-as-read, prev/next), check:data + smoke extended, and a **golden batch of 6
+bilingual texts** across 3 categories (study · values · family). Reading grows by **OCR waves** (≈250 →
+1000+ texts) from the owner's screenshot backlog. → **next: finish Modal Verbs** — `m21` (+`deduction-lab`
+★sim) + `m22`. → dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
+Section I (m1–m8) · II (m9–m16) · IV (m23–m30) · V (m31–m34) + their sims + dictionary waves W2–W5,
+**with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module + reading meta-splits ·
+bilingual QA · a11y pass.
+(Re-plan per session allowed; modals stay first among grammar. Full detail: CURRICULUM.md §G / §R.)
 
 ## 14. Status / progress log
 
@@ -238,5 +242,36 @@ S12: map polish · mental-models gallery · module meta-split · bilingual QA ·
   scoped strict `tsc` on the three data modules ✓ — all in the cloud scratch copy. **NOT run here**
   (owner runs locally): full `tsc -b` across the app, `eslint`, `smoke` (SSR-renders the 3 new figures
   EN+UK — files==keys now 4 figures / 4 keys), `vite build`. Owner next: `npm run verify` locally →
-  commit on `s2-modals-ability-obligation-advice` → push. Deferred to S3: `m21` + the `deduction-lab`
+  commit on `s2-modals-ability-obligation-advice` → push. Deferred: `m21` + the `deduction-lab`
   ★sim, then `m22`.
+- **S3 — Reading (new Section VI).** Owner paused planned modules to build a **Reading library**
+  (owner decisions this session: full EN+UA translation per text · mixed MCQ + open questions ·
+  verbatim texts + per-text attribution · golden slice + start a wave). **Data contract** (`types.ts`):
+  `ReadingCategory`, `ReadingQuestion` (`mcq` bilingual options + `open` with model answer), `ReadingText`
+  (bilingual `title`/`body`, CEFR `level`, `minutes`, 3–5 questions, `source` attribution). **SSOT**
+  `src/data/reading/`: `categories.ts` (18-category taxonomy) + per-category files (`study`/`values`/
+  `family`) + `index.ts` aggregator (lookups, `adjacentInCategory`, counts) — architected for the S-scale
+  meta-split (slim generated index + lazy chunks) like the dictionary's W2. **Pages:** `#/reading`
+  accordion (search across all texts, level filter, count badges, expand → clickable titles — modeled on
+  the reference PNG + DictionaryPage) and `#/reading/<id>` reader (EN/UA body toggle, TTS listen, source
+  credit, MCQ auto-checked via `lib/exercise` + open questions with revealable sample, mark-as-read via
+  `known` store, prev/next within category). Wired into `hashRouter` (+`hrefReading`/`hrefReadingText`),
+  `App`, TopBar + Sidebar nav, and a **Section VI card + tile** on the landing map (after Vocabulary in
+  Action). Reading CSS appended to `theme/components.css` (`.rd-*`, reuses `.dict-*`/`.levelseg`/`.quiz-opt`).
+  **Golden batch: 6 texts** (verbatim, transcribed by vision-OCR of the screenshot backlog, full UA
+  translations, mixed questions): study — *The Habit of Reading Daily* (Learn With Sonali), *Simple Steps
+  to Learn English Fast* (Mind Boost English); values — *Mistakes That Are Holding You Back* (Learn With
+  Sonali), *The Mistake Most People Make* (English Growth Academy), *Mindset* (Mind Boost English);
+  family — *My Family* (source not captured — flagged). **check:data extended** (reading: unique kebab
+  ids, category resolves, level, ≥1-min integer, bilingual title/body, 3–5 questions, mcq range + no dup
+  options, source.author, seeAlso resolve) and **smoke extended** (SSR ReadingIndex + a reader EN+UK, +
+  `#/reading` hashes). **Verify (data+logic):** `check:data` ✓ (… 6 reading texts in 18 categories …),
+  scoped strict `tsc` on reading data ✓ (cloud scratch). NOT run here (owner runs `npm run verify`):
+  full `tsc -b`, `eslint`, `smoke`, `vite build`. **Backlog pipeline:** macOS screenshot names carry a
+  U+202F before “AM”, so exact-path staging fails — copy to ASCII names first (a `_ascii/` helper dir was
+  created under `_examples/text_screenshots/`, safe to delete); ~280 screenshots ≈ 250 texts (dedupe —
+  e.g. two captures of the same text — and skip non-narrative reference tables like the idioms sheet →
+  those belong to the dictionary idioms wave). **Owner attention:** verbatim third-party texts on a public
+  deploy assume you hold the rights/permission (per your S3 choice); *My Family* needs a source or a
+  rewrite. Owner next: `npm run verify` → commit on `s3-reading-section` → push. Then either continue
+  Reading OCR waves (optionally a multi-agent workflow, with explicit opt-in) or resume `m21`+`m22`.

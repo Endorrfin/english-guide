@@ -126,3 +126,34 @@ regenerated search index, SRS decks updated, `check:data` green.
 
 Order inside 2–8 may be re-planned per session; modals stay first — the owner's priority and the
 exercise-engine proving ground.
+
+## R. Section VI — Reading (added S3, owner-prioritized)
+
+A **page-based reading library** (like the Dictionary — a system, not modules), placed after Section V
+(Vocabulary in Action). Short, real-life texts to read and understand, each with a full UA translation
+and comprehension questions.
+
+- **Routes:** `#/reading` (accordion index: search across all texts · CEFR level filter · categories
+  with count badges · click a title to open) and `#/reading/<id>` (reader: EN/UA body toggle · TTS ·
+  source credit · 3–5 questions [MCQ auto-checked + open with model answer] · mark-as-read · prev/next).
+- **Data model** (`CLAUDE.md` §4 / `src/data/types.ts`): `ReadingText` (bilingual `title`/`body`, CEFR
+  `level`, `minutes`, `questions`, `source`), `ReadingQuestion` (`mcq` | `open`, bilingual), `ReadingCategory`.
+  SSOT `src/data/reading/*` — one file per category + a thin aggregator; slim generated index + lazy
+  chunks arrive at scale (standard §4.4), like the dictionary's W2.
+- **Category taxonomy (18):** life · values · discipline · study · work · health · family · relationships ·
+  friendship · upbringing · everyday · sport · leisure · rest · technology · travel · countries · other.
+  The index renders only categories that have texts.
+- **Locked decisions (S3):** full **EN + UA** translation per text · **mixed** questions (2–3 MCQ + 1–2 open) ·
+  texts stored **verbatim with per-text attribution** (owner confirms rights before public deploy).
+
+### Reading waves (content pipeline)
+
+| Wave | Content | Target |
+|---|---|---|
+| R1 (with S3) | Golden slice: data model + pages + 6 golden bilingual texts (study/values/family) | 6 |
+| R2… | OCR the screenshot backlog in batches (~30–40/session): transcribe → dedupe → categorize → level → translate → 3–5 questions → attribute | → ~250 |
+| R-cont | Continuous growth toward the owner's 1000+ goal; meta-split (slim index + lazy chunks) once large | 1000+ |
+
+Every wave: unique stable ids, bilingual title/body, resolvable category + seeAlso, 3–5 questions,
+`check:data` green. Dedupe multi-screenshot captures; route non-narrative reference sheets (e.g. idiom
+tables) to the dictionary idioms wave, not Reading.

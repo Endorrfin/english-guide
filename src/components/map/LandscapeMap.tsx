@@ -2,10 +2,11 @@
 // (modals first), and the all-modules overview (ported pattern from ../database guide,
 // families grid replaced by trainer tiles + CEFR legend).
 import { COUNTS, LEVELS, modulesBySection, sections } from '../../data/concepts';
+import { READING_COUNTS } from '../../data/reading';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
-import { hrefDictionary, hrefIrregular, hrefModule, hrefPractice, hrefReview } from '../../lib/hashRouter';
+import { hrefDictionary, hrefIrregular, hrefModule, hrefPractice, hrefReading, hrefReview } from '../../lib/hashRouter';
 import { cx } from '../../lib/utils';
 
 // The guided owner-priority route: the modal system first (the flagship), then the
@@ -54,6 +55,14 @@ export function LandscapeMap() {
             <span>
               {COUNTS.words} {t(ui.wordsLabel)} · IPA · TTS ·{' '}
               {t({ en: '7 examples each', uk: '7 прикладів на слово' })}
+            </span>
+          </a>
+          <a className="map-tile" href={hrefReading()}>
+            <span className="map-tile-ic" aria-hidden="true">📚</span>
+            <strong>{t(ui.reading)}</strong>
+            <span>
+              {READING_COUNTS.texts} {t(ui.readingTextsLabel)} ·{' '}
+              {t({ en: 'EN + UA · questions', uk: 'EN + UA · питання' })}
             </span>
           </a>
           <a className="map-tile" href={hrefPractice()}>
@@ -149,6 +158,20 @@ export function LandscapeMap() {
             </div>
           ))}
         </div>
+
+        {/* CHANGED (S3): Section VI — Reading (a page-based system, after Vocabulary in Action). */}
+        <a className="rd-mapcard" href={hrefReading()}>
+          <span className="ov-roman" style={{ color: 'var(--accent)' }}>
+            VI
+          </span>
+          <span className="rd-mapcard-body">
+            <strong>{t(ui.reading)}</strong>
+            <span className="dim">{t(ui.readingMapBlurb)}</span>
+          </span>
+          <span className="rd-mapcard-count mono dim">
+            {READING_COUNTS.texts} {t(ui.readingTextsLabel)} →
+          </span>
+        </a>
       </section>
     </div>
   );

@@ -120,6 +120,32 @@ export const ui = {
   simsLabel: { en: 'signature sims', uk: 'фірмових симуляцій' },
   toggleSidebar: { en: 'Toggle navigation', uk: 'Перемкнути навігацію' },
   skipToContent: { en: 'Skip to content', uk: 'Перейти до вмісту' },
+
+  // Reading (S3)
+  reading: { en: 'Reading', uk: 'Читання' },
+  readingLede: {
+    en: 'Short, real-life texts to read and understand. Expand a category, pick a text, read it in English with a Ukrainian translation on demand, then answer a few questions.',
+    uk: 'Короткі життєві тексти для читання й розуміння. Розгорніть категорію, оберіть текст, читайте англійською з українським перекладом за потреби, а тоді дайте відповідь на кілька питань.',
+  },
+  readingSearchPlaceholder: { en: 'Search all texts…', uk: 'Пошук усіх текстів…' },
+  readingTextsLabel: { en: 'texts', uk: 'текстів' },
+  readingNoResults: { en: 'No texts match your search', uk: 'Жоден текст не збігається з пошуком' },
+  readingOriginal: { en: 'Original (EN)', uk: 'Оригінал (EN)' },
+  readingTranslation: { en: 'Translation (UA)', uk: 'Переклад (UA)' },
+  readingShowTranslation: { en: 'Show Ukrainian translation', uk: 'Показати український переклад' },
+  readingHideTranslation: { en: 'Hide translation', uk: 'Сховати переклад' },
+  readingQuestions: { en: 'Comprehension questions', uk: 'Питання на розуміння' },
+  readingShowSample: { en: 'Show sample answer', uk: 'Показати зразок відповіді' },
+  readingSampleLabel: { en: 'Sample answer', uk: 'Зразок відповіді' },
+  readingMarkRead: { en: 'Mark as read', uk: 'Позначити як прочитане' },
+  readingRead: { en: 'Read', uk: 'Прочитано' },
+  readingAll: { en: 'All texts', uk: 'Усі тексти' },
+  readingSource: { en: 'Source', uk: 'Джерело' },
+  readingSourceUnverified: { en: 'Source not verified', uk: 'Джерело не підтверджене' },
+  readingMapBlurb: {
+    en: 'A growing library of short, real-life texts — with translations and comprehension questions.',
+    uk: 'Бібліотека коротких життєвих текстів, що зростає, — з перекладами й питаннями на розуміння.',
+  },
 } satisfies Record<string, Localized>;
 
 export type UiKey = keyof typeof ui;

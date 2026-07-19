@@ -12,7 +12,10 @@ import { sections, modules, isAuthored } from '../src/data/concepts';
 import { WORDS } from '../src/data/words';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
-import type { Exercise, Level, Localized, Module, Section, WordEntry } from '../src/data/types';
+import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
+import type {
+  Exercise, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
+} from '../src/data/types';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const errors: string[] = [];
@@ -169,6 +172,49 @@ for (const w of WORDS) {
   }
 }
 
+// --- reading checks (S3) ---------------------------------------------------
+const readingCatIds = new Set<string>();
+for (const c of READING_CATEGORIES as ReadingCategory[]) {
+  err(!readingCatIds.has(c.id), `duplicate reading category id ${c.id}`); readingCatIds.add(c.id);
+  err(KEBAB.test(c.id), `reading category ${c.id}: id not kebab-case`);
+  locOk(c.title, `reading category ${c.id}.title`);
+  if (c.blurb) locOk(c.blurb, `reading category ${c.id}.blurb`);
+}
+
+const readingIds = new Set<string>();
+function checkReadingQuestion(q: ReadingQuestion, at: string): void {
+  locOk(q.q, `${at}.q`);
+  if (q.kind === 'mcq') {
+    err(q.options.length >= 2, `${at}: mcq needs ≥2 options`);
+    q.options.forEach((o, i) => locOk(o, `${at}.options[${i}]`));
+    err(Number.isInteger(q.correct) && q.correct >= 0 && q.correct < q.options.length,
+      `${at}: mcq correct index out of range`);
+    err(new Set(q.options.map((o) => o.en)).size === q.options.length, `${at}: duplicate mcq options`);
+    if (q.explain) locOk(q.explain, `${at}.explain`);
+  } else {
+    locOk(q.sample, `${at}.sample`);
+  }
+}
+for (const rt of READING_TEXTS as ReadingText[]) {
+  const at = `reading:${rt.id}`;
+  err(!readingIds.has(rt.id), `duplicate reading text id ${rt.id}`); readingIds.add(rt.id);
+  err(KEBAB.test(rt.id), `${at}: id not kebab-case`);
+  err(readingCatIds.has(rt.category), `${at}: unknown category '${rt.category}'`);
+  err(LEVELS.includes(rt.level), `${at}: bad level '${rt.level}'`);
+  err(Number.isInteger(rt.minutes) && rt.minutes >= 1, `${at}: minutes must be an integer ≥1`);
+  locOk(rt.title, `${at}.title`);
+  locOk(rt.body, `${at}.body`);
+  err(rt.questions.length >= 3 && rt.questions.length <= 5, `${at}: needs 3–5 questions, has ${rt.questions.length}`);
+  rt.questions.forEach((q, i) => checkReadingQuestion(q, `${at}.q${i}`));
+  if (rt.source) err(!!rt.source.author?.trim(), `${at}: source.author empty`);
+}
+for (const rt of READING_TEXTS as ReadingText[]) {
+  for (const sa of rt.seeAlso ?? []) {
+    err(readingIds.has(sa), `${rt.id} seeAlso -> unknown reading id '${sa}'`);
+    err(sa !== rt.id, `${rt.id} seeAlso self-reference`);
+  }
+}
+
 // --- COUNTS (locked for S1) ------------------------------------------------
 const EXPECTED_SECTIONS = 5;
 const EXPECTED_MODULES = 34;
@@ -186,5 +232,6 @@ if (errors.length) {
 console.log(
   `✓ check:data — ${sections.length} sections, ${modules.length} modules ` +
   `(${modules.filter((m) => isAuthored(m.id)).length} authored), ${exerciseIds.size} exercises, ` +
-  `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), all bilingual, registry + links resolve.`,
+  `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), ` +
+  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, all bilingual, registry + links resolve.`,
 );

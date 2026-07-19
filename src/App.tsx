@@ -15,6 +15,9 @@ const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) 
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
 const ComingSoon = lazy(() => import('./components/pages/ComingSoon').then((m) => ({ default: m.ComingSoon })));
+// CHANGED (S3): Reading section pages.
+const ReadingIndexPage = lazy(() => import('./components/pages/ReadingIndexPage').then((m) => ({ default: m.ReadingIndexPage })));
+const ReadingTextPage = lazy(() => import('./components/pages/ReadingTextPage').then((m) => ({ default: m.ReadingTextPage })));
 
 export function App() {
   const route = useRoute();
@@ -54,6 +57,8 @@ export function App() {
             {route.name === 'map' && <LandscapeMap />}
             {route.name === 'module' && <ModulePage moduleId={route.moduleId} topicId={route.topicId} />}
             {route.name === 'dictionary' && <DictionaryPage id={route.id} />}
+            {route.name === 'reading' && <ReadingIndexPage />}
+            {route.name === 'reading-text' && <ReadingTextPage id={route.id} />}
             {route.name === 'practice' && <PracticePage />}
             {route.name === 'review' && (
               <div className="content">

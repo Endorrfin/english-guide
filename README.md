@@ -21,6 +21,10 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   UA translations, bilingual definitions, **7 examples per word (4 general + business / office /
   dev)**, forms, collocations, cross-links; search by English word **or** Ukrainian translation;
   filters by CEFR level, part of speech, topic.
+- **Reading (Section VI)** — a growing library of short, real-life texts in an accordion by category:
+  read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
+  (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
+  CEFR level, mark texts as read. Growing 250 → 1000+ texts in waves.
 - **Trainers** — `#/review` SRS flashcards (SM-2-lite; decks per level · My words · irregular verbs),
   `#/practice` gap-fill + MCQ hub with explanations, `#/irregular` 3-forms drill. Progress lives in
   your browser (localStorage).
@@ -82,8 +86,13 @@ examples each).
 **S2 — shipped:** three more Modal Verbs modules — `m18` Ability & permission, `m19` Obligation &
 necessity, `m20` Advice & criticism — each 4 topics, ≥15 drills, UA-speaker pitfalls, verified sources,
 and a dedicated SVG figure (`ability-timeline`, `obligation-source`, `advice-ladder`). 65 modal drills
-now feed the `#/practice` hub by tag. Next (S3): `m21` Deduction & probability with the ★ `deduction-lab`
-sim, then `m22` Requests & politeness to finish the section.
+now feed the `#/practice` hub by tag.
+**S3 — shipped:** the **Reading section (VI)** — `#/reading` accordion + `#/reading/<id>` reader with an
+EN/UA body toggle, TTS, comprehension questions (auto-checked MCQ + open with model answer), attribution,
+and mark-as-read; a new `ReadingText`/`ReadingCategory`/`ReadingQuestion` data model, an 18-category
+taxonomy, and a **golden batch of 6 bilingual texts** (study · values · family). `check:data` + `smoke`
+extended for reading. Next: grow Reading by OCR waves (→ 250 → 1000+), then finish Modal Verbs (`m21` +
+the ★ `deduction-lab` sim, `m22`).
 
 ---
 
