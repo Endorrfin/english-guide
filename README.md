@@ -88,10 +88,11 @@ necessity, `m20` Advice & criticism — each 4 topics, ≥15 drills, UA-speaker 
 and a dedicated SVG figure (`ability-timeline`, `obligation-source`, `advice-ladder`). 65 modal drills
 now feed the `#/practice` hub by tag.
 **S3 — shipped:** the **Reading section (VI)** — `#/reading` accordion + `#/reading/<id>` reader with an
-EN/UA body toggle, TTS, comprehension questions (auto-checked MCQ + open with model answer), attribution,
-and mark-as-read; a new `ReadingText`/`ReadingCategory`/`ReadingQuestion` data model, an 18-category
-taxonomy, and a **golden batch of 6 bilingual texts** (study · values · family). `check:data` + `smoke`
-extended for reading. Next: grow Reading by OCR waves (→ 250 → 1000+), then finish Modal Verbs (`m21` +
+EN/UA body toggle, TTS, comprehension questions (auto-checked MCQ + open with model answer), and
+mark-as-read; a new `ReadingText`/`ReadingCategory`/`ReadingQuestion` data model and an 18-category
+taxonomy. `check:data` + `smoke` extended for reading. **Content is original, owner-authored** bilingual
+texts (currently 16, two per category across study · values · family · everyday · work · discipline ·
+life · upbringing) — safe to publish. Next: keep adding original texts, then finish Modal Verbs (`m21` +
 the ★ `deduction-lab` sim, `m22`).
 
 ---

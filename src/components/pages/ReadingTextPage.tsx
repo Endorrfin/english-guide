@@ -166,7 +166,7 @@ export function ReadingTextPage({ id }: { id: string }) {
         <span className="rd-min mono dim">
           {text.minutes} {t(ui.readMins)}
         </span>
-        {text.source ? (
+        {text.source && (
           <span className="rd-source dim">
             {t(ui.readingSource)}:{' '}
             {text.source.url ? (
@@ -178,8 +178,6 @@ export function ReadingTextPage({ id }: { id: string }) {
             )}
             {text.source.handle ? ` · @${text.source.handle}` : ''}
           </span>
-        ) : (
-          <span className="rd-source dim">{t(ui.readingSourceUnverified)}</span>
         )}
       </div>
 

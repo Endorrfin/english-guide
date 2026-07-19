@@ -275,3 +275,18 @@ bilingual QA · a11y pass.
   deploy assume you hold the rights/permission (per your S3 choice); *My Family* needs a source or a
   rewrite. Owner next: `npm run verify` → commit on `s3-reading-section` → push. Then either continue
   Reading OCR waves (optionally a multi-agent workflow, with explicit opt-in) or resume `m21`+`m22`.
+- **S3 · Reading waves R2–R3 (pivot to original content).** R2 first added more bilingual texts across
+  categories. In R3 the content approach **pivoted**: the screenshot backlog is third-party
+  FB-community material (Mind Boost English et al.), and mass-transcribing it verbatim (+ translating,
+  a derivative work) for the **public** deploy is a copyright risk — attribution is not a licence. Owner
+  decision: **use ORIGINAL, owner-authored texts**; keep the screenshots only as **private inspiration**
+  in `_examples/` (gitignored). All earlier verbatim R1/R2 texts were **replaced** with original ones.
+  Reading now ships **16 original bilingual texts** (2 each × study·values·family·everyday·work·discipline·
+  life·upbringing), each EN+UA with 2 MCQ + 1 open. Reader tweaked to hide the source line when a text has
+  no external source (original content). `ReadingTextPage` smoke id updated to `learning-a-little-every-day`.
+  **Verify (data+logic):** `check:data` ✓ (16 reading texts, all bilingual, links resolve) + scoped strict
+  `tsc` on reading data ✓. Owner runs full `npm run verify` locally. Owner next: `npm run verify` → commit
+  on `s3-reading-original-content` → push. Backlog screenshots (`_examples/text_screenshots/` incl. `🗂️ arhive/`
+  and the `_ascii/` scratch dir) stay private/inspiration; delete `_ascii/` anytime. Non-narrative sheets
+  (e.g. the idioms table) still belong to a future dictionary idioms wave, not Reading. Roadmap: keep
+  authoring original Reading texts; then finish Modal Verbs (`m21` + `deduction-lab`, `m22`).

@@ -151,7 +151,7 @@ async function main(): Promise<void> {
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
     // DictionaryPage/PracticePage above. The reader shows the EN body by default, hence the larger min.
     check("ReadingIndexPage", h(ReadingIndexPage), lang, 500);
-    check("ReadingTextPage", h(ReadingTextPage, { id: "the-habit-of-reading-daily" }), lang, 800);
+    check("ReadingTextPage", h(ReadingTextPage, { id: "learning-a-little-every-day" }), lang, 800);
   }
 
   // ── Layer C: per-module page for all modules (authored bodies + stub headers) ──────────────────────
@@ -179,7 +179,7 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system/function-x-time-grid",
     "#/dictionary",
     "#/reading",
-    "#/reading/the-habit-of-reading-daily",
+    "#/reading/learning-a-little-every-day",
     "#/practice",
     "#/review",
     "#/irregular",
