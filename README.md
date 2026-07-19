@@ -17,10 +17,16 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   (typical UA-speaker mistakes) and drilled exercises.
 - **★ Signature interactives** — `modal-navigator` (pick a function × time, get the right modal),
   `conditionals-machine`, `tense-timeline`, `deduction-lab`, `article-tree`, `word-formation-lab`.
-- **The Dictionary** — words, phrasal verbs and idioms as expandable cards: IPA + TTS pronunciation,
-  UA translations, bilingual definitions, **7 examples per word (4 general + business / office /
-  dev)**, forms, collocations, cross-links; search by English word **or** Ukrainian translation;
-  filters by CEFR level, part of speech, topic.
+- **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
+  search, then open a word and engrave it four ways — **Study** (definition + synonyms + the 4 general
+  / 3 professional examples), **Recall** (definition-first flashcard, the word hidden until you
+  reveal), **Describe** (define it *without naming it* — a scaffolded, self-scored challenge), and
+  **Cloze** (fill the word into its own sentence, auto-checked). Mastery (new / learning / known) per
+  word, over the same corpus as the Dictionary. See `DEFINITIONS.md`.
+- **The Dictionary** — the fast flat lookup: words, phrasal verbs and idioms as expandable cards:
+  IPA + TTS pronunciation, UA translations, bilingual definitions, **7 examples per word (4 general +
+  business / office / dev)**, forms, collocations, cross-links; search by English word **or** Ukrainian
+  translation; filters by CEFR level, part of speech, topic.
 - **Reading (Section VI)** — a growing library of short, real-life texts in an accordion by category:
   read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
   (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
@@ -113,10 +119,15 @@ discipline · life · upbringing. Next: grow Reading to 100 in waves, then finis
 Action; кожен модуль: mental model, key points, pitfalls (типові помилки україномовних) і вправи.
 **★ Signature-інтерактиви:** `modal-navigator` (обери функцію × час — отримай правильний modal),
 `conditionals-machine`, `tense-timeline`, `deduction-lab`, `article-tree`, `word-formation-lab`.
-**Словник** — слова, phrasal verbs та ідіоми як розгортні картки: IPA + вимова (TTS), переклади,
-тлумачення, **7 прикладів на слово (4 загальні + business / office / dev)**, форми, collocations,
-перехресні посилання; пошук за англійським словом **або** українським перекладом; фільтри за рівнем,
-частиною мови, темою. **Тренажери** — `#/review` SRS-флешкартки (SM-2-lite), `#/practice` gap-fill +
+**Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
+пошук, тоді відкрий слово й закарбуй його чотирма способами — **Study** (означення + синоніми +
+приклади 4 general / 3 professional), **Recall** (flashcard зі схованим словом), **Describe** (опиши,
+*не називаючи* — self-scored челендж зі скаффолдом), **Cloze** (встав слово в його ж речення). Mastery
+(new / learning / known) на кожне слово, над тим самим корпусом, що й Словник. Див. `DEFINITIONS.md`.
+**Словник** — швидкий плаский lookup: слова, phrasal verbs та ідіоми як розгортні картки: IPA + вимова
+(TTS), переклади, тлумачення, **7 прикладів на слово (4 загальні + business / office / dev)**, форми,
+collocations, перехресні посилання; пошук за англійським словом **або** українським перекладом;
+фільтри за рівнем, частиною мови, темою. **Тренажери** — `#/review` SRS-флешкартки (SM-2-lite), `#/practice` gap-fill +
 MCQ з поясненнями, `#/irregular` drill трьох форм. Прогрес зберігається у браузері (localStorage).
 
 ## Стек

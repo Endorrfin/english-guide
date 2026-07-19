@@ -167,6 +167,13 @@ word is an unshipped Oxford item; 3) regenerates the words index; 4) runs `check
 the added ids. New cards enter SRS as *new* (NEW_PER_DAY caps the queue). `_examples/words-backlog.txt`
 is the raw backlog for these sessions (moved from root `words.txt` in S1).
 
+**Applied-word marker (D1 convention).** `_examples/definition.txt` is the owner's active backlog. When
+a word from it becomes a golden card, mark its source line(s) with a trailing **`✅ [D1]`** (use the
+session tag of the wave — `✅ [D1]`, `✅ [D2]`, …) and list it in the **APPLIED** header block at the top
+of the file, keeping the count in sync. This keeps *done* words distinct from open backlog:
+`grep '✅ \[' _examples/definition.txt` lists everything applied; unmarked lines are still open. Full
+feature doc: `DEFINITIONS.md`.
+
 ## 11. Deploy
 
 GitHub Pages via Actions (`.github/workflows/deploy.yml`): typecheck → lint → check:data → test →
