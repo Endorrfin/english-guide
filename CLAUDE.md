@@ -206,7 +206,8 @@ bilingual texts** across 3 categories (study · values · family). Reading grows
 the TIMES re-plan** — Section II Tenses locked (see §14). → **T1 (done): the Tenses build begins** —
 skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke updates) + golden
 `m6-tense-system` + `tense-navigator` ★ → **T2 (done):** `m7`+`m8` + the parametric `TenseTimeline`
-figure → **next: T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
+figure → **T3 (done):** `m9`+`m10` + the `timeline-future` / `timeline-perfect` figure zones →
+**next: T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
 then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
 W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
@@ -440,6 +441,43 @@ CURRICULUM.md §G / §R.)
   the future; Cambridge present/past simple + continuous slugs) — `sources` filled (m7 5, m8 5). Owner
   next: `npm run verify` locally → commit on `t2-tenses-present-past-timeline` → push. Deferred/next
   (T3): `m9`+`m10` (+ `timeline-future` / `timeline-perfect` wrappers, same pattern).
+
+- **T3 — `m9`+`m10` + the `timeline-future` / `timeline-perfect` figure zones.** Section II grows to
+  **5/6 authored** (11/34 overall). **m9 Future: will, going to & Continuous** (a2): 4 topics
+  (will-vs-going-to — decision/prediction *timing* (on-the-spot vs premeditated; hunch vs evidence),
+  the ringing-phone test · arrangements-present-continuous — the four future forms + the who-fixed-it
+  test, deepening m7’s future intro · time-clauses — **no `will` after when/if/as-soon-as/until**, the
+  mandatory UA calque, + the indirect-question exception (dive 3) · future-continuous — will be + V-ing
+  + the `timeline-future` figure + the polite *Will you be …?*), full block mix (prose · table ·
+  compare · callout · figure), 6 keyPoints, 6 pitfalls, **14 drills**, 5 sources. **m10 The Perfect
+  Family** (b1, the flagship B1 module): the perfect aspect attacked **ONCE as a family** — ⤺ a
+  link-back from a reference point — across 5 topics (present-perfect-vs-past-simple ★the flagship
+  contrast, with the `timeline-perfect` figure + the finished-time-word test · for-since-already-yet ·
+  past-perfect-before-before · perfect-continuous incl. result-vs-process + state-verbs · 
+  future-perfect-recognition + a whole-family capstone grid across the three reference points), full
+  block mix, 6 keyPoints, 6 pitfalls, **14 drills**, 5 sources. Both mandatory UA-pitfalls placed:
+  `will` after when/if (m9); no-perfect-in-UA (“I have seen him yesterday”) + since+Past-Simple (m10).
+  **TenseTimeline core extended (T3):** two new zones on the SAME parametric core — `future` (NOW on the
+  **left**; ● will/going to vs 〜 Future Continuous, the tick marking the chosen future moment X) and
+  `perfect` (the flagship line: ● Past Simple = a closed, disconnected dot, vs ⤺ Present Perfect = the
+  same dot with a NEW **`link` mark** — an arc reaching forward to the NOW axis, in the present hue,
+  since Present Perfect’s reference point *is* now). Two thin one-export wrappers
+  `TenseTimelineFuture` / `TenseTimelinePerfect` in `figures/` (files===keys invariant held); registry
+  keys `timeline-future` / `timeline-perfect` added. `concepts.ts`: the m9/m10 stubs → real imports
+  (now **11 authored**, still 6/34 sections). **smoke**: 2 FIG canaries (TenseTimelineFuture/Perfect) +
+  `ModulePage:m9/m10(full)` content canaries. **Verification: FULL `npm run verify` ✓ green end-to-end
+  in the cloud scratch** — typecheck (`tsc -b`) · eslint · check:data (6/34 · **11 authored** · **167
+  exercises** · 150 words · 100 reading · all bilingual · registry+links resolve) · test ×4 · smoke
+  (**3 sims + 10 figures** EN+UK, **193 checks**) · vite build. The two new figure zones were also
+  render-checked (SSR): the perfect link-back arc lands on-canvas (`M 236 176 Q 368 122 500 176`,
+  within the 620×232 viewBox); future has no link mark, as expected. Facts web-verified (Cambridge:
+  future will/shall · be going to · future continuous · present perfect simple · *past simple or
+  present perfect* · past perfect simple · *present-perfect-simple-or-continuous* · future perfect
+  simple; British Council: future forms will/going-to/present-continuous · talking about the future) —
+  `sources` filled (m9 5, m10 5). Owner next: `npm run verify` locally → commit on
+  `t3-tenses-future-perfect` → push. Deferred/next (T4): `m11-choosing-narrative` + `sentence-morpher`
+  (lands on m6, already announced in its routes block) + `tense-chooser` (m11) + Section II polish
+  (dive tuning, cross-links, a UA-pitfalls sweep).
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

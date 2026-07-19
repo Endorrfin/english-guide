@@ -81,6 +81,10 @@ const FIG_CANARIES: Record<string, string[]> = {
   // (the legend is always in the DOM; grammar terms stay English across EN/UK).
   TenseTimelinePresent: ['Present Simple', 'Present Continuous'],
   TenseTimelinePast: ['Past Simple', 'Past Continuous'],
+  // CHANGED (T3): the future + perfect zones (m9, m10). Each renders both lane names at beat 0
+  // (the legend is always in the DOM; grammar terms stay English across EN/UK).
+  TenseTimelineFuture: ['will / going to', 'Future Continuous'],
+  TenseTimelinePerfect: ['Past Simple', 'Present Perfect'],
 };
 
 async function main(): Promise<void> {
@@ -198,6 +202,16 @@ async function main(): Promise<void> {
     check("ModulePage:m8(full)", h(ModulePage, { moduleId: "m8-past-simple-continuous" }), lang, 6000, [
       "Past Simple",
       "Past Continuous",
+    ]);
+    // CHANGED (T3): m9 + m10 authored bodies (the lazy TenseTimeline figure resolves to its Suspense
+    // fallback under SSR, so canaries come from core prose/table content, not the figure).
+    check("ModulePage:m9(full)", h(ModulePage, { moduleId: "m9-future-forms" }), lang, 6000, [
+      "will",
+      "Future Continuous",
+    ]);
+    check("ModulePage:m10(full)", h(ModulePage, { moduleId: "m10-perfect-family" }), lang, 6000, [
+      "Present Perfect",
+      "Past Simple",
     ]);
   }
 
