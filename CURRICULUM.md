@@ -138,6 +138,18 @@ search index (standard §4.4 applied to words).
 Every wave: unique ids, 7 tagged examples per word card (4 general + business/office/dev), IPA,
 regenerated search index, SRS decks updated, `check:data` green.
 
+**Definitions — the word STUDY page (D1, `#/definitions`).** The same corpus, a different job. The
+Dictionary is fast lookup; **Definitions** is active recall over the SAME `WORDS` (SSOT, no second
+dataset) and is the **front door for words** (global word search deep-links to `#/definitions/<id>`).
+An A–Z rail + search + level/POS filters + Random cover lookup; each word opens a *studio* with four
+ways to engrave it — **Study** (definition-first + synonyms + the 4 general / 3 professional split),
+**Recall** (definition-first flashcard, headword masked), **Describe** (self-scored "define it without
+naming it" on a derived POS·function·synonym·opposite·context scaffold + taboo list), **Cloze** (blank
+the headword in its own sentence, auto-checked via `lib/exercise`). **Mastery** (new/learning/known)
+persists per word id (`lib/masteryStore`), SRS-compatible so `#/review` (SM-2-lite) adopts it later.
+Pure helpers in `lib/definitions.ts` (golden-tested). First custom wave = **20 golden b1–c1 cards**
+from the `definition.txt` backlog. The Dictionary page stays for now (demote/redirect deferred).
+
 ## F. Totals & asset budget
 
 **6 sections · 34 modules · 8 sims** (`modal-navigator` ★ + `deduction-lab` built;

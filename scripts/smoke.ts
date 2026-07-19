@@ -156,6 +156,8 @@ async function main(): Promise<void> {
   // ── Layer B: route pages (server-renderable shells) ────────────────────────────────────────────────
   // CHANGED (S1): wired — landing map, Dictionary v1, Practice hub, ComingSoon.
   const { LandscapeMap } = await import("../src/components/map/LandscapeMap");
+  // CHANGED (D1): the Definitions study page (front door for words).
+  const { DefinitionsPage } = await import("../src/components/pages/DefinitionsPage");
   const { DictionaryPage } = await import("../src/components/pages/DictionaryPage");
   const { PracticePage } = await import("../src/components/pages/PracticePage");
   const { ComingSoon } = await import("../src/components/pages/ComingSoon");
@@ -164,6 +166,9 @@ async function main(): Promise<void> {
   const { ReadingTextPage } = await import("../src/components/pages/ReadingTextPage");
   for (const lang of langs) {
     check("LandscapeMap", h(LandscapeMap), lang, 1500, lang === "en" ? ["Modal", "34"] : ["Modal"]);
+    // CHANGED (D1): Definitions index (SSR renders all word rows + the A–Z rail; deep-link variant too).
+    check("DefinitionsPage", h(DefinitionsPage), lang, 800);
+    check("DefinitionsPage:circumstances", h(DefinitionsPage, { id: "circumstances" }), lang, 800);
     check("DictionaryPage", h(DictionaryPage), lang, 800);
     check("PracticePage", h(PracticePage), lang, 800);
     check("ComingSoon", h(ComingSoon), lang, 100);
@@ -224,6 +229,8 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system",
     "#/m/m17-modal-system/function-x-time-grid",
     "#/m/m6-tense-system", // CHANGED (T1)
+    "#/definitions", // CHANGED (D1)
+    "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
     "#/reading",
     `#/reading/${readingFixtureId}`, // CHANGED (S5): dynamic fixture id (see note above)

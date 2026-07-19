@@ -6,6 +6,7 @@ import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import {
+  hrefDefinitions,
   hrefDictionary,
   hrefIrregular,
   hrefMap,
@@ -20,6 +21,7 @@ import { cx } from '../../lib/utils';
 
 const PAGE_LINKS: { name: Route['name']; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
   { name: 'map', href: hrefMap(), label: ui.guideMap },
+  { name: 'definitions', href: hrefDefinitions(), label: ui.definitions }, // CHANGED (D1): word study — front door
   { name: 'dictionary', href: hrefDictionary(), label: ui.dictionary },
   { name: 'reading', href: hrefReading(), label: ui.reading }, // CHANGED (S3)
   { name: 'practice', href: hrefPractice(), label: ui.practice },

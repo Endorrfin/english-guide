@@ -20,8 +20,8 @@ learning-UX + correctness, in that order.
 
 - **Vite + React 19 + TypeScript (strict).** Static content, no runtime fetch — works offline, deploys anywhere.
 - **No router library** — small custom **hash router**: `#/map`, `#/m/<module>/<topic>`,
-  `#/dictionary/<id?>`, `#/practice`, `#/review`, `#/irregular`. Hash routing + `vite base:'./'` works
-  under any GitHub Pages sub-path with zero config.
+  `#/definitions/<id?>` (D1), `#/dictionary/<id?>`, `#/practice`, `#/review`, `#/irregular`. Hash
+  routing + `vite base:'./'` works under any GitHub Pages sub-path with zero config.
 - **SSOT:** `src/data/concepts.ts` (thin aggregator) + `src/data/modules/*` for grammar;
   **`src/data/words/{a1,a2,b1,b2,c1,custom}.ts` for the dictionary**. Pages render from data.
 - **Bilingual at the data layer:** every human-readable string is `Localized { en; uk }`.
@@ -119,7 +119,9 @@ near-miss explanations) · `conditionals-machine` (m13) · `article-tree` (m28) 
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
-figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular`) are pages, not sims.
+figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular`) and the
+**Definitions study page** (`#/definitions`, D1 — the word front door: A–Z browse + Study/Recall/
+Describe/Cloze over the shared word corpus) are pages, not sims.
 
 ## 7. Theme / brand
 
@@ -208,6 +210,9 @@ skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke upda
 `m6-tense-system` + `tense-navigator` ★ → **T2 (done):** `m7`+`m8` + the parametric `TenseTimeline`
 figure → **T3 (done):** `m9`+`m10` + the `timeline-future` / `timeline-perfect` figure zones →
 **next: T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
+**D1 (done): Definitions study page** (`#/definitions`) over the SHARED word corpus (SSOT) — A–Z +
+Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 golden custom cards**
+(first custom wave). →
 then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
 W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
@@ -478,6 +483,47 @@ CURRICULUM.md §G / §R.)
   `t3-tenses-future-perfect` → push. Deferred/next (T4): `m11-choosing-narrative` + `sentence-morpher`
   (lands on m6, already announced in its routes block) + `tense-chooser` (m11) + Section II polish
   (dive tuning, cross-links, a UA-pitfalls sweep).
+
+- **D1 — Definitions: the word STUDY page (`#/definitions`) + the first custom word wave (20 cards).**
+  Owner's commission: the Dictionary is a flat lookup ("primitive"); make word study deep and
+  memorable. **Architecture (owner-approved this session):** Definitions reads the **SAME `WORDS`
+  corpus** as the Dictionary — **no second dataset** (SSOT: `src/data/words/*`, ids immutable). It is
+  the new **front door for words**: global word search now deep-links to `#/definitions/<id>`
+  (`search.ts`); Sidebar + TopBar list **Definitions above Dictionary**; the Dictionary page stays
+  working for now (deep-links repointed; demote/redirect is a deferred follow-up, not done here — it
+  is a shipped, cross-linked surface, so per §10 "ask before deleting"). **Mastery** (new / learning /
+  known) persists per word id (`lib/masteryStore.ts`, useSyncExternalStore + localStorage
+  `englishguide.mastery.v1`) — **SRS-compatible by design** so the planned `#/review` SM-2-lite port
+  adopts it without a migration. **Page** `components/pages/DefinitionsPage.tsx`: an **A–Z rail**
+  (empty letters dimmed) + search + level/POS filters + **🎲 Random** give the lookup job; each word
+  opens a **studio** with four ways to engrave it — **Study** (definition-first + synonyms/antonyms +
+  the **4 general / 3 professional** example split, labelled) · **Recall** (definition-first
+  flashcard, headword masked to `· · ·` until Reveal → self-rate) · **Describe** (the self-scored
+  *"define it without naming it"* challenge on a **derived** scaffold: POS · function · synonym ·
+  opposite · context + a **taboo** list of the headword+forms) · **Cloze** (blank the headword in one
+  of its own sentences, auto-checked through `lib/exercise`). **Pure helpers** `lib/definitions.ts`
+  (A–Z grouping, 4+3 split, surface-form cloze, describe scaffold) + golden test
+  `scripts/test-definitions.ts` (auto-discovered). **Words — first custom wave: 20 golden b1–c1 cards**
+  in `custom.ts` (`source:'custom'`), curated from `_examples/definition.txt` stage 1/2: circumstances ·
+  nuance · cohesion · accommodate · indispensable · setback · collaborative · glitch · deadline ·
+  prioritize · resolve · gist · precise · simultaneously · acknowledge · willingness · assertive ·
+  cautious · transparent · allocate — US IPA, bilingual `def` + 7 tagged examples (4/1/1/1),
+  synonyms/antonyms, collocations, seeAlso (in-set), topics. **No data-contract change** — the describe
+  scaffold is *derived* from existing fields, so `check-data.ts` is untouched (custom cards pass the
+  existing word contract). i18n `definitions*` + `mastery*` block added; `.def-*` CSS appended (reuses
+  `.dict-*`/`.levelseg`/`.chip`/`.quiz-opt`). Wired into `hashRouter` (+`hrefDefinitions`, route
+  `definitions`), `App` (lazy), Sidebar + TopBar nav, `search.ts` deep-links. **smoke**: DefinitionsPage
+  SSR EN+UK (index + deep-link) + `#/definitions` / `#/definitions/<id>` hashes. **Verification: FULL
+  `npm run verify` ✓ green end-to-end in the cloud scratch** — typecheck (`tsc -b`) · eslint ·
+  check:data (6/34 · 11 authored · 167 exercises · **170 words = 150 a1 + 20 custom** · 100 reading ·
+  all bilingual · registry+links resolve) · test ×5 (incl. **test-definitions**) · smoke (3 sims + 10
+  figures EN+UK, **199 checks**) · vite build (DefinitionsPage lazy chunk ≈ 14 kB). Screenshot-checked
+  in headless Chromium (index EN + UA, all four studio modes incl. masked Describe/Recall + cloze; 0
+  page errors — only the sandbox-blocked Google-Fonts fetch). Facts spot-checked (nuance /ˈnuːɑːns/
+  exact; cohesion/allocate standard GA, consistent with the a1 IPA style). Owner next: `npm run verify`
+  locally → commit on `d1-definitions-studio` → push. Deferred/next: grow the custom corpus in further
+  waves (rest of `definition.txt`); demote/redirect the Dictionary page once Definitions proves out;
+  wire mastery into the `#/review` SM-2-lite port; optional synonym-match + word-of-the-day.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

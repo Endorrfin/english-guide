@@ -171,6 +171,42 @@ export const ui = {
     en: 'A growing library of short, real-life texts — with translations and comprehension questions.',
     uk: 'Бібліотека коротких життєвих текстів, що зростає, — з перекладами й питаннями на розуміння.',
   },
+
+  // Definitions — the word STUDY page (D1)
+  definitions: { en: 'Definitions', uk: 'Означення' },
+  definitionsLede: {
+    en: 'Study words deeply: pick a letter, open a word, then engrave it four ways — read its definition and examples, recall it from the meaning, describe it without naming it, or fill it into a sentence.',
+    uk: 'Вивчай слова глибоко: обери букву, відкрий слово й закарбуй його чотирма способами — прочитай означення та приклади, пригадай за значенням, опиши, не називаючи, або встав у речення.',
+  },
+  defSearchPlaceholder: { en: 'Search words, translations, definitions…', uk: 'Пошук слів, перекладів, означень…' },
+  defAllLetters: { en: 'All', uk: 'Всі' },
+  defModeStudy: { en: 'Study', uk: 'Вивчення' },
+  defModeRecall: { en: 'Recall', uk: 'Пригадати' },
+  defModeDescribe: { en: 'Describe', uk: 'Опиши' },
+  defModeCloze: { en: 'Cloze', uk: 'Пропуск' },
+  defReveal: { en: 'Reveal the word', uk: 'Показати слово' },
+  defWhatWord: { en: 'Which word has this meaning?', uk: 'Яке слово має це значення?' },
+  defGotIt: { en: 'I knew it', uk: 'Я знав' },
+  defAgain: { en: 'Practise again', uk: 'Ще повторити' },
+  defDescribeTask: {
+    en: 'Define this word WITHOUT using it — say what type of word it is, what it does, a synonym, an opposite, and a typical context. Then reveal and rate yourself.',
+    uk: 'Дай визначення цьому слову, НЕ вживаючи його — скажи, яка це частина мови, що воно означає, синонім, протилежність і типовий контекст. Потім відкрий і оціни себе.',
+  },
+  defCover: { en: 'Cover in your answer', uk: 'Згадай у відповіді' },
+  defDontUse: { en: 'Don’t use', uk: 'Не вживай' },
+  defScaffoldPos: { en: 'Part of speech', uk: 'Частина мови' },
+  defScaffoldFunction: { en: 'What it does / means', uk: 'Що воно робить / означає' },
+  defScaffoldSyn: { en: 'A synonym', uk: 'Синонім' },
+  defScaffoldAnt: { en: 'An opposite', uk: 'Протилежність' },
+  defScaffoldContext: { en: 'A typical context', uk: 'Типовий контекст' },
+  defClozeTask: { en: 'Fill the gap with the word:', uk: 'Заповни пропуск словом:' },
+  defGeneral: { en: 'General — 4 examples', uk: 'Загальна лексика — 4 приклади' },
+  defProfessional: { en: 'Professional — business · office · dev', uk: 'Професійна — business · office · dev' },
+  defRandom: { en: 'Random', uk: 'Випадкове' },
+  masteryLabel: { en: 'Mastery', uk: 'Засвоєння' },
+  masteryNew: { en: 'New', uk: 'Нове' },
+  masteryLearning: { en: 'Learning', uk: 'Вивчаю' },
+  masteryKnown: { en: 'Known', uk: 'Знаю' },
 } satisfies Record<string, Localized>;
 
 export type UiKey = keyof typeof ui;

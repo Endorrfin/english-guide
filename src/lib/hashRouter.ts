@@ -1,11 +1,14 @@
 // CHANGED (S1): tiny hash router (no router lib — CLAUDE.md §2), ported pattern from ../database guide.
-// Routes: #/map · #/m/<moduleId>[/<topicId>] · #/dictionary[/<id>] · #/practice · #/review · #/irregular
+// Routes: #/map · #/m/<moduleId>[/<topicId>] · #/definitions[/<id>] · #/dictionary[/<id>] · #/practice
+//         · #/review · #/irregular
+// CHANGED (D1): + #/definitions[/<id>] — the word STUDY page (front door for words; see search.ts).
 // Hash routing + vite base:'./' = works under any GitHub Pages sub-path.
 import { useEffect, useState } from 'react';
 
 export type Route =
   | { name: 'map' }
   | { name: 'module'; moduleId: string; topicId?: string }
+  | { name: 'definitions'; id?: string } // CHANGED (D1)
   | { name: 'dictionary'; id?: string }
   | { name: 'practice' }
   | { name: 'review' }
@@ -21,6 +24,8 @@ export function parseHash(raw: string): Route {
   switch (parts[0]) {
     case 'map':
       return { name: 'map' };
+    case 'definitions': // CHANGED (D1)
+      return { name: 'definitions', id: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'dictionary':
       return { name: 'dictionary', id: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'practice':
@@ -50,6 +55,8 @@ function safeDecode(s: string): string {
 export const hrefMap = () => '#/map';
 export const hrefModule = (moduleId: string, topicId?: string) =>
   topicId ? `#/m/${moduleId}/${topicId}` : `#/m/${moduleId}`;
+export const hrefDefinitions = (id?: string) => // CHANGED (D1)
+  id ? `#/definitions/${encodeURIComponent(id)}` : '#/definitions';
 export const hrefDictionary = (id?: string) =>
   id ? `#/dictionary/${encodeURIComponent(id)}` : '#/dictionary';
 export const hrefPractice = () => '#/practice';

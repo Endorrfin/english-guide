@@ -10,7 +10,7 @@ export type SearchKind = 'module' | 'topic' | 'word';
 
 export type SearchResult = {
   kind: SearchKind;
-  href: string; // ready-to-navigate hash (module/topic deep link, or #/dictionary/<id>)
+  href: string; // ready-to-navigate hash (module/topic deep link, or #/definitions/<id> — D1)
   title: string; // display title in the current language (headword for words)
   context: string; // section (module) · module title (topic) · translations (word)
   score: number;
@@ -64,7 +64,8 @@ function buildIndex(): Entry[] {
     const translations = w.translations.join(', ');
     entries.push({
       kind: 'word',
-      href: `#/dictionary/${encodeURIComponent(w.id)}`,
+      // CHANGED (D1): word search now deep-links into the Definitions study page (front door).
+      href: `#/definitions/${encodeURIComponent(w.id)}`,
       title: { en: w.word, uk: w.word },
       context: { en: translations, uk: translations },
       fields: [
