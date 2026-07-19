@@ -10,6 +10,10 @@ import { m17 } from './modules/m17-modal-system';
 import { m18 } from './modules/m18-ability-permission';
 import { m19 } from './modules/m19-obligation-necessity';
 import { m20 } from './modules/m20-advice-criticism';
+// CHANGED (S4): m21–m22 authored — Modal Verbs section complete (deduction/probability + the
+// deduction-lab sim, and requests/offers/politeness). Imports replace the former stub() entries.
+import { m21 } from './modules/m21-deduction-probability';
+import { m22 } from './modules/m22-requests-politeness';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
@@ -86,8 +90,8 @@ export const modules: Module[] = [
   m18, // CHANGED (S2): authored
   m19, // CHANGED (S2): authored
   m20, // CHANGED (S2): authored
-  stub('m21-deduction-probability', 21, 's3-modal-verbs', 5, 'b2', { en: 'Deduction & probability', uk: 'Висновки і ймовірність' }, true),
-  stub('m22-requests-politeness', 22, 's3-modal-verbs', 6, 'b1', { en: 'Requests, offers & politeness', uk: 'Прохання, пропозиції і ввічливість' }),
+  m21, // CHANGED (S4): authored (+ deduction-lab ★sim)
+  m22, // CHANGED (S4): authored
 
   // Section IV — Advanced Grammar (B2–C1)
   stub('m23-conditionals-3-mixed', 23, 's4-advanced-grammar', 1, 'b2', { en: 'Conditionals 3, mixed & wishes', uk: 'Conditionals 3, mixed і wishes' }),

@@ -96,6 +96,14 @@ export function ReadingIndexPage() {
       <h1>{t(ui.reading)}</h1>
       <p className="muted">{t(ui.readingLede)}</p>
 
+      {/* CHANGED (R3): grand total counter — all texts + categories (per-category counts show on each accordion header). */}
+      <p className="rd-stats">
+        📚 <strong>{READING_TEXTS.length}</strong> {t(ui.readingTextsLabel)}
+        {' · '}
+        <strong>{cats.length}</strong> {t(ui.readingCategoriesLabel)}{' '}
+        <span className="dim">({t(ui.readingGoalNote)})</span>
+      </p>
+
       <div className="dict-toolbar">
         <div className="searchbox">
           <span className="search-ic" aria-hidden="true">

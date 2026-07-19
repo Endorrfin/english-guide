@@ -1,89 +1,93 @@
 import type { ReadingText } from '../types';
 
 /*
- * Reading · category: everyday life. ORIGINAL bilingual texts written for this guide
- * (owner-authored, safe to publish). No external source. 2 MCQ + 1 open question each.
+ * Reading · category: everyday life. Texts transcribed from the owner's screenshot backlog,
+ * attributed per `source` (Mind Boost English — Facebook community).
  */
+const MBE_FB = { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' };
+
 export const everydayTexts: ReadingText[] = [
   {
-    id: 'a-calm-morning',
-    title: { en: 'A Calm Morning', uk: 'Спокійний ранок' },
+    id: 'my-daily-routine',
+    title: { en: 'My Daily Routine', uk: 'Мій розпорядок дня' },
     category: 'everyday',
-    level: 'a2',
+    level: 'a1',
     minutes: 1,
-    topics: ['routine', 'mornings', 'calm'],
+    source: MBE_FB,
+    topics: ['routine', 'daily-life'],
     body: {
-      en: 'The first hour of the day often decides the rest of it. When we wake and reach straight for the phone, we hand our attention to other people before we have even chosen our own thoughts. A calm morning is simple to build. Wake a little earlier than you must. Drink some water. Open a window. Do one small useful thing before you check any screen — make the bed, stretch, or write down the single task that matters most today. None of this is dramatic, but it changes the feeling of the whole day. You start as the author of your morning, not a reader of everyone else’s.',
-      uk: 'Перша година дня часто вирішує решту. Коли ми прокидаємось і одразу тягнемось до телефона, ми віддаємо свою увагу іншим людям ще до того, як обрали власні думки. Спокійний ранок легко збудувати. Прокиньтеся трохи раніше, ніж мусите. Випийте води. Відчиніть вікно. Зробіть одну маленьку корисну річ до того, як зазирнете в екран, — заправте ліжко, потягніться або запишіть єдине завдання, що найважливіше сьогодні. Нічого драматичного, але це змінює відчуття всього дня. Ви починаєте як автор свого ранку, а не читач чужих.',
+      en: 'Hello everyone. Today, I want to talk about my daily routine. I wake up early in the morning. I brush my teeth and wash my face. I have breakfast at home. I go to school/work. I study and do my tasks. I have lunch in the afternoon. I play games or read books. In the evening, I spend time with my family. I have dinner at home. I relax and watch TV. I go to bed at night. I feel happy at the end of the day. Thank you for listening.',
+      uk: 'Привіт усім. Сьогодні я хочу розповісти про свій розпорядок дня. Я прокидаюся рано вранці. Я чищу зуби й вмиваюся. Я снідаю вдома. Я йду до школи / на роботу. Я навчаюся й виконую свої завдання. Я обідаю вдень. Я граю в ігри або читаю книжки. Увечері я проводжу час із родиною. Я вечеряю вдома. Я відпочиваю й дивлюся телевізор. Уночі я лягаю спати. Наприкінці дня я почуваюся щасливим. Дякую, що вислухали.',
     },
     questions: [
       {
         kind: 'mcq',
-        q: { en: 'What happens when we reach straight for the phone on waking?', uk: 'Що стається, коли ми, прокинувшись, одразу тягнемось до телефона?' },
+        q: { en: 'When does the speaker wake up?', uk: 'Коли прокидається оповідач?' },
         options: [
-          { en: 'We give our attention to others before choosing our own thoughts', uk: 'Ми віддаємо увагу іншим ще до власних думок' },
-          { en: 'We instantly feel calm', uk: 'Ми миттєво заспокоюємось' },
-          { en: 'We save a lot of time', uk: 'Ми заощаджуємо багато часу' },
+          { en: 'Early in the morning', uk: 'Рано вранці' },
+          { en: 'In the afternoon', uk: 'Удень' },
+          { en: 'Late at night', uk: 'Пізно вночі' },
         ],
         correct: 0,
-        explain: { en: 'The phone hands our attention to other people before we have chosen our own thoughts.', uk: 'Телефон віддає нашу увагу іншим ще до того, як ми обрали власні думки.' },
+        explain: { en: '“I wake up early in the morning.”', uk: '«I wake up early in the morning.»' },
       },
       {
         kind: 'mcq',
-        q: { en: 'Which is suggested as a calm-morning action?', uk: 'Яку дію радять для спокійного ранку?' },
+        q: { en: 'What does the speaker do in the evening?', uk: 'Що оповідач робить увечері?' },
         options: [
-          { en: 'Do one small useful thing before any screen', uk: 'Зробити одну корисну річ до будь-якого екрана' },
-          { en: 'Check every notification first', uk: 'Спершу перевірити всі сповіщення' },
-          { en: 'Skip drinking water', uk: 'Не пити води' },
+          { en: 'Spends time with family', uk: 'Проводить час із родиною' },
+          { en: 'Goes to school', uk: 'Іде до школи' },
+          { en: 'Has breakfast', uk: 'Снідає' },
         ],
         correct: 0,
-        explain: { en: 'Make the bed, stretch, or write the day’s main task before checking a screen.', uk: 'Заправити ліжко, потягнутися чи записати головне завдання — до екрана.' },
+        explain: { en: '“In the evening, I spend time with my family.”', uk: '«In the evening, I spend time with my family.»' },
       },
       {
         kind: 'open',
-        q: { en: 'What one small thing could you do before checking a screen tomorrow morning?', uk: 'Яку одну маленьку річ ви могли б зробити до екрана завтра вранці?' },
-        sample: { en: 'Answers will vary — e.g., drink water and write the single most important task for the day before opening any app.', uk: 'Відповіді різнитимуться — напр., випити води й записати єдине найважливіше завдання дня до відкриття будь-якого застосунку.' },
+        q: { en: 'Write three sentences about your own morning routine.', uk: 'Напишіть три речення про свій ранковий розпорядок.' },
+        sample: { en: 'Answers will vary. A good answer uses simple present-tense sentences, e.g., “I wake up at seven. I make coffee. I check my email.”', uk: 'Відповіді різнитимуться. Гарна відповідь — прості речення в теперішньому часі, напр.: «I wake up at seven. I make coffee. I check my email.»' },
       },
     ],
   },
   {
-    id: 'tidy-as-you-go',
-    title: { en: 'Tidy As You Go', uk: 'Прибирай по ходу' },
+    id: 'debt',
+    title: { en: 'Debt', uk: 'Борг' },
     category: 'everyday',
-    level: 'a2',
+    level: 'b1',
     minutes: 1,
-    topics: ['home', 'habits', 'order'],
+    source: MBE_FB,
+    topics: ['money', 'responsibility', 'finance'],
     body: {
-      en: 'A messy home is rarely made in a day; it grows one postponed small task at a time. The cup left on the desk, the coat dropped on the chair, the dish “I’ll wash later” — each takes seconds to handle now and minutes to fix later. “Tidy as you go” means dealing with things the moment they appear: wash the cup while the kettle boils, hang the coat as you enter, put the tool back before starting the next one. This habit keeps disorder from ever building up, so you almost never need a big cleaning day. Small, immediate effort quietly protects your time and your calm.',
-      uk: 'Безлад удома рідко зʼявляється за день; він росте по одному відкладеному дрібному ділу. Чашка, лишена на столі, куртка, кинута на стілець, тарілка «помию пізніше» — кожне забирає секунди зараз і хвилини потім. «Прибирай по ходу» означає розбиратися з речами тієї ж миті, щойно вони зʼявляються: вимий чашку, поки закипає чайник, повісь куртку, щойно зайшов, поклади інструмент на місце перед наступним. Ця звичка не дає безладу накопичуватися, тож великий день прибирання майже ніколи не потрібен. Маленьке негайне зусилля тихо береже ваш час і ваш спокій.',
+      en: 'Debt is a serious responsibility that must be handled with care and honesty. Sometimes people take loans to solve problems or improve their lives, but debt should never be taken without planning. Uncontrolled debt brings stress, worry, and hardship. A wise person borrows only when necessary and works hard to repay on time. Managing money carefully, saving regularly, and avoiding unnecessary expenses help us live free from debt and build a peaceful, stable future.',
+      uk: 'Борг — це серйозна відповідальність, яку треба нести з обережністю й чесністю. Іноді люди беруть позики, щоб вирішити проблеми чи покращити життя, але борг ніколи не варто брати без планування. Неконтрольований борг приносить стрес, тривогу й труднощі. Мудра людина позичає лише за потреби й наполегливо працює, щоб вчасно повернути. Дбайливе управління грошима, регулярні заощадження та уникнення зайвих витрат допомагають жити без боргів і будувати спокійне, стабільне майбутнє.',
     },
     questions: [
       {
         kind: 'mcq',
-        q: { en: 'How does a messy home usually grow, according to the text?', uk: 'Як зазвичай росте безлад удома, за текстом?' },
+        q: { en: 'According to the text, when does a wise person borrow?', uk: 'За текстом, коли позичає мудра людина?' },
         options: [
-          { en: 'One postponed small task at a time', uk: 'По одному відкладеному дрібному ділу' },
-          { en: 'All at once in a single day', uk: 'Увесь одразу за один день' },
-          { en: 'Only when guests come', uk: 'Лише коли приходять гості' },
+          { en: 'Only when necessary', uk: 'Лише за потреби' },
+          { en: 'Whenever they want something', uk: 'Коли захочеться щось купити' },
+          { en: 'Never, under any circumstances', uk: 'Ніколи й за жодних обставин' },
         ],
         correct: 0,
-        explain: { en: 'It grows one postponed small task at a time.', uk: 'Він росте по одному відкладеному дрібному ділу.' },
+        explain: { en: '“A wise person borrows only when necessary and works hard to repay on time.”', uk: '«A wise person borrows only when necessary…»' },
       },
       {
         kind: 'mcq',
-        q: { en: 'What does “tidy as you go” mean?', uk: 'Що означає «прибирай по ходу»?' },
+        q: { en: 'What does uncontrolled debt bring?', uk: 'Що приносить неконтрольований борг?' },
         options: [
-          { en: 'Deal with things the moment they appear', uk: 'Розбиратися з речами тієї ж миті' },
-          { en: 'Wait for one big cleaning day', uk: 'Чекати одного великого дня прибирання' },
-          { en: 'Hire someone else', uk: 'Найняти когось іншого' },
+          { en: 'Stress, worry, and hardship', uk: 'Стрес, тривогу й труднощі' },
+          { en: 'Peace and stability', uk: 'Спокій і стабільність' },
+          { en: 'Nothing at all', uk: 'Зовсім нічого' },
         ],
         correct: 0,
-        explain: { en: 'Handle each small thing immediately so disorder never builds up.', uk: 'Розбирайся з кожною дрібницею одразу, щоб безлад не накопичувався.' },
+        explain: { en: '“Uncontrolled debt brings stress, worry, and hardship.”', uk: '«Uncontrolled debt brings stress, worry, and hardship.»' },
       },
       {
         kind: 'open',
-        q: { en: 'Which small “I’ll do it later” task do you most often postpone at home?', uk: 'Яку дрібну справу «зроблю пізніше» ви найчастіше відкладаєте вдома?' },
-        sample: { en: 'Answers will vary. A good answer names a specific recurring task and a “tidy as you go” moment to handle it.', uk: 'Відповіді різнитимуться. Гарна відповідь називає конкретну повторювану справу й момент, коли робити її «по ходу».' },
+        q: { en: 'What are two habits from the text that help a person stay free from debt?', uk: 'Які дві звички з тексту допомагають людині лишатися без боргів?' },
+        sample: { en: 'Saving regularly and avoiding unnecessary expenses (also: careful money management, borrowing only when necessary, repaying on time).', uk: 'Регулярні заощадження та уникнення зайвих витрат (також: дбайливе управління грошима, позичати лише за потреби, вчасно повертати).' },
       },
     ],
   },

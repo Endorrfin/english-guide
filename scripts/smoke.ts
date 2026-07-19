@@ -70,6 +70,8 @@ function ok(cond: boolean, msg: string): void {
 // the EN/UK passes while the surrounding chrome differs.
 const SIM_CANARIES: Record<string, string[]> = {
   ModalNavigator: ['Modal Navigator', 'must'],
+  // CHANGED (S4): the Deduction Lab renders its default cell (certain-yes × present → must).
+  DeductionLab: ['Deduction Lab', 'must'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -151,6 +153,8 @@ async function main(): Promise<void> {
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
     // DictionaryPage/PracticePage above. The reader shows the EN body by default, hence the larger min.
     check("ReadingIndexPage", h(ReadingIndexPage), lang, 500);
+    // CHANGED (S4): the golden reading ids were renamed in the owner's Reading rework; point the
+    // fixture at a text that currently exists so the reader smoke reflects real data.
     check("ReadingTextPage", h(ReadingTextPage, { id: "learning-a-little-every-day" }), lang, 800);
   }
 
@@ -179,7 +183,7 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system/function-x-time-grid",
     "#/dictionary",
     "#/reading",
-    "#/reading/learning-a-little-every-day",
+    "#/reading/learning-a-little-every-day", // CHANGED (S4): current reading id (see fixture note above)
     "#/practice",
     "#/review",
     "#/irregular",
