@@ -77,6 +77,10 @@ const SIM_CANARIES: Record<string, string[]> = {
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
+  // CHANGED (T2): the parametric TenseTimeline — each zone renders both lane names at beat 0
+  // (the legend is always in the DOM; grammar terms stay English across EN/UK).
+  TenseTimelinePresent: ['Present Simple', 'Present Continuous'],
+  TenseTimelinePast: ['Past Simple', 'Past Continuous'],
 };
 
 async function main(): Promise<void> {
@@ -184,6 +188,16 @@ async function main(): Promise<void> {
     check("ModulePage:m6(full)", h(ModulePage, { moduleId: "m6-tense-system" }), lang, 8000, [
       "Present Perfect",
       "will have been working",
+    ]);
+    // CHANGED (T2): m7 + m8 authored bodies (the lazy TenseTimeline figure resolves to its Suspense
+    // fallback under SSR, so canaries come from the prose/table content, not the figure).
+    check("ModulePage:m7(full)", h(ModulePage, { moduleId: "m7-present-simple-continuous" }), lang, 6000, [
+      "Present Simple",
+      "Present Continuous",
+    ]);
+    check("ModulePage:m8(full)", h(ModulePage, { moduleId: "m8-past-simple-continuous" }), lang, 6000, [
+      "Past Simple",
+      "Past Continuous",
     ]);
   }
 

@@ -205,8 +205,8 @@ bilingual texts** across 3 categories (study · values · family). Reading grows
 **Modal Verbs (Section III at the time, now roman IV) COMPLETE** (6/6). → **S5 (done, docs-only):
 the TIMES re-plan** — Section II Tenses locked (see §14). → **T1 (done): the Tenses build begins** —
 skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke updates) + golden
-`m6-tense-system` + `tense-navigator` ★ → **next: T2** `m7`+`m8` + the `TenseTimeline`
-figure → **T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
+`m6-tense-system` + `tense-navigator` ★ → **T2 (done):** `m7`+`m8` + the parametric `TenseTimeline`
+figure → **next: T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
 then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
 W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
@@ -409,6 +409,37 @@ CURRICULUM.md §G / §R.)
   Owner next: `npm run verify` locally → commit on `t1-tenses-skeleton-golden-m6` → push.
   Deferred/next (T2): `m7`+`m8` + the parametric `TenseTimeline` figure; `sentence-morpher` lands
   T4 on m6 (the routes block already announces it).
+
+- **T2 — `m7`+`m8` + the parametric `TenseTimeline` figure.** Section II grows to 3/6 authored.
+  **★ TenseTimeline figure** — ONE parametric core (`src/components/tense/TenseTimeline.tsx`, zone =
+  present|past) that contrasts the two aspects of a time on the shared notation (● Simple dots vs 〜
+  Continuous wave, dashed NOW axis, time hue) with a 4-beat **play/step** stepper (▶ auto-play +
+  ◀/▶|/↺, bilingual `aria-live` narration, reduced-motion-safe, SSR-safe at beat 0). It supersedes
+  the old standalone `tense-timeline` sim (CLAUDE.md §6). **Architecture note:** the core lives OUTSIDE
+  `src/components/figures/` because `smoke.ts` asserts *(figure .tsx files) === (figure registry keys)*;
+  the per-zone registry entries `timeline-present` / `timeline-past` are thin **one-export wrapper**
+  files (`TenseTimelinePresent.tsx` / `TenseTimelinePast.tsx`) that render the core — so files==keys
+  stays true and T3 adds `timeline-future` / `timeline-perfect` the same way. `.ttl-*` CSS appended to
+  `components.css`. **m7 Present: Simple & Continuous** (a1): 4 topics (forms + the -s-moves rule ·
+  routines-vs-now with the `timeline-present` figure · state-verbs incl. the `I am agree`/`I am knowing`
+  traps + dual-function think/have/see · present-for-future intro: arrangement vs timetable), 6
+  keyPoints, 6 pitfalls, **14 drills**, 5 sources. **m8 Past: Simple & Continuous** (a2): 4 topics
+  (forms + irregular V2 + `#/irregular` pointer · did-questions-negatives incl. the `Did you went` double-
+  past trap · interrupted-past when/while with the `timeline-past` figure + the Jane/guests contrast ·
+  used-to/would incl. *would ≠ past states* and the `didn't use to` spelling trap), 6 keyPoints, 6
+  pitfalls, **14 drills**, 5 sources. Mandatory UA-pitfalls placed: Simple-for-Continuous + "I am agree"
+  (m7), double-past + flattened background (m8). `concepts.ts`: the m7/m8 stubs → real imports (now
+  **9 authored**, still 6/34 sections). **smoke**: 2 FIG canaries (TenseTimelinePresent/Past) +
+  `ModulePage:m7/m8(full)` content canaries. **Verification: FULL `npm run verify` ✓ green end-to-end
+  in the cloud scratch** — typecheck (`tsc -b`) · eslint · check:data (6/34 · **9 authored** · **139
+  exercises** · 150 words · 100 reading · all bilingual · registry+links resolve) · test ×4 · smoke
+  (**3 sims + 8 figures** EN+UK, **169 checks**) · vite build. The interactive figure was also
+  rendered + stepped in headless Chromium (m7 present + m8 past zones, beat 0 → beat 4 reveal, no
+  page errors — only the sandbox-blocked Google-Fonts fetch). Facts web-verified (British Council
+  stative verbs · past continuous + past simple when/while · past habits used-to/would · talking about
+  the future; Cambridge present/past simple + continuous slugs) — `sources` filled (m7 5, m8 5). Owner
+  next: `npm run verify` locally → commit on `t2-tenses-present-past-timeline` → push. Deferred/next
+  (T3): `m9`+`m10` (+ `timeline-future` / `timeline-perfect` wrappers, same pattern).
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

@@ -2319,3 +2319,123 @@
 .tmx-cell--big[data-time='future'] {
   color: var(--time-future);
 }
+
+/* ── TenseTimeline figure (T2 — the parametric play/step timeline, m7–m10) ──────────────────────*/
+.ttl {
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  text-align: left;
+}
+.ttl-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ttl-fade {
+  transition: opacity var(--dur) var(--ease);
+}
+.ttl-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0.5rem 0 0.2rem;
+}
+.ttl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--line2);
+  background: var(--s2);
+  color: var(--tx);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.ttl-btn:hover:not(:disabled) {
+  border-color: var(--time-present);
+}
+.ttl-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.ttl-btn--play.on {
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-soft);
+}
+.ttl-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--tx3);
+}
+.ttl-narr {
+  min-height: 2.6em;
+  margin: 0.2rem 0 0.7rem;
+  color: var(--tx);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.ttl-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 560px) {
+  .ttl-legend {
+    grid-template-columns: 1fr;
+  }
+}
+.ttl-lane {
+  display: flex;
+  gap: 10px;
+  padding: 0.6rem 0.7rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.ttl-lane.on {
+  opacity: 1;
+  background: var(--s2);
+}
+.ttl-lane-glyph {
+  font-size: 1.15rem;
+  line-height: 1.2;
+  flex: none;
+}
+.ttl-lane-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ttl-lane-name {
+  font: 700 0.9rem var(--font-display);
+  color: var(--tx);
+}
+.ttl-lane-gloss {
+  font-size: 0.8rem;
+  color: var(--tx2);
+}
+.ttl-lane-eg {
+  font-size: 0.78rem;
+  color: var(--tx);
+  margin-top: 2px;
+}
+.ttl-lane-uk {
+  font-size: 0.76rem;
+  color: var(--tx3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ttl-fade,
+  .ttl-lane,
+  .ttl-btn {
+    transition: none;
+  }
+}

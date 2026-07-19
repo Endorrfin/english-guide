@@ -38,6 +38,11 @@ export const figures: Record<string, LazyComp> = {
   // CHANGED (S4): m21 + m22 figures.
   'certainty-scale': lazyNamed(() => import('../components/figures/CertaintyScale'), 'CertaintyScale'),
   'politeness-ladder': lazyNamed(() => import('../components/figures/PolitenessLadder'), 'PolitenessLadder'),
+  // CHANGED (T2): the parametric TenseTimeline figure — one per-zone entry (m7–m10). Each key maps
+  // to a thin one-export wrapper file (smoke asserts figure files === figure keys); the shared
+  // parametric core lives in ../components/tense/TenseTimeline (outside the scanned figures/ dir).
+  'timeline-present': lazyNamed(() => import('../components/figures/TenseTimelinePresent'), 'TenseTimelinePresent'),
+  'timeline-past': lazyNamed(() => import('../components/figures/TenseTimelinePast'), 'TenseTimelinePast'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

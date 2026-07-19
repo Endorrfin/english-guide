@@ -16,6 +16,10 @@ import { m21 } from './modules/m21-deduction-probability';
 import { m22 } from './modules/m22-requests-politeness';
 // CHANGED (T1): m6 authored — the golden module of Section II Tenses (+ the ★ tense-navigator sim).
 import { m6 } from './modules/m6-tense-system';
+// CHANGED (T2): m7–m8 authored — Present & Past (Simple + Continuous) + the parametric TenseTimeline
+// figure (zones present/past). Imports replace the former stub() entries below.
+import { m7 } from './modules/m7-present-simple-continuous';
+import { m8 } from './modules/m8-past-simple-continuous';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
@@ -84,8 +88,8 @@ export const modules: Module[] = [
 
   // Section II — Tenses ★ second flagship (A1–B2, added T1 per the S5 plan)
   m6, // CHANGED (T1): authored — the GOLDEN module of Section II (+ ★ tense-navigator)
-  stub('m7-present-simple-continuous', 7, 's6-tenses', 2, 'a1', { en: 'Present: Simple & Continuous', uk: 'Present: Simple і Continuous' }),
-  stub('m8-past-simple-continuous', 8, 's6-tenses', 3, 'a2', { en: 'Past: Simple & Continuous', uk: 'Past: Simple і Continuous' }),
+  m7, // CHANGED (T2): authored — Present: Simple & Continuous (+ timeline-present figure)
+  m8, // CHANGED (T2): authored — Past: Simple & Continuous (+ timeline-past figure)
   stub('m9-future-forms', 9, 's6-tenses', 4, 'a2', { en: 'Future: will, going to & Continuous', uk: 'Future: will, going to і Continuous' }),
   stub('m10-perfect-family', 10, 's6-tenses', 5, 'b1', { en: 'The Perfect Family', uk: 'Родина Perfect' }),
   stub('m11-choosing-narrative', 11, 's6-tenses', 6, 'b2', { en: 'Choosing Tenses & Narrative', uk: 'Вибір tense і нарація' }, true),
