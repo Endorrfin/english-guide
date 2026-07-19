@@ -99,6 +99,8 @@ for (const m of modules as Module[]) {
         for (const row of b.rows) err(row.length === b.head.length, `${at} table row width != head`);
       }
       if (b.kind === 'compare') for (const r of b.rows) err(r.length === 3, `${at} compare row not a 3-tuple`);
+      // CHANGED (T1): dive depth tags (S5 mechanic) — if present, must be 2 | 3 | 4.
+      if (b.dive !== undefined) err([2, 3, 4].includes(b.dive), `${at} bad dive level '${b.dive}'`);
     }
   }
 
@@ -107,7 +109,9 @@ for (const m of modules as Module[]) {
   // Golden bar for AUTHORED modules only (stubs are sanctioned skeleton entries).
   if (isAuthored(m.id)) {
     const isModal = m.section === 's3-modal-verbs';
-    const minEx = isModal ? 15 : 8;
+    // CHANGED (T1): tense modules carry the second-flagship bar (≥12 drills — CURRICULUM §A).
+    const isTense = m.section === 's6-tenses';
+    const minEx = isModal ? 15 : isTense ? 12 : 8;
     err((m.exercises?.length ?? 0) >= minEx,
       `${m.id}: authored module needs ≥${minEx} exercises, has ${m.exercises?.length ?? 0}`);
     err(m.keyPoints.length >= 3, `${m.id}: authored module needs ≥3 key points`);
@@ -215,8 +219,8 @@ for (const rt of READING_TEXTS as ReadingText[]) {
   }
 }
 
-// --- COUNTS (locked for S1) ------------------------------------------------
-const EXPECTED_SECTIONS = 5;
+// --- COUNTS (locked for S1; sections 5 → 6 in T1 — the S5 Tenses insert) ----
+const EXPECTED_SECTIONS = 6;
 const EXPECTED_MODULES = 34;
 const EXPECTED_A1_WORDS = 150; // dictionary wave W1
 err(sections.length === EXPECTED_SECTIONS, `expected ${EXPECTED_SECTIONS} sections, got ${sections.length}`);

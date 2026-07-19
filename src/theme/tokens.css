@@ -33,12 +33,27 @@
   --lv-b2: #818cf8; /* indigo */
   --lv-c1: #a78bfa; /* violet */
 
-  /* ---- Section accents (I–V) ---- */
+  /* ---- Section accents (I–VI) ---- */
   --sec-foundations: #34d399;
   --sec-core: #38bdf8;
   --sec-modals: #fbbf24; /* amber — the flagship */
   --sec-advanced: #818cf8;
   --sec-vocab: #a78bfa;
+  /* CHANGED (T1): Section II — Tenses ★ (second flagship) = the present cyan of the time triad. */
+  --sec-tenses: #22d3ee;
+
+  /* ---- Time triad + aspect notation (S5/T1 — Tenses visual language, CLAUDE.md §7) ----
+     TIME is hue: past rose · present cyan · future violet. Contrast-checked side by side against
+     the CEFR ramp on the dark ground: cyan #22d3ee vs b1 sky #38bdf8 and violet #a78bfa (= c1)
+     appear in separated contexts (tense visuals vs level badges) and stay distinguishable.
+     ASPECT is notation, not color: ● simple · 〜 continuous · ⤺ perfect · 〜⤺ perfect continuous
+     (lib/tenses.ts is the one shared TenseGlyphs vocabulary). */
+  --time-past: #f472b6;
+  --time-present: #22d3ee;
+  --time-future: #a78bfa;
+  --time-past-soft: rgba(244, 114, 182, 0.14);
+  --time-present-soft: rgba(34, 211, 238, 0.14);
+  --time-future-soft: rgba(167, 139, 250, 0.14);
 
   /* ---- Semantic ---- */
   --ok: #6cc24a; /* correct answer / success */

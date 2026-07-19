@@ -14,16 +14,23 @@ import { m20 } from './modules/m20-advice-criticism';
 // deduction-lab sim, and requests/offers/politeness). Imports replace the former stub() entries.
 import { m21 } from './modules/m21-deduction-probability';
 import { m22 } from './modules/m22-requests-politeness';
+// CHANGED (T1): m6 authored — the golden module of Section II Tenses (+ the ★ tense-navigator sim).
+import { m6 } from './modules/m6-tense-system';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
 
+// CHANGED (T1): the S5 TIMES restructure — ALL tenses consolidated into the new Section II
+// (`s6-tenses`, roman II). Romans are display-only and shift downstream (Core III · Modals IV ·
+// Advanced V · Vocab VI · Reading VII on the map); section IDS never change. Array order = display
+// order on the map and in the sidebar.
 export const sections: Section[] = [
   { id: 's1-foundations', roman: 'I', title: { en: 'Foundations', uk: 'Основи' }, accent: 'var(--sec-foundations)' },
-  { id: 's2-core-grammar', roman: 'II', title: { en: 'Core Grammar', uk: 'Ядро граматики' }, accent: 'var(--sec-core)' },
-  { id: 's3-modal-verbs', roman: 'III', title: { en: 'Modal Verbs ★', uk: 'Modal Verbs ★' }, accent: 'var(--sec-modals)' },
-  { id: 's4-advanced-grammar', roman: 'IV', title: { en: 'Advanced Grammar', uk: 'Поглиблена граматика' }, accent: 'var(--sec-advanced)' },
-  { id: 's5-vocabulary-in-action', roman: 'V', title: { en: 'Vocabulary in Action', uk: 'Лексика в дії' }, accent: 'var(--sec-vocab)' },
+  { id: 's6-tenses', roman: 'II', title: { en: 'Tenses ★', uk: 'Tenses ★' }, accent: 'var(--sec-tenses)' },
+  { id: 's2-core-grammar', roman: 'III', title: { en: 'Core Grammar', uk: 'Ядро граматики' }, accent: 'var(--sec-core)' },
+  { id: 's3-modal-verbs', roman: 'IV', title: { en: 'Modal Verbs ★', uk: 'Modal Verbs ★' }, accent: 'var(--sec-modals)' },
+  { id: 's4-advanced-grammar', roman: 'V', title: { en: 'Advanced Grammar', uk: 'Поглиблена граматика' }, accent: 'var(--sec-advanced)' },
+  { id: 's5-vocabulary-in-action', roman: 'VI', title: { en: 'Vocabulary in Action', uk: 'Лексика в дії' }, accent: 'var(--sec-vocab)' },
 ];
 
 const STUB_TAGLINE: Localized = {
@@ -66,26 +73,31 @@ function stub(
 
 export const modules: Module[] = [
   // Section I — Foundations (A1–A2)
+  // CHANGED (T1): S5 restructure — the old tense stubs (m2/m5/m6/m9/m10/m11) are superseded by
+  // Section II below; the remaining Foundations stubs are renamed so `num` stays contiguous and
+  // equal to the id prefix. All swapped stubs were unauthored (verified S5) — zero progress-key impact.
   stub('m1-be-pronouns', 1, 's1-foundations', 1, 'a1', { en: 'Be, pronouns & possessives', uk: 'Be, займенники і присвійні' }),
-  stub('m2-present-simple-continuous', 2, 's1-foundations', 2, 'a1', { en: 'Present Simple vs Continuous', uk: 'Present Simple проти Continuous' }),
-  stub('m3-articles-basics', 3, 's1-foundations', 3, 'a1', { en: 'Articles: a/an/the basics', uk: 'Артиклі: основи a/an/the' }),
-  stub('m4-nouns-quantifiers', 4, 's1-foundations', 4, 'a1', { en: 'Nouns, plurals & quantifiers', uk: 'Іменники, множина і квантифікатори' }),
-  stub('m5-past-simple', 5, 's1-foundations', 5, 'a1', { en: 'Past Simple', uk: 'Past Simple' }),
-  stub('m6-future-basics', 6, 's1-foundations', 6, 'a2', { en: 'Future basics: will / going to', uk: 'Основи майбутнього: will / going to' }),
-  stub('m7-questions-negatives', 7, 's1-foundations', 7, 'a2', { en: 'Questions & negatives', uk: 'Питання і заперечення' }),
-  stub('m8-prepositions-time-place', 8, 's1-foundations', 8, 'a2', { en: 'Prepositions of time & place', uk: 'Прийменники часу і місця' }),
+  stub('m2-articles-basics', 2, 's1-foundations', 2, 'a1', { en: 'Articles: a/an/the basics', uk: 'Артиклі: основи a/an/the' }),
+  stub('m3-nouns-quantifiers', 3, 's1-foundations', 3, 'a1', { en: 'Nouns, plurals & quantifiers', uk: 'Іменники, множина і квантифікатори' }),
+  stub('m4-questions-negatives', 4, 's1-foundations', 4, 'a2', { en: 'Questions & negatives', uk: 'Питання і заперечення' }),
+  stub('m5-prepositions-time-place', 5, 's1-foundations', 5, 'a2', { en: 'Prepositions of time & place', uk: 'Прийменники часу і місця' }),
 
-  // Section II — Core Grammar (B1)
-  stub('m9-present-perfect', 9, 's2-core-grammar', 1, 'b1', { en: 'Present Perfect vs Past Simple', uk: 'Present Perfect проти Past Simple' }, true),
-  stub('m10-past-continuous-perfect', 10, 's2-core-grammar', 2, 'b1', { en: 'Past Continuous & Past Perfect', uk: 'Past Continuous і Past Perfect' }),
-  stub('m11-future-forms', 11, 's2-core-grammar', 3, 'b1', { en: 'Future forms in depth', uk: 'Форми майбутнього поглиблено' }),
-  stub('m12-comparatives', 12, 's2-core-grammar', 4, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),
-  stub('m13-conditionals-0-1-2', 13, 's2-core-grammar', 5, 'b1', { en: 'Conditionals 0 / 1 / 2', uk: 'Conditionals 0 / 1 / 2' }, true),
-  stub('m14-passive-intro', 14, 's2-core-grammar', 6, 'b1', { en: 'Passive: the essentials', uk: 'Passive: основи' }),
-  stub('m15-reported-speech', 15, 's2-core-grammar', 7, 'b1', { en: 'Reported speech', uk: 'Reported speech' }),
-  stub('m16-gerund-infinitive', 16, 's2-core-grammar', 8, 'b1', { en: 'Gerund vs infinitive', uk: 'Gerund проти infinitive' }),
+  // Section II — Tenses ★ second flagship (A1–B2, added T1 per the S5 plan)
+  m6, // CHANGED (T1): authored — the GOLDEN module of Section II (+ ★ tense-navigator)
+  stub('m7-present-simple-continuous', 7, 's6-tenses', 2, 'a1', { en: 'Present: Simple & Continuous', uk: 'Present: Simple і Continuous' }),
+  stub('m8-past-simple-continuous', 8, 's6-tenses', 3, 'a2', { en: 'Past: Simple & Continuous', uk: 'Past: Simple і Continuous' }),
+  stub('m9-future-forms', 9, 's6-tenses', 4, 'a2', { en: 'Future: will, going to & Continuous', uk: 'Future: will, going to і Continuous' }),
+  stub('m10-perfect-family', 10, 's6-tenses', 5, 'b1', { en: 'The Perfect Family', uk: 'Родина Perfect' }),
+  stub('m11-choosing-narrative', 11, 's6-tenses', 6, 'b2', { en: 'Choosing Tenses & Narrative', uk: 'Вибір tense і нарація' }, true),
 
-  // Section III — Modal Verbs ★ flagship (B1–B2)
+  // Section III (roman) — Core Grammar (B1) — ids/nums untouched by the restructure
+  stub('m12-comparatives', 12, 's2-core-grammar', 1, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),
+  stub('m13-conditionals-0-1-2', 13, 's2-core-grammar', 2, 'b1', { en: 'Conditionals 0 / 1 / 2', uk: 'Conditionals 0 / 1 / 2' }, true),
+  stub('m14-passive-intro', 14, 's2-core-grammar', 3, 'b1', { en: 'Passive: the essentials', uk: 'Passive: основи' }),
+  stub('m15-reported-speech', 15, 's2-core-grammar', 4, 'b1', { en: 'Reported speech', uk: 'Reported speech' }),
+  stub('m16-gerund-infinitive', 16, 's2-core-grammar', 5, 'b1', { en: 'Gerund vs infinitive', uk: 'Gerund проти infinitive' }),
+
+  // Section IV (roman) — Modal Verbs ★ flagship (B1–B2)
   m17,
   m18, // CHANGED (S2): authored
   m19, // CHANGED (S2): authored
@@ -93,7 +105,7 @@ export const modules: Module[] = [
   m21, // CHANGED (S4): authored (+ deduction-lab ★sim)
   m22, // CHANGED (S4): authored
 
-  // Section IV — Advanced Grammar (B2–C1)
+  // Section V (roman) — Advanced Grammar (B2–C1)
   stub('m23-conditionals-3-mixed', 23, 's4-advanced-grammar', 1, 'b2', { en: 'Conditionals 3, mixed & wishes', uk: 'Conditionals 3, mixed і wishes' }),
   stub('m24-passive-advanced', 24, 's4-advanced-grammar', 2, 'b2', { en: 'Advanced passive & causative', uk: 'Поглиблений passive і causative' }),
   stub('m25-relative-clauses', 25, 's4-advanced-grammar', 3, 'b2', { en: 'Relative clauses', uk: 'Relative clauses' }),
@@ -103,7 +115,7 @@ export const modules: Module[] = [
   stub('m29-subjunctive-formal', 29, 's4-advanced-grammar', 7, 'c1', { en: 'Subjunctive & formal English', uk: 'Subjunctive і формальна англійська' }),
   stub('m30-linking-discourse', 30, 's4-advanced-grammar', 8, 'b2', { en: 'Linking & discourse markers', uk: 'Звʼязки і discourse markers' }),
 
-  // Section V — Vocabulary in Action (B1–B2)
+  // Section VI (roman) — Vocabulary in Action (B1–B2)
   stub('m31-word-formation', 31, 's5-vocabulary-in-action', 1, 'b1', { en: 'Word formation', uk: 'Словотвір' }, true),
   stub('m32-phrasal-verbs-system', 32, 's5-vocabulary-in-action', 2, 'b1', { en: 'The phrasal-verbs system', uk: 'Система phrasal verbs' }),
   stub('m33-collocations', 33, 's5-vocabulary-in-action', 3, 'b2', { en: 'Collocations', uk: 'Колокації' }),

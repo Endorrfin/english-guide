@@ -7,15 +7,18 @@ import { adjacentModules, getModule, getSection, isAuthored } from '../../data/c
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
+// CHANGED (T1): dive levels — persisted depth + the DiveSwitcher/DiveBlock pair (S5 mechanic).
+import { moduleHasDive, useDive } from '../../lib/dive';
 import { hrefModule } from '../../lib/hashRouter';
 import { ComingSoon } from '../pages/ComingSoon';
-import { BlockView } from './blocks';
+import { DiveBlock, DiveSwitcher } from './DiveSwitcher';
 import { ExerciseSet } from './ExerciseSet';
 import { LevelBadge } from './LevelBadge';
 
 export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: string }) {
   const { t, lang } = useLang();
   const { isKnown, toggleKnown } = useAppState();
+  const { dive, setDive } = useDive(); // CHANGED (T1)
   const m = getModule(moduleId);
   const authored = isAuthored(moduleId);
 
@@ -43,6 +46,8 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
   const section = getSection(m.section);
   const { prev, next } = adjacentModules(m.id);
   const known = isKnown(m.id);
+  // CHANGED (T1): generic dive mechanic — any module whose blocks carry dive tags gets the switcher.
+  const hasDive = authored && moduleHasDive(m.topics.flatMap((tp) => tp.blocks));
 
   return (
     <article className="content module">
@@ -79,6 +84,8 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
         <ComingSoon />
       ) : (
         <>
+          {hasDive && <DiveSwitcher moduleId={m.id} dive={dive} setDive={setDive} />}
+
           {m.topics.length > 0 && (
             <nav className="toc" aria-label={t(ui.onThisPage)}>
               <span className="toc-title">{t(ui.onThisPage)}</span>
@@ -96,7 +103,7 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
             <section className="topic" id={`topic-${tp.id}`} key={tp.id}>
               <h2>{t(tp.title)}</h2>
               {tp.blocks.map((b, i) => (
-                <BlockView key={i} block={b} />
+                <DiveBlock key={i} block={b} dive={dive} /> // CHANGED (T1): depth-gated rendering
               ))}
             </section>
           ))}

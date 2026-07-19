@@ -2008,3 +2008,314 @@
     transition: none;
   }
 }
+
+/* ============================================================================
+   CHANGED (T1): Section II Tenses — DiveSwitcher + dive stubs, the ★ Tense
+   Navigator (.tn-*, extends .mn-*), and the landing-map mini-matrix (.tmx-*).
+   Time triad + aspect glyphs come from theme/tokens.css (the shared vocabulary).
+   ========================================================================== */
+
+/* ---- DiveSwitcher (module pages with dive-tagged blocks) ---- */
+.dive-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 22px;
+}
+.dive-seg {
+  display: inline-flex;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.dive-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--tx2);
+  font: 600 0.82rem var(--font-body);
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.dive-btn + .dive-btn {
+  border-left: 1px solid var(--line);
+}
+.dive-btn:hover {
+  color: var(--tx);
+}
+.dive-btn.on {
+  background: var(--time-present-soft);
+  color: var(--time-present);
+}
+.dive-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px dashed var(--line2);
+  border-radius: var(--r-md);
+  padding: 6px 12px;
+  font: 600 0.82rem var(--font-body);
+  color: var(--tx2);
+  text-decoration: none;
+}
+.dive-map:hover {
+  color: var(--tx);
+  border-color: var(--tx3);
+}
+
+/* Collapsed deeper blocks: thin expandable stubs — depth stays visible. */
+.dive-stub {
+  margin: 14px 0;
+  border: 1px dashed var(--line2);
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+.dive-stub > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 8px 14px;
+  font: 600 0.82rem var(--font-body);
+  color: var(--tx3);
+  transition: color var(--dur-fast) var(--ease);
+}
+.dive-stub > summary::-webkit-details-marker {
+  display: none;
+}
+.dive-stub > summary::after {
+  content: ' ▾';
+  color: var(--tx3);
+}
+.dive-stub[open] > summary::after {
+  content: ' ▴';
+}
+.dive-stub > summary:hover {
+  color: var(--tx2);
+}
+.dive-stub[data-dive='4'] {
+  border-style: dotted;
+}
+.dive-stub[open] {
+  border-style: solid;
+  border-color: var(--line);
+  background: transparent;
+}
+.dive-stub[open] > *:not(summary) {
+  padding: 0 14px 4px;
+}
+
+/* ---- ★ Tense Navigator (.tn-* extends the .mn base) ---- */
+.tn-pickers {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+@media (max-width: 640px) {
+  .tn-pickers {
+    grid-template-columns: 1fr;
+  }
+}
+.tn-times,
+.tn-aspects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tn-time,
+.tn-aspect {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.tn-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.tn-glyph {
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--tx2);
+}
+.tn-result {
+  border-left: 3px solid var(--time, var(--accent));
+}
+.tn-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tn-name {
+  font: 700 1.12rem var(--font-display);
+  letter-spacing: 0.01em;
+}
+.tn-freq {
+  font: 600 0.72rem var(--font-mono);
+  color: var(--tx);
+  background: var(--s3);
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.tn-freq--rare {
+  color: var(--tx3);
+  background: transparent;
+  border-style: dashed;
+  white-space: normal;
+}
+.tn-timeline {
+  display: block;
+  width: min(300px, 100%);
+  margin: 10px 0 4px;
+}
+.tn-forms {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 12px;
+}
+.tn-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tn-form-sign {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--line2);
+  font: 700 0.8rem var(--font-mono);
+  color: var(--tx2);
+}
+.tn-form-sign--aff {
+  color: var(--ok);
+  border-color: color-mix(in srgb, var(--ok) 45%, var(--line2));
+}
+.tn-form-sign--neg {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--line2));
+}
+.tn-signals {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0 10px;
+}
+.tn-signal {
+  font-size: 0.72rem;
+  color: var(--tx2);
+  background: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+/* ---- Landing-map ✈️ mini-matrix card (.tmx-*) ---- */
+.map-tenses {
+  margin: 34px 0 0;
+}
+.tmx-card {
+  display: block;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--tx);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.tmx-card:hover {
+  border-color: var(--sec-tenses);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 8px 30px rgba(34, 211, 238, 0.12);
+}
+.tmx-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.tmx-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.tmx-title .dim {
+  font-size: 0.8rem;
+  color: var(--tx3);
+}
+.tmx-cta {
+  margin-left: auto;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.tmx-grid {
+  display: grid;
+  grid-template-columns: 34px repeat(3, 1fr);
+  gap: 6px;
+  max-width: 460px;
+}
+.tmx-corner {
+  /* empty top-left cell of the mini matrix */
+}
+.tmx-col {
+  font-size: 0.68rem;
+  text-align: center;
+  align-self: end;
+  letter-spacing: 0.04em;
+}
+.tmx-row {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  gap: 6px;
+}
+.tmx-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tx3);
+  font-size: 0.85rem;
+}
+.tmx-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  font: 600 0.68rem var(--font-mono);
+  color: var(--tx3);
+  padding: 6px 0;
+}
+.tmx-cell[data-time='past'] {
+  background: var(--time-past-soft);
+}
+.tmx-cell[data-time='present'] {
+  background: var(--time-present-soft);
+}
+.tmx-cell[data-time='future'] {
+  background: var(--time-future-soft);
+}
+.tmx-cell--big {
+  color: var(--tx);
+  border-color: var(--line2);
+}
+.tmx-cell--big[data-time='past'] {
+  color: var(--time-past);
+}
+.tmx-cell--big[data-time='present'] {
+  color: var(--time-present);
+}
+.tmx-cell--big[data-time='future'] {
+  color: var(--time-future);
+}
