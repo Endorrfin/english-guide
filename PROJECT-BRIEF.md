@@ -13,11 +13,12 @@
 ## 0. TL;DR — the one-paragraph commission
 
 Build a **deep, interactive, bilingual (EN/UA) English-language trainer** — grammar by CEFR level
-(A1→C1), a **flagship Modal Verbs section with heavy practice**, and a **searchable 1,000→3,000-word
+(A1→C1), a **flagship Modal Verbs section with heavy practice**, a **Tenses section (second
+flagship, S5) with a 4-level dive mechanic**, and a **searchable 1,000→3,000-word
 dictionary** with translations, definitions, IPA and 7 tagged examples per word — modelled on the
 `../database guide` quality bar (its Glossary UX is the explicit reference the owner loves). **Tier 1:**
 Vite + React 19 + TS (strict), static, GitHub Pages. Teach with prose **plus** tables, figures,
-mental models, **~6 signature sims** (Modal Navigator first) and **trainers**: SRS flashcards (SM-2-lite,
+mental models, **~8 sims** (Modal Navigator first) and **trainers**: SRS flashcards (SM-2-lite,
 ported from the database guide), gap-fill, MCQ, irregular-verbs drill. Work **plan-first, 1–2 modules
 per session, quality over speed**, verify every session, close each session with the fixed summary.
 Decisions in §5 are locked — don't re-ask them.
@@ -81,9 +82,10 @@ portfolio piece (GitHub Pages).
 | **Pronunciation** | IPA string on cards + **Web Speech API** (`speechSynthesis`) buttons. No audio files. |
 | **Trainers** | SRS = **SM-2-lite ported 1:1 from `../database guide` `src/lib/srs.ts`** (+ its store pattern); gap-fill + MCQ engine in `src/lib/exercise.ts` (pure, golden-tested); irregular-verbs 3-forms drill. Progress in localStorage. |
 | **Theme** | Dark editorial; fonts **Fraunces** · Inter · JetBrains Mono. Accent = **CEFR ramp** (a1 emerald → a2 teal → b1 sky → b2 indigo → c1 violet) within the locked palette. |
-| **Interactivity** | Curated: **~6 signature sims** — Modal Navigator ★golden (function × time → the right modal), Conditionals Machine, Tense Timeline, Article Decision Tree, Deduction Lab, Word-Formation Lab. Diagram-first elsewhere. Reduced-motion fallback each. |
+| **Interactivity** | Curated: **~8 sims (updated S5)** — Modal Navigator ★golden + Deduction Lab (both built); Tense Navigator ★, Sentence Morpher, Tense Chooser (Section II Tenses); Conditionals Machine, Article Decision Tree, Word-Formation Lab. Plus the parametric TenseTimeline **figure** (supersedes the old standalone Tense Timeline sim). Diagram-first elsewhere. Reduced-motion fallback each. |
 | **Deploy** | GitHub Pages via Actions. **Repo `english-guide` @ `endorrfin`** → `https://endorrfin.github.io/english-guide/` (owner decision; sanctioned deviation from `*-comprehensive-guide` naming — repo already exists). `vite base:'./'` + `.nojekyll`. |
 | **Golden module** | **m17 The Modal System** + Modal Navigator sim, built first with the app shell. |
+| **Tenses section (S5)** | **Section II — Tenses** (`s6-tenses`, roman II; later romans shift, section ids never): 6 modules, hybrid-Murphy cut — `m6-tense-system` ★golden of II · m7 Present S+C · m8 Past S+C · m9 Future forms · m10 Perfect Family · m11 Choosing & Narrative. **Dive levels:** `Block.dive?: 2\|3\|4` + persisted DiveSwitcher (✈️ map · 🚂 core · 🚶 full · 🔬 deep), L1 = m6; deeper blocks collapse to expandable stubs. **Time triad A:** past rose #f472b6 · present cyan #22d3ee · future violet #a78bfa; aspect = glyphs ● 〜 ⤺ 〜⤺ (shared TenseGlyphs). ≥12 drills/module; UA pitfalls mandatory. Build order T1–T4 (CURRICULUM §G). |
 | **Tooling** | Node 22 LTS; TS strict + `noUnusedLocals/Parameters`; build must pass; ESLint clean. |
 
 ## 6. Constraints & non-negotiables
@@ -133,7 +135,7 @@ portfolio piece (GitHub Pages).
   `check:data` clean.
 - **Per session:** the above for the session's scope + verification run + summary delivered +
   `CLAUDE.md` status log updated.
-- **Project:** 34 modules authored; 6 signature sims + landing map; dictionary ≥3,000 golden cards +
+- **Project:** 34 modules authored; 8 sims + landing map; dictionary ≥3,000 golden cards +
   100–300 idioms; all four trainers live; global search over modules **and** words; bilingual QA;
   deployed and live.
 

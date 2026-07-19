@@ -13,6 +13,9 @@ import { workTexts } from './work';
 import { disciplineTexts } from './discipline';
 import { lifeTexts } from './life';
 import { upbringingTexts } from './upbringing';
+import { healthTexts } from './health';
+import { technologyTexts } from './technology';
+import { friendshipTexts } from './friendship';
 
 export const READING_CATEGORIES: readonly ReadingCategory[] = [...readingCategories].sort(
   (a, b) => a.order - b.order,
@@ -27,6 +30,9 @@ export const READING_TEXTS: readonly ReadingText[] = [
   ...disciplineTexts,
   ...lifeTexts,
   ...upbringingTexts,
+  ...healthTexts,
+  ...technologyTexts,
+  ...friendshipTexts,
 ];
 
 const textById = new Map(READING_TEXTS.map((t) => [t.id, t]));
