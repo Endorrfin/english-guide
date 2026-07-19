@@ -1866,3 +1866,106 @@
   font-size: 0.86rem;
   color: var(--tx2);
 }
+
+/* ─────────────────────────── Reading section (S3) ─────────────────────────── */
+/* Index accordion reuses .dict-card / .dict-head / .dict-caret / .dict-list. */
+.rd-cat-head { width: 100%; }
+.rd-cat-name { font-weight: 650; color: var(--tx); }
+.rd-cat-blurb {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.86rem;
+}
+.rd-cat-count { margin-left: auto; flex: none; }
+.rd-body { padding: 0.35rem 0.5rem 0.6rem; }
+.rd-textlist { display: flex; flex-direction: column; gap: 0.15rem; }
+.rd-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--tx);
+  transition: background var(--dur-fast) var(--ease);
+}
+.rd-text:hover { background: var(--s2); }
+.rd-text-check { color: var(--tx3); flex: none; width: 1rem; text-align: center; }
+.rd-text-check.on { color: var(--ok); font-weight: 700; }
+.rd-text-title { flex: 1; min-width: 0; }
+.rd-text-meta { display: flex; align-items: center; gap: 0.6rem; flex: none; }
+.rd-min { font-size: 0.78rem; white-space: nowrap; }
+
+/* Reader page */
+.rd-reader { max-width: var(--content-max); }
+.rd-crumbs { margin: 0 0 0.5rem; font-size: 0.9rem; }
+.rd-crumbs a { color: var(--accent); text-decoration: none; }
+.rd-crumbs a:hover { text-decoration: underline; }
+.rd-title { font-family: var(--font-display); margin: 0.2rem 0 0.6rem; }
+.rd-metarow { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1rem; font-size: 0.88rem; }
+.rd-source a { color: var(--accent); text-decoration: none; }
+.rd-source a:hover { text-decoration: underline; }
+.rd-bodybar { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+.rd-prose {
+  max-width: var(--reading-max);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+.rd-prose p { margin: 0 0 1rem; }
+.rd-prose--uk { color: var(--tx2); }
+.rd-actions { margin: 1.4rem 0; max-width: var(--reading-max); }
+.rd-questions { margin-top: 1.6rem; max-width: var(--reading-max); }
+.rd-questions h2 { font-family: var(--font-display); margin-bottom: 0.8rem; }
+.rd-sample-label { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 0.25rem; }
+
+.rd-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 2rem 0 0;
+  max-width: var(--reading-max);
+}
+.rd-navlink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--tx);
+  font-size: 0.9rem;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.rd-navlink:hover { border-color: var(--accent); }
+.rd-navlink.next { text-align: right; }
+.rd-navtitle { font-weight: 600; }
+
+/* Section VI card on the landing map */
+.rd-mapcard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--tx);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.rd-mapcard:hover { border-color: var(--accent); }
+.rd-mapcard .ov-roman { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; flex: none; }
+.rd-mapcard-body { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; min-width: 0; }
+.rd-mapcard-body strong { font-size: 1.05rem; }
+.rd-mapcard-count { flex: none; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .rd-cat-blurb { display: none; }
+  .rd-nav { grid-template-columns: 1fr; }
+}

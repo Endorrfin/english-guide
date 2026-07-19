@@ -129,3 +129,54 @@ export type IrregularVerb = {
   level: Level;
   note?: Localized;        // e.g. lie/lay confusion, BrE/AmE variants
 };
+
+// ─────────────────────── Reading section (S3) ───────────────────────
+// CHANGED (S3): the Reading library — a page-based content system (like the Dictionary), NOT
+// modules. SSOT in src/data/reading/*: one file per category (lazy-splittable at scale, standard
+// §4.4) + a thin aggregator. Rendered by #/reading (accordion index) and #/reading/<id> (reader).
+// Bilingual: `body` carries EN (the study object) AND a full UA translation, toggled at runtime.
+
+/** A reading category — the accordion buckets on #/reading (health, work, values, …). */
+export type ReadingCategory = {
+  id: string;            // kebab: 'values', 'work', 'family'
+  title: Localized;
+  order: number;         // display order in the accordion
+  blurb?: Localized;     // optional one-line description under the category header
+};
+
+/**
+ * One comprehension question shown after a text. Locked decision (S3): a MIX per text —
+ * 2–3 auto-checkable `mcq` (through the golden-tested lib/exercise engine) + 1–2 `open`
+ * questions with a revealable model answer. Everything human-readable is bilingual.
+ */
+export type ReadingQuestion =
+  | {
+      kind: 'mcq';
+      q: Localized;
+      options: Localized[];  // bilingual options, order fixed
+      correct: number;       // index into options
+      explain?: Localized;   // why — shown after answering
+    }
+  | {
+      kind: 'open';
+      q: Localized;
+      sample: Localized;     // a model answer, revealed on demand
+    };
+
+/**
+ * A reading text. `id` is a stable kebab slug, unique across ALL reading files — it is the
+ * progress key (read / question-solved) in localStorage, so never rename, only append.
+ * `source` is per-text attribution (the screenshots come from several creators).
+ */
+export type ReadingText = {
+  id: string;              // 'the-habit-of-reading-daily'
+  title: Localized;
+  category: string;        // ReadingCategory id
+  level: Level;            // CEFR estimate — drives the level filter + badge
+  minutes: number;         // estimated reading time (whole minutes, ≥1)
+  body: Localized;         // full text: en = the English study object, uk = full translation
+  questions: ReadingQuestion[]; // 3–5, a mix of mcq + open (S3 decision)
+  source?: { author: string; handle?: string; url?: string }; // attribution credit
+  topics?: string[];       // free tags for future cross-linking
+  seeAlso?: string[];      // other ReadingText ids
+};

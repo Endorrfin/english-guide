@@ -9,7 +9,10 @@ export type Route =
   | { name: 'dictionary'; id?: string }
   | { name: 'practice' }
   | { name: 'review' }
-  | { name: 'irregular' };
+  | { name: 'irregular' }
+  // CHANGED (S3): Reading section — #/reading (accordion index) · #/reading/<id> (reader).
+  | { name: 'reading' }
+  | { name: 'reading-text'; id: string };
 
 export function parseHash(raw: string): Route {
   const hash = raw.replace(/^#/, '').replace(/^\/+/, '');
@@ -26,6 +29,8 @@ export function parseHash(raw: string): Route {
       return { name: 'review' };
     case 'irregular':
       return { name: 'irregular' };
+    case 'reading':
+      return parts[1] ? { name: 'reading-text', id: safeDecode(parts[1]) } : { name: 'reading' };
     case 'm':
       if (parts[1]) return { name: 'module', moduleId: parts[1], topicId: parts[2] };
       return { name: 'map' };
@@ -50,6 +55,8 @@ export const hrefDictionary = (id?: string) =>
 export const hrefPractice = () => '#/practice';
 export const hrefReview = () => '#/review';
 export const hrefIrregular = () => '#/irregular';
+export const hrefReading = () => '#/reading';
+export const hrefReadingText = (id: string) => `#/reading/${encodeURIComponent(id)}`;
 
 export function navigate(href: string): void {
   window.location.hash = href.replace(/^#/, '');

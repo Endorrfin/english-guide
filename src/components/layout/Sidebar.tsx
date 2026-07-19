@@ -11,6 +11,7 @@ import {
   hrefMap,
   hrefModule,
   hrefPractice,
+  hrefReading,
   hrefReview,
   useRoute,
 } from '../../lib/hashRouter';
@@ -20,6 +21,7 @@ import { cx } from '../../lib/utils';
 const PAGE_LINKS: { name: Route['name']; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
   { name: 'map', href: hrefMap(), label: ui.guideMap },
   { name: 'dictionary', href: hrefDictionary(), label: ui.dictionary },
+  { name: 'reading', href: hrefReading(), label: ui.reading }, // CHANGED (S3)
   { name: 'practice', href: hrefPractice(), label: ui.practice },
   { name: 'review', href: hrefReview(), label: ui.review },
   { name: 'irregular', href: hrefIrregular(), label: ui.irregularVerbs },

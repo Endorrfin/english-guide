@@ -10,6 +10,7 @@ import {
   hrefIrregular,
   hrefMap,
   hrefPractice,
+  hrefReading,
   hrefReview,
   navigate,
 } from '../../lib/hashRouter';
@@ -154,6 +155,7 @@ export function TopBar() {
         <nav className="top-links" aria-label="Pages">
           <a href={hrefMap()}>{t(ui.guideMap)}</a>
           <a href={hrefDictionary()}>{t(ui.dictionary)}</a>
+          <a href={hrefReading()}>{t(ui.reading)}</a>
           <a href={hrefPractice()}>{t(ui.practice)}</a>
           <a href={hrefReview()}>{t(ui.review)}</a>
           <a href={hrefIrregular()}>{t(ui.irregularVerbs)}</a>
