@@ -72,6 +72,8 @@ const SIM_CANARIES: Record<string, string[]> = {
   ModalNavigator: ['Modal Navigator', 'must'],
   // CHANGED (S4): the Deduction Lab renders its default cell (certain-yes × present → must).
   DeductionLab: ['Deduction Lab', 'must'],
+  // CHANGED (T1): the Tense Navigator renders its default cell (present × simple).
+  TenseNavigator: ['Tense Navigator', 'Present Simple'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -177,6 +179,12 @@ async function main(): Promise<void> {
       "must",
       "had to",
     ]);
+    // CHANGED (T1): the golden module of Section II — matrix table + dive stubs render at the
+    // default 🚂 depth (deeper blocks appear as expandable stubs, so the page stays substantial).
+    check("ModulePage:m6(full)", h(ModulePage, { moduleId: "m6-tense-system" }), lang, 8000, [
+      "Present Perfect",
+      "will have been working",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -187,6 +195,7 @@ async function main(): Promise<void> {
     "#/map",
     "#/m/m17-modal-system",
     "#/m/m17-modal-system/function-x-time-grid",
+    "#/m/m6-tense-system", // CHANGED (T1)
     "#/dictionary",
     "#/reading",
     `#/reading/${readingFixtureId}`, // CHANGED (S5): dynamic fixture id (see note above)

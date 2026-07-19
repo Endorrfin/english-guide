@@ -1,16 +1,19 @@
 // CHANGED (S1): landing CEFR map — hero, trainer tiles, the owner-priority suggested path
 // (modals first), and the all-modules overview (ported pattern from ../database guide,
 // families grid replaced by trainer tiles + CEFR legend).
+// CHANGED (T1): Section II Tenses — the ✈️ mini-matrix card (the level-1 porthole view → m6),
+// six-section copy, Reading roman VI → VII, and the suggested path routed through m6.
 import { COUNTS, LEVELS, modulesBySection, sections } from '../../data/concepts';
 import { READING_COUNTS } from '../../data/reading';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import { hrefDictionary, hrefIrregular, hrefModule, hrefPractice, hrefReading, hrefReview } from '../../lib/hashRouter';
+import { ASPECTS, ASPECT_GLYPH, ASPECT_LABEL, TENSE_TIMES, TIME_COLOR_VAR, TIME_LABEL, getTense } from '../../lib/tenses';
 import { cx } from '../../lib/utils';
 
-// The guided owner-priority route: the modal system first (the flagship), then the
-// highest-value B1 grammar. Skip ahead any time.
+// The guided owner-priority route: the modal system first (the flagship), then the tense system
+// (the second flagship), then the highest-value B1 grammar. Skip ahead any time.
 const START_PATH: string[] = [
   'm17-modal-system',
   'm18-ability-permission',
@@ -18,7 +21,7 @@ const START_PATH: string[] = [
   'm20-advice-criticism',
   'm21-deduction-probability',
   'm22-requests-politeness',
-  'm9-present-perfect',
+  'm6-tense-system', // CHANGED (T1): replaces the superseded m9-present-perfect stub
   'm13-conditionals-0-1-2',
 ];
 
@@ -36,8 +39,8 @@ export function LandscapeMap() {
         <h1>{t({ en: 'English that finally sticks', uk: 'Англійська, що нарешті закріплюється' })}</h1>
         <p className="map-lede">
           {t({
-            en: 'A bilingual, systems-first trainer for engineers: grammar mapped to CEFR levels, a flagship Modal Verbs section with heavy drilled practice, and a searchable dictionary growing from 150 to 3,000+ words. Start anywhere; every module stands on its own.',
-            uk: 'Двомовний системний тренажер для інженерів: граматика за рівнями CEFR, флагманський розділ Modal Verbs із щільною практикою і пошуковий словник, що росте від 150 до 3 000+ слів. Починайте будь-де; кожен модуль самодостатній.',
+            en: 'A bilingual, systems-first trainer for engineers: grammar mapped to CEFR levels, a flagship Modal Verbs section with heavy drilled practice, the whole Tense System in one 3×4 matrix, and a searchable dictionary growing from 150 to 3,000+ words. Start anywhere; every module stands on its own.',
+            uk: 'Двомовний системний тренажер для інженерів: граматика за рівнями CEFR, флагманський розділ Modal Verbs із щільною практикою, уся система Tenses в одній матриці 3×4 і пошуковий словник, що росте від 150 до 3 000+ слів. Починайте будь-де; кожен модуль самодостатній.',
           })}
         </p>
         <div className="map-cta">
@@ -106,14 +109,63 @@ export function LandscapeMap() {
         </ol>
       </section>
 
+      {/* CHANGED (T1): the ✈️ porthole card — the whole tense system as a mini 3×4 matrix → m6. */}
+      <section className="map-tenses">
+        <a className="tmx-card" href={hrefModule('m6-tense-system')}>
+          <div className="tmx-head">
+            <span className="ov-roman" style={{ color: 'var(--sec-tenses)' }}>
+              II
+            </span>
+            <span className="tmx-title">
+              <strong>{t({ en: 'Tenses ★ — the whole system in one place', uk: 'Tenses ★ — уся система в одному місці' })}</strong>
+              <span className="dim">
+                {t({
+                  en: '3 times × 4 aspects = 12 cells · 5 forms carry 96% of speech · 4 reading depths',
+                  uk: '3 часи × 4 aspects = 12 клітинок · 5 форм несуть 96% мовлення · 4 глибини читання',
+                })}
+              </span>
+            </span>
+            <span className="tmx-cta mono dim">✈️ →</span>
+          </div>
+          <div className="tmx-grid" aria-hidden="true">
+            <span className="tmx-corner" />
+            {TENSE_TIMES.map((tm) => (
+              <span className="tmx-col mono" key={tm} style={{ color: TIME_COLOR_VAR[tm] }}>
+                {t(TIME_LABEL[tm])}
+              </span>
+            ))}
+            {ASPECTS.map((a) => (
+              <div className="tmx-row" key={a}>
+                <span className="tmx-glyph" title={t(ASPECT_LABEL[a])}>
+                  {ASPECT_GLYPH[a]}
+                </span>
+                {TENSE_TIMES.map((tm) => {
+                  const cell = getTense(tm, a);
+                  return (
+                    <span
+                      className={cx('tmx-cell', cell?.freqPct !== undefined && 'tmx-cell--big')}
+                      key={tm}
+                      data-time={tm}
+                      title={cell?.name}
+                    >
+                      {cell?.freqPct !== undefined ? `${cell.freqPct}%` : ASPECT_GLYPH[a]}
+                    </span>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </a>
+      </section>
+
       <section className="map-overview">
         <div className="map-sec-head">
           <div>
             <h2>{t({ en: 'All modules', uk: 'Усі модулі' })}</h2>
             <p className="muted">
               {t({
-                en: 'Five sections, 34 modules across the CEFR ramp. The level filter mirrors the top bar.',
-                uk: 'Пʼять розділів, 34 модулі вздовж шкали CEFR. Фільтр рівня синхронний із верхньою панеллю.',
+                en: 'Six sections, 34 modules across the CEFR ramp. The level filter mirrors the top bar.',
+                uk: 'Шість розділів, 34 модулі вздовж шкали CEFR. Фільтр рівня синхронний із верхньою панеллю.',
               })}
             </p>
           </div>
@@ -159,10 +211,11 @@ export function LandscapeMap() {
           ))}
         </div>
 
-        {/* CHANGED (S3): Section VI — Reading (a page-based system, after Vocabulary in Action). */}
+        {/* CHANGED (S3): Reading (a page-based system, after Vocabulary in Action).
+            CHANGED (T1): roman VI → VII — the S5 Tenses insert shifts display romans. */}
         <a className="rd-mapcard" href={hrefReading()}>
           <span className="ov-roman" style={{ color: 'var(--accent)' }}>
-            VI
+            VII
           </span>
           <span className="rd-mapcard-body">
             <strong>{t(ui.reading)}</strong>

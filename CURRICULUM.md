@@ -155,8 +155,8 @@ words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review`
    into Reading (now Section VII) at the owner's call.
 3. **S5 (done, docs-only):** the TIMES re-plan — Section II Tenses locked (§D), dive levels (§B),
    time triad + glyphs, 4 interactives.
-4. **T1–T4 — Tenses ★ second flagship:** **T1** skeleton (concepts/types/tokens/DiveSwitcher/landing
-   map + check:data/smoke updates) + golden `m6-tense-system` + `tense-navigator` ★ → **T2**
+4. **T1–T4 — Tenses ★ second flagship:** **T1 (done)** skeleton (concepts/types/tokens/DiveSwitcher/
+   landing map + check:data/smoke updates) + golden `m6-tense-system` + `tense-navigator` ★ → **T2**
    `m7`+`m8` + the `TenseTimeline` figure → **T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` +
    `tense-chooser` + section polish (dive tuning, cross-links, UA-pitfalls sweep).
 5. **Dictionary v2:** per-level lazy chunks + eager search index + `#/review` SRS (port `srs.ts`) +

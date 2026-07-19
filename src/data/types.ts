@@ -9,15 +9,24 @@ export type Localized = { en: string; uk: string };
 // CHANGED (S0): CEFR levels. Order matters for filters/sorting: a1 < a2 < b1 < b2 < c1.
 export type Level = 'a1' | 'a2' | 'b1' | 'b2' | 'c1';
 
+// CHANGED (T1): dive depth tags (S5 mechanic, piloted in Section II Tenses). No tag = 2, the
+// backbone. 2 🚂 core rules + main examples · 3 🚶 connections, contrasts, argumentation ·
+// 4 🔬 fine print, exceptions. Blocks deeper than the reader's persisted DiveSwitcher setting
+// collapse into thin expandable stubs (components/module/DiveSwitcher.tsx).
+export type DiveLevel = 2 | 3 | 4;
+type Diveable = { dive?: DiveLevel };
+
 // The 7 content block kinds. Figures/sims are referenced by kebab `key` (resolved in lib/registry.tsx).
-export type Block =
-  | { kind: 'prose';   md: Localized }
-  | { kind: 'figure';  fig: string; caption?: Localized }
-  | { kind: 'sim';     sim: string; caption?: Localized }
-  | { kind: 'table';   head: Localized[]; rows: Localized[][]; caption?: Localized }
-  | { kind: 'code';    lang: string; code: string; note?: Localized }
-  | { kind: 'callout'; tone: 'tip' | 'warn' | 'senior' | 'security'; title: Localized; md: Localized }
-  | { kind: 'compare'; a: Localized; b: Localized; rows: [Localized, Localized, Localized][] };
+export type Block = Diveable &
+  (
+    | { kind: 'prose';   md: Localized }
+    | { kind: 'figure';  fig: string; caption?: Localized }
+    | { kind: 'sim';     sim: string; caption?: Localized }
+    | { kind: 'table';   head: Localized[]; rows: Localized[][]; caption?: Localized }
+    | { kind: 'code';    lang: string; code: string; note?: Localized }
+    | { kind: 'callout'; tone: 'tip' | 'warn' | 'senior' | 'security'; title: Localized; md: Localized }
+    | { kind: 'compare'; a: Localized; b: Localized; rows: [Localized, Localized, Localized][] }
+  );
 
 export type Topic = { id: string; title: Localized; blocks: Block[] };
 

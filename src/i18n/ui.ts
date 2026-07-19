@@ -121,6 +121,29 @@ export const ui = {
   toggleSidebar: { en: 'Toggle navigation', uk: 'Перемкнути навігацію' },
   skipToContent: { en: 'Skip to content', uk: 'Перейти до вмісту' },
 
+  // Dive levels (T1 — S5 mechanic, piloted in Section II Tenses)
+  diveLabel: { en: 'Reading depth', uk: 'Глибина читання' },
+  diveCore: { en: 'Core', uk: 'Основа' },
+  diveFull: { en: 'Full', uk: 'Повний' },
+  diveDeep: { en: 'Deep', uk: 'Глибоко' },
+  diveHint: {
+    en: 'Spiral learning: walk the section at Core (~15 min), then again at Full, then Deep.',
+    uk: 'Спіральне навчання: пройдіть розділ на Основі (~15 хв), потім знову на Повному, потім Глибоко.',
+  },
+  diveOverview: { en: 'Overview', uk: 'Огляд' },
+  diveOverviewHint: {
+    en: 'The porthole view — the whole tense system on one page',
+    uk: 'Вид з ілюмінатора — уся система tenses на одній сторінці',
+  },
+  diveStubFull: {
+    en: 'More depth: connections & contrasts — expand',
+    uk: 'Глибше: звʼязки і контрасти — розгорнути',
+  },
+  diveStubDeep: {
+    en: 'Fine print: exceptions & edge cases — expand',
+    uk: 'Дрібний шрифт: винятки і крайні випадки — розгорнути',
+  },
+
   // Reading (S3)
   reading: { en: 'Reading', uk: 'Читання' },
   readingLede: {

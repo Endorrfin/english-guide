@@ -24,6 +24,8 @@ export const sims: Record<string, LazyComp> = {
   'modal-navigator': lazyNamed(() => import('../components/sims/ModalNavigator'), 'ModalNavigator'),
   // CHANGED (S4): m21's ★ deduction-lab sim (certainty × time).
   'deduction-lab': lazyNamed(() => import('../components/sims/DeductionLab'), 'DeductionLab'),
+  // CHANGED (T1): m6's ★ tense-navigator sim (time × aspect) — the golden sim of Section II.
+  'tense-navigator': lazyNamed(() => import('../components/sims/TenseNavigator'), 'TenseNavigator'),
 };
 
 /** Figures by kebab key. */

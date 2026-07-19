@@ -203,9 +203,9 @@ MCQ + open questions, mark-as-read, prev/next), check:data + smoke extended, and
 bilingual texts** across 3 categories (study · values · family). Reading grows by **OCR waves** (≈250 →
 1000+ texts) from the owner's screenshot backlog. → **S4 (done): `m21` (+`deduction-lab` ★sim) + `m22`** —
 **Modal Verbs (Section III at the time, now roman IV) COMPLETE** (6/6). → **S5 (done, docs-only):
-the TIMES re-plan** — Section II Tenses locked (see §14). → **next: Tenses sessions T1–T4** (second
-flagship): **T1** skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke
-updates) + golden `m6-tense-system` + `tense-navigator` ★ → **T2** `m7`+`m8` + the `TenseTimeline`
+the TIMES re-plan** — Section II Tenses locked (see §14). → **T1 (done): the Tenses build begins** —
+skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke updates) + golden
+`m6-tense-system` + `tense-navigator` ★ → **next: T2** `m7`+`m8` + the `TenseTimeline`
 figure → **T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
 then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
@@ -366,6 +366,49 @@ CURRICULUM.md §G / §R.)
   §D restructured section tables I/II/III + roman bumps, §F totals, §G build order, §R roman VII) ·
   PROJECT-BRIEF.md (§0, §5 Interactivity + new Tenses row, §9). **No code touched** — T1 starts the
   build (§13). Owner next: review the three docs → commit on `s5-times-section-plan`.
+
+- **T1 — Tenses skeleton + golden `m6-tense-system` + ★ `tense-navigator`.** The S5 plan built.
+  **Skeleton:** `types.ts` `DiveLevel` + `Block.dive?: 2|3|4` (intersection type — discriminated
+  union preserved); `tokens.css` time triad (`--time-past/present/future` + `-soft` washes) +
+  `--sec-tenses` (side-by-side contrast vs the CEFR ramp checked on screenshots — separated
+  contexts, distinguishable); `concepts.ts` restructured — 6 sections (s6-tenses roman II inserted;
+  romans shift display-only: Core III · Modals IV · Advanced V · Vocab VI · Reading VII on the map),
+  Foundations stubs renamed (`m2-articles-basics` / `m3-nouns-quantifiers` / `m4-questions-negatives`
+  / `m5-prepositions-time-place`), six old tense stubs deleted, Tenses stubs m7–m11 added (m11 ★);
+  m12–m34 untouched. **Dive mechanic (piloted in m6, generic):** `lib/dive.ts` (`useDive`,
+  localStorage `englishguide.dive`, app-wide — spiral learning is per-section, not per-module;
+  `moduleHasDive`) + `components/module/DiveSwitcher.tsx` ([🚂 Core | 🚶 Full | 🔬 Deep] radiogroup
+  + ✈️ Overview → m6, hidden on m6 itself; `DiveBlock` collapses deeper blocks into thin `<details>`
+  stubs — depth stays visible, expandable in place) wired into `ModulePage`; ui.ts strings added.
+  **★ Tense Navigator:** pure engine + THE shared TenseGlyphs vocabulary `lib/tenses.ts`
+  (`ASPECT_GLYPH ● 〜 ⤺ 〜⤺`, `ASPECT_MEANING`, `TIME_LABEL/COLOR_VAR`, `getTense/listTenses`) +
+  content `data/tenseNavigator.ts` (12 cells: meaning · forms +/−/? · 2 examples EN/UA · signal
+  words · near-misses · freq badges — big five with %, the rest a shared rarity note) + sim
+  `sims/TenseNavigator.tsx` (two radiogroups, aria-live, TTS, mini-timeline SVG in the shared
+  notation with NOW axis + X reference point, aria-hidden — reduced-motion safe) + golden test
+  `scripts/test-tenses.ts` (12 cells, names match coordinates, aspect signatures in patterns,
+  big-five ≈ 96.8%, % XOR rarity-note, determinism). **Golden m6** (a2, signature): 4 topics
+  (time-x-aspect-matrix + sim · four-aspect-meanings with the UA-has-no-Perfect callout + state-verbs
+  dive-3 · timeline-notation + Reichenbach dive-3 + future-in-the-past dive-4 ·
+  frequency-and-routes: corpus table, effort-follows-frequency, 4 tools + 4 depths / spiral
+  learning), 6 keyPoints, 6 pitfalls (incl. the 5 mandatory UA-speaker ones), **14 drills**
+  (`ex-tense-system-1..14`, tags `tenses`+), seeAlso m7–m11+m17, 5 web-verified sources (Cambridge
+  tenses-and-time + present-perfect; British Council present + past; Ginseng English frequency —
+  the Ginseng slug is `english-verb-tense-frequency`, verified by fetch; Cambridge 403s bots, slugs
+  confirmed via search). **Landing map:** ✈️ `tmx-*` mini 3×4 matrix card → m6 (triad-tinted cells,
+  big-five % badges), Reading roman VI→VII, six-section copy, START_PATH `m9-present-perfect` →
+  `m6-tense-system`, hero mentions the Tense System. **Gates:** check:data — 6 sections expected,
+  dive ∈ {2,3,4}, tense-module bar ≥12 drills; smoke — TenseNavigator canary, `ModulePage:m6(full)`
+  canaries (Present Perfect · will have been working), `#/m/m6-tense-system` hash (now 145 checks,
+  3 sims + 6 figures). **Verification: FULL `npm run verify` ✓ green end-to-end in the cloud
+  scratch** (typecheck · eslint · check:data 6/34 · 7 authored · 111 exercises · test ×4 incl.
+  test-tenses · smoke 145 · vite build) + screenshot pass in headless Chromium (map with the new
+  sidebar/mini-matrix, m6 EN+UA, dive stubs collapsed/expanded, navigator past×perfect-continuous
+  cell; 0 page errors — only external font fetches blocked by the sandbox). One eslint
+  react-refresh warning fixed by moving `moduleHasDive` from the component file into `lib/dive.ts`.
+  Owner next: `npm run verify` locally → commit on `t1-tenses-skeleton-golden-m6` → push.
+  Deferred/next (T2): `m7`+`m8` + the parametric `TenseTimeline` figure; `sentence-morpher` lands
+  T4 on m6 (the routes block already announces it).
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 
