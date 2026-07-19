@@ -91,4 +91,86 @@ export const everydayTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'coffee',
+    title: { en: 'Coffee', uk: 'Кава' },
+    category: 'everyday',
+    level: 'b1',
+    minutes: 1,
+    topics: ['coffee', 'daily-life', 'habits'],
+    body: {
+      en: 'Coffee is one of the most popular drinks in the world. Many people start their day with a cup of coffee. It helps them feel fresh, awake, and active. Coffee is made from roasted coffee beans and has a strong, pleasant smell. There are different types of coffee, such as black coffee, cappuccino, and latte. Coffee shops are popular places where people meet friends, study, or work. Drinking coffee in moderation can improve focus and energy. However, too much coffee is not good for health. Coffee is more than just a drink; for many people, it is a daily habit and a source of comfort.',
+      uk: 'Кава — один із найпопулярніших напоїв у світі. Багато людей починають свій день із чашки кави. Вона допомагає їм почуватися свіжими, бадьорими й активними. Каву роблять зі смажених кавових зерен, і вона має сильний приємний аромат. Є різні види кави, як-от чорна кава, капучино й лате. Кавʼярні — популярні місця, де люди зустрічаються з друзями, вчаться чи працюють. Помірне вживання кави може покращити зосередженість і енергію. Однак забагато кави шкідливо для здоровʼя. Кава — це більше, ніж просто напій; для багатьох людей це щоденна звичка й джерело затишку.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What can drinking coffee in moderation do, according to the text?', uk: 'Що може дати помірне вживання кави, за текстом?' },
+        options: [
+          { en: 'Improve focus and energy', uk: 'Покращити зосередженість і енергію' },
+          { en: 'Harm you every time', uk: 'Щоразу шкодити' },
+          { en: 'Do nothing at all', uk: 'Не давати нічого' },
+        ],
+        correct: 0,
+        explain: { en: '“Drinking coffee in moderation can improve focus and energy.”', uk: '«Drinking coffee in moderation can improve focus and energy.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What warning does the text give about coffee?', uk: 'Яке застереження щодо кави дає текст?' },
+        options: [
+          { en: 'Too much coffee is not good for health', uk: 'Забагато кави шкідливо для здоровʼя' },
+          { en: 'Coffee should be drunk all day', uk: 'Каву треба пити цілий день' },
+          { en: 'Coffee has no smell', uk: 'Кава не має запаху' },
+        ],
+        correct: 0,
+        explain: { en: '“However, too much coffee is not good for health.”', uk: '«…too much coffee is not good for health.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is your favorite drink to start the day, and why?', uk: 'Який ваш улюблений напій, щоб почати день, і чому?' },
+        sample: { en: 'Answers will vary. A good answer names a drink and a personal reason (taste, energy, routine, comfort).', uk: 'Відповіді різнитимуться. Гарна відповідь називає напій і особисту причину (смак, енергія, звичка, затишок).' },
+      },
+    ],
+  },
+  {
+    id: 'after-school',
+    title: { en: 'After School', uk: 'Після школи' },
+    category: 'everyday',
+    level: 'b1',
+    minutes: 1,
+    topics: ['routine', 'time-management', 'students'],
+    body: {
+      en: 'After school is an important time in my daily life. When school ends, I feel relaxed and free from classroom pressure. After school, I usually go home, complete my homework, and revise my lessons. This time helps me practice what I learned during the day. Sometimes, I play with friends or enjoy sports to refresh my mind. I also like to read books or practice my English after school. After school time teaches me time management and responsibility. It helps me balance study, rest, and fun. Using after school time wisely makes me more productive and confident. After school is not just free time; it is a chance to grow, learn, and improve myself.',
+      uk: 'Час після школи — важлива частина мого повсякдення. Коли уроки закінчуються, я почуваюся розслабленим і вільним від класного тиску. Після школи я зазвичай іду додому, виконую домашнє завдання й повторюю уроки. Цей час допомагає мені закріпити те, що я вивчив за день. Іноді я граю з друзями чи займаюся спортом, щоб освіжити розум. Я також люблю читати книжки чи практикувати англійську після школи. Час після школи вчить мене керувати часом і відповідальності. Він допомагає мені збалансувати навчання, відпочинок і розваги. Мудре використання часу після школи робить мене продуктивнішим і впевненішим. Час після школи — це не просто вільний час; це нагода зростати, вчитися й ставати кращим.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does after-school time teach the speaker?', uk: 'Чого навчає оповідача час після школи?' },
+        options: [
+          { en: 'Time management and responsibility', uk: 'Керувати часом і відповідальності' },
+          { en: 'How to avoid all work', uk: 'Як уникати будь-якої роботи' },
+          { en: 'Nothing useful', uk: 'Нічого корисного' },
+        ],
+        correct: 0,
+        explain: { en: '“After school time teaches me time management and responsibility.”', uk: '«…time management and responsibility.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'How does the speaker describe after-school time?', uk: 'Як оповідач описує час після школи?' },
+        options: [
+          { en: 'Not just free time, but a chance to grow and improve', uk: 'Не просто вільний час, а нагода зростати й ставати кращим' },
+          { en: 'Only time to do nothing', uk: 'Лише час нічого не робити' },
+          { en: 'A waste of the day', uk: 'Марнування дня' },
+        ],
+        correct: 0,
+        explain: { en: '“After school is not just free time; it is a chance to grow, learn, and improve myself.”', uk: '«…a chance to grow, learn, and improve myself.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'How do you usually spend your time after work or school? How could you balance it better?', uk: 'Як ви зазвичай проводите час після роботи чи навчання? Як його краще збалансувати?' },
+        sample: { en: 'Answers will vary. A good answer describes a real routine and one adjustment for better balance of study, rest, and fun.', uk: 'Відповіді різнитимуться. Гарна відповідь описує реальний розпорядок і одну зміну для кращого балансу навчання, відпочинку й розваг.' },
+      },
+    ],
+  },
 ];

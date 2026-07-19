@@ -83,6 +83,13 @@ async function main(): Promise<void> {
   const { AppStateProvider } = await import("../src/components/AppStateProvider");
   const { MODULES } = await import("../src/data/concepts");
   const { sims, figures } = await import("../src/lib/registry");
+  // CHANGED (S5): the reading fixture is DYNAMIC now — a hardcoded id broke twice (S4, then again
+  // when the 100-text wave renamed ids). Pick the text with the longest EN body: it exists by
+  // construction and always clears the reader's ≥800-char render floor.
+  const { READING_TEXTS } = await import("../src/data/reading");
+  const readingFixture = [...READING_TEXTS].sort((a, b) => b.body.en.length - a.body.en.length)[0];
+  ok(!!readingFixture, "reading: at least one text exists for the reader fixture");
+  const readingFixtureId = readingFixture ? readingFixture.id : "";
 
   const langs = ["en", "uk"] as const;
 
@@ -153,9 +160,8 @@ async function main(): Promise<void> {
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
     // DictionaryPage/PracticePage above. The reader shows the EN body by default, hence the larger min.
     check("ReadingIndexPage", h(ReadingIndexPage), lang, 500);
-    // CHANGED (S4): the golden reading ids were renamed in the owner's Reading rework; point the
-    // fixture at a text that currently exists so the reader smoke reflects real data.
-    check("ReadingTextPage", h(ReadingTextPage, { id: "learning-a-little-every-day" }), lang, 800);
+    // CHANGED (S5): dynamic fixture id (see above) — survives future Reading waves/renames.
+    check("ReadingTextPage", h(ReadingTextPage, { id: readingFixtureId }), lang, 800);
   }
 
   // ── Layer C: per-module page for all modules (authored bodies + stub headers) ──────────────────────
@@ -183,7 +189,7 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system/function-x-time-grid",
     "#/dictionary",
     "#/reading",
-    "#/reading/learning-a-little-every-day", // CHANGED (S4): current reading id (see fixture note above)
+    `#/reading/${readingFixtureId}`, // CHANGED (S5): dynamic fixture id (see note above)
     "#/practice",
     "#/review",
     "#/irregular",

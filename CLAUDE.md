@@ -9,7 +9,8 @@
 
 A deep, interactive, bilingual (EN/UA) **English-language trainer** for a UA-speaking engineer (owner:
 B1+): grammar A1→C1 organized by **CEFR level**, a **flagship Modal Verbs section with heavy drilled
-practice**, and a **searchable dictionary growing 1,000→3,000+ words** — translations, тлумачення, IPA,
+practice**, a **Tenses section (second flagship, S5+) — the whole tense system in one place with a
+4-level dive mechanic**, and a **searchable dictionary growing 1,000→3,000+ words** — translations, тлумачення, IPA,
 7 tagged examples per word (4 general + business/office/dev), phrasal verbs and 100–300 idioms as
 first-class cards — plus trainers: **SRS flashcards (SM-2-lite), gap-fill, MCQ, irregular-verbs drill**.
 Quality bar: the `../database guide` (its Glossary UX is the explicit reference). Golden = depth +
@@ -40,6 +41,17 @@ learning-UX + correctness, in that order.
     Card ids are **stable forever** (they are progress keys) — never rename, only append.
   - **Pronunciation:** IPA strings on cards + **Web Speech API** (`speechSynthesis`, `en-US`/`en-GB`
     voice pick, graceful no-voice fallback). No audio files.
+  - **Dive levels (S5):** `Block.dive?: 2|3|4` — per-block depth tags (2 🚂 core rules + main
+    examples · 3 🚶 connections, contrasts, argumentation · 4 🔬 fine print, exceptions) + a
+    persisted **DiveSwitcher** on module pages ([🚂 Core | 🚶 Full | 🔬 Deep] + a ✈️ Map button →
+    the section overview module); blocks deeper than the current setting render as thin expandable
+    stubs, default 🚂. Level 1 ✈️ = the overview module + landing-map card. Piloted in Section II
+    Tenses; the mechanic is generic — any module that tags blocks gets the switcher.
+  - **Time triad + aspect glyphs (S5):** tense visuals encode TIME as hue (`--time-past` rose
+    #f472b6 · `--time-present` cyan #22d3ee · `--time-future` violet #a78bfa) and ASPECT as timeline
+    notation (● simple fact · 〜 continuous process · ⤺ perfect link-back · 〜⤺ perfect continuous;
+    X = reference point, vertical NOW axis) — one shared `TenseGlyphs` vocabulary across every tense
+    figure, table and sim.
 - **Exercise engine:** `src/lib/exercise.ts` — pure, deterministic (answer normalization:
   case, trim, contraction equivalence `mustn't` = `must not`), golden-tested via `scripts/test-exercise.ts`.
 
@@ -72,7 +84,8 @@ _examples/words-backlog.txt (gitignored raw backlog, see §12)
 ## 4. Content / data model (the contract)
 
 **Section → Module → Topic → Block** (7 kinds: `prose · figure · sim · table · code · callout ·
-compare`) as in the standard §4.2; contract in `src/data/types.ts`. Every module opens with a
+compare`) as in the standard §4.2; contract in `src/data/types.ts`. Blocks may additionally carry
+`dive?: 2|3|4` (S5 depth tags, §2) — no tag = 2, the backbone. Every module opens with a
 **mental model** + **key points** and closes with **pitfalls** (incl. typical UA-speaker mistakes) +
 **exercises** (≥8; modal modules ≥15). English-guide extensions in the same file: `WordEntry`,
 `WordExample` (tag `general|business|office|dev`), `Exercise` (`gap`|`mcq`, stable `id` = progress
@@ -85,16 +98,26 @@ calqued.
 
 ## 5. Curriculum
 
-5 sections · 34 modules: **I Foundations** (A1–A2, m1–m8) · **II Core Grammar** (B1, m9–m16) ·
-**III Modal Verbs ★flagship** (m17–m22, golden `m17-modal-system`) · **IV Advanced Grammar** (B2–C1,
-m23–m30) · **V Vocabulary in Action** (m31–m34). Dictionary waves W1–W5 (150 → 1,000 → 2,000 → 3,000 →
+6 sections · 34 modules (S5 restructure — ALL tenses consolidated into one section): **I Foundations**
+(A1–A2, m1–m5) · **II Tenses ★second flagship** (A1–B2, m6–m11, golden `m6-tense-system`, 4-level
+dive) · **III Core Grammar** (B1, m12–m16) · **IV Modal Verbs ★flagship** (m17–m22, golden
+`m17-modal-system`) · **V Advanced Grammar** (B2–C1, m23–m30) · **VI Vocabulary in Action** (m31–m34);
+Reading = Section VII (a page system, not modules). Romans are display-only — section ids and
+everything from m12 up are untouched by the restructure; the swapped Foundations/Tenses stubs were
+unauthored (zero progress-key impact). Dictionary waves W1–W5 (150 → 1,000 → 2,000 → 3,000 →
 +idioms) + continuous weekly owner additions. Full map: `CURRICULUM.md` (authoritative for topics).
 
 ## 6. Signature interactives + diagram-first baseline
 
-**6 sims:** `modal-navigator` ★golden (pick function × time → the right modal, examples, near-misses) ·
-`conditionals-machine` (m13) · `tense-timeline` (m9) · `deduction-lab` (m21) · `article-tree` (m28) ·
-`word-formation-lab` (m31). Each: pure engine in `lib/*` where algorithmic, deterministic,
+**8 sims (S5):** `modal-navigator` ★golden (built) · `deduction-lab` (m21, built) ·
+`tense-navigator` ★ (m6, golden of Tenses: 3×4 time × aspect matrix → meaning, forms +/−/?,
+mini-timeline, EN/UA examples + TTS, near-misses, corpus-frequency badge — 5 forms = 96% of speech) ·
+`sentence-morpher` (m6: one sentence morphed through all 12 cells — animated timeline + form
+highlight + synced UA translation) · `tense-chooser` (m11: 3 meaning questions → the right tense +
+near-miss explanations) · `conditionals-machine` (m13) · `article-tree` (m28) ·
+`word-formation-lab` (m31). The old standalone `tense-timeline` sim is superseded by the parametric
+**`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
+Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
 figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular`) are pages, not sims.
 
@@ -102,7 +125,10 @@ figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular
 
 Dark editorial; palette in `theme/tokens.css`. Fonts **Fraunces** (display) · **Inter** · **JetBrains
 Mono**. Accent = **CEFR ramp**: a1 emerald → a2 teal → b1 sky → b2 indigo → c1 violet (section accents
-+ level badges), contrast-checked on the dark ground.
++ level badges), contrast-checked on the dark ground. **Time triad (S5):** `--time-past` rose
+#f472b6 · `--time-present` cyan #22d3ee · `--time-future` violet #a78bfa (+ `-soft` washes);
+`--sec-tenses` = the present cyan. Final hexes get a side-by-side contrast pass in T1 (cyan vs b1
+sky, violet vs c1 violet — contexts are separated, but verify).
 
 ## 8. Internationalization
 
@@ -176,11 +202,17 @@ obligation/necessity, advice/criticism) + 3 SVG figures. → **S3 (done): Readin
 MCQ + open questions, mark-as-read, prev/next), check:data + smoke extended, and a **golden batch of 6
 bilingual texts** across 3 categories (study · values · family). Reading grows by **OCR waves** (≈250 →
 1000+ texts) from the owner's screenshot backlog. → **S4 (done): `m21` (+`deduction-lab` ★sim) + `m22`** —
-**Modal Verbs (Section III) COMPLETE** (6/6). → **next: dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
-Section I (m1–m8) · II (m9–m16) · IV (m23–m30) · V (m31–m34) + their sims + dictionary waves W2–W5,
-**with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module + reading meta-splits ·
-bilingual QA · a11y pass.
-(Re-plan per session allowed; modals stay first among grammar. Full detail: CURRICULUM.md §G / §R.)
+**Modal Verbs (Section III at the time, now roman IV) COMPLETE** (6/6). → **S5 (done, docs-only):
+the TIMES re-plan** — Section II Tenses locked (see §14). → **next: Tenses sessions T1–T4** (second
+flagship): **T1** skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke
+updates) + golden `m6-tense-system` + `tense-navigator` ★ → **T2** `m7`+`m8` + the `TenseTimeline`
+figure → **T3** `m9`+`m10` → **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
+then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
+Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
+W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
+reading meta-splits · bilingual QA · a11y pass.
+(Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
+CURRICULUM.md §G / §R.)
 
 ## 14. Status / progress log
 
@@ -301,3 +333,64 @@ bilingual QA · a11y pass.
   `sources` filled (m21 ≥4, m22 ≥4). New sim + both figures also screenshot-checked in headless Chromium.
   Owner next: `npm run verify` locally → commit on `s4-modals-deduction-requests` → push. Deferred/next:
   dictionary v2 (lazy chunks + index) + `#/review` SRS + `#/irregular`; W2.
+- **S5 — TIMES section: research + plan (docs-only).** Owner's commission: consolidate ALL tenses
+  into ONE section, 4 dive levels (✈️ porthole · 🚂 train window · 🚶 park walk · 🔬 microscope),
+  top-10 best-practice research, visualizations, per-time colors. **Research consolidated** (sources
+  in the session chat): time × aspect 3×4 matrix as the system view; aspect-as-meaning (Dr. Mosaik,
+  Springer RPTEL 2021 — principle-based beats rule-lists, ~50 rules → 8 principles); unified timeline
+  notation; consistent color coding; corpus frequency (5 forms = 96% of spoken English — Krámský
+  1969 / Alzuhairy 2016 via Ginseng English; Present Simple 57.5% · Past Simple 19.7% · Future 8.5% ·
+  Present Perfect 6% · Present Cont 5.1%); contrast pairs; signal words + their traps; Reichenbach
+  reference points ("before-before-now"); narrative/discourse-driven choice; interactive
+  manipulation. **Locked (owner-approved this session):** (1) new **Section II — Tenses**
+  (`s6-tenses`, roman II) of 6 modules, hybrid-Murphy cut: `m6-tense-system` ★golden of II (matrix ·
+  aspect meanings · notation · frequency + routes) · `m7-present-simple-continuous` (a1) ·
+  `m8-past-simple-continuous` (a2, + used to/would) · `m9-future-forms` (a2) · `m10-perfect-family`
+  (b1 — perfect attacked ONCE as a family; PPerf-vs-Past-Simple is the flagship contrast; have+V3
+  bridges to m21) · `m11-choosing-narrative` ★ (b2). Foundations keeps 5 stubs (m1 stays;
+  m3/m4/m7/m8 renamed → `m2-articles-basics`/`m3-nouns-quantifiers`/`m4-questions-negatives`/
+  `m5-prepositions-time-place`); the six old tense stubs (m2/m5/m6/m9/m10/m11) are deleted;
+  **m12–m34 completely untouched** (verified by grep: no seeAlso links into any swapped stub; all
+  swapped stubs unauthored → zero progress-key impact). Romans shift (display-only): Core III ·
+  Modals IV · Advanced V · Vocab VI · Reading VII. (2) **Dive mechanic** — hybrid: L1 ✈️ = m6 + map
+  card; L2–L4 = `Block.dive?: 2|3|4` + persisted DiveSwitcher, deeper blocks collapse to expandable
+  stubs, default 🚂; spiral passes = re-walk the section at the next depth — content is NEVER
+  duplicated across modules (the dive-levels-as-separate-modules variant was considered and
+  rejected: it would re-scatter each tense across 4 places). (3) **Time triad A** rose/cyan/violet +
+  aspect glyphs ● 〜 ⤺ 〜⤺ via shared `TenseGlyphs` (§2, §7). (4) **All 4 interactives** approved
+  (navigator ★ + morpher in m6 · chooser in m11 · parametric `TenseTimeline` figure in m7–m10) —
+  deliberately different tools so each user picks what clicks; m6 gets a "routes / pick your tool"
+  block. Tenses = second flagship: **≥12 drills/module**, UA-speaker pitfalls mandatory
+  (no-perfect-in-UA · "I am agree" · Simple-for-Continuous · will after when/if · since + Past
+  Simple). **Docs updated:** CLAUDE.md §§1/2/4/5/6/7/13/14 · CURRICULUM.md (§B dive UX, §C contract,
+  §D restructured section tables I/II/III + roman bumps, §F totals, §G build order, §R roman VII) ·
+  PROJECT-BRIEF.md (§0, §5 Interactivity + new Tenses row, §9). **No code touched** — T1 starts the
+  build (§13). Owner next: review the three docs → commit on `s5-times-section-plan`.
+
+## 15. Reading OCR wave — runbook (for the next session → grow to 100)
+
+Owner decision: run the bulk **in a fresh session via a multi-agent workflow**. Steps:
+
+1. **Backlog:** `_examples/text_screenshots/` (~265 left); processed screenshots move to `🗂️ arhive/`.
+   Skip non-narrative sheets (e.g. the idioms table `IMG_1578`) — those belong to a dictionary idioms wave.
+2. **Filename gotcha:** macOS screenshot names contain a **U+202F** (narrow no-break space) before “AM”, so
+   exact-path `device_stage_files` fails. First `device_bash`-`cp` the next batch to ASCII names
+   (`_ascii/wN_NN.png`) AND append each original basename to a manifest; then `device_stage_files` the ASCII
+   copies (≤50 per call) into the container so subagents can `Read` them.
+3. **Workflow:** one `general-purpose` subagent per screenshot (model `sonnet` is fine) → `Read` the image →
+   author the record → `Write` JSON to `/tmp/rout/NN.json` → return a tiny status. **Pass `args` as a DIRECT
+   JSON array** (the earlier pilot failed because `args` arrived as a string and `args.items` was undefined —
+   either pass an array or parse-tolerate in the script).
+4. **Aggregate (inline after the run):** read `/tmp/rout/*.json` → validate (bilingual, 3 questions = 2 mcq +
+   1 open, mcq `correct` in range, category ∈ taxonomy, level a1–c1, minutes ≥1, `source.author`) → dedupe by
+   id + `title.en` and against existing ids → emit `src/data/reading/rN.ts` (`export const rNTexts`) → import
+   in `reading/index.ts` (spread into `READING_TEXTS`).
+5. **Per-text contract:** stable kebab `id`, `title{en,uk}`, `category` (one of the 18), CEFR `level`,
+   `minutes`≥1, `body{en,uk}` (verbatim EN + full natural UA), `questions` (2 mcq + 1 open, bilingual),
+   `source`. **Attribution:** green-title series → Mind Boost English (FB,
+   `facebook.com/profile.php?id=61584114885870`); footer-visible → Learn With Sonali / English Growth Academy /
+   Mind Boost English `.com`; unknown → omit `source` (reader hides the line).
+6. **Verify:** `check:data` + scoped `tsc` on reading data in a cloud scratch copy; owner runs full
+   `npm run verify` locally. **Write back** via SendUserFile + device_commit_files; **archive** the processed
+   screenshots via the manifest. The `#/reading` counter updates automatically from `READING_TEXTS.length`.
+7. **Target:** 100 texts (now 18). Keep waves ~40–80/run until reached.
