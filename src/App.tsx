@@ -12,6 +12,8 @@ import { useRoute } from './lib/hashRouter';
 
 const LandscapeMap = lazy(() => import('./components/map/LandscapeMap').then((m) => ({ default: m.LandscapeMap })));
 const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) => ({ default: m.ModulePage })));
+// CHANGED (D1): the Definitions study page (front door for words).
+const DefinitionsPage = lazy(() => import('./components/pages/DefinitionsPage').then((m) => ({ default: m.DefinitionsPage })));
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
 const ComingSoon = lazy(() => import('./components/pages/ComingSoon').then((m) => ({ default: m.ComingSoon })));
@@ -56,6 +58,7 @@ export function App() {
           <Suspense fallback={<div className="content" style={{ padding: '2rem', color: 'var(--tx3)' }}>Loading…</div>}>
             {route.name === 'map' && <LandscapeMap />}
             {route.name === 'module' && <ModulePage moduleId={route.moduleId} topicId={route.topicId} />}
+            {route.name === 'definitions' && <DefinitionsPage id={route.id} />}
             {route.name === 'dictionary' && <DictionaryPage id={route.id} />}
             {route.name === 'reading' && <ReadingIndexPage />}
             {route.name === 'reading-text' && <ReadingTextPage id={route.id} />}

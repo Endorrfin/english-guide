@@ -2439,3 +2439,337 @@
     transition: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Definitions — the word STUDY page (D1). Reuses .dict-* for cards/examples;
+   these classes add the A–Z rail, the mode switcher, and the four study bodies.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Small action button used across the studio (kept scoped as .def-btn so the
+   shared chrome buttons are untouched). */
+.def-btn {
+  appearance: none;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  background: var(--s2);
+  color: var(--tx);
+  font: 600 0.82rem var(--font-body);
+  padding: 7px 13px;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.def-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+.def-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.def-btn-ghost {
+  background: transparent;
+  color: var(--tx2);
+}
+.def-random {
+  margin-left: auto;
+}
+
+/* A–Z rail */
+.def-alpha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0.4rem 0 1.2rem;
+}
+.def-letter {
+  appearance: none;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--tx2);
+  font: 600 0.82rem var(--font-mono);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.def-letter:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--tx);
+}
+.def-letter.on {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-bright);
+}
+.def-letter.is-empty,
+.def-letter:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+/* Index list, grouped by first letter */
+.def-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.def-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.def-group-h {
+  font: 700 0.9rem var(--font-mono);
+  color: var(--accent-bright);
+  margin: 0.7rem 0 0.1rem;
+  letter-spacing: 0.06em;
+}
+
+/* Word card (row) */
+.def-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.def-card--open {
+  border-color: var(--line2);
+  box-shadow: var(--shadow-1);
+}
+.def-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+.def-head:hover {
+  background: var(--s2);
+}
+.def-mstate {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tx3);
+}
+.def-mstate.is-learning {
+  background: var(--amber);
+}
+.def-mstate.is-known {
+  background: var(--ok);
+}
+
+/* Studio (open card body) */
+.def-studio {
+  padding: 0.4rem 0.9rem 1rem;
+  border-top: 1px solid var(--line);
+}
+.def-modeseg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0.7rem 0;
+}
+.def-mode {
+  appearance: none;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--tx2);
+  font: 600 0.8rem var(--font-body);
+  padding: 6px 12px;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.def-mode:hover {
+  color: var(--tx);
+}
+.def-mode.on {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-bright);
+}
+
+/* Mastery bar */
+.def-mastery {
+  display: inline-flex;
+  gap: 4px;
+  margin-bottom: 0.6rem;
+}
+.def-mastery-btn {
+  appearance: none;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--tx3);
+  font: 600 0.72rem var(--font-body);
+  padding: 4px 10px;
+}
+.def-mastery-btn.is-learning.on {
+  background: var(--amber-soft);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.def-mastery-btn.is-known.on {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.def-mastery-btn.is-new.on {
+  border-color: var(--tx3);
+  color: var(--tx2);
+}
+
+.def-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.def-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+}
+.def-slot {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.def-slot dt {
+  font: 600 0.72rem var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tx3);
+  min-width: 6.5rem;
+}
+.def-slot dd {
+  margin: 0;
+  flex: 1;
+}
+.def-chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.def-exhead {
+  margin: 0.3rem 0 -0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+}
+
+/* Study tasks / recall / describe */
+.def-task {
+  font: 600 0.95rem var(--font-body);
+  color: var(--tx);
+  margin: 0;
+}
+.def-hint {
+  font-size: 0.85rem;
+  margin: 0;
+}
+.def-reveal-btn {
+  align-self: flex-start;
+}
+.def-answer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+}
+.def-rate {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.6rem;
+}
+.def-rate-btn.is-known {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.def-rate-btn.is-learning {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* Describe scaffold */
+.def-cover {
+  border: 1px dashed var(--line2);
+  border-radius: var(--r-md);
+  padding: 0.7rem 0.9rem;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+.def-cover-list {
+  margin: 0.3rem 0 0.5rem;
+  padding-left: 1.1rem;
+  color: var(--tx2);
+  font-size: 0.9rem;
+}
+.def-cover-list li {
+  margin: 0.15rem 0;
+}
+.def-taboo {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--tx2);
+}
+.def-taboo-tag {
+  display: inline-block;
+  font: 700 0.66rem var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-right: 0.4rem;
+}
+
+/* Cloze */
+.def-cloze-sentence {
+  font: 500 1.05rem var(--font-body);
+  color: var(--tx);
+  margin: 0;
+}
+.def-cloze-uk {
+  margin: 0;
+  font-size: 0.85rem;
+}
+.def-cloze-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.def-cloze-row .ex-input {
+  flex: 1 1 12rem;
+  max-width: 18rem;
+}
+.def-verdict {
+  margin: 0;
+  font: 600 0.85rem var(--font-body);
+}
+.def-verdict.is-ok {
+  color: var(--ok);
+}
+.def-verdict.is-no {
+  color: var(--danger);
+}
+.def-answer-line {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--tx2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .def-btn,
+  .def-letter,
+  .def-mode,
+  .def-card {
+    transition: none;
+  }
+}

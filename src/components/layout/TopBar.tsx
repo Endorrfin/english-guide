@@ -6,6 +6,7 @@ import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import {
+  hrefDefinitions,
   hrefDictionary,
   hrefIrregular,
   hrefMap,
@@ -154,6 +155,7 @@ export function TopBar() {
       <div className="topbar-right">
         <nav className="top-links" aria-label="Pages">
           <a href={hrefMap()}>{t(ui.guideMap)}</a>
+          <a href={hrefDefinitions()}>{t(ui.definitions)}</a>
           <a href={hrefDictionary()}>{t(ui.dictionary)}</a>
           <a href={hrefReading()}>{t(ui.reading)}</a>
           <a href={hrefPractice()}>{t(ui.practice)}</a>
