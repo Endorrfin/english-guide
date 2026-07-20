@@ -90,7 +90,14 @@ lists everything applied; unmarked lines are still open. Keep the header block's
 setback · collaborative · glitch · deadline · prioritize · resolve · gist · precise · simultaneously ·
 acknowledge · willingness · assertive · cautious · transparent · allocate.
 
+
+**Applied so far (D2 — +60 words → 80 total):** among · between · beside · besides · desert · dessert · quite · quiet · quit · quick · quickly · affect · effect · attitude · altitude · recognize · realize · access · accurate · appreciate · furious · guilty · disappointed · relieved · proud · calm · terrified · bored · relaxed · excited · hopeful · approach · charity · commute · compromise · demand · despite · determination · doubt · earn · emphasize · encourage · essential · ethical · explore · forecast · impact · income · influence · leadership · maintain · notice · outcome · persuade · polite · purchase · reliable · solution · survive · valuable.
+
+**Applied so far (D3 — +60 words → 140 total):** decision · priority · issue · reason · statement · research · recognition · engagement · performance · summary · summarize · support · observation · indicator · obstacle · distraction · inspiration · preference · persistent · mature · casual · easy-going · intrusive · reserved · shy · pretend · worried · exhausted · pleased · satisfied · dissatisfied · puzzled · bewildered · ecstatic · devastated · passion · loneliness · injury · headache · cough · cure · treatment · posture · recipe · cuisine · garlic · cutlery · dish · defrost · cloudy · overcast · plant · eagle · fairness · simplicity · trait · outlook · therefore · otherwise · meanwhile.
+
 **Applied so far (D4 — +60 words → 200 total):** arrange · gather · resist · neglect · overlook · gain · enrich · reserve · return · skip · invite · split · conduct · succeed · unwind · arrangement · concern · involvement · acquaintance · addiction · carefree · hysterical · neutral · weird · stable · suitable · pure · vigorous · complex · complexity · tight · invisible · irreplaceable · confusing · boring · ill · satisfaction · downside · distress · leisure · stranger · compassion · compassionate · pasta · porridge · oatmeal · pancake · grape · pumpkin · cereal · bat · hippo · bush · rope · glove · hardly · whenever · unfortunately · obviously · enough.
+
+**Applied so far (D5 — +60 words → 260 total):** against · alone · along · both · ever · once · only · overall · toward · unless · undoubtedly · unexpectedly · interestingly · personally · hopefully · hard · last · lower · none · enjoy · applaud · excuse · owe · plummet · procrastinate · reflect · sell · postpone · predict · convince · declutter · fake · fat · sick · puny · prickly · polluted · necessity · dialect · resolution · aisle · backyard · blanket · clue · fence · gear · guitar · outfit · pantry · path · pattern · terrace · trip · wedding · anniversary · draft · shadow · treasure · cocoa · exercise.
 
 ## 7. Verification (D1)
 
