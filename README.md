@@ -16,9 +16,10 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   dive)** → Core Grammar (B1) → **Modal Verbs ★** → Advanced Grammar (B2–C1) → Vocabulary in Action;
   every module: mental model, key points, pitfalls (typical UA-speaker mistakes) and drilled exercises.
 - **★ Signature interactives** — built: `modal-navigator` (function × time → the right modal),
-  `deduction-lab` (certainty × time), `tense-navigator` (time × aspect → tense) + the parametric
-  `TenseTimeline` figure. Planned: `sentence-morpher`, `tense-chooser`, `conditionals-machine`,
-  `article-tree`, `word-formation-lab`.
+  `deduction-lab` (certainty × time), `tense-navigator` (time × aspect → tense), `sentence-morpher`
+  (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
+  + the parametric `TenseTimeline` figure. Planned: `conditionals-machine`, `article-tree`,
+  `word-formation-lab`.
 - **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
   search, then open a word and engrave it four ways — **Study** (definition + synonyms + the 4 general
   / 3 professional examples), **Recall** (definition-first flashcard, the word hidden until you
@@ -111,8 +112,14 @@ sim) and `m22` Requests & politeness.
 **D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
 Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
 dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
-**Next:** Definitions **wave D2 (+100 cards** from the backlog) — runbook in `CLAUDE.md` §16; then Tenses
-`m11` + `sentence-morpher` / `tense-chooser`, and dictionary v2 (lazy chunks) + the `#/review` SRS port.
+**D2–D6 — shipped:** five more Definitions waves (**+277 cards**) — the dictionary is now **447 words
+(150 A1 + 297 custom)**; the teachable single-word backlog is cleared (the ~178 short phrases go to a
+future idioms tab).
+**T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
+`tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
+sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 authored**.
+**Next:** dictionary v2 (lazy per-level chunks + search index) + the `#/review` SRS port +
+`#/irregular`; Reading OCR waves (100 → 1000+); the idioms section for the short-phrase backlog.
 
 ---
 
@@ -131,9 +138,9 @@ dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
 Core Grammar (B1) → **Modal Verbs ★** → Advanced Grammar (B2–C1) → Vocabulary in Action; кожен модуль:
 mental model, key points, pitfalls (типові помилки україномовних) і вправи.
 **★ Signature-інтерактиви:** готові — `modal-navigator` (функція × час → потрібний modal),
-`deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense) + параметрична фігура
-`TenseTimeline`. Заплановані — `sentence-morpher`, `tense-chooser`, `conditionals-machine`,
-`article-tree`, `word-formation-lab`.
+`deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense), `sentence-morpher` (одне
+речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
+`TenseTimeline`. Заплановані — `conditionals-machine`, `article-tree`, `word-formation-lab`.
 **Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
 пошук, тоді відкрий слово й закарбуй його чотирма способами — **Study** (означення + синоніми +
 приклади 4 general / 3 professional), **Recall** (flashcard зі схованим словом), **Describe** (опиши,

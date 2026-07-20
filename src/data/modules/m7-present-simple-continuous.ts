@@ -512,6 +512,7 @@ export const m7: Module = {
     'm8-past-simple-continuous',
     'm9-future-forms',
     'm10-perfect-family',
+    'm11-choosing-narrative', // CHANGED (T4): the choosing capstone closes the section
   ],
   sources: [
     { title: 'Cambridge Dictionary — Present simple (I work)', url: 'https://dictionary.cambridge.org/grammar/british-grammar/present-simple-i-work' },

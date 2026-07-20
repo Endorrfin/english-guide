@@ -152,9 +152,10 @@ from the `definition.txt` backlog. The Dictionary page stays for now (demote/red
 
 ## F. Totals & asset budget
 
-**6 sections · 34 modules · 8 sims** (`modal-navigator` ★ + `deduction-lab` built;
-`tense-navigator` ★ · `sentence-morpher` · `tense-chooser` — Section II; `conditionals-machine` ★ ·
-`article-tree` ★ · `word-formation-lab` ★ planned) + the parametric **`TenseTimeline` figure** ·
+**6 sections · 34 modules · 8 sims** (built: `modal-navigator` ★ · `deduction-lab` · and all three
+Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4);
+planned: `conditionals-machine` ★ · `article-tree` ★ · `word-formation-lab` ★) + the parametric
+**`TenseTimeline` figure** ·
 ~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses ≥12) · dictionary **≥3,000
 words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review` SRS · `#/practice` ·
 `#/irregular` · per-module drills).
@@ -172,8 +173,8 @@ words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review`
    **T2 (done)** `m7`+`m8` + the parametric `TenseTimeline` figure (one core, per-zone wrapper keys
    `timeline-present`/`timeline-past`) → **T3 (done)** `m9`+`m10` (+ the per-zone wrapper keys
    `timeline-future`/`timeline-perfect`; the core gained a ⤺ link-back mark for the perfect zone) →
-   **T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish (dive tuning, cross-links,
-   UA-pitfalls sweep).
+   **T4 (done)** `m11` + `sentence-morpher` (m6) + `tense-chooser` (m11) + section polish (dive
+   tuning, cross-links, UA-pitfalls sweep) — **Section II COMPLETE (6/6)**.
 5. **Dictionary v2:** per-level lazy chunks + eager search index + `#/review` SRS (port `srs.ts`) +
    `#/irregular`; words → W2 start.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).

@@ -26,6 +26,10 @@ export const sims: Record<string, LazyComp> = {
   'deduction-lab': lazyNamed(() => import('../components/sims/DeductionLab'), 'DeductionLab'),
   // CHANGED (T1): m6's ★ tense-navigator sim (time × aspect) — the golden sim of Section II.
   'tense-navigator': lazyNamed(() => import('../components/sims/TenseNavigator'), 'TenseNavigator'),
+  // CHANGED (T4): m6's ★ sentence-morpher (one sentence through all 12 cells) and m11's
+  // ★ tense-chooser (three meaning questions → the tense) — Section II interactives complete.
+  'sentence-morpher': lazyNamed(() => import('../components/sims/SentenceMorpher'), 'SentenceMorpher'),
+  'tense-chooser': lazyNamed(() => import('../components/sims/TenseChooser'), 'TenseChooser'),
 };
 
 /** Figures by kebab key. */

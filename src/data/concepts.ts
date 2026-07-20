@@ -24,6 +24,9 @@ import { m8 } from './modules/m8-past-simple-continuous';
 // figure zones future/perfect). Imports replace the former stub() entries below.
 import { m9 } from './modules/m9-future-forms';
 import { m10 } from './modules/m10-perfect-family';
+// CHANGED (T4): m11 authored — Choosing Tenses & Narrative (+ the ★ tense-chooser sim; the
+// ★ sentence-morpher lands on m6). Section II Tenses is COMPLETE (6/6).
+import { m11 } from './modules/m11-choosing-narrative';
 import { WORDS } from './words';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
@@ -96,7 +99,7 @@ export const modules: Module[] = [
   m8, // CHANGED (T2): authored — Past: Simple & Continuous (+ timeline-past figure)
   m9, // CHANGED (T3): authored — Future: will, going to & Continuous (+ timeline-future figure)
   m10, // CHANGED (T3): authored — The Perfect Family (+ timeline-perfect figure)
-  stub('m11-choosing-narrative', 11, 's6-tenses', 6, 'b2', { en: 'Choosing Tenses & Narrative', uk: 'Вибір tense і нарація' }, true),
+  m11, // CHANGED (T4): authored — Choosing Tenses & Narrative (+ ★ tense-chooser) — Section II complete
 
   // Section III (roman) — Core Grammar (B1) — ids/nums untouched by the restructure
   stub('m12-comparatives', 12, 's2-core-grammar', 1, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),

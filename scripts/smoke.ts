@@ -74,6 +74,10 @@ const SIM_CANARIES: Record<string, string[]> = {
   DeductionLab: ['Deduction Lab', 'must'],
   // CHANGED (T1): the Tense Navigator renders its default cell (present × simple).
   TenseNavigator: ['Tense Navigator', 'Present Simple'],
+  // CHANGED (T4): the Sentence Morpher renders step 0 of the aspect-major walk (past × simple —
+  // "Maya worked …"); the Tense Chooser renders its Q1 step (the title is stable across EN/UK).
+  SentenceMorpher: ['Sentence Morpher', 'worked'],
+  TenseChooser: ['Tense Chooser'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -218,6 +222,12 @@ async function main(): Promise<void> {
       "Present Perfect",
       "Past Simple",
     ]);
+    // CHANGED (T4): m11 authored body (the lazy tense-chooser sim resolves to its Suspense
+    // fallback under SSR, so canaries come from the tables: narrative roles + future-in-the-past).
+    check("ModulePage:m11(full)", h(ModulePage, { moduleId: "m11-choosing-narrative" }), lang, 6000, [
+      "Past Perfect",
+      "was going to",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -229,6 +239,7 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system",
     "#/m/m17-modal-system/function-x-time-grid",
     "#/m/m6-tense-system", // CHANGED (T1)
+    "#/m/m11-choosing-narrative", // CHANGED (T4)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
