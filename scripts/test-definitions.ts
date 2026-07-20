@@ -43,8 +43,9 @@ eq(buildCloze('We can accommodate you.', ['accommodate', 'accommodates']), { mas
 eq(buildCloze('She accommodates guests.', surfaceForms({ word: 'accommodate', forms: undefined } as unknown as WordEntry)), { masked: 'She ____ guests.', answer: 'accommodates' }, 'inflected -s form masked, longest-first');
 ok(buildCloze('No headword here.', ['xyzzy']) === null, 'no match → null');
 
-// ── real corpus invariants (the 20 D1 cards) ───────────────────────────────
-ok(customWords.length === 20, `expected 20 custom cards, got ${customWords.length}`);
+// ── real corpus invariants (20 D1 + 60 D2 cards) ──────────────────────────
+// CHANGED (D2): custom corpus 20 → 80 (the D2 definitions wave appends 60 cards).
+ok(customWords.length === 80, `expected 80 custom cards, got ${customWords.length}`);
 for (const w of customWords) {
   const { general, professional } = splitExamples(w);
   ok(general.length === 4, `${w.id}: 4 general examples`);
@@ -69,4 +70,4 @@ if (failures > 0) {
   console.error(`\n✖ test-definitions: ${failures} failure(s).`);
   process.exit(1);
 }
-console.log('✓ test-definitions: all checks passed (A–Z grouping, 4+3 split, cloze, describe-it scaffold on 20 cards).');
+console.log('✓ test-definitions: all checks passed (A–Z grouping, 4+3 split, cloze, describe-it scaffold on 80 cards).');

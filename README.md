@@ -12,11 +12,13 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
 
 ## What's here
 
-- **5 sections · 34 modules** — Foundations (A1–A2) → Core Grammar (B1) → **Modal Verbs ★** →
-  Advanced Grammar (B2–C1) → Vocabulary in Action; every module: mental model, key points, pitfalls
-  (typical UA-speaker mistakes) and drilled exercises.
-- **★ Signature interactives** — `modal-navigator` (pick a function × time, get the right modal),
-  `conditionals-machine`, `tense-timeline`, `deduction-lab`, `article-tree`, `word-formation-lab`.
+- **6 sections · 34 modules** — Foundations (A1–A2) → **Tenses ★ (the whole tense system, 4-level
+  dive)** → Core Grammar (B1) → **Modal Verbs ★** → Advanced Grammar (B2–C1) → Vocabulary in Action;
+  every module: mental model, key points, pitfalls (typical UA-speaker mistakes) and drilled exercises.
+- **★ Signature interactives** — built: `modal-navigator` (function × time → the right modal),
+  `deduction-lab` (certainty × time), `tense-navigator` (time × aspect → tense) + the parametric
+  `TenseTimeline` figure. Planned: `sentence-morpher`, `tense-chooser`, `conditionals-machine`,
+  `article-tree`, `word-formation-lab`.
 - **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
   search, then open a word and engrave it four ways — **Study** (definition + synonyms + the 4 general
   / 3 professional examples), **Recall** (definition-first flashcard, the word hidden until you
@@ -27,10 +29,10 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   IPA + TTS pronunciation, UA translations, bilingual definitions, **7 examples per word (4 general +
   business / office / dev)**, forms, collocations, cross-links; search by English word **or** Ukrainian
   translation; filters by CEFR level, part of speech, topic.
-- **Reading (Section VI)** — a growing library of short, real-life texts in an accordion by category:
+- **Reading (Section VII)** — a growing library of short, real-life texts in an accordion by category:
   read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
   (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
-  CEFR level, mark texts as read. Growing 250 → 1000+ texts in waves.
+  CEFR level, mark texts as read. ~100 texts now, growing to 1000+ in waves.
 - **Trainers** — `#/review` SRS flashcards (SM-2-lite; decks per level · My words · irregular verbs),
   `#/practice` gap-fill + MCQ hub with explanations, `#/irregular` 3-forms drill. Progress lives in
   your browser (localStorage).
@@ -39,7 +41,7 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
 ## Tech
 
 Vite + React 19 + TypeScript (strict). No router library — a tiny hash router
-(`#/m/<module>/<topic>`, `#/dictionary/<word>`) + `vite base:'./'` makes the build work under any
+(`#/m/<module>/<topic>`, `#/definitions/<word>`, `#/dictionary/<word>`) + `vite base:'./'` makes the build work under any
 GitHub Pages sub-path. All content is static data in `src/data`; pages are **rendered from data**,
 never hand-written. Pronunciation via the browser's Web Speech API — no audio files.
 
@@ -69,7 +71,7 @@ src/
   i18n/        ui strings + EN/UA language provider
   theme/       tokens.css · global.css · components.css
   lib/         hashRouter · search (modules+words) · exercise · srs · tts · registry · appState
-  components/  layout/ · module/ · map/ · pages/ (Dictionary·Practice·Review·Irregular) · sims/ · figures/
+  components/  layout/ · module/ · map/ · pages/ (Definitions·Dictionary·Practice·Review·Irregular) · sims/ · figures/
 scripts/       check-data.ts · run-tests.ts · smoke.ts (+ engine tests)
 ```
 
@@ -99,8 +101,18 @@ mark-as-read; a new `ReadingText`/`ReadingCategory`/`ReadingQuestion` data model
 taxonomy, and a live grand-total counter (all texts + per-category counts) on `#/reading`. `check:data` +
 `smoke` extended for reading. **18 / 100 bilingual texts** (target 100) transcribed from the owner's
 backlog with per-text source attribution, across study · values · family · everyday · work ·
-discipline · life · upbringing. Next: grow Reading to 100 in waves, then finish Modal Verbs
-(`m21` + the ★ `deduction-lab` sim, `m22`).
+discipline · life · upbringing.
+**S4 — shipped:** Modal Verbs **complete (6/6)** — `m21` Deduction & probability (+ the ★ `deduction-lab`
+sim) and `m22` Requests & politeness.
+**S5 + T1–T3 — shipped:** a new **Section II — Tenses ★** (the whole tense system in one place, with a
+4-level "dive" mechanic) — the golden `m6-tense-system` + the ★ `tense-navigator` sim, plus `m7`–`m10`
+(present · past · future · the perfect family) and the parametric `TenseTimeline` figure. Now
+**6 sections · 34 modules · 11 authored**.
+**D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
+Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
+dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
+**Next:** Definitions **wave D2 (+100 cards** from the backlog) — runbook in `CLAUDE.md` §16; then Tenses
+`m11` + `sentence-morpher` / `tense-chooser`, and dictionary v2 (lazy chunks) + the `#/review` SRS port.
 
 ---
 
@@ -115,10 +127,13 @@ discipline · life · upbringing. Next: grow Reading to 100 in waves, then finis
 
 ## Що тут
 
-**5 секцій · 34 модулі** — від Foundations (A1–A2) до Advanced Grammar (B2–C1) і Vocabulary in
-Action; кожен модуль: mental model, key points, pitfalls (типові помилки україномовних) і вправи.
-**★ Signature-інтерактиви:** `modal-navigator` (обери функцію × час — отримай правильний modal),
-`conditionals-machine`, `tense-timeline`, `deduction-lab`, `article-tree`, `word-formation-lab`.
+**6 секцій · 34 модулі** — Foundations (A1–A2) → **Tenses ★ (уся система часів, 4 рівні занурення)** →
+Core Grammar (B1) → **Modal Verbs ★** → Advanced Grammar (B2–C1) → Vocabulary in Action; кожен модуль:
+mental model, key points, pitfalls (типові помилки україномовних) і вправи.
+**★ Signature-інтерактиви:** готові — `modal-navigator` (функція × час → потрібний modal),
+`deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense) + параметрична фігура
+`TenseTimeline`. Заплановані — `sentence-morpher`, `tense-chooser`, `conditionals-machine`,
+`article-tree`, `word-formation-lab`.
 **Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
 пошук, тоді відкрий слово й закарбуй його чотирма способами — **Study** (означення + синоніми +
 приклади 4 general / 3 professional), **Recall** (flashcard зі схованим словом), **Describe** (опиши,
