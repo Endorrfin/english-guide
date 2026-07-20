@@ -92,6 +92,8 @@ acknowledge · willingness · assertive · cautious · transparent · allocate.
 
 **Applied so far (D2 — +60 words → 80 total):** among · between · beside · besides · desert · dessert · quite · quiet · quit · quick · quickly · affect · effect · attitude · altitude · recognize · realize · access · accurate · appreciate · furious · guilty · disappointed · relieved · proud · calm · terrified · bored · relaxed · excited · hopeful · approach · charity · commute · compromise · demand · despite · determination · doubt · earn · emphasize · encourage · essential · ethical · explore · forecast · impact · income · influence · leadership · maintain · notice · outcome · persuade · polite · purchase · reliable · solution · survive · valuable.
 
+**Applied so far (D3 — +60 words → 140 total):** decision · priority · issue · reason · statement · research · recognition · engagement · performance · summary · summarize · support · observation · indicator · obstacle · distraction · inspiration · preference · persistent · mature · casual · easy-going · intrusive · reserved · shy · pretend · worried · exhausted · pleased · satisfied · dissatisfied · puzzled · bewildered · ecstatic · devastated · passion · loneliness · injury · headache · cough · cure · treatment · posture · recipe · cuisine · garlic · cutlery · dish · defrost · cloudy · overcast · plant · eagle · fairness · simplicity · trait · outlook · therefore · otherwise · meanwhile.
+
 ## 7. Verification (D1)
 
 Full `npm run verify` green in the cloud scratch — typecheck · eslint · check:data (**170 words = 150
