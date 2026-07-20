@@ -15,7 +15,7 @@ export function BlockView({ block }: { block: Block }) {
     case 'figure':
       return <FigureBlock fig={block.fig} caption={block.caption} />;
     case 'sim':
-      return <SimBlock sim={block.sim} />;
+      return <SimBlock sim={block.sim} caption={block.caption} />;
     case 'table':
       return <TableBlock head={block.head} rows={block.rows} caption={block.caption} />;
     case 'code':
@@ -49,13 +49,17 @@ function FigureBlock({ fig, caption }: { fig: string; caption?: Localized }) {
   );
 }
 
-function SimBlock({ sim }: { sim: string }) {
+// CHANGED (T4): sim blocks now render their (optional) caption, like figures — the data contract
+// always allowed it, but the caption was silently dropped (m6's navigator caption never showed).
+function SimBlock({ sim, caption }: { sim: string; caption?: Localized }) {
+  const { t } = useLang();
   const Sim = getSim(sim);
   if (!Sim) return <div className="placeholder placeholder--sim">sim: {sim}</div>;
   return (
     <Suspense fallback={<div className="placeholder placeholder--sim">Loading simulator…</div>}>
       <div className="sim-wrap">
         <Sim />
+        {caption && <p className="figure-cap sim-cap">{t(caption)}</p>}
       </div>
     </Suspense>
   );

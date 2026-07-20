@@ -104,6 +104,17 @@ export const m6: Module = {
             uk: 'Зверніть увагу, чого матриця вчить непомітно: колонки ділять **допоміжні дієслова**, рядки ділять **механіку**. Кожен Continuous — це *be + V-ing*, лише *be* змінює час. Кожен Perfect — це *have + V3*, лише *have* змінює час. Тож «was working» і «will be working» — не окремі факти: ви один раз вивчаєте 〜 = *be + V-ing*, а потім пересуваєте його вздовж осі часу. Чотири механізми aspect + три налаштування допоміжного = уся система дієвідмінювання англійської.',
           },
         },
+        // CHANGED (T4): the ★ sentence-morpher lands here, right where the "rows share machinery"
+        // insight is made — the sim animates exactly that: one sentence, each aspect sliding along
+        // the time axis with the timeline, the verb phrase and the UA translation in sync.
+        {
+          kind: 'sim',
+          sim: 'sentence-morpher',
+          caption: {
+            en: '★ Sentence Morpher — ONE sentence morphed through all 12 cells: step or play, watch the timeline, the highlighted verb phrase and the UA translation move together.',
+            uk: '★ Sentence Morpher — ОДНЕ речення, трансформоване через усі 12 клітинок: крокуйте або запустіть, і дивіться, як таймлайн, підсвічена дієслівна фраза та український переклад рухаються разом.',
+          },
+        },
         {
           kind: 'callout',
           tone: 'senior',
@@ -365,8 +376,8 @@ export const m6: Module = {
         {
           kind: 'prose',
           md: {
-            en: 'Section II gives you **four different tools** — deliberately different, so you can pick what clicks: the **★ Tense Navigator** (this page) for walking the matrix cell by cell; the **Sentence Morpher** (arrives with a later session on this page) for watching ONE sentence morph through all 12 cells; the **parametric timeline figure** inside m7–m10 for each tense’s picture in the shared notation; and the **★ Tense Chooser** (m11) that asks you three meaning questions and hands you the tense. Use one, use all — they teach the same matrix from four angles.',
-            uk: 'Розділ II дає вам **чотири різні інструменти** — навмисно різні, щоб ви обрали той, що «клацне»: **★ Tense Navigator** (ця сторінка) — ходити матрицею клітинка за клітинкою; **Sentence Morpher** (зʼявиться на цій сторінці в пізнішій сесії) — дивитися, як ОДНЕ речення трансформується через усі 12 клітинок; **параметрична таймлайн-фігура** всередині m7–m10 — картинка кожного tense у спільній нотації; і **★ Tense Chooser** (m11), що ставить три питання про зміст і видає tense. Користуйтеся одним або всіма — вони вчать ту саму матрицю з чотирьох боків.',
+            en: 'Section II gives you **four different tools** — deliberately different, so you can pick what clicks: the **★ Tense Navigator** (this page, topic 1) for walking the matrix cell by cell; the **★ Sentence Morpher** (right next to it) for watching ONE sentence morph through all 12 cells; the **parametric timeline figure** inside m7–m10 for each tense’s picture in the shared notation; and the **★ Tense Chooser** (m11) that asks you three meaning questions and hands you the tense. Use one, use all — they teach the same matrix from four angles.',
+            uk: 'Розділ II дає вам **чотири різні інструменти** — навмисно різні, щоб ви обрали той, що «клацне»: **★ Tense Navigator** (ця сторінка, топік 1) — ходити матрицею клітинка за клітинкою; **★ Sentence Morpher** (одразу поруч) — дивитися, як ОДНЕ речення трансформується через усі 12 клітинок; **параметрична таймлайн-фігура** всередині m7–m10 — картинка кожного tense у спільній нотації; і **★ Tense Chooser** (m11), що ставить три питання про зміст і видає tense. Користуйтеся одним або всіма — вони вчать ту саму матрицю з чотирьох боків.',
           },
         },
         {

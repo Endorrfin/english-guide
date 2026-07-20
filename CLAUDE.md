@@ -110,11 +110,12 @@ unauthored (zero progress-key impact). Dictionary waves W1–W5 (150 → 1,000 �
 ## 6. Signature interactives + diagram-first baseline
 
 **8 sims (S5):** `modal-navigator` ★golden (built) · `deduction-lab` (m21, built) ·
-`tense-navigator` ★ (m6, golden of Tenses: 3×4 time × aspect matrix → meaning, forms +/−/?,
+`tense-navigator` ★ (m6, built T1, golden of Tenses: 3×4 time × aspect matrix → meaning, forms +/−/?,
 mini-timeline, EN/UA examples + TTS, near-misses, corpus-frequency badge — 5 forms = 96% of speech) ·
-`sentence-morpher` (m6: one sentence morphed through all 12 cells — animated timeline + form
-highlight + synced UA translation) · `tense-chooser` (m11: 3 meaning questions → the right tense +
-near-miss explanations) · `conditionals-machine` (m13) · `article-tree` (m28) ·
+`sentence-morpher` (m6, built T4: one sentence morphed through all 12 cells — animated timeline + form
+highlight + synced UA translation, aspect-major walk) · `tense-chooser` (m11, built T4: 3 meaning
+questions → the right tense + near-miss explanations; encodes the cross-time overrides) ·
+`conditionals-machine` (m13) · `article-tree` (m28) ·
 `word-formation-lab` (m31). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 Each sim: pure engine in `lib/*` where algorithmic, deterministic,
@@ -216,7 +217,8 @@ the TIMES re-plan** — Section II Tenses locked (see §14). → **T1 (done): th
 skeleton (concepts/types/tokens/DiveSwitcher/landing map + check:data/smoke updates) + golden
 `m6-tense-system` + `tense-navigator` ★ → **T2 (done):** `m7`+`m8` + the parametric `TenseTimeline`
 figure → **T3 (done):** `m9`+`m10` + the `timeline-future` / `timeline-perfect` figure zones →
-**next: T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
+**T4 (done):** `m11` + `sentence-morpher` + `tense-chooser` + section polish — **Section II Tenses
+COMPLETE (6/6)**. →
 **D1 (done): Definitions study page** (`#/definitions`) over the SHARED word corpus (SSOT) — A–Z +
 Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 golden custom cards**
 (first custom wave). → **D2 (next): +100 definition cards** from the backlog (wave; runbook §16 —
@@ -537,6 +539,62 @@ CURRICULUM.md §G / §R.)
 - **D4 (2026-07-20, same session) — Definitions wave 4: +60 more single-word cards (custom 140 → 200; dictionary → 350).** Continued on `main` per owner's request (owner does the branch/commit/PR). Clusters: verbs (arrange, gather, resist, neglect, overlook, gain, enrich, reserve, return, skip, invite, split, conduct, succeed, unwind), character/quality adjectives (carefree, hysterical, neutral, weird, stable, suitable, pure, vigorous, complex, tight, invisible, irreplaceable, confusing, boring, ill), abstract nouns (arrangement, concern, involvement, acquaintance, addiction, satisfaction, complexity, downside, distress, leisure, stranger, compassion, compassionate), food (pasta, porridge, oatmeal, pancake, grape, pumpkin, cereal), nature/animals (bat, hippo, bush, rope, glove), connectors (hardly, whenever, unfortunately, obviously, enough). Same golden bar; `test-definitions` count 140 → 200; `✅ [D4]` marks + a D4 APPLIED block in `definition.txt`. DEFINITIONS.md §6 extended. **Verification: FULL `npm run verify` ✓ green in the reused cloud scratch** — check:data (**350 words = 150 a1 + 200 custom**) · test ×5 (test-definitions on 200) · smoke (199 checks) · vite build. Changes left in the working tree on `main` for the owner to branch (`feat/d4-definitions-wave`) + commit + PR. Backlog after D4: ~100 single words + the ~178 short-phrase list → future waves / the planned idioms section.
 - **D5 (2026-07-20, same session) — Definitions wave 5: +60 more single-word cards (custom 200 → 260; dictionary → 410).** Continued on `main` (owner does the branch/commit/PR). Clusters: function words / connectors (against, alone, along, both, ever, once, only, overall, toward, unless, undoubtedly, unexpectedly, interestingly, personally, hopefully, hard, last, lower, none), verbs (enjoy, applaud, excuse, owe, plummet, procrastinate, reflect, sell, postpone, predict, convince, declutter), adjectives (fake, fat, sick, puny, prickly, polluted), nouns (necessity, dialect, resolution, aisle, backyard, blanket, clue, fence, gear, guitar, outfit, pantry, path, pattern, terrace, trip, wedding, anniversary, draft, shadow, treasure, cocoa, exercise). Same golden bar; `test-definitions` count 200 → 260; `✅ [D5]` marks + a D5 APPLIED block in `definition.txt` (rebuilt D1→D5, as the gitignored file reverts between waves); DEFINITIONS.md §6 ledger reconstructed to D1→D5. **Verification: FULL `npm run verify` ✓ green in the reused cloud scratch** — check:data (**410 words = 150 a1 + 260 custom**) · test ×5 (test-definitions on 260) · smoke (199 checks) · vite build. Changes left in the working tree on `main` for the owner to branch (`feat/d5-definitions-wave`) + commit + PR. Backlog after D5: ~40 single words + the ~178 short-phrase list → future waves / the planned idioms section.
 - **D6 (2026-07-20, same session) — Definitions wave 6: +37 single-word cards (custom 260 → 297; dictionary → 447) — clears the teachable single-word backlog.** The rest of the candidate list was plurals/inflections of already-carded words; the 37 genuinely new single words: arouse, bet, data-driven, depressed, dumbbell, firewood, fluctuation, gathering, green-eyed, half, inference, involve, kennel, lung, non-smoker, pawnshop, pediatrician, pie, pomegranate, prediction, rate, **realise/recognise** (BrE spellings of realize/recognize), reference, slack, smoker, stripe, tawdry, technophile, temper, toothache, underground, unreasonable, unwillingness, wheat, wood, x-ray. Same golden bar; `test-definitions` count 260 → 297; `✅ [D6]` marks + a D6 APPLIED block in `definition.txt` (rebuilt D2→D6); DEFINITIONS.md §6 ledger to D1→D6. **Verification: FULL `npm run verify` ✓ green in the reused cloud scratch** — check:data (**447 words = 150 a1 + 297 custom**) · test ×5 (on 297) · smoke (199) · build. Working tree on `main` for the owner to branch (`feat/d6-definitions-wave`) + commit + PR. **Single-word backlog is now essentially cleared**; what remains is the ~178 short-phrase list → the planned idioms section (a separate tab, not this word corpus).
+- **T4 (2026-07-20) — `m11` + ★`sentence-morpher` + ★`tense-chooser` — Section II Tenses COMPLETE (6/6; 12/34 authored).**
+  The S5 plan's final Tenses session. **★ Sentence Morpher (m6):** ONE sentence — *Maya works on the
+  payment service (every day)* — morphed through all 12 cells in an **aspect-major walk** (● slides
+  past→present→future, then 〜, ⤺, 〜⤺ — the "rows share machinery" insight animated); mini-timeline
+  in the shared notation + highlighted verb phrase + synced natural UA line (the ⤺ row deliberately
+  shows UA rendering Perfect with present/past forms — the no-Perfect-in-UA mismatch made visible);
+  ◀/▶/▶-autoplay/↺ controls (reduced-motion withholds autoplay, mirrors TenseTimeline) + a 4×3
+  jump-grid radiogroup in triad hues. Engine `lib/morpher.ts` (pure; names/patterns REUSED from
+  `lib/tenses` — never restated) + content `data/sentenceMorpher.ts` + golden test
+  `scripts/test-morpher.ts` (12 steps == the matrix, aspect-major order, vp signatures per aspect,
+  golden sentence, determinism). Placed on m6 topic 1 right after the "rows share machinery" dive-3
+  block; m6's routes block updated (no longer "arrives later"). **★ Tense Chooser (m11):** 3 meaning
+  questions → the tense: Q1 WHEN (time) · Q2 WHAT KIND (4 meaning branches per time) · Q3 the context
+  check (2–3 leaves) = **30 paths**, each with verdict (name/pattern/why/example EN+UA) + near-misses.
+  The tree encodes the section's **cross-time overrides** — dated-time → Past Simple (under a
+  "present" start!), result-now → Present Perfect (under "past"), arrangement → Present Continuous +
+  timetable → Present Simple (under "future") — and verdict `time` = the FORM's matrix column, so the
+  hue visibly jumps on override paths (the jump is the lesson). Engine `lib/chooser.ts` + content
+  `data/tenseChooser.ts` + golden test `scripts/test-chooser.ts` (30 paths, 4 branches × time, 2–3
+  leaves, allowed-name set = 12 matrix names + will/be-going-to/used-to, extras must be ● simple,
+  matrix-cell honesty, the 4 overrides pinned, the no-will-after-when near-miss pinned, determinism).
+  **m11 Choosing Tenses & Narrative** (b2 ★, the section capstone): 5 topics — `contrast-map` (the
+  3-question algorithm + the five damage-dealing contrast pairs + ★sim) · `signal-words-and-traps`
+  (signals are hints not laws; the 7-signal trap table; THE override rule callout; AmE just/already
+  dive-3; the since-clause two-frame nuance dive-3) · `narrative-tenses` (the 4 narrative roles ●
+  plot / 〜 scene / ⤺ flashback / 〜⤺ lead-up on one incident story; flat-vs-textured compare;
+  anchor-then-return dive-3) · `historic-present-headlines` (jokes/anecdotes/plot-summaries/
+  commentary; the 4-pattern headline decoder table; don't-export warn; the docs/README-prose
+  connection dive-3) · `future-in-the-past-sequence` (was going to / would / was about to table +
+  NOW-vs-BACK-THEN compare; the m15 backshift bridge; `was to` destiny dive-4; would's three jobs
+  dive-3). 6 keyPoints, 6 pitfalls (UA-aspect-1:1-mapping · signal autopilot · flat all-● story ·
+  Past-Perfect-everywhere · headline grammar in prose · was-going-to≠went), **14 drills**
+  (`ex-choosing-narrative-1..14`), seeAlso m6–m10+m15+m17, **6 web-verified sources** (Cambridge
+  future-in-the-past / present-verb-forms-referring-to-the-past / newspaper-headlines /
+  past-simple-or-present-perfect — slugs confirmed via search, Cambridge 403s bots; British Council
+  TeachingEnglish narrative-tenses + LearnEnglish just/yet/still/already incl. the AmE note — both
+  fetched; AmE Past-Simple facts cross-checked at the Cambridge ELT blog + Test-English + English
+  Lessons Brighton). **Section polish:** m7/m8 seeAlso += m11 (cross-link sweep — m9/m10/m6 already
+  linked); the 5 mandatory UA pitfalls re-verified across m6–m11 (grep sweep); m11 dive tuning = 8×
+  dive-3 + 1× dive-4 (lean 🚂 core for the b2 capstone). **SimBlock now renders captions**
+  (blocks.tsx — the contract always allowed `caption` but it was silently dropped; m6's navigator
+  caption shows for the first time). `.sm-*`/`.tc-*` CSS appended (reuses .mn/.tn/.ttl base).
+  **Gates:** registry +2 sim keys; smoke SIM_CANARIES (SentenceMorpher 'worked' = step 0 past×simple ·
+  TenseChooser) + `ModulePage:m11(full)` canaries (Past Perfect · was going to) + the m11 hash — now
+  **216 checks, 5 sims + 10 figures**; run-tests auto-discovers the 2 new tests (×7 total).
+  **Verification: FULL `npm run verify` ✓ green end-to-end in the cloud scratch** (fresh npm install;
+  typecheck `tsc -b` · eslint · check:data 6/34 · **12 authored** · **181 exercises** · 447 words ·
+  100 reading · registry+links resolve · test ×7 · smoke 216 · vite build) + screenshot pass in
+  headless Chromium (morpher step 0 EN + present-perfect cell UA with the ⤺ arc; chooser full
+  override path present→touches-now→dated → a ROSE Past Simple verdict, EN + UA; m11 page; 0 page
+  errors — only the sandbox-blocked font fetch). NOTE: staging missed `PolitenessLadder.tsx` at
+  first (my staging-list slip — the file exists on the device; baseline verify caught it, re-staged,
+  baseline green before any T4 change). README EN+UA built-lists + status updated; CURRICULUM §F/§G
+  updated. Owner next: `npm run verify` locally → branch `t4-tenses-choosing-narrative` → commit →
+  push. Deferred/next: dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`;
+  Reading OCR waves; the idioms tab (~178 short phrases).
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

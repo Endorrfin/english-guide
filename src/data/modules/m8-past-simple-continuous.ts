@@ -511,6 +511,7 @@ export const m8: Module = {
     'm7-present-simple-continuous',
     'm9-future-forms',
     'm10-perfect-family',
+    'm11-choosing-narrative', // CHANGED (T4): narrative tenses build directly on this module
   ],
   sources: [
     { title: 'Cambridge Dictionary — Past simple (I worked)', url: 'https://dictionary.cambridge.org/grammar/british-grammar/past-simple-i-worked' },
