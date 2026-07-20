@@ -219,7 +219,8 @@ figure → **T3 (done):** `m9`+`m10` + the `timeline-future` / `timeline-perfect
 **next: T4** `m11` + `sentence-morpher` + `tense-chooser` + section polish. →
 **D1 (done): Definitions study page** (`#/definitions`) over the SHARED word corpus (SSOT) — A–Z +
 Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 golden custom cards**
-(first custom wave). →
+(first custom wave). → **D2 (next): +100 definition cards** from the backlog (wave; runbook §16 —
+170 → ~270 words). →
 then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
 Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
 W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
@@ -531,6 +532,7 @@ CURRICULUM.md §G / §R.)
   locally → commit on `d1-definitions-studio` → push. Deferred/next: grow the custom corpus in further
   waves (rest of `definition.txt`); demote/redirect the Dictionary page once Definitions proves out;
   wire mastery into the `#/review` SM-2-lite port; optional synonym-match + word-of-the-day.
+- **D2 (2026-07-20) — Definitions wave 2: +60 golden cards (custom 20 → 80).** Curated ~60 teachable **single-word** entries from `_examples/definition.txt` via the pre-curated `definition-d2-candidates.txt` (per §16), matching the D1 golden bar. **Kept the owner's confusables** — among/between · beside/besides · desert/dessert · quite/quiet/quit · quick/quickly · affect/effect · attitude/altitude · recognize/realize — plus the **FEELINGS** set (furious · guilty · disappointed · relieved · proud · calm · terrified · bored · relaxed · excited · hopeful) and core work vocab (access · accurate · appreciate · approach · charity · commute · compromise · demand · despite · determination · doubt · earn · emphasize · encourage · essential · ethical · explore · forecast · impact · income · influence · leadership · maintain · notice · outcome · persuade · polite · purchase · reliable · solution · survive · valuable). Each card = **US IPA (no slashes), 7 tagged examples (4 general + 1 each business/office/dev), bilingual `def` + тлумачення, translations, collocations, synonyms/antonyms, in-corpus `seeAlso`, topics, `source:'custom'`** — appended to `custom.ts`, **no id renumbered**. Only code change beyond data: `scripts/test-definitions.ts` corpus-count assertion **20 → 80**. Applied backlog lines tagged `✅ [D2]` (84 lines; all 60 words matched inline) + a **D2 APPLIED block** prepended to `definition.txt`; `DEFINITIONS.md` §6 ledger extended. **Verification: FULL `npm run verify` ✓ green in a cloud scratch copy** (fresh `npm install` — the device `node_modules` are macOS-native, unusable in the Linux sandbox) — typecheck (`tsc -b`) · eslint · check:data (**230 words = 150 a1 + 80 custom**, 6/34, 100 reading, all bilingual, registry+links resolve) · test ×5 (incl. **test-definitions** on 80 cards) · smoke (**199 checks**) · vite build (DefinitionsPage lazy chunk ≈ 14 kB). Word contract + cloze invariants also self-checked in the cloud before write-back; IPA/senses cross-checked against Cambridge/Oxford. Branch `d2-definitions-wave` — changes left in the working tree; **agent did not commit or push** (the device mount blocks `unlink`, so git write is unreliable there → owner commits locally, per the D1 pattern). `_examples/` is git-ignored, so the marked `definition.txt` is a local-disk backlog artifact, not part of the commit. Deferred/next: continue waves `✅ [D3]`… through the remaining backlog (incl. the short-phrase list → phrasal/idiom cards); §16's ~100 target = ~60 now + the rest next session.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 
@@ -559,3 +561,40 @@ Owner decision: run the bulk **in a fresh session via a multi-agent workflow**. 
    `npm run verify` locally. **Write back** via SendUserFile + device_commit_files; **archive** the processed
    screenshots via the manifest. The `#/reading` counter updates automatically from `READING_TEXTS.length`.
 7. **Target:** 100 texts (now 18). Keep waves ~40–80/run until reached.
+
+## 16. Definitions wave D2 — runbook (next session → +100 cards)
+
+> ✅ **DONE — 60/~100 this session (2026-07-20).** Wave D2 shipped **60 single-word cards** (custom 20 → 80; dictionary → **230 words**) — all owner confusables + the FEELINGS set + core work vocab; `test-definitions` count 20 → 80; `definition.txt` marked `✅ [D2]` + APPLIED block; full `npm run verify` ✓ in a cloud scratch copy; branch `d2-definitions-wave` (owner commits locally). The remaining ~40 single words **and** the short-phrase → phrasal/idiom backlog roll to **D3** — the split this runbook's realism note anticipated. The steps below are the standing procedure for that next wave.
+
+Owner's commission: add **~100 more definition cards** from `_examples/definition.txt` (wave **D2**),
+taking the dictionary from **170 → ~270** words. All new cards render on **both** `#/definitions` and the
+Dictionary (shared corpus, SSOT). **Realism:** 100 golden cards is a *big* wave — either run it as a
+multi-agent workflow (step 3, EXPLICIT opt-in) or split ~2×50 across sessions. Quality over speed.
+
+1. **Source & candidates.** The unmarked lines of `_examples/definition.txt` are the open backlog
+   (`grep -v '✅ \[' _examples/definition.txt`). A **draft candidate list** is pre-curated in
+   `_examples/definition-d2-candidates.txt` (~282 single words + ~178 short phrases, already deduped
+   against the shipped 170). Pick ~100 teachable entries; fix typos (`hastle`→`hassle`), normalize
+   case, drop too-narrow/duplicate items, and KEEP the owner's confusables (beside/besides,
+   among/between, affect/effect, desert/dessert, quite/quiet/quit, recognise/realise…) — they make
+   great cards.
+2. **Golden bar per card** (unchanged; `scripts/check-data.ts` enforces it): kebab `id` (unique across
+   ALL word files), `word`, `kind`, **US IPA** on single words (no slashes), `pos`, CEFR `level`, UA
+   `translations`, bilingual `def`, **exactly 7 examples = 4 general + 1 business + 1 office + 1 dev**,
+   `forms` where irregular, `collocations`, `synonyms`/`antonyms`, resolvable `seeAlso`, `topics`,
+   `source:'custom'`. Append to `src/data/words/custom.ts` — **never renumber existing ids**. Verify
+   senses + IPA against Cambridge/Oxford learner dictionaries.
+3. **(Optional) multi-agent workflow — EXPLICIT OPT-IN only** (like the Reading OCR wave, §15): one
+   `general-purpose` subagent per batch of ~10 words → author WordEntry cards to `/tmp/dout/NN.json`
+   (schema = the contract in step 2) → aggregate inline → dedupe by id + headword against ALL word
+   files → emit into `custom.ts` → `check:data`. Pass `args` as a DIRECT JSON array.
+4. **Mark applied words.** For every word authored, tag its source line(s) in `definition.txt` with
+   **`✅ [D2]`** and extend the APPLIED header block (bump the count). `grep '✅ \[' definition.txt` then
+   lists D1 + D2; unmarked lines stay open. (Convention: §10 / `DEFINITIONS.md` §6.)
+5. **Verify:** full `npm run verify` in a cloud scratch copy (typecheck · eslint · check:data — expect
+   **~270 words** · test · smoke · build) + a fact spot-check; screenshot `#/definitions` on a couple of
+   new letters. Owner runs `npm run verify` locally.
+6. **Write back:** the device mount blocks `unlink`, so `tar` can't overwrite — extract to a temp dir
+   and **`cp`** over (D1 method). Files: `custom.ts`, the marked `definition.txt`, and update the
+   CLAUDE.md §14 status log. **Branch `d2-definitions-wave`**; agent never pushes.
+7. **Target:** ~100 this wave (170 → ~270). Continue waves through the backlog, marking `✅ [D3]`…

@@ -90,6 +90,8 @@ lists everything applied; unmarked lines are still open. Keep the header block's
 setback · collaborative · glitch · deadline · prioritize · resolve · gist · precise · simultaneously ·
 acknowledge · willingness · assertive · cautious · transparent · allocate.
 
+**Applied so far (D2 — +60 words → 80 total):** among · between · beside · besides · desert · dessert · quite · quiet · quit · quick · quickly · affect · effect · attitude · altitude · recognize · realize · access · accurate · appreciate · furious · guilty · disappointed · relieved · proud · calm · terrified · bored · relaxed · excited · hopeful · approach · charity · commute · compromise · demand · despite · determination · doubt · earn · emphasize · encourage · essential · ethical · explore · forecast · impact · income · influence · leadership · maintain · notice · outcome · persuade · polite · purchase · reliable · solution · survive · valuable.
+
 ## 7. Verification (D1)
 
 Full `npm run verify` green in the cloud scratch — typecheck · eslint · check:data (**170 words = 150
