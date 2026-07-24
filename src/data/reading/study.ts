@@ -891,4 +891,88 @@ export const studyTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'writing',
+    title: { en: 'Writing', uk: 'Письмо' },
+    category: 'study',
+    level: 'a2',
+    minutes: 1,
+    topics: ['study', 'writing', 'skills'],
+    seeAlso: ['reading', 'speaking'],
+    body: {
+      en: 'Writing in English helps me express my thoughts clearly. I write short stories, essays, and sometimes I keep a diary. Writing lets me practise new words and grammar rules. I often make mistakes, but I learn from them. My teacher corrects my work and gives me advice. When I write regularly, I feel more confident and my communication skills improve. Good writing also helps me at school and at work, because clear writing shows clear thinking.',
+      uk: 'Письмо англійською допомагає мені чітко висловлювати думки. Я пишу короткі оповідання, есе, а іноді веду щоденник. Письмо дає змогу практикувати нові слова й граматичні правила. Я часто роблю помилки, але вчуся на них. Учитель виправляє мою роботу й дає поради. Коли я пишу регулярно, я почуваюся впевненіше, а мої навички спілкування покращуються. Гарне письмо також допомагає мені в школі та на роботі, адже чітке письмо відображає чітке мислення.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How does writing regularly help the writer?', uk: 'Як регулярне письмо допомагає авторові?' },
+        options: [
+          { en: 'It builds confidence and improves communication', uk: 'Зміцнює впевненість і покращує спілкування' },
+          { en: 'It makes handwriting neater only', uk: 'Лише робить почерк охайнішим' },
+          { en: 'It replaces the need to read', uk: 'Замінює потребу читати' },
+        ],
+        correct: 0,
+        explain: { en: '“When I write regularly, I feel more confident and my communication skills improve.”', uk: '«Коли я пишу регулярно, я почуваюся впевненіше…»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the writer do with mistakes?', uk: 'Що автор робить із помилками?' },
+        options: [
+          { en: 'Learns from them', uk: 'Вчиться на них' },
+          { en: 'Ignores them', uk: 'Ігнорує їх' },
+          { en: 'Stops writing', uk: 'Припиняє писати' },
+        ],
+        correct: 0,
+        explain: { en: '“I often make mistakes, but I learn from them.”', uk: '«Я часто роблю помилки, але вчуся на них.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What kind of writing would you like to practise in English, and why?', uk: 'Який вид письма ви хотіли б практикувати англійською і чому?' },
+        sample: { en: 'Answers will vary — e.g., a diary, emails, or short stories. A good answer says why it is useful for you.', uk: 'Відповіді різнитимуться — напр., щоденник, листи чи оповідання. Гарна відповідь пояснює, чому це корисно саме вам.' },
+      },
+    ],
+  },
+  {
+    id: 'public-speaking',
+    title: { en: 'Public Speaking', uk: 'Публічні виступи' },
+    category: 'study',
+    level: 'b1',
+    minutes: 1,
+    topics: ['study', 'communication', 'confidence'],
+    seeAlso: ['speaking', 'communication'],
+    body: {
+      en: 'Public speaking is an important skill that helps us share our ideas with confidence. It teaches us to express our thoughts clearly in front of others — in class, at work, or in everyday life. At first, speaking in front of people can be scary, but with practice it becomes easier and even enjoyable. Public speaking builds confidence, because it pushes us to overcome fear and believe in ourselves. It also improves our communication skills, which are useful in almost every part of life. When we learn to speak well, we can inspire, motivate, and connect with people. Public speaking is not just about talking — it is about making an impact with our words.',
+      uk: 'Публічний виступ — важлива навичка, яка допомагає нам упевнено ділитися своїми ідеями. Вона вчить чітко висловлювати думки перед іншими — у класі, на роботі чи в повсякденному житті. Спершу говорити перед людьми буває страшно, але з практикою це стає легше й навіть приємно. Публічні виступи зміцнюють упевненість, бо змушують долати страх і вірити в себе. Вони також покращують навички спілкування, корисні майже в кожній сфері життя. Коли ми вчимося добре говорити, ми можемо надихати, мотивувати й налагоджувати звʼязок із людьми. Публічний виступ — це не просто говоріння: це вміння впливати своїми словами.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How does public speaking become easier, according to the text?', uk: 'Як публічні виступи стають легшими, за текстом?' },
+        options: [
+          { en: 'With practice', uk: 'З практикою' },
+          { en: 'By avoiding it', uk: 'Уникаючи їх' },
+          { en: 'By speaking faster', uk: 'Говорячи швидше' },
+        ],
+        correct: 0,
+        explain: { en: '“…with practice it becomes easier and even enjoyable.”', uk: '«…з практикою це стає легше й навіть приємно.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is public speaking really about, according to the text?', uk: 'Про що насправді публічний виступ, за текстом?' },
+        options: [
+          { en: 'Making an impact with our words', uk: 'Про вплив своїми словами' },
+          { en: 'Talking as long as possible', uk: 'Говорити якнайдовше' },
+          { en: 'Using difficult words', uk: 'Вживати складні слова' },
+        ],
+        correct: 0,
+        explain: { en: '“…it is about making an impact with our words.”', uk: '«…це вміння впливати своїми словами.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'When did you last speak in front of a group? What would help you feel more confident?', uk: 'Коли ви востаннє виступали перед групою? Що допомогло б вам почуватися впевненіше?' },
+        sample: { en: 'Answers will vary. A good answer names a real situation and one concrete step (preparation, practice, breathing).', uk: 'Відповіді різнитимуться. Гарна відповідь називає реальну ситуацію й один конкретний крок (підготовка, практика, дихання).' },
+      },
+    ],
+  },
 ];

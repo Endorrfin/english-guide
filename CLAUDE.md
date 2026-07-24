@@ -668,6 +668,29 @@ CURRICULUM.md §G / §R.)
   Owner next: `npm run verify` locally → branch (e.g. `v3-irregular-trainer` / `v-idioms-waves`) → commit
   → PR. Deferred/next: grow irregular ~75 → ~150; optional idiom register-filter + theme grouping in Learn;
   wire idiom/irregular mastery into the `#/review` SRS.
+- **RB1 — Reading wave: +31 texts (Biographies & Speeches + short essays), 100 → 131.** First wave fed by
+  the owner's **text list** `_examples/reading.txt` (not the screenshot-OCR path of §15). Added a **new
+  `biographies` category** ("Biographies & Speeches", order 18; `other`→19) with **22 condensed graded
+  adaptations** (b1–b2, ~2–3 min, full UA translation) of real biographies + speeches: Adam Smith,
+  Steve Jobs (Stanford '05), Elon Musk ×2, Trump ×2, Gates (Harvard '07), Zuckerberg ×2 (Harvard '17 ·
+  Georgetown '19), Bezos (Princeton '10), Tim Cook, Buffett, Sam Altman, Ivanka Trump, Selena Gomez,
+  Angelina Jolie, Ellen (Tulane '09), JFK ('61 inaugural), Mandela, Keanu Reeves, Jack Ma, Rich Dad Poor
+  Dad — **faithful summaries only: no invented quotes/facts, politically neutral**, each `source`-linked to
+  the origin video/speech. Plus **9 short essays** into existing categories: `writing` + `public-speaking`
+  (study), `friendship` (© Sheikh Juma), `my-house` (everyday), `the-internet` + `facebook` (technology),
+  `commitment` (discipline), `self-improvement` (values), `teamwork` (work). **Skipped** ~14 reading.txt
+  items already in the library (my-mother, communication, success-habits, life, success, believe-in-yourself,
+  stay-growing/-focused, self-confidence≈confidence, reading/listening/speaking…). **Held back** (different
+  genre — need an owner call): the WHO-NEED-PROVIDE dialogue, the 10 LIFE-REFLECTIONS + 9 MODERN-LOVE-TALES
+  relationship-debate transcripts, and the 13 ELK jokes — none match the graded-essay style. **Method:**
+  6 `general-purpose` subagents drafted the bios in parallel → JSON → validated → codegen
+  `reading/biographies.ts`; Part A hand-authored + inserted into category files. **Verify:** scoped strict
+  `tsc` ✓ + full check:data reading rules replicated over 131 texts ✓ (cloud scratch — 131 reading in 19
+  categories, all bilingual, questions + seeAlso resolve). NOT run here (owner runs `npm run verify`): full
+  `tsc -b`, `eslint`, `smoke`, `vite build`. Applied source lines tagged **`✅ [RB1]`** in
+  `_examples/reading.txt` (+ an APPLIED header block; held/dup lines tagged too) so next month's 10–40 new
+  texts diff cleanly. Owner next: `npm run verify` → branch `rb1-reading-biographies` → commit. Deferred:
+  owner decision on the held-back dialogues/jokes (own genre/category?); the `#/reading` counter auto-updates.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

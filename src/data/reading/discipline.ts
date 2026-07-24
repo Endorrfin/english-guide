@@ -713,4 +713,46 @@ export const disciplineTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'commitment',
+    title: { en: 'Commitment', uk: 'Відданість' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    topics: ['discipline', 'commitment', 'consistency'],
+    seeAlso: ['discipline-in-life', 'never-give-up'],
+    body: {
+      en: 'Commitment is the promise you make to yourself to stay dedicated. It means continuing your journey even when motivation fades. When you are committed, you show up every day — not only when it is easy, but also when it is difficult. Commitment turns goals into plans and plans into results. It builds discipline, responsibility, and trust. Success does not come from talent alone; it comes from consistent commitment over time. When you stay committed, you prove that your dreams truly matter.',
+      uk: 'Відданість — це обіцянка, яку ти даєш собі, щоб залишатися вірним меті. Вона означає продовжувати свій шлях навіть тоді, коли мотивація згасає. Коли ти відданий справі, ти працюєш щодня — не лише тоді, коли легко, а й тоді, коли важко. Відданість перетворює цілі на плани, а плани — на результати. Вона будує дисципліну, відповідальність і довіру. Успіх приходить не лише завдяки таланту; він приходить завдяки послідовній відданості впродовж часу. Коли ти залишаєшся відданим, ти доводиш, що твої мрії справді важливі.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does commitment mean, according to the text?', uk: 'Що означає відданість, за текстом?' },
+        options: [
+          { en: 'Continuing even when motivation fades', uk: 'Продовжувати навіть коли мотивація згасає' },
+          { en: 'Working only when it is easy', uk: 'Працювати лише коли легко' },
+          { en: 'Waiting for talent to appear', uk: 'Чекати, поки зʼявиться талант' },
+        ],
+        correct: 0,
+        explain: { en: '“It means continuing your journey even when motivation fades.”', uk: '«Вона означає продовжувати свій шлях навіть тоді, коли мотивація згасає.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Where does success mainly come from, according to the text?', uk: 'Звідки переважно береться успіх, за текстом?' },
+        options: [
+          { en: 'Consistent commitment over time', uk: 'Послідовна відданість упродовж часу' },
+          { en: 'Talent alone', uk: 'Лише талант' },
+          { en: 'Luck alone', uk: 'Лише удача' },
+        ],
+        correct: 0,
+        explain: { en: '“Success does not come from talent alone; it comes from consistent commitment over time.”', uk: '«Успіх приходить не лише завдяки таланту; він приходить завдяки послідовній відданості…»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one goal you are committed to, and how do you show up for it?', uk: 'Яка одна ціль, якій ви віддані, і як ви працюєте над нею?' },
+        sample: { en: 'Answers will vary. A good answer names a goal and a daily action that continues even on hard days.', uk: 'Відповіді різнитимуться. Гарна відповідь називає ціль і щоденну дію, яка триває навіть у важкі дні.' },
+      },
+    ],
+  },
 ];

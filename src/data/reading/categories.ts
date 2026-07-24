@@ -22,5 +22,7 @@ export const readingCategories: ReadingCategory[] = [
   { id: 'technology', order: 15, title: { en: 'Technology', uk: 'Технології' }, blurb: { en: 'Devices, the internet, and the future.', uk: 'Пристрої, інтернет і майбутнє.' } },
   { id: 'travel', order: 16, title: { en: 'Travel', uk: 'Подорожі' }, blurb: { en: 'Trips, places, and journeys.', uk: 'Поїздки, місця і мандрівки.' } },
   { id: 'countries', order: 17, title: { en: 'Countries & culture', uk: 'Країни' }, blurb: { en: 'Nations, cultures, and traditions.', uk: 'Народи, культури і традиції.' } },
-  { id: 'other', order: 18, title: { en: 'Other', uk: 'Інше' }, blurb: { en: 'Everything that doesn’t fit a box yet.', uk: 'Усе, що поки не вклалося в рубрику.' } },
+  // CHANGED (Wave RB1): biographies & speeches — condensed, graded adaptations of real lives and talks.
+  { id: 'biographies', order: 18, title: { en: 'Biographies & Speeches', uk: 'Біографії та промови' }, blurb: { en: 'Real lives, famous speeches, and the ideas behind them.', uk: 'Реальні життєписи, відомі промови та ідеї за ними.' } },
+  { id: 'other', order: 19, title: { en: 'Other', uk: 'Інше' }, blurb: { en: 'Everything that doesn’t fit a box yet.', uk: 'Усе, що поки не вклалося в рубрику.' } },
 ];

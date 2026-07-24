@@ -1272,4 +1272,46 @@ export const valuesTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'self-improvement',
+    title: { en: 'Self-Improvement', uk: 'Самовдосконалення' },
+    category: 'values',
+    level: 'a2',
+    minutes: 1,
+    topics: ['self-improvement', 'habits', 'growth'],
+    seeAlso: ['stay-growing', 'self-control'],
+    body: {
+      en: 'Self-improvement means trying to become a little better every day. It helps us grow in life. We can improve our habits and the way we think. Reading books helps us learn new things, and learning new skills makes us more confident. Good habits make our life easier, so we should manage our time well. Helping others improves us too. Mistakes are not the end — they help us become wiser. Staying positive is very important. Small steps can bring big changes. Self-improvement takes time and patience, but in the end it makes our life better and happier.',
+      uk: 'Самовдосконалення означає щодня намагатися стати трохи кращим. Воно допомагає нам зростати. Ми можемо покращувати свої звички й спосіб мислення. Читання книжок допомагає пізнавати нове, а опанування нових навичок робить нас упевненішими. Хороші звички полегшують життя, тож варто добре керувати своїм часом. Допомога іншим також покращує нас. Помилки — це не кінець: вони допомагають стати мудрішими. Дуже важливо залишатися позитивним. Маленькі кроки можуть приносити великі зміни. Самовдосконалення потребує часу й терпіння, але зрештою робить наше життя кращим і щасливішим.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does self-improvement mean, according to the text?', uk: 'Що означає самовдосконалення, за текстом?' },
+        options: [
+          { en: 'Trying to become a little better every day', uk: 'Щодня ставати трохи кращим' },
+          { en: 'Becoming perfect all at once', uk: 'Стати досконалим одразу' },
+          { en: 'Never changing anything', uk: 'Ніколи нічого не міняти' },
+        ],
+        correct: 0,
+        explain: { en: '“Self-improvement means trying to become a little better every day.”', uk: '«Самовдосконалення означає щодня намагатися стати трохи кращим.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'How does the text describe mistakes?', uk: 'Як текст описує помилки?' },
+        options: [
+          { en: 'They help us become wiser', uk: 'Вони допомагають стати мудрішими' },
+          { en: 'They ruin everything', uk: 'Вони все руйнують' },
+          { en: 'They should be hidden', uk: 'Їх треба приховувати' },
+        ],
+        correct: 0,
+        explain: { en: '“Mistakes are not the end — they help us become wiser.”', uk: '«Помилки — це не кінець: вони допомагають стати мудрішими.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Name one small habit you could improve this month, and your first step.', uk: 'Назвіть одну маленьку звичку, яку могли б покращити цього місяця, і перший крок.' },
+        sample: { en: 'Answers will vary — e.g., sleep, reading, or exercise. A good answer names one concrete first step.', uk: 'Відповіді різнитимуться — напр., сон, читання чи спорт. Гарна відповідь називає один конкретний перший крок.' },
+      },
+    ],
+  },
 ];
