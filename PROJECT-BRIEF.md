@@ -56,8 +56,10 @@ portfolio piece (GitHub Pages).
 ## 4. Scope
 
 - **In:** grammar A1→C1 mapped to CEFR; **modal verbs flagship** (6 modules, deepest treatment);
-  dictionary 1,000→3,000 words in waves; **phrasal verbs as searchable cards**; **100–300 most-used
-  idioms**; ~150 irregular verbs + drill; trainers (SRS flashcards / gap-fill / MCQ); pronunciation:
+  dictionary 1,000→3,000 words in waves; a **Words hub** (V1/V2) grouping Dictionary · Definitions ·
+  **Idioms** · Irregular verbs under one nav section; **phrasal verbs + 100–300 most-used idioms** as
+  their own trainer (`#/idioms`, Learn·Guess·Match, UA equivalents + origins — seeded V2, grows in
+  waves); ~150 irregular verbs + drill; trainers (SRS flashcards / gap-fill / MCQ); pronunciation:
   IPA on every card + TTS via Web Speech API; typical UA-speaker confusables (quite/quiet,
   desert/dessert, make/do, influence/impact…).
 - **Curriculum source:** Oxford 3000 (CEFR-tagged) is the dictionary **seed**; the owner's

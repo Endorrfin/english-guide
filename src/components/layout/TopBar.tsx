@@ -7,7 +7,6 @@ import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import {
   hrefDictionary,
-  hrefIrregular,
   hrefMap,
   hrefPractice,
   hrefReading,
@@ -159,7 +158,6 @@ export function TopBar() {
           <a href={hrefReading()}>{t(ui.reading)}</a>
           <a href={hrefPractice()}>{t(ui.practice)}</a>
           <a href={hrefReview()}>{t(ui.review)}</a>
-          <a href={hrefIrregular()}>{t(ui.irregularVerbs)}</a>
         </nav>
 
         <div className="levelseg" role="group" aria-label={t(ui.levelFilter)}>

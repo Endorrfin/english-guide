@@ -20,8 +20,11 @@ learning-UX + correctness, in that order.
 
 - **Vite + React 19 + TypeScript (strict).** Static content, no runtime fetch — works offline, deploys anywhere.
 - **No router library** — small custom **hash router**: `#/map`, `#/m/<module>/<topic>`,
-  `#/definitions/<id?>` (D1), `#/dictionary/<id?>`, `#/practice`, `#/review`, `#/irregular`. Hash
-  routing + `vite base:'./'` works under any GitHub Pages sub-path with zero config.
+  `#/definitions/<id?>` (D1), `#/dictionary/<id?>`, `#/idioms` (V2), `#/practice`, `#/review`,
+  `#/irregular`. Hash routing + `vite base:'./'` works under any GitHub Pages sub-path with zero
+  config. **Words hub (V1/V2):** `#/dictionary` · `#/definitions` · `#/idioms` · `#/irregular` are one
+  top-nav section **Words** with a shared sub-tab bar (`VocabTabs`/`WordsLayout`); routes stay flat, so
+  deep-links + search are untouched. `isWordsRoute()` lights the single nav entry on any tab.
 - **SSOT:** `src/data/concepts.ts` (thin aggregator) + `src/data/modules/*` for grammar;
   **`src/data/words/{a1,a2,b1,b2,c1,custom}.ts` for the dictionary**. Pages render from data.
 - **Bilingual at the data layer:** every human-readable string is `Localized { en; uk }`.
@@ -122,7 +125,10 @@ Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
 figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular`) and the
 **Definitions study page** (`#/definitions`, D1 — the word front door: A–Z browse + Study/Recall/
-Describe/Cloze over the shared word corpus) are pages, not sims.
+Describe/Cloze over the shared word corpus) are pages, not sims. **The Words hub (V1/V2)** groups
+Dictionary · Definitions · **Idioms** · Irregular under one nav section; the **Idioms trainer**
+(`#/idioms`, V2) is its own SSOT (`src/data/idioms.ts`, multi-word expressions with a Ukrainian
+equivalent + origin) with three modes — Learn · Guess · Match (pure logic in `lib/idioms.ts`).
 
 ## 7. Theme / brand
 
@@ -595,6 +601,43 @@ CURRICULUM.md §G / §R.)
   updated. Owner next: `npm run verify` locally → branch `t4-tenses-choosing-narrative` → commit →
   push. Deferred/next: dictionary v2 (lazy chunks + index) + `#/review` SRS port + `#/irregular`;
   Reading OCR waves; the idioms tab (~178 short phrases).
+
+- **V1 + V2 (2026-07-24) — the Words hub + the Idioms trainer + Irregular moved in.** Owner UX pass on
+  the word surfaces (this session, 3 waves in-conversation). **V1 (Words hub):** Dictionary + Definitions
+  unified under ONE top-nav entry **Words** (`ui.words`) with a shared sub-tab bar
+  (`components/layout/VocabTabs.tsx` + `WordsLayout.tsx`) — **flat routes kept** (`#/dictionary`,
+  `#/definitions`, +`#/idioms`), so deep-links + `search.ts` are untouched; TopBar + Sidebar collapsed the
+  two links into one, `isWordsRoute()` lights it on any tab. **A–Z everywhere:** the Dictionary gained the
+  Definitions A–Z rail (reuses `lib/definitions` helpers — `availableLetters`/`firstLetter`/`groupByLetter`
+  — with grouped A/B/C headers); the rail is now **one line on desktop** (`.def-alpha` nowrap + equal
+  `flex:1`, new `.def-alpha-all` keeps the "All" pill at label width; wraps < 560px — the ABC.png fix).
+  The section `<h1>Words</h1>` is `sr-only` (owner: reclaim the vertical space; a screen-reader/SEO heading
+  stays). **V2 (Idioms trainer, `#/idioms`):** a NEW SSOT `src/data/idioms.ts` — **27 golden entries**
+  (idioms + phrasal verbs + collocations), deliberately SEPARATE from the single-word corpus (per D3/D6) —
+  with a new `IdiomEntry` type in `types.ts` (bilingual `meaning`, **`uaEquivalent`** = the "aha" hook,
+  `literal?`, `register`, `themes`, 2–3 bilingual examples, `origin?`). Page
+  `components/pages/IdiomsPage.tsx` has **three modes** (best-practice idiom pedagogy): **Learn**
+  (kind-grouped cards — UA equivalent up front, examples + TTS, origin story, mastery), **Guess** (meaning
+  + a blanked context sentence → reveal → self-rate), **Match** (a click-to-pair mini-game). Pure helpers
+  `lib/idioms.ts` (kind grouping, theme collection, guess-blank, an injected-`rand` shuffle + match round)
+  + golden test `scripts/test-idioms.ts` (auto-discovered). Mastery reuses `masteryStore`, namespaced
+  `idiom:<id>` so it never collides with word ids. `.idiom-*` + `.vocab-*` CSS appended (reuses `.dict-*`/
+  `.def-*`/`.chip`/`.levelseg`; `--ok`/`--danger` for the match feedback, reduced-motion-safe shake).
+  **Irregular verbs moved INTO the Words hub** as the 4th tab (still a SOON placeholder — `IrregularPage`
+  in `WordsLayout`); removed from TopBar + Sidebar (route `#/irregular` unchanged). **Gates:**
+  `check-data.ts` now validates the idioms dataset (unique ids/phrases, kind/register/level, bilingual
+  meaning + ≥2 bilingual examples, non-empty themes, bilingual literal/origin); `smoke.ts` renders
+  IdiomsPage (canaries `spot on` / `break the ice`, min 1200) + IrregularPage, + the `#/idioms` hash.
+  **Verification: FULL `npm run verify` ✓ green in the cloud scratch** — typecheck (`tsc -b`) · eslint
+  (clean, 0 warnings) · check:data (6/34 · 12 authored · 181 exercises · 447 words · 100 reading · **27
+  idioms** · all bilingual · registry+links resolve) · test ×8 (incl. **test-idioms** on 27) · smoke
+  (**225 checks**) · vite build (IdiomsPage lazy chunk). All four hub tabs + the three idiom modes were
+  render-checked in headless Chromium (EN+UA; Learn card with the UA-equivalent block + origin, Guess
+  reveal, Match 5×5 board). Idiom senses/UA-equivalents + origins spot-checked against Cambridge/learner
+  references. **Write-back:** via `device_bash` `cp`-over-mount (the §16 method), no git touched — changes
+  land in the owner's working tree. Owner next: `npm run verify` locally → branch `v1-words-hub` (or split
+  `v1`/`v2`) → commit → PR. Deferred/next: grow the idioms corpus toward the ~178-phrase backlog; build the
+  Irregular trainer (searchable table + 3-forms drill); optional idiom-of-the-day + per-tab counts.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

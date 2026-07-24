@@ -72,7 +72,8 @@ export const hrefReadingText = (id: string) => `#/reading/${encodeURIComponent(i
 
 // CHANGED (V1): the three tabs of the Words hub — lets TopBar/Sidebar light one nav entry for all.
 export function isWordsRoute(name: Route['name']): boolean {
-  return name === 'dictionary' || name === 'definitions' || name === 'idioms';
+  // CHANGED (V2): Irregular verbs is now a Words-hub tab too.
+  return name === 'dictionary' || name === 'definitions' || name === 'idioms' || name === 'irregular';
 }
 
 export function navigate(href: string): void {

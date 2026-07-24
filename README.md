@@ -20,23 +20,30 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
   + the parametric `TenseTimeline` figure. Planned: `conditionals-machine`, `article-tree`,
   `word-formation-lab`.
+- **Words hub** — one nav section with four tabs: **Dictionary · Definitions · Idioms · Irregular
+  verbs**. All word surfaces in one place; each keeps its own deep links and search.
 - **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
   search, then open a word and engrave it four ways — **Study** (definition + synonyms + the 4 general
   / 3 professional examples), **Recall** (definition-first flashcard, the word hidden until you
   reveal), **Describe** (define it *without naming it* — a scaffolded, self-scored challenge), and
   **Cloze** (fill the word into its own sentence, auto-checked). Mastery (new / learning / known) per
   word, over the same corpus as the Dictionary. See `DEFINITIONS.md`.
-- **The Dictionary** — the fast flat lookup: words, phrasal verbs and idioms as expandable cards:
+- **The Dictionary** — the fast lookup: words, phrasal verbs and idioms as expandable cards:
   IPA + TTS pronunciation, UA translations, bilingual definitions, **7 examples per word (4 general +
-  business / office / dev)**, forms, collocations, cross-links; search by English word **or** Ukrainian
-  translation; filters by CEFR level, part of speech, topic.
+  business / office / dev)**, forms, collocations, cross-links; **A–Z rail** + search by English word
+  **or** Ukrainian translation; filters by CEFR level, part of speech, topic.
+- **Idioms ★ (word study)** — `#/idioms`, an engaging trainer for **multi-word English** (idioms ·
+  phrasal verbs · collocations — a dataset kept separate from single words): each card carries its
+  **Ukrainian equivalent**, real examples with TTS and — for idioms — the **story behind it**. Three
+  modes: **Learn** (browse by type/theme), **Guess** (meaning → recall the expression), **Match** (pair
+  expressions to meanings). Mastery per expression.
 - **Reading (Section VII)** — a growing library of short, real-life texts in an accordion by category:
   read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
   (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
   CEFR level, mark texts as read. ~100 texts now, growing to 1000+ in waves.
 - **Trainers** — `#/review` SRS flashcards (SM-2-lite; decks per level · My words · irregular verbs),
-  `#/practice` gap-fill + MCQ hub with explanations, `#/irregular` 3-forms drill. Progress lives in
-  your browser (localStorage).
+  `#/practice` gap-fill + MCQ hub with explanations, and the irregular-verbs 3-forms drill (now a tab
+  under **Words → Irregular verbs**). Progress lives in your browser (localStorage).
 - **Bilingual** at the data layer — every string is `{ en, uk }`; grammar terms stay English in both.
 
 ## Tech
@@ -72,7 +79,7 @@ src/
   i18n/        ui strings + EN/UA language provider
   theme/       tokens.css · global.css · components.css
   lib/         hashRouter · search (modules+words) · exercise · srs · tts · registry · appState
-  components/  layout/ · module/ · map/ · pages/ (Definitions·Dictionary·Practice·Review·Irregular) · sims/ · figures/
+  components/  layout/ (incl. VocabTabs·WordsLayout) · module/ · map/ · pages/ (Definitions·Dictionary·Idioms·Irregular·Practice·Review) · sims/ · figures/
 scripts/       check-data.ts · run-tests.ts · smoke.ts (+ engine tests)
 ```
 
@@ -141,16 +148,25 @@ mental model, key points, pitfalls (типові помилки україном
 `deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense), `sentence-morpher` (одне
 речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
 `TenseTimeline`. Заплановані — `conditionals-machine`, `article-tree`, `word-formation-lab`.
+**Words hub** — один розділ навігації з чотирма вкладками: **Dictionary · Definitions · Idioms ·
+Irregular verbs**. Усі «словникові» поверхні в одному місці; кожна зберігає свої deep-links і пошук.
 **Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
 пошук, тоді відкрий слово й закарбуй його чотирма способами — **Study** (означення + синоніми +
 приклади 4 general / 3 professional), **Recall** (flashcard зі схованим словом), **Describe** (опиши,
 *не називаючи* — self-scored челендж зі скаффолдом), **Cloze** (встав слово в його ж речення). Mastery
 (new / learning / known) на кожне слово, над тим самим корпусом, що й Словник. Див. `DEFINITIONS.md`.
-**Словник** — швидкий плаский lookup: слова, phrasal verbs та ідіоми як розгортні картки: IPA + вимова
+**Словник** — швидкий lookup: слова, phrasal verbs та ідіоми як розгортні картки: IPA + вимова
 (TTS), переклади, тлумачення, **7 прикладів на слово (4 загальні + business / office / dev)**, форми,
-collocations, перехресні посилання; пошук за англійським словом **або** українським перекладом;
-фільтри за рівнем, частиною мови, темою. **Тренажери** — `#/review` SRS-флешкартки (SM-2-lite), `#/practice` gap-fill +
-MCQ з поясненнями, `#/irregular` drill трьох форм. Прогрес зберігається у браузері (localStorage).
+collocations, перехресні посилання; **рейка A–Z** + пошук за англійським словом **або** українським
+перекладом; фільтри за рівнем, частиною мови, темою.
+**Idioms ★ (вивчення слів)** — `#/idioms`, захопливий тренажер **багатослівної англійської** (ідіоми ·
+phrasal verbs · колокації — датасет, окремий від окремих слів): кожна картка має **український
+відповідник**, живі приклади з озвученням і — для ідіом — **історію походження**. Три режими: **Learn**
+(перегляд за типом/темою), **Guess** (значення → пригадай вираз), **Match** (спаруй вирази зі значеннями).
+Mastery на кожен вираз.
+**Тренажери** — `#/review` SRS-флешкартки (SM-2-lite), `#/practice` gap-fill + MCQ з поясненнями, а drill
+трьох форм неправильних дієслів тепер вкладка **Words → Irregular verbs**. Прогрес зберігається у
+браузері (localStorage).
 
 ## Стек
 

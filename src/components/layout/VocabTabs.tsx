@@ -4,10 +4,10 @@
 // card format, NOT the single-word corpus) arrives in a later wave (CLAUDE.md D3/D6 decision).
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
-import { hrefDefinitions, hrefDictionary, hrefIdioms, navigate } from '../../lib/hashRouter';
+import { hrefDefinitions, hrefDictionary, hrefIdioms, hrefIrregular, navigate } from '../../lib/hashRouter';
 import { cx } from '../../lib/utils';
 
-export type VocabTabId = 'dictionary' | 'definitions' | 'idioms';
+export type VocabTabId = 'dictionary' | 'definitions' | 'idioms' | 'irregular';
 
 type TabDef = {
   id: VocabTabId;
@@ -20,7 +20,9 @@ type TabDef = {
 const TABS: TabDef[] = [
   { id: 'dictionary', label: ui.dictionary, icon: '📖', href: hrefDictionary() },
   { id: 'definitions', label: ui.definitions, icon: '🎓', href: hrefDefinitions() },
-  { id: 'idioms', label: ui.idioms, icon: '💬', href: hrefIdioms(), soon: true },
+  { id: 'idioms', label: ui.idioms, icon: '💬', href: hrefIdioms() },
+  // CHANGED (V2): Irregular verbs moved into the Words hub (4th tab); still a "SOON" placeholder.
+  { id: 'irregular', label: ui.irregularVerbs, icon: '🔀', href: hrefIrregular(), soon: true },
 ];
 
 export function VocabTabs({ active }: { active: VocabTabId }) {

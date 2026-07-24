@@ -2987,3 +2987,150 @@
   margin-top: 12px;
   width: auto;
 }
+
+/* ── Idioms hub (V2): register badge · UA equivalent · origin · Guess · Match ─────────────── */
+.idiom-modeseg {
+  margin: 0.9rem 0 0.2rem;
+}
+.idiom-reg {
+  font: 600 0.66rem var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--tx3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.08rem 0.4rem;
+  text-transform: lowercase;
+}
+.idiom-ua-inline {
+  font-size: 0.86rem;
+}
+.idiom-ua {
+  margin: 0.2rem 0 0.4rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  color: var(--tx);
+}
+.idiom-ua-tag {
+  font: 700 0.66rem var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-right: 0.4rem;
+}
+.idiom-literal {
+  font-size: 0.86rem;
+  margin: 0.2rem 0;
+}
+.idiom-syn {
+  font-size: 0.86rem;
+  margin: 0.3rem 0 0;
+}
+.idiom-ex > div {
+  min-width: 0;
+}
+.idiom-origin {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+  padding: 0.55rem 0.7rem;
+  background: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  color: var(--tx2);
+}
+.idiom-origin-tag {
+  flex: 0 0 auto;
+}
+/* Guess */
+.idiom-guess {
+  max-width: 640px;
+}
+.idiom-guess-ctx {
+  margin: 0.5rem 0;
+  font-style: italic;
+  color: var(--tx2);
+}
+.idiom-guess-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+/* Match game */
+.idiom-match {
+  margin-top: 0.6rem;
+}
+.idiom-match-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 0.5rem 0.7rem;
+  margin-top: 0.5rem;
+  max-width: 760px;
+}
+.idiom-match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.idiom-chip {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--tx);
+  font-size: 0.92rem;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease);
+}
+.idiom-chip:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+.idiom-chip.is-picked {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-bright);
+}
+.idiom-chip.is-matched {
+  border-color: var(--ok);
+  background: var(--ok-soft);
+  color: var(--tx3);
+  cursor: default;
+}
+.idiom-chip.is-wrong {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  animation: idiom-shake 0.35s var(--ease);
+}
+@keyframes idiom-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .idiom-chip.is-wrong {
+    animation: none;
+  }
+}
+.idiom-match-done {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--ok);
+}
+@media (max-width: 560px) {
+  .idiom-match-grid {
+    grid-template-columns: 1fr;
+  }
+}

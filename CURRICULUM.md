@@ -14,9 +14,11 @@
 ## B. Navigation & UX
 
 Landing **CEFR map** (A1→C1 ramp) · collapsible sidebar · **global search over modules AND dictionary
-words** · level filter (a1→c1) · **`#/dictionary/<id?>`** (search / filters level·POS·topic·kind /
-expandable cards / TTS) · **`#/practice`** (gap-fill + MCQ hub, filter by tag & level) ·
-**`#/review`** (SRS decks: per level · My words · irregular verbs) · **`#/irregular`** (table + drill) ·
+words** · level filter (a1→c1) · a **Words hub** (V1/V2) grouping **`#/dictionary/<id?>`** (A–Z rail /
+search / filters level·POS·topic·kind / expandable cards / TTS) · **`#/definitions/<id?>`** (A–Z study:
+Study·Recall·Describe·Cloze) · **`#/idioms`** (multi-word trainer: Learn·Guess·Match, with UA equivalents
++ origins) · **`#/irregular`** (table + drill — now a hub tab) · **`#/practice`** (gap-fill + MCQ hub,
+filter by tag & level) · **`#/review`** (SRS decks: per level · My words · irregular verbs) ·
 mental-models gallery (later polish).
 
 **Dive levels (S5, piloted in Section II Tenses):** module pages whose blocks carry `dive` tags show

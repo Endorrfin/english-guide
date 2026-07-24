@@ -7,7 +7,6 @@ import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import {
   hrefDictionary,
-  hrefIrregular,
   hrefMap,
   hrefModule,
   hrefPractice,
@@ -25,7 +24,7 @@ const PAGE_LINKS: { name: string; href: string; label: (typeof ui)[keyof typeof 
   { name: 'reading', href: hrefReading(), label: ui.reading }, // CHANGED (S3)
   { name: 'practice', href: hrefPractice(), label: ui.practice },
   { name: 'review', href: hrefReview(), label: ui.review },
-  { name: 'irregular', href: hrefIrregular(), label: ui.irregularVerbs },
+  // CHANGED (V2): 'irregular' removed here — it now lives inside the Words hub as a tab.
 ];
 
 const OPEN_KEY = 'englishguide.sidebar';

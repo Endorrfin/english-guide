@@ -13,8 +13,9 @@ import { WORDS } from '../src/data/words';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
 import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
+import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import type {
-  Exercise, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
+  Exercise, IdiomEntry, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
 } from '../src/data/types';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -219,6 +220,31 @@ for (const rt of READING_TEXTS as ReadingText[]) {
   }
 }
 
+// --- idioms checks (V2 — the Idioms hub, a separate dataset) ----------------
+const idiomIds = new Set<string>();
+const idiomPhrases = new Set<string>();
+const IDIOM_KINDS = new Set(['idiom', 'phrasal', 'collocation']);
+const IDIOM_REGISTERS = new Set(['neutral', 'informal', 'formal', 'business']);
+for (const e of IDIOMS as IdiomEntry[]) {
+  const at = `idiom:${e.id}`;
+  err(!idiomIds.has(e.id), `duplicate idiom id ${e.id}`); idiomIds.add(e.id);
+  err(KEBAB.test(e.id), `${at}: id not kebab-case`);
+  err(e.phrase.trim().length > 0, `${at}: empty phrase`);
+  const pk = e.phrase.toLowerCase();
+  err(!idiomPhrases.has(pk), `${at}: duplicate phrase '${e.phrase}'`); idiomPhrases.add(pk);
+  err(IDIOM_KINDS.has(e.kind), `${at}: bad kind '${e.kind}'`);
+  err(IDIOM_REGISTERS.has(e.register), `${at}: bad register '${e.register}'`);
+  err(LEVELS.includes(e.level), `${at}: bad level '${e.level}'`);
+  locOk(e.meaning, `${at}.meaning`);
+  err(e.themes.length > 0, `${at}: needs ≥1 theme`);
+  err(e.examples.length >= 2, `${at}: needs ≥2 examples`);
+  e.examples.forEach((ex, i) => locOk(ex.text, `${at}.examples[${i}]`));
+  if (e.literal) locOk(e.literal, `${at}.literal`);
+  if (e.origin) locOk(e.origin, `${at}.origin`);
+  if (e.uaEquivalent !== undefined) err(e.uaEquivalent.trim().length > 0, `${at}: empty uaEquivalent`);
+  for (const s of e.synonyms ?? []) err(s.trim().length > 0, `${at}: empty synonym`);
+}
+
 // --- COUNTS (locked for S1; sections 5 → 6 in T1 — the S5 Tenses insert) ----
 const EXPECTED_SECTIONS = 6;
 const EXPECTED_MODULES = 34;
@@ -237,5 +263,5 @@ console.log(
   `✓ check:data — ${sections.length} sections, ${modules.length} modules ` +
   `(${modules.filter((m) => isAuthored(m.id)).length} authored), ${exerciseIds.size} exercises, ` +
   `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), ` +
-  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, all bilingual, registry + links resolve.`,
+  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, all bilingual, registry + links resolve.`,
 );

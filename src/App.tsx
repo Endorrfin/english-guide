@@ -15,8 +15,9 @@ const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) 
 // CHANGED (D1): the Definitions study page (front door for words).
 const DefinitionsPage = lazy(() => import('./components/pages/DefinitionsPage').then((m) => ({ default: m.DefinitionsPage })));
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
-// CHANGED (V1): the Words-hub Idioms tab (placeholder page until the idioms wave lands).
+// CHANGED (V1/V2): the Words-hub Idioms trainer, and (V2) the Irregular-verbs tab moved into the hub.
 const IdiomsPage = lazy(() => import('./components/pages/IdiomsPage').then((m) => ({ default: m.IdiomsPage })));
+const IrregularPage = lazy(() => import('./components/pages/IrregularPage').then((m) => ({ default: m.IrregularPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
 const ComingSoon = lazy(() => import('./components/pages/ComingSoon').then((m) => ({ default: m.ComingSoon })));
 // CHANGED (S3): Reading section pages.
@@ -72,12 +73,7 @@ export function App() {
                 <ComingSoon note={ui.reviewSoonNote} />
               </div>
             )}
-            {route.name === 'irregular' && (
-              <div className="content">
-                <h1>{t(ui.irregularVerbs)}</h1>
-                <ComingSoon note={ui.irregularSoonNote} />
-              </div>
-            )}
+            {route.name === 'irregular' && <IrregularPage />}
           </Suspense>
           <Footer />
         </main>
