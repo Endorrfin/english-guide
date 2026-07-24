@@ -26,6 +26,7 @@ import { getMastery, setMastery, useMastery } from '../../lib/masteryStore';
 import type { Mastery } from '../../lib/masteryStore';
 import { useTts } from '../../lib/tts';
 import { cx } from '../../lib/utils';
+import { WordsLayout } from '../layout/WordsLayout'; // CHANGED (V1): Words-hub chrome (H1 + tabs)
 import { LevelBadge } from '../module/LevelBadge';
 
 type StudioMode = 'study' | 'recall' | 'describe' | 'cloze';
@@ -503,9 +504,9 @@ export function DefinitionsPage({ id }: { id?: string }) {
   };
 
   return (
-    <div className="content">
-      <h1>{t(ui.definitions)}</h1>
-      <p className="muted">{t(ui.definitionsLede)}</p>
+    // CHANGED (V1): the page body now lives inside the shared Words hub (H1 "Words" + tabs).
+    <WordsLayout active="definitions">
+      <p className="muted vocab-lede">{t(ui.definitionsLede)}</p>
 
       <div className="dict-toolbar">
         <div className="searchbox">
@@ -562,7 +563,8 @@ export function DefinitionsPage({ id }: { id?: string }) {
       </div>
 
       <div className="def-alpha" role="group" aria-label="A–Z">
-        <button className={cx('def-letter', letter === 'all' && 'on')} onClick={() => setLetter('all')}>
+        {/* CHANGED (V1): def-alpha-all keeps the "All" pill at its label width on the one-line rail. */}
+        <button className={cx('def-letter', 'def-alpha-all', letter === 'all' && 'on')} onClick={() => setLetter('all')}>
           {t(ui.defAllLetters)}
         </button>
         {ALPHABET.map((L) => {
@@ -617,6 +619,6 @@ export function DefinitionsPage({ id }: { id?: string }) {
         ))}
         {shown.length === 0 && <p className="dict-empty muted">{t(ui.searchNoResults)}</p>}
       </div>
-    </div>
+    </WordsLayout>
   );
 }

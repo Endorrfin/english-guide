@@ -15,6 +15,8 @@ const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) 
 // CHANGED (D1): the Definitions study page (front door for words).
 const DefinitionsPage = lazy(() => import('./components/pages/DefinitionsPage').then((m) => ({ default: m.DefinitionsPage })));
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
+// CHANGED (V1): the Words-hub Idioms tab (placeholder page until the idioms wave lands).
+const IdiomsPage = lazy(() => import('./components/pages/IdiomsPage').then((m) => ({ default: m.IdiomsPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
 const ComingSoon = lazy(() => import('./components/pages/ComingSoon').then((m) => ({ default: m.ComingSoon })));
 // CHANGED (S3): Reading section pages.
@@ -60,6 +62,7 @@ export function App() {
             {route.name === 'module' && <ModulePage moduleId={route.moduleId} topicId={route.topicId} />}
             {route.name === 'definitions' && <DefinitionsPage id={route.id} />}
             {route.name === 'dictionary' && <DictionaryPage id={route.id} />}
+            {route.name === 'idioms' && <IdiomsPage />}
             {route.name === 'reading' && <ReadingIndexPage />}
             {route.name === 'reading-text' && <ReadingTextPage id={route.id} />}
             {route.name === 'practice' && <PracticePage />}

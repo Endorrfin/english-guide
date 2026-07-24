@@ -2472,24 +2472,91 @@
   margin-left: auto;
 }
 
-/* A–Z rail */
-.def-alpha {
+/* ── Words hub: sub-tab bar (Dictionary · Definitions · Idioms) ── CHANGED (V1) ─────────── */
+.vocab-tabs {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.2rem;
+  margin: 0.9rem 0 1.3rem;
+  border-bottom: 1px solid var(--line);
+}
+.vocab-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  color: var(--tx2);
+  font-weight: 600;
+  font-size: 0.98rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.vocab-tab:hover {
+  color: var(--tx);
+  background: var(--s2);
+  text-decoration: none;
+}
+.vocab-tab--active {
+  color: var(--accent-bright);
+  border-bottom-color: var(--accent);
+}
+.vocab-tab-ic {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.vocab-tab--soon,
+.vocab-tab--soon:hover {
+  color: var(--tx3);
+}
+.vocab-soon {
+  font: 700 0.6rem var(--font-mono);
+  letter-spacing: 0.09em;
+  color: var(--tx3);
+  background: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.1rem 0.42rem;
+}
+.vocab-lede {
+  margin-top: 0;
+}
+@media (max-width: 560px) {
+  .vocab-tab {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* A–Z rail */
+/* CHANGED (V1): keep the whole A–Z on ONE row on desktop — the 26 letters share the row width
+   equally (flex:1) so 27 controls always fit; "All" keeps its own label width. Wraps on phones. */
+.def-alpha {
+  display: flex;
+  flex-wrap: nowrap;
   gap: 4px;
   margin: 0.4rem 0 1.2rem;
 }
 .def-letter {
   appearance: none;
-  min-width: 1.9rem;
+  flex: 1 1 0; /* CHANGED (V1): equal share of the row (was min-width:1.9rem + wrap) */
+  min-width: 0; /* CHANGED (V1): allow letters to shrink so all fit on one line */
   height: 1.9rem;
-  padding: 0 0.35rem;
+  padding: 0 0.15rem; /* CHANGED (V1): trim side padding to gain room */
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   background: var(--surface);
   color: var(--tx2);
   font: 600 0.82rem var(--font-mono);
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+/* CHANGED (V1): the "All / Всі" pill sizes to its label instead of sharing the equal split. */
+.def-alpha-all {
+  flex: 0 0 auto;
+  padding: 0 0.55rem;
 }
 .def-letter:hover:not(:disabled) {
   border-color: var(--accent);
@@ -2504,6 +2571,17 @@
 .def-letter:disabled {
   opacity: 0.32;
   cursor: default;
+}
+/* CHANGED (V1): on phones the equal split gets too tight — fall back to the wrapping rail. */
+@media (max-width: 560px) {
+  .def-alpha {
+    flex-wrap: wrap;
+  }
+  .def-letter {
+    flex: 0 0 auto;
+    min-width: 1.9rem;
+    padding: 0 0.35rem;
+  }
 }
 
 /* Index list, grouped by first letter */
