@@ -2,7 +2,7 @@
 // study object; UA is the full translation), TTS listen, source attribution, comprehension questions
 // (auto-checked MCQ through lib/exercise + open questions with a revealable model answer), mark-as-read,
 // and prev/next within the category. A11y: radiogroups, polite live verdicts, focus-safe. Reduced-motion safe.
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReadingQuestion, ReadingText } from '../../data/types';
 import { adjacentInCategory, getReadingCategory, getReadingText } from '../../data/reading';
 import { useLang } from '../../i18n/lang';
@@ -138,9 +138,15 @@ function NotFound() {
 }
 
 export function ReadingTextPage({ id }: { id: string }) {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const { isKnown, toggleKnown } = useAppState();
-  const [showUk, setShowUk] = useState(false);
+  // CHANGED (V9): the body follows the GLOBAL language by default (so the EN/UA toggle in the top bar
+  // now translates the text too), while the in-page Original/Translation control stays as a manual
+  // override. Re-syncs whenever the global language changes or the reader opens another text.
+  const [showUk, setShowUk] = useState(lang === 'uk');
+  useEffect(() => {
+    setShowUk(lang === 'uk');
+  }, [lang, id]);
   useSolvedSet(); // subscribe so MCQ verdicts re-render progress-aware UI
 
   const text: ReadingText | undefined = getReadingText(id);

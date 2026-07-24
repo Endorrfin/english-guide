@@ -119,8 +119,9 @@ sim) and `m22` Requests & politeness.
 **D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
 Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
 dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
-**D2–D6 — shipped:** five more Definitions waves (**+277 cards**) — the dictionary is now **447 words
-(150 A1 + 297 custom)**; the teachable single-word backlog is cleared (the ~178 short phrases go to a
+**D2–D7 — shipped:** six more Definitions waves (**+345 cards**) — the dictionary is now **515 words
+(150 A1 + 365 custom)**. D7 (+68) is the first monthly wave from `_examples/definition_v2.txt` (business/
+office & career vocabulary). The teachable single-word backlog is cleared (the ~178 short phrases go to a
 future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
 `tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
