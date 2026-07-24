@@ -307,4 +307,46 @@ export const workTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'teamwork',
+    title: { en: 'Teamwork', uk: 'Командна робота' },
+    category: 'work',
+    level: 'b1',
+    minutes: 1,
+    topics: ['work', 'teamwork', 'cooperation'],
+    seeAlso: ['leadership', 'business'],
+    body: {
+      en: 'Teamwork means working together with others to reach a shared goal. Working in a team has many benefits. You can share ideas and learn from other people. You often solve problems faster, because everyone helps. If you feel stuck or unsure, your teammates can support you. Different people have different skills, so together you find better solutions — and the work can be more fun and less stressful. However, teamwork also has some challenges. Sometimes it is hard to agree on one idea, and meetings can take a lot of time. A few people may not do their part, and a group can become noisy or distracting. Good communication and respect help a team enjoy the benefits and reduce the problems.',
+      uk: 'Командна робота означає працювати разом з іншими задля спільної мети. Робота в команді має багато переваг. Ти можеш ділитися ідеями й учитися в інших. Часто ви швидше розвʼязуєте проблеми, бо кожен допомагає. Якщо ти зайшов у глухий кут чи вагаєшся, товариші по команді можуть підтримати. У різних людей різні навички, тож разом ви знаходите кращі рішення — а робота може бути цікавішою й менш стресовою. Проте командна робота має й труднощі. Іноді важко дійти згоди щодо однієї ідеї, а зустрічі можуть забирати багато часу. Дехто може не виконувати свою частину, а гурт може стати галасливим чи відвертати увагу. Гарне спілкування й повага допомагають команді користуватися перевагами й зменшувати проблеми.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What is one benefit of teamwork mentioned in the text?', uk: 'Яку одну перевагу командної роботи згадано в тексті?' },
+        options: [
+          { en: 'You can share ideas and learn from others', uk: 'Можна ділитися ідеями й учитися в інших' },
+          { en: 'You never have to talk to anyone', uk: 'Ніколи не треба ні з ким говорити' },
+          { en: 'You always work alone', uk: 'Ти завжди працюєш сам' },
+        ],
+        correct: 0,
+        explain: { en: '“You can share ideas and learn from other people.”', uk: '«Ти можеш ділитися ідеями й учитися в інших.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is one challenge of teamwork mentioned in the text?', uk: 'Яку одну складність командної роботи згадано в тексті?' },
+        options: [
+          { en: 'It can be hard to agree on one idea', uk: 'Буває важко дійти згоди щодо однієї ідеї' },
+          { en: 'Everyone always agrees instantly', uk: 'Усі завжди миттєво погоджуються' },
+          { en: 'There are never any meetings', uk: 'Ніколи не буває зустрічей' },
+        ],
+        correct: 0,
+        explain: { en: '“Sometimes it is hard to agree on one idea, and meetings can take a lot of time.”', uk: '«Іноді важко дійти згоди щодо однієї ідеї, а зустрічі можуть забирати багато часу.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Do you prefer working alone or in a team? Give one reason.', uk: 'Ви віддаєте перевагу роботі наодинці чи в команді? Назвіть одну причину.' },
+        sample: { en: 'Answers will vary. A good answer states a clear preference and one honest reason from experience.', uk: 'Відповіді різнитимуться. Гарна відповідь чітко називає вподобання й одну щиру причину з досвіду.' },
+      },
+    ],
+  },
 ];

@@ -173,4 +173,45 @@ export const everydayTexts: ReadingText[] = [
       },
     ],
   },
+  {
+    id: 'my-house',
+    title: { en: 'My House', uk: 'Мій дім' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['home', 'family', 'everyday'],
+    body: {
+      en: 'I live in a small but beautiful house with my family. It is not very big, but it is full of love and happiness. My house is in a quiet area, away from the noise of the main road. It has two floors, and every corner is special to me because I have so many memories there. In front of the house there is a small garden. My mother grows flowers and some vegetables in it. The garden makes our home look fresh and colourful, especially in the morning when the sun shines on the flowers.',
+      uk: 'Я живу в невеликому, але гарному будинку разом із родиною. Він не дуже великий, зате сповнений любові й щастя. Мій будинок стоїть у тихому районі, подалі від шуму головної дороги. У ньому два поверхи, і кожен куточок особливий для мене, бо там у мене багато спогадів. Перед будинком є маленький сад. Моя мама вирощує в ньому квіти й трохи овочів. Сад робить нашу оселю свіжою й барвистою, особливо вранці, коли сонце освітлює квіти.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'Where is the house located?', uk: 'Де розташований будинок?' },
+        options: [
+          { en: 'In a quiet area, away from the main road', uk: 'У тихому районі, подалі від головної дороги' },
+          { en: 'In a busy city centre', uk: 'У жвавому центрі міста' },
+          { en: 'Next to a train station', uk: 'Біля залізничної станції' },
+        ],
+        correct: 0,
+        explain: { en: '“My house is in a quiet area, away from the noise of the main road.”', uk: '«Мій будинок стоїть у тихому районі, подалі від шуму головної дороги.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the mother grow in the garden?', uk: 'Що мама вирощує в саду?' },
+        options: [
+          { en: 'Flowers and some vegetables', uk: 'Квіти й трохи овочів' },
+          { en: 'Only tall trees', uk: 'Лише високі дерева' },
+          { en: 'Nothing at all', uk: 'Нічого' },
+        ],
+        correct: 0,
+        explain: { en: '“My mother grows flowers and some vegetables in it.”', uk: '«Моя мама вирощує в ньому квіти й трохи овочів.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Describe one room or place in your home that is special to you, and why.', uk: 'Опишіть одну кімнату чи місце вдома, що особливе для вас, і чому.' },
+        sample: { en: 'Answers will vary — e.g., a kitchen, a balcony, or a reading corner. A good answer explains the memory or feeling.', uk: 'Відповіді різнитимуться — напр., кухня, балкон чи куточок для читання. Гарна відповідь пояснює спогад або почуття.' },
+      },
+    ],
+  },
 ];
