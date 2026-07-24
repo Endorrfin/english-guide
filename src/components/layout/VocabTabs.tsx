@@ -4,6 +4,9 @@
 // card format, NOT the single-word corpus) arrives in a later wave (CLAUDE.md D3/D6 decision).
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
+import { WORDS } from '../../data/words';
+import { IDIOMS } from '../../data/idioms';
+import { IRREGULAR } from '../../data/irregular';
 import { hrefDefinitions, hrefDictionary, hrefIdioms, hrefIrregular, navigate } from '../../lib/hashRouter';
 import { cx } from '../../lib/utils';
 
@@ -14,15 +17,16 @@ type TabDef = {
   label: (typeof ui)[keyof typeof ui];
   icon: string;
   href: string;
+  count?: number; // CHANGED (V3): per-tab entry count badge
   soon?: boolean;
 };
 
+// CHANGED (V3): counts shown as badges; Irregular is now built (no longer "SOON").
 const TABS: TabDef[] = [
-  { id: 'dictionary', label: ui.dictionary, icon: '📖', href: hrefDictionary() },
-  { id: 'definitions', label: ui.definitions, icon: '🎓', href: hrefDefinitions() },
-  { id: 'idioms', label: ui.idioms, icon: '💬', href: hrefIdioms() },
-  // CHANGED (V2): Irregular verbs moved into the Words hub (4th tab); still a "SOON" placeholder.
-  { id: 'irregular', label: ui.irregularVerbs, icon: '🔀', href: hrefIrregular(), soon: true },
+  { id: 'dictionary', label: ui.dictionary, icon: '📖', href: hrefDictionary(), count: WORDS.length },
+  { id: 'definitions', label: ui.definitions, icon: '🎓', href: hrefDefinitions(), count: WORDS.length },
+  { id: 'idioms', label: ui.idioms, icon: '💬', href: hrefIdioms(), count: IDIOMS.length },
+  { id: 'irregular', label: ui.irregularVerbs, icon: '🔀', href: hrefIrregular(), count: IRREGULAR.length },
 ];
 
 export function VocabTabs({ active }: { active: VocabTabId }) {
@@ -46,6 +50,7 @@ export function VocabTabs({ active }: { active: VocabTabId }) {
               {tab.icon}
             </span>
             <span className="vocab-tab-label">{t(tab.label)}</span>
+            {tab.count !== undefined && <span className="vocab-count">{tab.count}</span>}
             {tab.soon && <span className="vocab-soon">{t(ui.soon)}</span>}
           </a>
         );
