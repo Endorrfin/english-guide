@@ -10,7 +10,7 @@ import { IDIOMS } from '../../data/idioms';
 import type { IdiomEntry, IdiomKind, Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
-import { allThemes, blankInExample, buildMatchRound, groupByKind } from '../../lib/idioms';
+import { allThemes, blankInExample, buildMatchRound, groupByKind, idiomOfDay } from '../../lib/idioms';
 import { getMastery, setMastery, useMastery } from '../../lib/masteryStore';
 import type { Mastery } from '../../lib/masteryStore';
 import { useTts } from '../../lib/tts';
@@ -350,6 +350,8 @@ export function IdiomsPage() {
   const [level, setLevel] = useState<Level | 'all'>('all');
 
   const themes = useMemo(() => allThemes(IDIOMS), []);
+  // CHANGED (V3): idiom of the day — deterministic per calendar day (rotates daily, stable within it).
+  const today = useMemo(() => idiomOfDay(IDIOMS, Math.floor(Date.now() / 86_400_000)), []);
   const needle = q.trim().toLowerCase();
   const filtered = useMemo(
     () =>
@@ -443,6 +445,14 @@ export function IdiomsPage() {
         </span>
       </div>
 
+      {mode === 'learn' && today && (
+        <button type="button" className="idiom-otd" onClick={() => setQ(today.phrase)} title={t(ui.idiomOfDay)}>
+          <span className="idiom-otd-tag">🗓 {t(ui.idiomOfDay)}</span>
+          <span className="idiom-otd-phrase">{today.phrase}</span>
+          <span className="idiom-otd-mean dim">{today.meaning.en}</span>
+          {today.uaEquivalent && <span className="idiom-otd-ua">≈ {today.uaEquivalent}</span>}
+        </button>
+      )}
       {mode === 'learn' && <LearnView list={filtered} />}
       {mode === 'guess' && <GuessView list={filtered} />}
       {mode === 'match' && <MatchView list={filtered} />}

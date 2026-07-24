@@ -19,6 +19,12 @@ export function groupByKind(list: readonly IdiomEntry[]): { kind: IdiomKind; ite
   })).filter((g) => g.items.length > 0);
 }
 
+/** A stable "idiom of the day": deterministic pick by a day index (same all day, rotates daily). */
+export function idiomOfDay(list: readonly IdiomEntry[], dayIndex: number): IdiomEntry | null {
+  if (list.length === 0) return null;
+  return list[((Math.trunc(dayIndex) % list.length) + list.length) % list.length];
+}
+
 function esc(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

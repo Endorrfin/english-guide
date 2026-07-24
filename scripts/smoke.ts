@@ -178,7 +178,8 @@ async function main(): Promise<void> {
     check("DictionaryPage", h(DictionaryPage), lang, 800);
     // CHANGED (V2): Idioms trainer renders the Learn list (phrases are English → stable across EN/UK).
     check("IdiomsPage", h(IdiomsPage), lang, 1200, ["spot on", "break the ice"]);
-    check("IrregularPage", h(IrregularPage), lang, 300); // CHANGED (V2): hub chrome + coming-soon card
+    // CHANGED (V3): the real Irregular trainer renders the grouped table (verb forms are English → stable).
+    check("IrregularPage", h(IrregularPage), lang, 1500, ["went", "brought"]);
     check("PracticePage", h(PracticePage), lang, 800);
     check("ComingSoon", h(ComingSoon), lang, 100);
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches

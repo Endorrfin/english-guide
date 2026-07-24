@@ -14,8 +14,9 @@ import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
 import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
+import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
 import type {
-  Exercise, IdiomEntry, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
+  Exercise, IdiomEntry, IrregularVerb, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
 } from '../src/data/types';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -245,6 +246,19 @@ for (const e of IDIOMS as IdiomEntry[]) {
   for (const s of e.synonyms ?? []) err(s.trim().length > 0, `${at}: empty synonym`);
 }
 
+// --- irregular verbs checks (V3 — the Words-hub Irregular tab) --------------
+const irrBases = new Set<string>();
+for (const v of IRREGULAR as IrregularVerb[]) {
+  const at = `irr:${v.base}`;
+  err(v.base.trim().length > 0, `${at}: empty base`);
+  err(!irrBases.has(v.base.toLowerCase()), `duplicate irregular base '${v.base}'`); irrBases.add(v.base.toLowerCase());
+  err(v.past.trim().length > 0, `${at}: empty past`);
+  err(v.pastParticiple.trim().length > 0, `${at}: empty past participle`);
+  err(LEVELS.includes(v.level), `${at}: bad level '${v.level}'`);
+  err(v.translations.length > 0 && v.translations.every((tr) => tr.trim()), `${at}: empty translations`);
+  if (v.note) locOk(v.note, `${at}.note`);
+}
+
 // --- COUNTS (locked for S1; sections 5 → 6 in T1 — the S5 Tenses insert) ----
 const EXPECTED_SECTIONS = 6;
 const EXPECTED_MODULES = 34;
@@ -263,5 +277,5 @@ console.log(
   `✓ check:data — ${sections.length} sections, ${modules.length} modules ` +
   `(${modules.filter((m) => isAuthored(m.id)).length} authored), ${exerciseIds.size} exercises, ` +
   `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), ` +
-  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, all bilingual, registry + links resolve.`,
+  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, ${IRREGULAR.length} irregular verbs, all bilingual, registry + links resolve.`,
 );
