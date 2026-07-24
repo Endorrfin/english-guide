@@ -105,6 +105,8 @@ acknowledge · willingness · assertive · cautious · transparent · allocate.
 
 **Applied so far (D6 — 37 words → 297 total):** arouse · bet · data-driven · depressed · dumbbell · firewood · fluctuation · gathering · green-eyed · half · inference · involve · kennel · lung · non-smoker · pawnshop · pediatrician · pie · pomegranate · prediction · rate · realise · recognise · reference · slack · smoker · stripe · tawdry · technophile · temper · toothache · underground · unreasonable · unwillingness · wheat · wood · x-ray.
 
+**Applied so far (D7 — 68 words → 365 total):** ranking · emphasis · takeaway · dedication · contribution · perform · outperform · outstanding · enthusiastic · workplace · workflow · career · networking · collaboration · coworker · upcoming · proactive · occasion · allocation · assignment · permanent · pressure · confusion · ensure · throughout · entire · perspective · context · clarification · formal · informal · slang · certainly · especially · overhear · adjust · projection · trend · tweak · reveal · revise · investigate · sophisticated · represent · relevant · review · cover · ultimate · effort · waste · admit · noteworthy · negotiation · proposal · offer · deal · agree · agreement · agreeable · persuasive · withdraw · refund · chargeback · strength · weakness · compatibility · sustainable · overlap.
+
 ## 7. Verification (D1)
 
 Full `npm run verify` green in the cloud scratch — typecheck · eslint · check:data (**170 words = 150

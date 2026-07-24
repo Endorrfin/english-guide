@@ -58,8 +58,9 @@ portfolio piece (GitHub Pages).
 - **In:** grammar A1→C1 mapped to CEFR; **modal verbs flagship** (6 modules, deepest treatment);
   dictionary 1,000→3,000 words in waves; a **Words hub** (V1/V2) grouping Dictionary · Definitions ·
   **Idioms** · Irregular verbs under one nav section; **phrasal verbs + 100–300 most-used idioms** as
-  their own trainer (`#/idioms`, Learn·Guess·Match, UA equivalents + origins — seeded V2, grows in
-  waves); ~150 irregular verbs + drill; trainers (SRS flashcards / gap-fill / MCQ); pronunciation:
+  their own trainer (`#/idioms`, Learn·Guess·Match, UA equivalents + origins — **179 shipped V3–V9**:
+  111 idioms · 51 phrasal · 17 collocations, grows in waves); **~75 irregular verbs + Table/Drill
+  trainer** (`#/irregular`, toward ~150); trainers (SRS flashcards / gap-fill / MCQ); pronunciation:
   IPA on every card + TTS via Web Speech API; typical UA-speaker confusables (quite/quiet,
   desert/dessert, make/do, influence/impact…).
 - **Curriculum source:** Oxford 3000 (CEFR-tagged) is the dictionary **seed**; the owner's
