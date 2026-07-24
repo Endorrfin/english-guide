@@ -102,6 +102,28 @@ export type WordEntry = {
   source: 'oxford' | 'custom'; // Oxford-3000 seed vs owner's weekly additions
 };
 
+// ─────────────────────── Idioms hub (V2) ───────────────────────
+// CHANGED (V2): the Idioms tab is a SEPARATE dataset from the single-word corpus (owner decision,
+// §14 D3/D6) — multi-word expressions built for engaged study: idioms, phrasal verbs and fixed
+// collocations. Rendered by #/idioms (the Words hub). Mastery reuses `lib/masteryStore` (SRS-ready).
+export type IdiomKind = 'idiom' | 'phrasal' | 'collocation';
+export type IdiomRegister = 'neutral' | 'informal' | 'formal' | 'business';
+
+export type IdiomEntry = {
+  id: string;              // stable kebab, unique across idioms — progress key (mastery). Append, never rename.
+  phrase: string;          // 'spot on', 'break the ice', 'set up'
+  kind: IdiomKind;
+  meaning: Localized;      // EN definition + UA тлумачення
+  uaEquivalent?: string;   // the matching Ukrainian idiom/phrase — the "aha" hook that anchors memory
+  literal?: Localized;     // the word-by-word/literal image — fuels the Guess reveal; omit if none
+  register: IdiomRegister;
+  level: Level;            // CEFR estimate
+  themes: string[];        // kebab tags: 'work', 'agreement', 'communication', 'effort', …
+  examples: { text: Localized }[]; // 2–3 context sentences (EN study object + natural UA)
+  synonyms?: string[];     // other expressions with the same meaning
+  origin?: Localized;      // short origin/etymology note — a memory hook (mostly idioms)
+};
+
 /**
  * One practice item. Lives on its module (`Module.exercises`); the #/practice hub and
  * per-section drills aggregate by `tags` (e.g. 'modals', 'deduction', 'conditionals').

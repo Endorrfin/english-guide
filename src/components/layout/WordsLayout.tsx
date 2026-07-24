@@ -12,7 +12,9 @@ export function WordsLayout({ active, children }: { active: VocabTabId; children
   const { t } = useLang();
   return (
     <div className="content">
-      <h1>{t(ui.words)}</h1>
+      {/* CHANGED (V2): the section heading is visually hidden — the tab bar is the visible header,
+          but a real <h1> stays in the DOM for screen readers / SEO (owner: reclaim the space). */}
+      <h1 className="sr-only">{t(ui.words)}</h1>
       <VocabTabs active={active} />
       {children}
     </div>
