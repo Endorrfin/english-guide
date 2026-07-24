@@ -9,9 +9,12 @@ import type { EntryKind, Level, Pos, WordEntry } from '../../data/types';
 import { WORDS } from '../../data/words';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
+// CHANGED (V1): reuse the Definitions page's pure A–Z helpers (DRY — one source for letter logic).
+import { ALPHABET, availableLetters, firstLetter, groupByLetter } from '../../lib/definitions';
 import { hrefDictionary, navigate } from '../../lib/hashRouter';
 import { useTts } from '../../lib/tts';
 import { cx } from '../../lib/utils';
+import { WordsLayout } from '../layout/WordsLayout'; // CHANGED (V1): Words-hub chrome (H1 + tabs)
 import { LevelBadge } from '../module/LevelBadge';
 
 const KINDS: { id: EntryKind; label: typeof ui.kindWord }[] = [
@@ -190,6 +193,7 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
   const [level, setLevel] = useState<Level | 'all'>('all');
   const [kind, setKind] = useState<EntryKind | 'all'>('all');
   const [pos, setPos] = useState<Pos | 'all'>('all');
+  const [letter, setLetter] = useState<string | 'all'>('all'); // CHANGED (V1): A–Z filter
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set(id ? [id] : []));
   const [highlight, setHighlight] = useState<string | undefined>(id);
   const refs = useRef<Map<string, HTMLElement>>(new Map());
@@ -197,7 +201,8 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
   const allPos = useMemo(() => [...new Set(WORDS.flatMap((w) => w.pos))].sort(), []);
 
   const needle = q.trim().toLowerCase();
-  const entries = useMemo(
+  // CHANGED (V1): base list after text/level/kind/pos filters (before the A–Z pick) — drives the rail + count.
+  const filtered = useMemo(
     () =>
       WORDS.filter((w) => {
         if (level !== 'all' && w.level !== level) return false;
@@ -211,14 +216,24 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
           w.def.uk.toLowerCase().includes(needle) ||
           (w.collocations ?? []).some((c) => c.toLowerCase().includes(needle))
         );
-      }).sort((a, b) => a.word.localeCompare(b.word)),
+      }),
     [needle, level, kind, pos],
   );
+
+  // CHANGED (V1): A–Z rail + letter-scoped grouping — identical helpers/behavior to the Definitions page.
+  const letters = useMemo(() => availableLetters(filtered), [filtered]);
+  const shown = useMemo(
+    () => (letter === 'all' ? filtered : filtered.filter((w) => firstLetter(w.word) === letter)),
+    [filtered, letter],
+  );
+  const groups = useMemo(() => groupByLetter(shown), [shown]);
+  const groupLetters = useMemo(() => [...groups.keys()].sort(), [groups]);
 
   // Deep-link arrival (#/dictionary/<id>): open the card, scroll it into view, highlight briefly.
   useEffect(() => {
     setHighlight(id);
     if (!id) return;
+    setLetter('all'); // CHANGED (V1): clear any A–Z filter so a deep-linked/seeAlso word is always visible
     setOpenIds((prev) => new Set(prev).add(id));
     const el = refs.current.get(id);
     if (el) {
@@ -238,9 +253,9 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
     });
 
   return (
-    <div className="content">
-      <h1>{t(ui.dictionary)}</h1>
-      <p className="muted">{t(ui.dictionaryLede)}</p>
+    // CHANGED (V1): the page body now lives inside the shared Words hub (H1 "Words" + tabs).
+    <WordsLayout active="dictionary">
+      <p className="muted vocab-lede">{t(ui.dictionaryLede)}</p>
 
       <div className="dict-toolbar">
         <div className="searchbox">
@@ -252,6 +267,7 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
             value={q}
             onChange={(e) => {
               setQ(e.target.value);
+              setLetter('all'); // CHANGED (V1): a new search resets the A–Z pick (matches Definitions)
               if (highlight) setHighlight(undefined);
             }}
             placeholder={t(ui.dictSearchPlaceholder)}
@@ -303,26 +319,53 @@ export function DictionaryPage({ id }: { id?: string } = {}) {
           ))}
         </select>
         <span className="dict-count dim">
-          {entries.length}/{WORDS.length} {t(ui.entriesLabel)}
+          {shown.length}/{WORDS.length} {t(ui.entriesLabel)}
         </span>
       </div>
 
-      <div className="dict-list">
-        {entries.map((w) => (
-          <WordCard
-            key={w.id}
-            w={w}
-            open={openIds.has(w.id)}
-            highlighted={highlight === w.id}
-            onToggle={() => toggle(w.id)}
-            refCb={(el) => {
-              if (el) refs.current.set(w.id, el);
-              else refs.current.delete(w.id);
-            }}
-          />
-        ))}
-        {entries.length === 0 && <p className="dict-empty muted">{t(ui.searchNoResults)}</p>}
+      {/* CHANGED (V1): A–Z rail — same component/UX as Definitions; one-line on desktop, wraps on phones. */}
+      <div className="def-alpha" role="group" aria-label="A–Z">
+        <button className={cx('def-letter', 'def-alpha-all', letter === 'all' && 'on')} onClick={() => setLetter('all')}>
+          {t(ui.defAllLetters)}
+        </button>
+        {ALPHABET.map((L) => {
+          const has = letters.has(L);
+          return (
+            <button
+              key={L}
+              className={cx('def-letter', letter === L && 'on', !has && 'is-empty')}
+              disabled={!has}
+              onClick={() => setLetter(L)}
+              aria-pressed={letter === L}
+            >
+              {L}
+            </button>
+          );
+        })}
       </div>
-    </div>
+
+      {/* CHANGED (V1): list is now grouped under A/B/C headers (was a flat sorted list). */}
+      <div className="dict-list">
+        {groupLetters.map((L) => (
+          <section className="def-group" key={L} aria-label={L}>
+            <h2 className="def-group-h">{L}</h2>
+            {groups.get(L)!.map((w) => (
+              <WordCard
+                key={w.id}
+                w={w}
+                open={openIds.has(w.id)}
+                highlighted={highlight === w.id}
+                onToggle={() => toggle(w.id)}
+                refCb={(el) => {
+                  if (el) refs.current.set(w.id, el);
+                  else refs.current.delete(w.id);
+                }}
+              />
+            ))}
+          </section>
+        ))}
+        {shown.length === 0 && <p className="dict-empty muted">{t(ui.searchNoResults)}</p>}
+      </div>
+    </WordsLayout>
   );
 }

@@ -207,6 +207,19 @@ export const ui = {
   masteryNew: { en: 'New', uk: 'Нове' },
   masteryLearning: { en: 'Learning', uk: 'Вивчаю' },
   masteryKnown: { en: 'Known', uk: 'Знаю' },
+
+  // CHANGED (V1): the "Words" hub — one section, three tabs (Dictionary · Definitions · Idioms).
+  words: { en: 'Words', uk: 'Слова' },
+  idioms: { en: 'Idioms', uk: 'Ідіоми' },
+  soon: { en: 'SOON', uk: 'СКОРО' },
+  idiomsLede: {
+    en: 'Idioms and set phrases — coming as a separate wave.',
+    uk: 'Ідіоми та сталі вирази — зʼявляться окремою хвилею.',
+  },
+  idiomsSoonNote: {
+    en: 'Idioms and set phrases arrive as a separate wave — a dedicated card format (≈178 phrases from the backlog), deliberately kept out of the single-word corpus.',
+    uk: 'Ідіоми та сталі вирази зʼявляться окремою хвилею — окремий формат карток (≈178 фраз із беклогу), навмисно поза корпусом окремих слів.',
+  },
 } satisfies Record<string, Localized>;
 
 export type UiKey = keyof typeof ui;

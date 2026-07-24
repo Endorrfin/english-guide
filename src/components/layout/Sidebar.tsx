@@ -6,7 +6,6 @@ import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
 import {
-  hrefDefinitions,
   hrefDictionary,
   hrefIrregular,
   hrefMap,
@@ -14,15 +13,15 @@ import {
   hrefPractice,
   hrefReading,
   hrefReview,
+  isWordsRoute,
   useRoute,
 } from '../../lib/hashRouter';
-import type { Route } from '../../lib/hashRouter';
 import { cx } from '../../lib/utils';
 
-const PAGE_LINKS: { name: Route['name']; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
+// CHANGED (V1): Definitions + Dictionary collapsed into one "Words" hub entry (active on all 3 tabs).
+const PAGE_LINKS: { name: string; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
   { name: 'map', href: hrefMap(), label: ui.guideMap },
-  { name: 'definitions', href: hrefDefinitions(), label: ui.definitions }, // CHANGED (D1): word study — front door
-  { name: 'dictionary', href: hrefDictionary(), label: ui.dictionary },
+  { name: 'words', href: hrefDictionary(), label: ui.words },
   { name: 'reading', href: hrefReading(), label: ui.reading }, // CHANGED (S3)
   { name: 'practice', href: hrefPractice(), label: ui.practice },
   { name: 'review', href: hrefReview(), label: ui.review },
@@ -65,18 +64,22 @@ export function Sidebar() {
       <aside className={cx('sidebar', sidebarOpen && 'open')} aria-label="Modules">
         <nav className="side-nav">
           <ul className="side-pages">
-            {PAGE_LINKS.map((p) => (
-              <li key={p.name}>
-                <a
-                  className={cx('side-page', route.name === p.name && 'active')}
-                  href={p.href}
-                  onClick={closeSidebar}
-                  aria-current={route.name === p.name ? 'page' : undefined}
-                >
-                  {t(p.label)}
-                </a>
-              </li>
-            ))}
+            {PAGE_LINKS.map((p) => {
+              // CHANGED (V1): the "Words" entry lights on any of its three tabs.
+              const active = p.name === 'words' ? isWordsRoute(route.name) : route.name === p.name;
+              return (
+                <li key={p.name}>
+                  <a
+                    className={cx('side-page', active && 'active')}
+                    href={p.href}
+                    onClick={closeSidebar}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {t(p.label)}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           {sections.map((s) => {
             const mods = modulesBySection(s.id);

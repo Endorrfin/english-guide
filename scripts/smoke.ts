@@ -163,6 +163,7 @@ async function main(): Promise<void> {
   // CHANGED (D1): the Definitions study page (front door for words).
   const { DefinitionsPage } = await import("../src/components/pages/DefinitionsPage");
   const { DictionaryPage } = await import("../src/components/pages/DictionaryPage");
+  const { IdiomsPage } = await import("../src/components/pages/IdiomsPage"); // CHANGED (V1)
   const { PracticePage } = await import("../src/components/pages/PracticePage");
   const { ComingSoon } = await import("../src/components/pages/ComingSoon");
   // CHANGED (S3): Reading pages.
@@ -174,6 +175,7 @@ async function main(): Promise<void> {
     check("DefinitionsPage", h(DefinitionsPage), lang, 800);
     check("DefinitionsPage:circumstances", h(DefinitionsPage, { id: "circumstances" }), lang, 800);
     check("DictionaryPage", h(DictionaryPage), lang, 800);
+    check("IdiomsPage", h(IdiomsPage), lang, 300); // CHANGED (V1): hub chrome + coming-soon card
     check("PracticePage", h(PracticePage), lang, 800);
     check("ComingSoon", h(ComingSoon), lang, 100);
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
@@ -243,6 +245,7 @@ async function main(): Promise<void> {
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
+    "#/idioms", // CHANGED (V1)
     "#/reading",
     `#/reading/${readingFixtureId}`, // CHANGED (S5): dynamic fixture id (see note above)
     "#/practice",
