@@ -37,8 +37,10 @@ See `CLAUDE.md` §4 and `src/data/types.ts` for the authoritative contract. **Le
 `a1 | a2 | b1 | b2 | c1`** (sanctioned deviation). English-guide extensions: `WordEntry` (7 tagged
 examples: 4 general + business/office/dev), `Exercise` (`gap` | `mcq`) on modules, `IrregularVerb`,
 and `Block.dive?: 2|3|4` (S5 depth tags — no tag = 2, the backbone).
-Dictionary SSOT: `src/data/words/{a1,a2,b1,b2,c1,custom}.ts`, lazy per-level chunks + eager slim
-search index (standard §4.4 applied to words).
+Dictionary SSOT: `src/data/words/{a1,a2,b1,b2,c1,custom}.ts` — **meta-split done (M1)**: the corpus
+ships as a lazy `words` chunk and the eager shell imports only the generated slim
+`words/index.generated.ts` (`WORD_INDEX` + `WORD_COUNTS`). Same for reading counts. Search defers
+definition matching to a lazy corpus upgrade rather than dropping it (`primeWordCorpus`).
 
 ## D. The modules
 
@@ -184,10 +186,18 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    tuning, cross-links, UA-pitfalls sweep) — **Section II COMPLETE (6/6)**.
 5. **`#/review` SRS (done, R1):** `srs.ts` ported 1:1 + `srsStore` + `reviewDecks` (4 corpus decks over
    the 769 existing cards) + mastery import + progress backup + nav due-badge. `#/irregular` shipped V3.
-5b. **Dictionary v2 — THE SCALE GATE (next):** per-level lazy chunks + a slim eager search index. The
-   eager entry chunk is **1.39 MB** today (`TopBar → search.ts → WORDS` pulls the whole corpus); at
-   3,000 words that is ~6–8 MB before first paint, which breaks the BRIEF §6 scale guard. **Do this
-   BEFORE W2, not after.** Then words → W2 start.
+5b. **Dictionary v2 — the scale gate (DONE, M1):** the corpus moved to a lazy `words` chunk and the
+   eager shell now imports only the generated slim index. Eager payload **1.39 MB → 745 kB**
+   (entry chunk 1.39 MB → 560 kB), and the landing map no longer pulls the 629 kB reading corpus
+   for three numbers. `check:index` + `check:bundle` keep it that way. **W2 is unblocked** — a
+   words wave now costs ~120 bytes of eager index per card instead of ~1.8 kB.
+5c. **Module meta-split — THE NEXT SCALE GATE:** 573 kB of the remaining eager payload is authored
+   module content the shell never needs — topic bodies 266 kB + exercises 103 kB +
+   keyPoints/pitfalls/sources 82 kB, against just **19 kB** of nav meta (title · tagline ·
+   mentalModel · level) that the sidebar, map and search actually use. That is at 12/34 authored;
+   at 34 it is ~1.3 MB again. Generate `data/meta.ts` + lazy module bodies (the database guide's
+   S19 pattern). The awkward part is `#/practice`, which aggregates exercises from EVERY module —
+   it needs its own lazy drills chunk. Then words → W2.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).
 7. Section III (`m12`–`m16`) + `conditionals-machine` + W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).
