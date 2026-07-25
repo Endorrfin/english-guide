@@ -1,28 +1,48 @@
-// CHANGED (S1): module page — header/TOC/body/endcaps rendered straight from concepts.ts
-// (the module meta-split arrives in a later session, like the database guide's S19). Unauthored
-// modules render their real header + a ComingSoon card, so the whole 34-module map is navigable
-// from day one. Exercises render after pitfalls (types.ts contract).
-import { useEffect } from 'react';
-import { adjacentModules, getModule, getSection, isAuthored } from '../../data/concepts';
+// CHANGED (S1): module page — header/TOC/body/endcaps.
+// CHANGED (M2 — the module meta-split): the header, TOC and prev/next now render INSTANTLY from nav
+// meta (`concepts.getModule`, in the eager chunk), and the module's content is fetched from its own
+// lazy chunk via `loadModule()` and rendered by `<ModuleBody/>`. Unauthored modules render their real
+// header + a ComingSoon card, so the whole 34-module map stays navigable. The perceived-speed win is
+// real: the page frame appears immediately instead of waiting on 450 kB of eagerly-bundled content.
+import { useEffect, useState } from 'react';
+import { adjacentModules, getModule, getSection, isAuthored, loadModule } from '../../data/concepts';
+import type { Module } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
-// CHANGED (T1): dive levels — persisted depth + the DiveSwitcher/DiveBlock pair (S5 mechanic).
-import { moduleHasDive, useDive } from '../../lib/dive';
+// CHANGED (T1): dive levels — persisted depth (the switcher itself lives in ModuleBody, S5 mechanic).
+import { useDive } from '../../lib/dive';
 import { hrefModule } from '../../lib/hashRouter';
 import { ComingSoon } from '../pages/ComingSoon';
-import { DiveBlock, DiveSwitcher } from './DiveSwitcher';
-import { ExerciseSet } from './ExerciseSet';
 import { LevelBadge } from './LevelBadge';
+import { ModuleBody } from './ModuleBody';
 
 export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: string }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const { isKnown, toggleKnown } = useAppState();
   const { dive, setDive } = useDive(); // CHANGED (T1)
   const m = getModule(moduleId);
   const authored = isAuthored(moduleId);
+  const [body, setBody] = useState<Module | undefined>();
 
-  // Scroll to the requested topic (or to top on plain module navigation).
+  // Load the body chunk for authored modules. `loadModule` memoizes, so revisiting is instant, and
+  // the `alive` flag drops a late response after the user has already navigated on.
+  useEffect(() => {
+    if (!authored) {
+      setBody(undefined);
+      return;
+    }
+    let alive = true;
+    void loadModule(moduleId).then((full) => {
+      if (alive) setBody(full);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [moduleId, authored]);
+
+  // Scroll to the requested topic (or to top on plain module navigation). Depends on `body` too:
+  // before M2 the target existed on first render, now it appears when the chunk lands.
   useEffect(() => {
     if (topicId) {
       const el = document.getElementById(`topic-${topicId}`);
@@ -30,7 +50,7 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
     } else {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
-  }, [moduleId, topicId]);
+  }, [moduleId, topicId, body]);
 
   if (!m) {
     return (
@@ -46,8 +66,6 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
   const section = getSection(m.section);
   const { prev, next } = adjacentModules(m.id);
   const known = isKnown(m.id);
-  // CHANGED (T1): generic dive mechanic — any module whose blocks carry dive tags gets the switcher.
-  const hasDive = authored && moduleHasDive(m.topics.flatMap((tp) => tp.blocks));
 
   return (
     <article className="content module">
@@ -84,8 +102,7 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
         <ComingSoon />
       ) : (
         <>
-          {hasDive && <DiveSwitcher moduleId={m.id} dive={dive} setDive={setDive} />}
-
+          {/* CHANGED (M2): the TOC comes from nav meta, so it is on screen before the body chunk. */}
           {m.topics.length > 0 && (
             <nav className="toc" aria-label={t(ui.onThisPage)}>
               <span className="toc-title">{t(ui.onThisPage)}</span>
@@ -99,93 +116,10 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
             </nav>
           )}
 
-          {m.topics.map((tp) => (
-            <section className="topic" id={`topic-${tp.id}`} key={tp.id}>
-              <h2>{t(tp.title)}</h2>
-              {tp.blocks.map((b, i) => (
-                <DiveBlock key={i} block={b} dive={dive} /> // CHANGED (T1): depth-gated rendering
-              ))}
-            </section>
-          ))}
-
-          {m.keyPoints.length > 0 && (
-            <section className="endcap keypoints">
-              <h2>{t(ui.keyPoints)}</h2>
-              <ul>
-                {m.keyPoints.map((kp, i) => (
-                  <li key={i}>{t(kp)}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {m.pitfalls.length > 0 && (
-            <section className="endcap pitfalls">
-              <h2>{t(ui.pitfalls)}</h2>
-              <div className="pitfall-grid">
-                {m.pitfalls.map((p, i) => (
-                  <div className="pitfall" key={i}>
-                    <strong>{t(p.title)}</strong>
-                    <p className="muted">{t(p.body)}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {m.exercises && m.exercises.length > 0 && (
-            <section className="endcap exercises">
-              <h2>{t(ui.exercises)}</h2>
-              <ExerciseSet exercises={m.exercises} />
-            </section>
-          )}
-
-          {m.interview && m.interview.length > 0 && (
-            <section className="endcap interview">
-              <h2>Q&A</h2>
-              {m.interview.map((qa, i) => (
-                <details className="qa" key={i}>
-                  <summary>
-                    {qa.level && <span className="chip badge-level" data-level={qa.level} />}
-                    {t(qa.q)}
-                  </summary>
-                  <p>{t(qa.a)}</p>
-                </details>
-              ))}
-            </section>
-          )}
-
-          {m.sources.length > 0 && (
-            <section className="endcap sources">
-              <h2>{t(ui.sources)}</h2>
-              <ul>
-                {m.sources.map((s, i) => (
-                  <li key={i}>
-                    <a href={s.url} target="_blank" rel="noopener noreferrer">
-                      {s.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {m.seeAlso.length > 0 && (
-            <section className="endcap seealso">
-              <h2>{t(ui.seeAlso)}</h2>
-              <div className="seealso-row">
-                {m.seeAlso.map((id) => {
-                  const other = getModule(id);
-                  if (!other) return null;
-                  return (
-                    <a className="seealso-card" href={hrefModule(id)} key={id}>
-                      <span className="mono dim">{String(other.num).padStart(2, '0')}</span>
-                      <span>{other.title[lang] || other.title.en}</span>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
+          {body ? (
+            <ModuleBody module={body} dive={dive} setDive={setDive} />
+          ) : (
+            <p className="muted module-loading">{t(ui.loadingModule)}</p>
           )}
         </>
       )}

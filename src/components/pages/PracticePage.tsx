@@ -1,8 +1,13 @@
 // CHANGED (S1): the #/practice hub — every authored module's drills in one place, filtered by
 // tag and CEFR level. Renders through the same ExerciseSet (one engine, one progress store).
+// CHANGED (M2): drills come from the generated `DRILLS` aggregate instead of `modules.flatMap(...)`.
+// This hub is the one surface that needs exercises from EVERY module at once; reading them off the
+// module bodies would make it load all 34 content chunks (~450 kB) to reach ~103 kB of drills.
+// `DRILLS` is generated from the same module files and gated by `check:index`, so it cannot drift.
 import { useMemo, useState } from 'react';
-import { LEVELS, modules } from '../../data/concepts';
-import type { Exercise, Level } from '../../data/types';
+import { LEVELS } from '../../data/concepts';
+import { DRILLS } from '../../data/drills.generated';
+import type { Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { resetSolved, useSolvedSet } from '../../lib/practiceStore';
@@ -15,7 +20,7 @@ export function PracticePage() {
   const [level, setLevel] = useState<Level | 'all'>('all');
   const solved = useSolvedSet();
 
-  const all = useMemo<Exercise[]>(() => modules.flatMap((m) => m.exercises ?? []), []);
+  const all = DRILLS;
   const tags = useMemo(() => [...new Set(all.flatMap((e) => e.tags))].sort(), [all]);
 
   const filtered = all.filter(

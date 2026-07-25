@@ -10,6 +10,8 @@
 // `search()` re-ranks with a `def` field added. TopBar primes on first focus of the search box, so
 // by the time a query is typed the deep index is normally ready — and if it is not, the user still
 // gets instant headword/translation hits and the definition hits appear a beat later.
+// CHANGED (M2): `modules` from concepts is nav META now (no bodies) — which is exactly what this
+// index needs: title · tagline · mentalModel · topic titles. No change in what search can find.
 import { getSection, modules } from '../data/concepts';
 import { WORD_INDEX } from '../data/words/index.generated';
 import type { Lang, Localized, WordEntry } from '../data/types';

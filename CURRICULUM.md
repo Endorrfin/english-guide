@@ -191,13 +191,15 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    (entry chunk 1.39 MB → 560 kB), and the landing map no longer pulls the 629 kB reading corpus
    for three numbers. `check:index` + `check:bundle` keep it that way. **W2 is unblocked** — a
    words wave now costs ~120 bytes of eager index per card instead of ~1.8 kB.
-5c. **Module meta-split — THE NEXT SCALE GATE:** 573 kB of the remaining eager payload is authored
-   module content the shell never needs — topic bodies 266 kB + exercises 103 kB +
-   keyPoints/pitfalls/sources 82 kB, against just **19 kB** of nav meta (title · tagline ·
-   mentalModel · level) that the sidebar, map and search actually use. That is at 12/34 authored;
-   at 34 it is ~1.3 MB again. Generate `data/meta.ts` + lazy module bodies (the database guide's
-   S19 pattern). The awkward part is `#/practice`, which aggregates exercises from EVERY module —
-   it needs its own lazy drills chunk. Then words → W2.
+5c. **Module meta-split (DONE, M2):** generated `meta.generated.ts` (nav meta) + per-module lazy
+   body chunks via `moduleLoaders.generated.ts` + a lazy `drills.generated.ts` for `#/practice`.
+   Eager payload **745 → 326 kB** (entry chunk 560 → 144 kB); a module page now renders its header
+   and TOC instantly and streams its content. Cumulative across M1+M2: **1.39 MB → 326 kB, −77%**.
+   Authoring the remaining 22 modules now costs ~1.3 kB of eager meta each instead of ~37 kB.
+5d. **Remaining split candidate (not urgent):** reading's per-text slim index for the `#/reading`
+   accordion, which today loads all 141 full bodies because it searches body text. Needed when the
+   library passes ~300 texts; the accordion would use a generated index and defer body search the
+   way word search defers definition search (M1's `primeWordCorpus` pattern). Then words → W2.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).
 7. Section III (`m12`–`m16`) + `conditionals-machine` + W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).

@@ -46,8 +46,18 @@ learning-UX + correctness, in that order.
     and the next query re-ranks with a `def` field (TopBar primes on focus). Enforced by
     `check:index` (staleness) + `check:bundle` (the eager static-import graph and its budget) —
     both chained into `verify`. **`WORD_INDEX` is a budget, not a bag**: every field costs eager
-    bytes on every page load, so measure before adding one. The **module** meta-split
-    (`data/meta.ts`, like the database guide's S19) is still open and is the next scale gate.
+    bytes on every page load, so measure before adding one.
+  - **Module meta-split — DONE (M2)** (standard §4.4, the database guide's S19 pattern). The eager
+    shell reads generated **`data/meta.generated.ts`** (`MODULE_META`: id · num · section · order ·
+    level · signature · title · tagline · readMins · mentalModel · `authored` · topic id+title — ~44 kB
+    for all 34) and never a module body. `concepts.loadModule(id)` fetches one body from its own lazy
+    chunk via generated **`data/moduleLoaders.generated.ts`** (memoized; a stub or a failed fetch
+    resolves to undefined → the page shows ComingSoon). `#/practice` — the one surface needing drills
+    from EVERY module — reads generated **`data/drills.generated.ts`** (181 drills, lazy with that
+    route) instead of loading 34 bodies. The full eager list lives in **`data/modules/all.ts`**,
+    **Node-side only** (generator + `check:data` + `smoke`); importing it from `src/` fails
+    `check:bundle`. `ModulePage` renders header/TOC from meta instantly and mounts `<ModuleBody/>`
+    when the chunk lands; `ModuleBody` is pure so the smoke can SSR real content.
   - **SRS (built R1)**: `../database guide/src/lib/srs.ts` (SM-2-lite) ported **verbatim** + its
     `srsStore` localStorage pattern (key `englishguide.srs`). **Decks = four by CORPUS** — Dictionary
     (Oxford seed) · My words (`custom.ts`) · Idioms · Irregular verbs — mutually disjoint, with CEFR
@@ -79,12 +89,14 @@ src/
   data/      concepts.ts (SSOT aggregator) · modules/mN-*.ts · types.ts
              words/{a1,a2,b1,b2,c1,custom}.ts · words/index.generated.ts (slim search index, M1)
              reading/*.ts + reading/index.generated.ts (counts for the landing map, M1)
-             irregular.ts · meta.ts/meta.json (later, module meta-split)
+             irregular.ts · meta.generated.ts + drills.generated.ts + moduleLoaders.generated.ts (M2)
+             modules/all.ts — the eager full list, NODE-ONLY (never import from src/)
   i18n/      lang.ts (useLang) · LangProvider.tsx · ui.ts
   lib/       hashRouter.ts · registry.tsx · search.ts (modules + words) · exercise.ts · srs.ts ·
              srsStore.ts · tts.ts (speechSynthesis wrapper) · appState.ts · utils.ts
   theme/     tokens.css · global.css · components.css
-  components/ layout/ · module/ · map/ · pages/ (Dictionary, Practice, Review, Irregular) ·
+  components/ layout/ · module/ (ModulePage = meta header + lazy ModuleBody, M2) · map/ ·
+             pages/ (Dictionary, Practice, Review, Irregular) ·
              sims/ · figures/ (PascalCase.tsx)
 scripts/     check-data.ts · run-tests.ts · smoke.ts · gen-data-index.ts (M1 meta-split generator) ·
              check-data-index.ts (staleness) · check-bundle.ts (eager-graph + budget guard) ·
@@ -223,6 +235,14 @@ gate is green in a scratch verify — the first push containing S1 turns CI gree
   `src/components/{sims,figures}/` dirs (with `.gitkeep`) keep the smoke's auto-discovery green pre-S1.
 - Answer normalization in `lib/exercise.ts` must accept contraction variants (`mustn't`/`must not`,
   `won't`/`will not`) and be case/whitespace-insensitive — golden-test these.
+- **Never import `src/data/modules/all.ts` (or a `modules/mN-*.ts` file) from application code** —
+  it drags every module body into that chunk. Use `concepts` (nav meta) + `loadModule()`. Same rule
+  for `data/words`, `data/reading`, `data/idioms` in anything the eager shell reaches: import the
+  generated slim index instead. `npm run check:bundle` fails the build on either mistake (M1/M2).
+- **A generated file is never hand-edited.** `npm run gen:index` rewrites `*.generated.ts`;
+  `check:index` fails if the committed copies drift from the corpora.
+- **Test a new build gate against a deliberate regression before trusting it.** Two versions of
+  `check:bundle` were silently no-ops (M1 §14) — a gate that has never failed has not been tested.
 
 ## 13. Session roadmap
 
@@ -251,10 +271,10 @@ Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 go
 **M1 (done): the dictionary meta-split** — generated slim indexes for the eager shell, corpora in
 lazy chunks, definition search deferred via `primeWordCorpus()`; eager payload **1.39 MB → 745 kB**;
 `check:index` + `check:bundle` gates added. **W2 is unblocked.** →
-**Next (the new scale gate): the MODULE meta-split** — 450 kB of the remaining eager payload is
-authored module content the shell never reads (bodies 266 kB + exercises 103 kB + pitfalls/sources
-82 kB vs 19 kB of nav meta), at only 12/34 authored. Generate `data/meta.ts` + lazy bodies + a lazy
-drills chunk for `#/practice`. →
+**M2 (done): the module meta-split** — generated nav meta + per-module lazy body chunks + a lazy
+drills chunk for `#/practice`; `ModulePage` renders header/TOC instantly. Eager payload **745 → 326 kB**
+(cumulative M1+M2: **1.39 MB → 326 kB, −77%**). Also fixed the `npm ci` break M1 caused (a stray
+`playwright` devDependency). **Nothing is blocking content now.** →
 Sections III (m12–m16) + `conditionals-machine` · VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -840,6 +860,73 @@ CURRICULUM.md §G / §R.)
   pattern); the awkward piece is `#/practice`, which aggregates exercises from EVERY module and needs
   its own lazy drills chunk. Reading's per-text slim index (for the `#/reading` accordion, which today
   searches full bodies) is the follow-up after that.
+
+- **M2 (2026-07-25) — the module meta-split + a CI fix I caused.** Same session as M1, owner's call:
+  fix the broken build and do the next scale gate in one round.
+  **First, the CI fix.** M1's write-back shipped a `package.json` containing `playwright` — I had
+  installed it in the cloud scratch for the headless render checks, and it rode along into the
+  committed file while `package-lock.json` (correctly) did not change. `npm ci` compares the two and
+  failed: *Missing: playwright@1.62.0 from lock file*. Removed the dependency (screenshot tooling is
+  throwaway sandbox tooling, it does not belong in the project's manifest) and re-verified with
+  `npm ci --dry-run`; the lock is byte-identical to the committed one. **Lesson, now a convention:**
+  install session-only tooling with `npm i -D <pkg> --no-save`, and never write back `package.json`
+  without checking `git diff` on the dependency blocks.
+  **Then the split.** Measured target: of the 560 kB entry chunk, authored module content the shell
+  never reads was topic bodies **266 kB** + exercises **103 kB** + keyPoints/pitfalls/sources **82 kB**,
+  against **19 kB** of nav meta the sidebar/map/search actually use — at only **12 of 34** authored, so
+  the trajectory was back to ~1.3 MB. **Shipped:** the full eager module list moved out of
+  `concepts.ts` into **`src/data/modules/all.ts`**, which is **Node-side only** (generator +
+  `check:data` + `smoke`) — keeping the gates synchronous and simple instead of teaching them to
+  lazy-load. `gen-data-index.ts` now also emits **`meta.generated.ts`** (`MODULE_META` — nav meta
+  incl. topic id+title so the TOC and search need no body; ~44 kB for all 34 + `MODULE_COUNTS`),
+  **`moduleLoaders.generated.ts`** (id → `() => import('./modules/<id>')`, literal specifiers because
+  Rollup can only code-split a statically visible dynamic import), and **`drills.generated.ts`** (all
+  181 exercises with a `moduleId` back-link). `concepts.ts` is now genuinely thin: hand-written
+  `sections` + generated meta + lookups + **`loadModule(id)`** (memoized; a stub, unknown id or failed
+  chunk fetch all resolve to undefined, which the page already renders as ComingSoon — so a missing
+  chunk degrades to the stub view instead of crashing the route). **`ModulePage` split:** it renders
+  the header, TOC and prev/next **instantly from meta** and mounts the new **`ModuleBody`** when the
+  chunk lands (measured header→body gap on localhost: 27 ms). `ModuleBody` is deliberately **pure** —
+  given a `Module` it renders, with no fetching — which is what lets the smoke SSR real content;
+  a body that loaded itself in a `useEffect` could never be server-asserted and the content canaries
+  would have silently rotted. `#/practice` reads `DRILLS` instead of `modules.flatMap(...)`: it is the
+  one surface that needs drills from EVERY module, and reading them off the bodies would have made it
+  load all 34 content chunks (~450 kB) to reach ~103 kB of drills. **The drills file duplicates data
+  that also lives in the module files** — a deliberate trade, generated-only, never hand-edited, with
+  the module files remaining the SSOT that `check:data` validates and `check:index` guarding drift.
+  **Results:** entry chunk **560 → 144 kB**, eager payload **745 → 326 kB** (of which ~190 kB is the
+  React vendor chunk, so app-eager is ~136 kB); per-module chunks appear (m11 56 kB · m17 49 kB ·
+  m6 48 kB · m10 41 kB …) and the drills land in the 109 kB `PracticePage` chunk. **Cumulative
+  M1+M2: 1.39 MB → 326 kB, −77%**, and authoring one of the 22 remaining modules now costs ~1.3 kB of
+  eager meta instead of ~37 kB. **Gates:** `check-data.ts` reads `all.ts` for real bodies and gained a
+  **meta-agreement block** (count · id order · `authored` flag · num/level/section · title · topic ids
+  — the semantic version of `check:index`, so a broken generator reports something readable).
+  `smoke.ts` renders the full-content canaries through `ModuleBody` with awaited bodies **at dive 4**,
+  so they now also cover dive-3/4 blocks the old default-depth render skipped, and it asserts **every
+  authored module has a loadable body chunk reporting its own id** — a rename in `all.ts` that missed
+  the generator would otherwise surface only as a blank page in the browser. Smoke **236 → 267
+  checks**. `check:bundle` gained a module-body content probe plus a rule that no `m<N>-*.js` chunk is
+  statically reachable, and its budget dropped **800 → 420 kB** (history in the file: 1.39 MB → 745 kB
+  → 326 kB; the headroom is for meta growing as the last 22 modules get authored). Per the M1 lesson
+  the new rule was **tested against a deliberate regression** — importing `all.ts` from `lib/search.ts`
+  correctly fails with both "module bodies content is INLINED" and a 786.7 kB budget breach.
+  **Verification: FULL `npm run verify` ✓ green** (typecheck · eslint · check:index · check:data 6/34 ·
+  12 authored · 181 exercises · 515 words · 141 reading · 179 idioms · 75 irregular · **meta agrees
+  with all.ts** · test ×11 · smoke **267** · build · check:bundle 325.7/420 kB) + a headless-Chromium
+  pass on the real app: m17's header renders before its body, the body arrives from
+  `m17-modal-system-*.js`, a **topic deep-link still scrolls correctly** (settles at y=70 px — the
+  target only exists after the chunk lands, so the scroll effect now depends on `body`), stub modules
+  render header + ComingSoon unchanged, `#/practice` reports all **181 exercises**, and **no module
+  chunk is fetched on first load**. Two of those assertions initially "failed" against races in my own
+  harness — hash-only `page.goto` does not navigate, so `waitUntil: 'networkidle'` resolves instantly;
+  fixed by waiting on DOM signals and polling the smooth scroll until it settles. Docs: CLAUDE.md
+  §2/§3/§12 (three new conventions incl. "test a gate against a deliberate regression"), CURRICULUM
+  §G, README. Owner next: `npm run verify` locally → branch `m2-module-meta-split` → commit → PR
+  (the `package.json` fix is in the same branch, so CI goes green with it). **Deferred/next:** nothing
+  is blocking content any more — **W2 (dictionary wave to ~1,000)** and **Section III + the
+  `conditionals-machine`** are both unblocked. The remaining split candidate is reading's per-text
+  slim index for the `#/reading` accordion (it searches full bodies today); worth doing past ~300
+  texts, using M1's defer-the-deep-search pattern.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

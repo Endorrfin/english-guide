@@ -144,9 +144,13 @@ chunks; the eager app imports generated slim indexes instead. First load dropped
 opening the map no longer downloads all 141 reading texts to print three numbers. Global search still
 matches definition text — it just fetches the full corpus the moment you click the search box. Two new
 build gates keep it from regressing.
-**Next:** the **module meta-split** — 450 kB of the remaining first load is module content only the module
-pages need. Then Section III (Core Grammar) + `conditionals-machine`; dictionary wave W2; more Reading and
-idiom waves.
+**M2 — shipped:** the **module meta-split**. Module content moved into one lazy chunk per module; the app
+ships only nav metadata, so a module page shows its title, mental model and table of contents immediately
+and streams the lesson in. First load is now **326 kB** — down from 1.39 MB across M1+M2 (**−77%**), and
+over half of what's left is React itself. Build gates enforce it: a corpus or a module body that sneaks
+back onto the first load fails the build.
+**Next:** content again — dictionary wave W2 (515 → ~1,000 words) and Section III (Core Grammar) with the
+`conditionals-machine` sim; more Reading and idiom waves.
 
 ---
 

@@ -21,17 +21,21 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { IDIOMS } from '../src/data/idioms';
+import { modules } from '../src/data/modules/all';
 import { READING_TEXTS } from '../src/data/reading';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
 
 /**
  * Ceiling on the whole eager payload (entry chunk + everything it statically imports, incl. the
- * React vendor chunk) in kB. Only ever lower this. The next planned step — the MODULE meta-split
- * (standard §4.4) — takes ~450 kB of topic bodies + exercises off this path; when it lands, lower
- * the budget rather than banking the slack.
+ * ~190 kB React vendor chunk) in kB. **Only ever lower this.**
+ *
+ * History: 1.39 MB before any split → 745 kB after the dictionary split (M1) → 326 kB after the
+ * module split (M2). The headroom left here covers nav meta growing as the remaining 22 modules get
+ * authored (~+50 kB of `meta.generated.ts`). If a build breaks this, split something out — do not
+ * raise the number.
  */
-const EAGER_BUDGET_KB = 800;
+const EAGER_BUDGET_KB = 420;
 
 /** Corpus chunk names from vite.config manualChunks — none of these may be eager. */
 const CORPUS_CHUNKS = ['words', 'reading', 'idioms'];
@@ -165,21 +169,39 @@ if (entryName) {
   probe('word cards (custom)', customWords.flatMap((w) => [w.def.en, ...w.examples.map((e) => e.text.en)]));
   probe('idioms', IDIOMS.flatMap((e) => [e.meaning.en, ...e.examples.map((x) => x.text.en)]));
   probe('reading texts', READING_TEXTS.map((t) => t.body.en.slice(0, 120)));
+  // CHANGED (M2): module BODIES must stay in their per-module lazy chunks. The classic way to break
+  // this is importing `data/modules/all.ts` (or a module file) from anywhere the shell reaches.
+  probe(
+    'module bodies',
+    modules.flatMap((m) =>
+      m.topics.flatMap((tp) =>
+        tp.blocks.flatMap((b) => (b.kind === 'prose' ? [b.md.en] : b.kind === 'callout' ? [b.md.en] : [])),
+      ),
+    ),
+  );
+  // …and no per-module chunk may be statically reachable either.
+  const eagerModuleChunk = [...eager].find((n) => /^m\d+-.*\.js$/.test(n));
+  if (eagerModuleChunk) {
+    errors.push(
+      `module chunk '${eagerModuleChunk}' is STATICALLY reachable from the entry chunk — module ` +
+        'bodies must load lazily via concepts.loadModule().',
+    );
+  }
 
   // ── 3. budget ──────────────────────────────────────────────────────────────────────────────
   if (totalKb > EAGER_BUDGET_KB) {
     errors.push(
       `eager payload ${totalKb.toFixed(1)} kB exceeds the ${EAGER_BUDGET_KB} kB budget ` +
-        `(${eager.size} chunks). Do not raise the budget — split something out; the module ` +
-        'meta-split is the planned next step.',
+        `(${eager.size} chunks). Do not raise the budget — split something out (reading's per-text ` +
+        'slim index is the next candidate; see CURRICULUM §G).',
     );
   }
 
   if (errors.length === 0) {
     console.log(
       `✓ check:bundle — eager payload ${totalKb.toFixed(1)} kB / ${EAGER_BUDGET_KB} kB budget ` +
-        `across ${eager.size} statically-imported chunk(s); word, reading and idiom corpora are all ` +
-        'lazy and none of their content is inlined.',
+        `across ${eager.size} statically-imported chunk(s); word, reading and idiom corpora plus all ` +
+        'module bodies are lazy, and none of their content is inlined.',
     );
   }
 }

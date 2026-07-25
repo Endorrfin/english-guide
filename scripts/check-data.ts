@@ -8,7 +8,12 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
-import { sections, modules, isAuthored } from '../src/data/concepts';
+// CHANGED (M2): full modules come from the Node-side eager list; `concepts` now exposes nav META
+// only. The gate must validate the REAL bodies, so it reads all.ts — and additionally checks that
+// the generated meta agrees with it (belt and braces on top of `check:index`).
+import { sections, isAuthored } from '../src/data/concepts';
+import { MODULE_META } from '../src/data/meta.generated';
+import { modules } from '../src/data/modules/all';
 import { WORDS } from '../src/data/words';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
@@ -76,7 +81,7 @@ function checkExercise(ex: Exercise, m: Module): void {
   }
 }
 
-for (const m of modules as Module[]) {
+for (const m of modules) {
   err(!moduleIds.has(m.id), `duplicate module id ${m.id}`); moduleIds.add(m.id);
   err(!nums.has(m.num), `duplicate module num ${m.num} (${m.id})`); nums.add(m.num);
   err(sectionIds.has(m.section), `module ${m.id} -> unknown section ${m.section}`);
@@ -86,7 +91,7 @@ for (const m of modules as Module[]) {
   for (const src of m.sources) err(/^https?:\/\//.test(src.url), `${m.id} bad source url: ${src.url}`);
 
   // order unique within section
-  const sib = (modules as Module[]).filter((x) => x.section === m.section);
+  const sib = modules.filter((x) => x.section === m.section);
   err(sib.filter((x) => x.order === m.order).length === 1, `${m.id} duplicate order ${m.order} in ${m.section}`);
 
   for (const t of m.topics) {
@@ -126,7 +131,7 @@ for (const m of modules as Module[]) {
 }
 
 // seeAlso targets exist
-for (const m of modules as Module[]) for (const sa of m.seeAlso) err(moduleIds.has(sa), `${m.id} seeAlso -> unknown ${sa}`);
+for (const m of modules) for (const sa of m.seeAlso) err(moduleIds.has(sa), `${m.id} seeAlso -> unknown ${sa}`);
 
 // --- dictionary checks -----------------------------------------------------
 const wordIds = new Set<string>();
@@ -257,6 +262,25 @@ for (const v of IRREGULAR as IrregularVerb[]) {
   err(LEVELS.includes(v.level), `${at}: bad level '${v.level}'`);
   err(v.translations.length > 0 && v.translations.every((tr) => tr.trim()), `${at}: empty translations`);
   if (v.note) locOk(v.note, `${at}.note`);
+}
+
+// --- generated nav META must mirror the real modules (M2) --------------------
+// `check:index` already regenerates and diffs the file; this is the semantic version of that check,
+// so a hand-edited meta file or a broken generator surfaces here with a readable message.
+err(MODULE_META.length === modules.length, `meta has ${MODULE_META.length} modules, all.ts has ${modules.length}`);
+for (const [i, meta] of MODULE_META.entries()) {
+  const real = modules[i];
+  if (!real) continue;
+  err(meta.id === real.id, `meta[${i}] id '${meta.id}' != all.ts '${real.id}' (order must match)`);
+  err(meta.authored === (real.topics.length > 0),
+    `${meta.id}: meta.authored=${meta.authored} but topics=${real.topics.length}`);
+  err(meta.num === real.num && meta.level === real.level && meta.section === real.section,
+    `${meta.id}: meta num/level/section drifted from all.ts`);
+  err(meta.title.en === real.title.en && meta.title.uk === real.title.uk, `${meta.id}: meta title drifted`);
+  err(meta.topics.length === real.topics.length, `${meta.id}: meta lists ${meta.topics.length} topics, module has ${real.topics.length}`);
+  for (const [j, tp] of meta.topics.entries()) {
+    err(tp.id === real.topics[j]?.id, `${meta.id}: meta topic[${j}] id '${tp.id}' != '${real.topics[j]?.id}'`);
+  }
 }
 
 // --- COUNTS (locked for S1; sections 5 → 6 in T1 — the S5 Tenses insert) ----

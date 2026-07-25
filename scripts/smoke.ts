@@ -95,7 +95,7 @@ async function main(): Promise<void> {
   // CHANGED (S1): wired — LangProvider + AppStateProvider (level filter/sidebar/known state).
   const { LangProvider } = await import("../src/i18n/LangProvider");
   const { AppStateProvider } = await import("../src/components/AppStateProvider");
-  const { MODULES } = await import("../src/data/concepts");
+  const { MODULES, loadModule } = await import("../src/data/concepts");
   const { sims, figures } = await import("../src/lib/registry");
   // CHANGED (S5): the reading fixture is DYNAMIC now — a hardcoded id broke twice (S4, then again
   // when the 100-text wave renamed ids). Pick the text with the longest EN body: it exists by
@@ -206,41 +206,66 @@ async function main(): Promise<void> {
   for (const m of MODULES) {
     for (const lang of langs) check(`ModulePage:${m.id}`, h(ModulePage, { moduleId: m.id }), lang, 300);
   }
-  // The golden module renders its full body — assert content canaries beyond the header.
+  // CHANGED (M2 — the module meta-split): ModulePage renders its header/TOC from nav meta and pulls
+  // the body in a useEffect, which NEVER runs under renderToStaticMarkup. So the full-content
+  // canaries below render <ModuleBody/> directly with an awaited body — that is exactly why the body
+  // was split into a pure component (see ModuleBody.tsx). Rendering at dive 4 (🔬 Deep) also means
+  // the canaries see dive-3/4 blocks, which the old default-depth render silently skipped.
+  const { ModuleBody } = await import("../src/components/module/ModuleBody");
+  const bodies = new Map<string, Awaited<ReturnType<typeof loadModule>>>();
+  for (const id of ["m17-modal-system", "m6-tense-system", "m7-present-simple-continuous",
+                    "m8-past-simple-continuous", "m9-future-forms", "m10-perfect-family",
+                    "m11-choosing-narrative"]) {
+    const body = await loadModule(id);
+    ok(!!body, `loadModule('${id}') resolves a body`);
+    bodies.set(id, body);
+  }
+  const bodyEl = (id: string): ReactNode => {
+    const body = bodies.get(id);
+    return body ? h(ModuleBody, { module: body, dive: 4, setDive: () => {} }) : h("div");
+  };
+  // Every AUTHORED module must have a loadable body — the loader map is generated, so a rename in
+  // all.ts that misses the generator would otherwise only show up as a blank page in the browser.
+  for (const m of MODULES) {
+    if (!m.authored) continue;
+    const body = await loadModule(m.id);
+    ok(!!body, `authored module '${m.id}' has a loadable body chunk`);
+    ok(body?.id === m.id, `loaded body for '${m.id}' reports the same id ('${body?.id}')`);
+  }
   for (const lang of langs) {
-    check("ModulePage:m17(full)", h(ModulePage, { moduleId: "m17-modal-system" }), lang, 8000, [
+    check("ModuleBody:m17", bodyEl("m17-modal-system"), lang, 8000, [
       "must",
       "had to",
     ]);
     // CHANGED (T1): the golden module of Section II — matrix table + dive stubs render at the
     // default 🚂 depth (deeper blocks appear as expandable stubs, so the page stays substantial).
-    check("ModulePage:m6(full)", h(ModulePage, { moduleId: "m6-tense-system" }), lang, 8000, [
+    check("ModuleBody:m6", bodyEl("m6-tense-system"), lang, 8000, [
       "Present Perfect",
       "will have been working",
     ]);
     // CHANGED (T2): m7 + m8 authored bodies (the lazy TenseTimeline figure resolves to its Suspense
     // fallback under SSR, so canaries come from the prose/table content, not the figure).
-    check("ModulePage:m7(full)", h(ModulePage, { moduleId: "m7-present-simple-continuous" }), lang, 6000, [
+    check("ModuleBody:m7", bodyEl("m7-present-simple-continuous"), lang, 6000, [
       "Present Simple",
       "Present Continuous",
     ]);
-    check("ModulePage:m8(full)", h(ModulePage, { moduleId: "m8-past-simple-continuous" }), lang, 6000, [
+    check("ModuleBody:m8", bodyEl("m8-past-simple-continuous"), lang, 6000, [
       "Past Simple",
       "Past Continuous",
     ]);
     // CHANGED (T3): m9 + m10 authored bodies (the lazy TenseTimeline figure resolves to its Suspense
     // fallback under SSR, so canaries come from core prose/table content, not the figure).
-    check("ModulePage:m9(full)", h(ModulePage, { moduleId: "m9-future-forms" }), lang, 6000, [
+    check("ModuleBody:m9", bodyEl("m9-future-forms"), lang, 6000, [
       "will",
       "Future Continuous",
     ]);
-    check("ModulePage:m10(full)", h(ModulePage, { moduleId: "m10-perfect-family" }), lang, 6000, [
+    check("ModuleBody:m10", bodyEl("m10-perfect-family"), lang, 6000, [
       "Present Perfect",
       "Past Simple",
     ]);
     // CHANGED (T4): m11 authored body (the lazy tense-chooser sim resolves to its Suspense
     // fallback under SSR, so canaries come from the tables: narrative roles + future-in-the-past).
-    check("ModulePage:m11(full)", h(ModulePage, { moduleId: "m11-choosing-narrative" }), lang, 6000, [
+    check("ModuleBody:m11", bodyEl("m11-choosing-narrative"), lang, 6000, [
       "Past Perfect",
       "was going to",
     ]);
