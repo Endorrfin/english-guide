@@ -2,7 +2,7 @@
 // Run: tsx scripts/test-idioms.ts — exits non-zero on any failure. Auto-discovered by run-tests.
 import {
   allThemes, blankInExample, buildMatchRound, COLLOCATION_GROUP_IDS, groupByKind, groupCollocations,
-  IDIOM_KINDS, isCollocationGroup, shuffle,
+  groupIdiomsByCategory, IDIOM_CATEGORY_IDS, IDIOM_KINDS, isCollocationGroup, isIdiomCategory, shuffle,
 } from '../src/lib/idioms';
 import { IDIOMS } from '../src/data/idioms';
 import type { IdiomEntry } from '../src/data/types';
@@ -45,11 +45,17 @@ for (const e of IDIOMS) {
   // CHANGED (V10): collocations carry a known category group; notes (if present) are bilingual.
   if (e.kind === 'collocation') ok(isCollocationGroup(e.group), `${e.id}: collocation needs a known group (got '${e.group}')`);
   else ok(e.group === undefined, `${e.id}: only collocations may have a group`);
+  // CHANGED (V11): idioms carry a known category; other kinds must not.
+  if (e.kind === 'idiom') ok(isIdiomCategory(e.category), `${e.id}: idiom needs a known category (got '${e.category}')`);
+  else ok(e.category === undefined, `${e.id}: only idioms may have a category`);
   if (e.note) ok(!!e.note.en?.trim() && !!e.note.uk?.trim(), `${e.id}: note must be bilingual`);
 }
 // CHANGED (V10): every collocation category is actually populated (guards against a dead nav chip).
 const collGroupsPresent = new Set(IDIOMS.filter((e) => e.kind === 'collocation').map((e) => e.group));
 for (const g of COLLOCATION_GROUP_IDS) ok(collGroupsPresent.has(g), `collocation group '${g}' has no entries`);
+// CHANGED (V11): every idiom category is actually populated (guards against a dead nav chip).
+const idiomCatsPresent = new Set(IDIOMS.filter((e) => e.kind === 'idiom').map((e) => e.category));
+for (const c of IDIOM_CATEGORY_IDS) ok(idiomCatsPresent.has(c), `idiom category '${c}' has no entries`);
 
 // ── grouping + themes ─────────────────────────────────────────────────────────
 const mini = [
@@ -76,6 +82,19 @@ const cg = groupCollocations(collMini);
 eq(cg.map((g) => g.group), ['make-do', 'verb-noun', 'adjective-noun', 'other'], 'groupCollocations keeps canonical order + trailing other, drops empty');
 eq(cg.find((g) => g.group === 'verb-noun')!.items.map((i) => i.phrase), ['ask a question', 'take a break'], 'collocation bucket alphabetized');
 ok(isCollocationGroup('business') && !isCollocationGroup('nope') && !isCollocationGroup(undefined), 'isCollocationGroup guards the known set');
+
+// ── groupIdiomsByCategory (V11) ─────────────────────────────────────────────────
+const idiomMini = [
+  { id: 'i1', phrase: 'zeta phrase', kind: 'idiom', category: 'emotions', themes: ['x'] },
+  { id: 'i2', phrase: 'alpha phrase', kind: 'idiom', category: 'communication', themes: ['x'] },
+  { id: 'i3', phrase: 'beta phrase', kind: 'idiom', category: 'emotions', themes: ['x'] },
+  { id: 'i4', phrase: 'gamma phrase', kind: 'idiom', category: 'nope', themes: ['x'] }, // unknown → 'other'
+  { id: 'p1', phrase: 'set up', kind: 'phrasal', themes: ['x'] }, // ignored (not an idiom)
+] as unknown as IdiomEntry[];
+const ig = groupIdiomsByCategory(idiomMini);
+eq(ig.map((g) => g.category), ['communication', 'emotions', 'other'], 'groupIdiomsByCategory keeps canonical order + trailing other, drops empty');
+eq(ig.find((g) => g.category === 'emotions')!.items.map((i) => i.phrase), ['beta phrase', 'zeta phrase'], 'idiom category bucket alphabetized');
+ok(isIdiomCategory('emotions') && !isIdiomCategory('nope') && !isIdiomCategory(undefined), 'isIdiomCategory guards the known set');
 
 // ── blankInExample ────────────────────────────────────────────────────────────
 const spot = IDIOMS.find((i) => i.id === 'spot-on')!;

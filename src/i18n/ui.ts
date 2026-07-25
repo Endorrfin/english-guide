@@ -244,6 +244,20 @@ export const ui = {
   collGroupBusiness: { en: 'Business English', uk: 'Ділова англійська' },
   collGroupWorkplace: { en: 'Workplace & Tech', uk: 'Робота й tech' },
   collGroupOther: { en: 'Other', uk: 'Інше' },
+  // CHANGED (V11): idiom category bar labels (keyed by IdiomEntry.category; canonical order in lib/idioms).
+  idiomAllCategories: { en: 'All categories', uk: 'Всі категорії' },
+  idiomCatCommunication: { en: 'Communication', uk: 'Спілкування' },
+  idiomCatWorkBusiness: { en: 'Work & business', uk: 'Робота та бізнес' },
+  idiomCatSuccessFailure: { en: 'Success & failure', uk: 'Успіх та невдача' },
+  idiomCatEffortDifficulty: { en: 'Effort & difficulty', uk: 'Зусилля та труднощі' },
+  idiomCatProblemsRisk: { en: 'Problems & risk', uk: 'Проблеми та ризик' },
+  idiomCatDecisions: { en: 'Decisions & uncertainty', uk: 'Рішення та невизначеність' },
+  idiomCatEmotions: { en: 'Emotions & feelings', uk: 'Емоції та почуття' },
+  idiomCatPeople: { en: 'People & relationships', uk: 'Люди та стосунки' },
+  idiomCatTimeChance: { en: 'Time & chance', uk: 'Час та випадок' },
+  idiomCatMoneyValue: { en: 'Money & value', uk: 'Гроші та цінність' },
+  idiomCatEveryday: { en: 'Everyday & casual', uk: 'Побут та повсякдення' },
+  idiomCatOther: { en: 'Other', uk: 'Інше' },
   // CHANGED (V2): Irregular verbs — now the 4th Words-hub tab (placeholder until the trainer lands).
   irregularLede: {
     en: 'The English irregular verbs — base, past and past participle — as a searchable table and a three-forms drill.',
