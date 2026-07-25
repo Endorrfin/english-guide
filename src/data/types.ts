@@ -113,8 +113,15 @@ export type IdiomEntry = {
   id: string;              // stable kebab, unique across idioms — progress key (mastery). Append, never rename.
   phrase: string;          // 'spot on', 'break the ice', 'set up'
   kind: IdiomKind;
+  // CHANGED (V10): collocation category id (kebab) — powers the #/idioms category bar for the
+  // 'collocation' kind (make-do · verb-noun · adjective-noun · adverb-adjective · business · workplace).
+  // Required on collocations (check:data), omitted on idioms/phrasals. Canonical ids in lib/idioms.ts.
+  group?: string;
   meaning: Localized;      // EN definition + UA тлумачення
   uaEquivalent?: string;   // the matching Ukrainian idiom/phrase — the "aha" hook that anchors memory
+  // CHANGED (V10): usage note — mainly the common wrong version of a collocation ("not *do a decision*")
+  // plus the fix; bilingual. Rendered as a "Common mistake" callout on the card.
+  note?: Localized;
   literal?: Localized;     // the word-by-word/literal image — fuels the Guess reveal; omit if none
   register: IdiomRegister;
   level: Level;            // CEFR estimate

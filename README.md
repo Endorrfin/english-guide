@@ -133,7 +133,7 @@ future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
 `tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
 sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 authored**.
-**V1–V9 — shipped:** the **Words hub** (four tabs), the **Idioms trainer** (179 entries) and the
+**V1–V10 — shipped:** the **Words hub** (four tabs), the **Idioms trainer** (279 entries — idioms · phrasal verbs · **117 collocations** in a navigable category bar) and the
 **Irregular-verbs trainer** (75 verbs, table + 3-forms drill).
 **RB1 — shipped:** Reading grew 100 → **131 texts**, incl. a new *Biographies & Speeches* category.
 **R1 — shipped:** **`#/review`, the SRS trainer** — SM-2-lite ported 1:1, four corpus decks over the 769

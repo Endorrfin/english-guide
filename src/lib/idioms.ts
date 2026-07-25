@@ -6,6 +6,43 @@ import type { IdiomEntry, IdiomKind } from '../data/types';
 
 export const IDIOM_KINDS: readonly IdiomKind[] = ['idiom', 'phrasal', 'collocation'];
 
+// CHANGED (V10): the collocation categories, in canonical display order. `id` matches
+// IdiomEntry.group; the bilingual labels live in i18n/ui.ts (collGroup*). Drives the category
+// bar + the grouped Learn view shown when the 'collocation' kind is active. Append, never rename.
+export const COLLOCATION_GROUP_IDS = [
+  'make-do',
+  'verb-noun',
+  'adjective-noun',
+  'adverb-adjective',
+  'business',
+  'workplace',
+] as const;
+export type CollocationGroupId = (typeof COLLOCATION_GROUP_IDS)[number];
+
+/** True if `g` is one of the known collocation category ids (used by check:data + the page). */
+export function isCollocationGroup(g: string | undefined): g is CollocationGroupId {
+  return g !== undefined && (COLLOCATION_GROUP_IDS as readonly string[]).includes(g);
+}
+
+/**
+ * Group the collocations of a list by `group` in canonical order, each bucket alphabetized by
+ * phrase; empty groups are dropped. Non-collocations are ignored. Any collocation with a missing
+ * or unknown group lands in a trailing 'other' bucket, so nothing is ever silently hidden.
+ */
+export function groupCollocations(list: readonly IdiomEntry[]): { group: string; items: IdiomEntry[] }[] {
+  const buckets = new Map<string, IdiomEntry[]>();
+  for (const id of COLLOCATION_GROUP_IDS) buckets.set(id, []);
+  for (const e of list) {
+    if (e.kind !== 'collocation') continue;
+    const key = isCollocationGroup(e.group) ? e.group : 'other';
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key)!.push(e);
+  }
+  return [...buckets.entries()]
+    .map(([group, items]) => ({ group, items: [...items].sort((a, b) => a.phrase.localeCompare(b.phrase)) }))
+    .filter((g) => g.items.length > 0);
+}
+
 /** Sorted, de-duplicated theme tags across a list — drives the theme filter. */
 export function allThemes(list: readonly IdiomEntry[]): string[] {
   return [...new Set(list.flatMap((i) => i.themes))].sort();

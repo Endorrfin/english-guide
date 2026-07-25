@@ -3514,3 +3514,35 @@
   text-align: center;
   font-variant-numeric: tabular-nums;
 }
+
+/* ── Collocations (V10): category bar · common-mistake note · kind chip ─────────────────────── */
+.coll-catbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.1rem 0 0.5rem;
+}
+.chip-kind[data-kind='collocation'] {
+  color: var(--lv-a2);
+  border-color: color-mix(in srgb, var(--lv-a2) 45%, transparent);
+}
+.idiom-note {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.7rem;
+  background: color-mix(in srgb, var(--amber) 9%, var(--s2));
+  border: 1px solid color-mix(in srgb, var(--amber) 32%, var(--line));
+  border-radius: var(--r-sm);
+  font-size: 0.88rem;
+  color: var(--tx2);
+}
+.idiom-note-tag {
+  flex: 0 0 auto;
+  font: 700 0.64rem var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--amber);
+  white-space: nowrap;
+}

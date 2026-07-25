@@ -1,6 +1,9 @@
 // CHANGED (V2): golden tests for the pure Idioms helpers + the idioms corpus invariants.
 // Run: tsx scripts/test-idioms.ts — exits non-zero on any failure. Auto-discovered by run-tests.
-import { allThemes, blankInExample, buildMatchRound, groupByKind, IDIOM_KINDS, shuffle } from '../src/lib/idioms';
+import {
+  allThemes, blankInExample, buildMatchRound, COLLOCATION_GROUP_IDS, groupByKind, groupCollocations,
+  IDIOM_KINDS, isCollocationGroup, shuffle,
+} from '../src/lib/idioms';
 import { IDIOMS } from '../src/data/idioms';
 import type { IdiomEntry } from '../src/data/types';
 
@@ -39,7 +42,14 @@ for (const e of IDIOMS) {
   }
   if (e.literal) ok(!!e.literal.en?.trim() && !!e.literal.uk?.trim(), `${e.id}: literal must be bilingual`);
   if (e.origin) ok(!!e.origin.en?.trim() && !!e.origin.uk?.trim(), `${e.id}: origin must be bilingual`);
+  // CHANGED (V10): collocations carry a known category group; notes (if present) are bilingual.
+  if (e.kind === 'collocation') ok(isCollocationGroup(e.group), `${e.id}: collocation needs a known group (got '${e.group}')`);
+  else ok(e.group === undefined, `${e.id}: only collocations may have a group`);
+  if (e.note) ok(!!e.note.en?.trim() && !!e.note.uk?.trim(), `${e.id}: note must be bilingual`);
 }
+// CHANGED (V10): every collocation category is actually populated (guards against a dead nav chip).
+const collGroupsPresent = new Set(IDIOMS.filter((e) => e.kind === 'collocation').map((e) => e.group));
+for (const g of COLLOCATION_GROUP_IDS) ok(collGroupsPresent.has(g), `collocation group '${g}' has no entries`);
 
 // ── grouping + themes ─────────────────────────────────────────────────────────
 const mini = [
@@ -52,6 +62,20 @@ eq(groups.map((g) => g.kind), ['idiom', 'phrasal'], 'groupByKind keeps canonical
 eq(groups[0].items.map((i) => i.phrase), ['alpha'], 'idiom bucket');
 eq(groups[1].items.map((i) => i.phrase), ['beta', 'carry'], 'phrasal bucket alphabetized');
 eq(allThemes(mini), ['x', 'y'], 'allThemes is sorted + unique');
+
+// ── groupCollocations (V10) ────────────────────────────────────────────────────
+const collMini = [
+  { id: 'c1', phrase: 'take a break', kind: 'collocation', group: 'verb-noun', themes: ['x'] },
+  { id: 'c2', phrase: 'heavy rain', kind: 'collocation', group: 'adjective-noun', themes: ['x'] },
+  { id: 'c3', phrase: 'do homework', kind: 'collocation', group: 'make-do', themes: ['x'] },
+  { id: 'c4', phrase: 'ask a question', kind: 'collocation', group: 'verb-noun', themes: ['x'] },
+  { id: 'c5', phrase: 'weird one', kind: 'collocation', group: 'nope', themes: ['x'] }, // unknown → 'other'
+  { id: 'i1', phrase: 'spot on', kind: 'idiom', themes: ['x'] }, // ignored (not a collocation)
+] as unknown as IdiomEntry[];
+const cg = groupCollocations(collMini);
+eq(cg.map((g) => g.group), ['make-do', 'verb-noun', 'adjective-noun', 'other'], 'groupCollocations keeps canonical order + trailing other, drops empty');
+eq(cg.find((g) => g.group === 'verb-noun')!.items.map((i) => i.phrase), ['ask a question', 'take a break'], 'collocation bucket alphabetized');
+ok(isCollocationGroup('business') && !isCollocationGroup('nope') && !isCollocationGroup(undefined), 'isCollocationGroup guards the known set');
 
 // ── blankInExample ────────────────────────────────────────────────────────────
 const spot = IDIOMS.find((i) => i.id === 'spot-on')!;
@@ -74,4 +98,4 @@ if (failures > 0) {
   console.error(`\n✖ test-idioms: ${failures} failure(s).`);
   process.exit(1);
 }
-console.log(`✓ test-idioms: all checks passed (kind grouping, themes, guess-blank, deterministic match on ${IDIOMS.length} entries).`);
+console.log(`✓ test-idioms: all checks passed (kind + collocation grouping, themes, guess-blank, deterministic match on ${IDIOMS.length} entries).`);

@@ -20,6 +20,7 @@ import { customWords } from '../src/data/words/custom';
 import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
+import { isCollocationGroup } from '../src/lib/idioms'; // CHANGED (V10): collocation category contract
 import type {
   Exercise, IdiomEntry, IrregularVerb, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
 } from '../src/data/types';
@@ -249,6 +250,10 @@ for (const e of IDIOMS as IdiomEntry[]) {
   if (e.origin) locOk(e.origin, `${at}.origin`);
   if (e.uaEquivalent !== undefined) err(e.uaEquivalent.trim().length > 0, `${at}: empty uaEquivalent`);
   for (const s of e.synonyms ?? []) err(s.trim().length > 0, `${at}: empty synonym`);
+  // CHANGED (V10): collocations carry a known category `group`; other kinds must not; notes are bilingual.
+  if (e.kind === 'collocation') err(isCollocationGroup(e.group), `${at}: collocation needs a known group (got '${e.group}')`);
+  else err(e.group === undefined, `${at}: only collocations may have a group`);
+  if (e.note) locOk(e.note, `${at}.note`);
 }
 
 // --- irregular verbs checks (V3 — the Words-hub Irregular tab) --------------
