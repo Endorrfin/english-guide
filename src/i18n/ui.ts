@@ -234,6 +234,16 @@ export const ui = {
   idiomNewRound: { en: 'New round', uk: 'Новий раунд' },
   idiomMatchTooFew: { en: 'Pick filters that leave at least two expressions to match.', uk: 'Обери фільтри так, щоб лишилось хоча б два вирази для гри.' },
   idiomOfDay: { en: 'Idiom of the day', uk: 'Ідіома дня' },
+  // CHANGED (V10): collocation category bar (shown for the Collocations kind) + common-mistake note.
+  idiomNote: { en: 'Common mistake', uk: 'Типова помилка' },
+  collAllGroups: { en: 'All categories', uk: 'Всі категорії' },
+  collGroupMakeDo: { en: 'Make vs Do', uk: 'Make vs Do' },
+  collGroupVerbNoun: { en: 'Verb + Noun', uk: 'Дієслово + іменник' },
+  collGroupAdjNoun: { en: 'Adjective + Noun', uk: 'Прикметник + іменник' },
+  collGroupAdvAdj: { en: 'Adverb + Adjective', uk: 'Прислівник + прикметник' },
+  collGroupBusiness: { en: 'Business English', uk: 'Ділова англійська' },
+  collGroupWorkplace: { en: 'Workplace & Tech', uk: 'Робота й tech' },
+  collGroupOther: { en: 'Other', uk: 'Інше' },
   // CHANGED (V2): Irregular verbs — now the 4th Words-hub tab (placeholder until the trainer lands).
   irregularLede: {
     en: 'The English irregular verbs — base, past and past participle — as a searchable table and a three-forms drill.',

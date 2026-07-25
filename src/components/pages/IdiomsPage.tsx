@@ -10,7 +10,7 @@ import { IDIOMS } from '../../data/idioms';
 import type { IdiomEntry, IdiomKind, Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
-import { allThemes, blankInExample, buildMatchRound, groupByKind, idiomOfDay } from '../../lib/idioms';
+import { allThemes, blankInExample, buildMatchRound, COLLOCATION_GROUP_IDS, groupByKind, groupCollocations, idiomOfDay } from '../../lib/idioms';
 import { getMastery, setMastery, useMastery } from '../../lib/masteryStore';
 import type { Mastery } from '../../lib/masteryStore';
 import { useTts } from '../../lib/tts';
@@ -28,6 +28,17 @@ const KIND_LABEL: Record<IdiomKind, typeof ui.idiomTypeIdiom> = {
   phrasal: ui.idiomTypePhrasal,
   collocation: ui.idiomTypeCollocation,
 };
+// CHANGED (V10): collocation category labels — keyed by IdiomEntry.group (canonical order in lib/idioms).
+const GROUP_LABEL: Record<string, typeof ui.collGroupMakeDo> = {
+  'make-do': ui.collGroupMakeDo,
+  'verb-noun': ui.collGroupVerbNoun,
+  'adjective-noun': ui.collGroupAdjNoun,
+  'adverb-adjective': ui.collGroupAdvAdj,
+  business: ui.collGroupBusiness,
+  workplace: ui.collGroupWorkplace,
+  other: ui.collGroupOther,
+};
+const groupLabel = (id: string) => GROUP_LABEL[id] ?? ui.collGroupOther;
 const MASTERY_STATES: Mastery[] = ['new', 'learning', 'known'];
 const MASTERY_LABEL: Record<Mastery, typeof ui.masteryNew> = {
   new: ui.masteryNew,
@@ -136,6 +147,14 @@ function IdiomCard({
               <span className="mono">{t(ui.idiomLiteral)}:</span> {e.literal.en} · {e.literal.uk}
             </p>
           )}
+          {e.note && (
+            <p className="idiom-note">
+              <span className="idiom-note-tag">⚠ {t(ui.idiomNote)}</span>
+              <span>
+                {e.note.en} <span className="muted">{e.note.uk}</span>
+              </span>
+            </p>
+          )}
 
           <div className="dict-examples">
             {e.examples.map((ex, i) => (
@@ -167,18 +186,24 @@ function IdiomCard({
   );
 }
 
-function LearnView({ list }: { list: IdiomEntry[] }) {
+// CHANGED (V10): `byGroup` switches the section headers from kind → collocation category (make-do,
+// verb-noun, …). Used when the Collocations kind is active so the list reads as a navigable syllabus.
+function LearnView({ list, byGroup }: { list: IdiomEntry[]; byGroup: boolean }) {
   const { t } = useLang();
   const masteryMap = useMastery();
   const [openId, setOpenId] = useState<string | undefined>(undefined);
-  const groups = useMemo(() => groupByKind(list), [list]);
+  const kindGroups = useMemo(() => groupByKind(list), [list]);
+  const collGroups = useMemo(() => groupCollocations(list), [list]);
   if (list.length === 0) return <p className="dict-empty muted">{t(ui.searchNoResults)}</p>;
+  const sections = byGroup
+    ? collGroups.map((g) => ({ key: g.group, title: t(groupLabel(g.group)), items: g.items, anchor: `collgroup-${g.group}` }))
+    : kindGroups.map((g) => ({ key: g.kind, title: t(KIND_LABEL[g.kind]), items: g.items, anchor: undefined }));
   return (
     <div className="dict-list">
-      {groups.map((g) => (
-        <section className="def-group" key={g.kind} aria-label={t(KIND_LABEL[g.kind])}>
-          <h2 className="def-group-h">{t(KIND_LABEL[g.kind])}</h2>
-          {g.items.map((e) => (
+      {sections.map((s) => (
+        <section className="def-group" key={s.key} id={s.anchor} aria-label={s.title}>
+          <h2 className="def-group-h">{s.title}</h2>
+          {s.items.map((e) => (
             <IdiomCard
               key={e.id}
               e={e}
@@ -346,8 +371,14 @@ export function IdiomsPage() {
   const [mode, setMode] = useState<Mode>('learn');
   const [q, setQ] = useState('');
   const [kind, setKind] = useState<IdiomKind | 'all'>('all');
+  const [group, setGroup] = useState<string | 'all'>('all'); // CHANGED (V10): collocation category filter
   const [theme, setTheme] = useState<string | 'all'>('all');
   const [level, setLevel] = useState<Level | 'all'>('all');
+
+  // CHANGED (V10): the category bar is meaningful only for collocations — drop the filter otherwise.
+  useEffect(() => {
+    if (kind !== 'collocation') setGroup('all');
+  }, [kind]);
 
   const themes = useMemo(() => allThemes(IDIOMS), []);
   // CHANGED (V3): idiom of the day — deterministic per calendar day (rotates daily, stable within it).
@@ -357,6 +388,8 @@ export function IdiomsPage() {
     () =>
       IDIOMS.filter((e) => {
         if (kind !== 'all' && e.kind !== kind) return false;
+        // CHANGED (V10): category filter (only bites in the Collocations kind; reset otherwise).
+        if (group !== 'all' && (e.kind !== 'collocation' || e.group !== group)) return false;
         if (theme !== 'all' && !e.themes.includes(theme)) return false;
         if (level !== 'all' && e.level !== level) return false;
         if (!needle) return true;
@@ -367,7 +400,7 @@ export function IdiomsPage() {
           (e.uaEquivalent ?? '').toLowerCase().includes(needle)
         );
       }),
-    [needle, kind, theme, level],
+    [needle, kind, group, theme, level],
   );
 
   return (
@@ -445,6 +478,31 @@ export function IdiomsPage() {
         </span>
       </div>
 
+      {/* CHANGED (V10): collocation category bar — jump to / filter by grammatical pattern. */}
+      {kind === 'collocation' && (
+        <div className="coll-catbar" role="group" aria-label={t(ui.collAllGroups)}>
+          <button
+            type="button"
+            className={cx('chip', group === 'all' && 'known-on')}
+            aria-pressed={group === 'all'}
+            onClick={() => setGroup('all')}
+          >
+            {t(ui.collAllGroups)}
+          </button>
+          {COLLOCATION_GROUP_IDS.map((gid) => (
+            <button
+              key={gid}
+              type="button"
+              className={cx('chip', group === gid && 'known-on')}
+              aria-pressed={group === gid}
+              onClick={() => setGroup(group === gid ? 'all' : gid)}
+            >
+              {t(groupLabel(gid))}
+            </button>
+          ))}
+        </div>
+      )}
+
       {mode === 'learn' && today && (
         <button type="button" className="idiom-otd" onClick={() => setQ(today.phrase)} title={t(ui.idiomOfDay)}>
           <span className="idiom-otd-tag">🗓 {t(ui.idiomOfDay)}</span>
@@ -453,7 +511,7 @@ export function IdiomsPage() {
           {today.uaEquivalent && <span className="idiom-otd-ua">≈ {today.uaEquivalent}</span>}
         </button>
       )}
-      {mode === 'learn' && <LearnView list={filtered} />}
+      {mode === 'learn' && <LearnView list={filtered} byGroup={kind === 'collocation'} />}
       {mode === 'guess' && <GuessView list={filtered} />}
       {mode === 'match' && <MatchView list={filtered} />}
     </WordsLayout>
