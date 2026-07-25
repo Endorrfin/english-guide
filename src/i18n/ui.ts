@@ -50,6 +50,8 @@ export const ui = {
   known: { en: 'Known', uk: 'Вивчено' },
 
   comingSoon: { en: 'Content coming in a later session', uk: 'Контент зʼявиться в наступній сесії' },
+  // CHANGED (M2): shown while a module's lazy content chunk is in flight (usually a blink).
+  loadingModule: { en: 'Loading the module…', uk: 'Завантаження модуля…' },
   stubNote: {
     en: 'This module is part of the navigable skeleton. Its full content is authored in a later session per the roadmap.',
     uk: 'Цей модуль — частина навігаційного каркасу. Його повний зміст буде створено в наступній сесії згідно з планом.',
