@@ -15,6 +15,7 @@ import {
   isWordsRoute,
   useRoute,
 } from '../../lib/hashRouter';
+import { useSrsDueCount } from '../../lib/srsStore'; // CHANGED (R1): due badge on Review
 import { cx } from '../../lib/utils';
 
 // CHANGED (V1): Definitions + Dictionary collapsed into one "Words" hub entry (active on all 3 tabs).
@@ -44,6 +45,7 @@ export function Sidebar() {
   const { t } = useLang();
   const { levelFilter, sidebarOpen, closeSidebar } = useAppState();
   const [openMap, setOpenMap] = useState<Record<string, boolean>>(loadOpen);
+  const srsDue = useSrsDueCount(); // CHANGED (R1): counts stored states only — no corpus import
 
   useEffect(() => {
     try {
@@ -75,6 +77,12 @@ export function Sidebar() {
                     aria-current={active ? 'page' : undefined}
                   >
                     {t(p.label)}
+                    {/* CHANGED (R1): how many cards are due right now, on the Review entry. */}
+                    {p.name === 'review' && srsDue > 0 && (
+                      <span className="due-badge" aria-label={`${srsDue} ${t(ui.dueLabel)}`}>
+                        {srsDue}
+                      </span>
+                    )}
                   </a>
                 </li>
               );

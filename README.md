@@ -41,9 +41,13 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
   (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
   CEFR level, mark texts as read. ~100 texts now, growing to 1000+ in waves.
-- **Trainers** — `#/review` SRS flashcards (SM-2-lite; decks per level · My words · irregular verbs),
-  `#/practice` gap-fill + MCQ hub with explanations, and the irregular-verbs 3-forms drill (now a tab
-  under **Words → Irregular verbs**). Progress lives in your browser (localStorage).
+- **Trainers** — **`#/review` spaced repetition (SM-2-lite)** over **769 cards in four decks**: Dictionary
+  (Oxford seed) · My words · Idioms · Irregular verbs, filterable by CEFR level. Recall the card, then rate
+  it *Again / Hard / Good / Easy* (keys 1–4) — each button shows the interval it would schedule; a badge in
+  the nav counts what is due. It can **import the progress you already made on Definitions**, and it can
+  **back up all your progress to a JSON file** (and restore it). Plus `#/practice` gap-fill + MCQ with
+  explanations, and the irregular-verbs 3-forms drill (a tab under **Words → Irregular verbs**).
+  Progress lives in your browser (localStorage) — hence the backup button.
 - **Bilingual** at the data layer — every string is `{ en, uk }`; grammar terms stay English in both.
 
 ## Tech
@@ -115,7 +119,7 @@ sim) and `m22` Requests & politeness.
 **S5 + T1–T3 — shipped:** a new **Section II — Tenses ★** (the whole tense system in one place, with a
 4-level "dive" mechanic) — the golden `m6-tense-system` + the ★ `tense-navigator` sim, plus `m7`–`m10`
 (present · past · future · the perfect family) and the parametric `TenseTimeline` figure. Now
-**6 sections · 34 modules · 11 authored**.
+**6 sections · 34 modules · 12 authored**.
 **D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
 Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
 dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
@@ -126,8 +130,15 @@ future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
 `tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
 sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 authored**.
-**Next:** dictionary v2 (lazy per-level chunks + search index) + the `#/review` SRS port +
-`#/irregular`; Reading OCR waves (100 → 1000+); the idioms section for the short-phrase backlog.
+**V1–V9 — shipped:** the **Words hub** (four tabs), the **Idioms trainer** (179 entries) and the
+**Irregular-verbs trainer** (75 verbs, table + 3-forms drill).
+**RB1 — shipped:** Reading grew 100 → **131 texts**, incl. a new *Biographies & Speeches* category.
+**R1 — shipped:** **`#/review`, the SRS trainer** — SM-2-lite ported 1:1, four corpus decks over the 769
+cards that already existed, a nav due-badge, an explicit mastery import from Definitions, and JSON
+backup/restore of all progress. All four trainers are now live.
+**Next:** dictionary v2 — the words meta-split (lazy per-level chunks + a slim eager search index). It is
+the gate before the next big word wave: the eager bundle is already 1.39 MB because global search indexes
+the full corpus. Then Section III (Core Grammar) + `conditionals-machine`; more Reading and idiom waves.
 
 ---
 
@@ -165,9 +176,13 @@ phrasal verbs · колокації — датасет, окремий від о
 відповідник**, живі приклади з озвученням і — для ідіом — **історію походження**. Три режими: **Learn**
 (перегляд за типом/темою), **Guess** (значення → пригадай вираз), **Match** (спаруй вирази зі значеннями).
 Mastery на кожен вираз.
-**Тренажери** — `#/review` SRS-флешкартки (SM-2-lite), `#/practice` gap-fill + MCQ з поясненнями, а drill
-трьох форм неправильних дієслів тепер вкладка **Words → Irregular verbs**. Прогрес зберігається у
-браузері (localStorage).
+**Тренажери** — **`#/review` — spaced repetition (SM-2-lite)** по **769 картках у чотирьох колодах**:
+Словник (Oxford) · Мої слова · Ідіоми · Irregular verbs, з фільтром за рівнем CEFR. Згадай картку й оціни
+її — *Знову / Важко / Добре / Легко* (клавіші 1–4); на кожній кнопці видно інтервал, який вона запланує, а
+бейдж у навігації показує, скільки карток на повторення. Можна **імпортувати прогрес, уже зроблений в
+Означеннях**, і **зберегти весь прогрес у JSON-файл** (та відновити з нього). Плюс `#/practice` gap-fill +
+MCQ з поясненнями, а drill трьох форм неправильних дієслів — вкладка **Words → Irregular verbs**. Прогрес
+зберігається у браузері (localStorage) — тому й кнопка резервної копії.
 
 ## Стек
 

@@ -15,6 +15,7 @@ import {
 } from '../../lib/hashRouter';
 import { search } from '../../lib/search';
 import type { SearchKind, SearchResult } from '../../lib/search';
+import { useSrsDueCount } from '../../lib/srsStore'; // CHANGED (R1): due badge on Review
 import { cx } from '../../lib/utils';
 
 const KIND_LABEL: Record<SearchKind, typeof ui.searchKindModule> = {
@@ -44,6 +45,8 @@ export function TopBar() {
   const [openResults, setOpenResults] = useState(false);
   const [active, setActive] = useState(0);
   const boxRef = useRef<HTMLDivElement>(null);
+  // CHANGED (R1): due count runs off stored SRS states alone (no corpus import in the eager shell).
+  const srsDue = useSrsDueCount();
 
   useEffect(() => {
     setResults(q.trim() ? search(q, lang, 8) : []);
@@ -157,7 +160,14 @@ export function TopBar() {
           <a href={hrefDictionary()}>{t(ui.words)}</a>
           <a href={hrefReading()}>{t(ui.reading)}</a>
           <a href={hrefPractice()}>{t(ui.practice)}</a>
-          <a href={hrefReview()}>{t(ui.review)}</a>
+          <a href={hrefReview()}>
+            {t(ui.review)}
+            {srsDue > 0 && (
+              <span className="due-badge" aria-label={`${srsDue} ${t(ui.dueLabel)}`}>
+                {srsDue}
+              </span>
+            )}
+          </a>
         </nav>
 
         <div className="levelseg" role="group" aria-label={t(ui.levelFilter)}>

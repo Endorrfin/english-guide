@@ -18,7 +18,10 @@ words** · level filter (a1→c1) · a **Words hub** (V1/V2) grouping **`#/dicti
 search / filters level·POS·topic·kind / expandable cards / TTS) · **`#/definitions/<id?>`** (A–Z study:
 Study·Recall·Describe·Cloze) · **`#/idioms`** (multi-word trainer: Learn·Guess·Match, with UA equivalents
 + origins) · **`#/irregular`** (table + drill — now a hub tab) · **`#/practice`** (gap-fill + MCQ hub,
-filter by tag & level) · **`#/review`** (SRS decks: per level · My words · irregular verbs) ·
+filter by tag & level) · **`#/review`** (**built R1** — SM-2-lite SRS over **four corpus decks**:
+Dictionary (Oxford seed) · My words · Idioms · Irregular verbs, mutually disjoint, with CEFR level as a
+**filter** on top; reveal-then-grade, 1–4 keys, a nav due-badge, an explicit mastery import from
+`#/definitions`, and a JSON backup/restore of all progress) ·
 mental-models gallery (later polish).
 
 **Dive levels (S5, piloted in Section II Tenses):** module pages whose blocks carry `dive` tags show
@@ -148,7 +151,8 @@ ways to engrave it — **Study** (definition-first + synonyms + the 4 general / 
 **Recall** (definition-first flashcard, headword masked), **Describe** (self-scored "define it without
 naming it" on a derived POS·function·synonym·opposite·context scaffold + taboo list), **Cloze** (blank
 the headword in its own sentence, auto-checked via `lib/exercise`). **Mastery** (new/learning/known)
-persists per word id (`lib/masteryStore`), SRS-compatible so `#/review` (SM-2-lite) adopts it later.
+persists per word id (`lib/masteryStore`), SRS-compatible — `#/review` (SM-2-lite, built R1) adopts it
+through an explicit, idempotent **Import progress** button.
 Pure helpers in `lib/definitions.ts` (golden-tested). First custom wave = **20 golden b1–c1 cards**
 from the `definition.txt` backlog. The Dictionary page stays for now (demote/redirect deferred).
 
@@ -159,7 +163,8 @@ Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `te
 planned: `conditionals-machine` ★ · `article-tree` ★ · `word-formation-lab` ★) + the parametric
 **`TenseTimeline` figure** ·
 ~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses ≥12) · dictionary **≥3,000
-words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review` SRS · `#/practice` ·
+words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live** (`#/review` SRS ★R1 —
+769 cards across 4 decks · `#/practice` ·
 `#/irregular` · per-module drills).
 
 ## G. Build order
@@ -177,8 +182,12 @@ words + 100–300 idioms** · **~150 irregular verbs** · 4 trainers (`#/review`
    `timeline-future`/`timeline-perfect`; the core gained a ⤺ link-back mark for the perfect zone) →
    **T4 (done)** `m11` + `sentence-morpher` (m6) + `tense-chooser` (m11) + section polish (dive
    tuning, cross-links, UA-pitfalls sweep) — **Section II COMPLETE (6/6)**.
-5. **Dictionary v2:** per-level lazy chunks + eager search index + `#/review` SRS (port `srs.ts`) +
-   `#/irregular`; words → W2 start.
+5. **`#/review` SRS (done, R1):** `srs.ts` ported 1:1 + `srsStore` + `reviewDecks` (4 corpus decks over
+   the 769 existing cards) + mastery import + progress backup + nav due-badge. `#/irregular` shipped V3.
+5b. **Dictionary v2 — THE SCALE GATE (next):** per-level lazy chunks + a slim eager search index. The
+   eager entry chunk is **1.39 MB** today (`TopBar → search.ts → WORDS` pulls the whole corpus); at
+   3,000 words that is ~6–8 MB before first paint, which breaks the BRIEF §6 scale guard. **Do this
+   BEFORE W2, not after.** Then words → W2 start.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).
 7. Section III (`m12`–`m16`) + `conditionals-machine` + W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).

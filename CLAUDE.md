@@ -39,9 +39,13 @@ learning-UX + correctness, in that order.
   - **Words meta-split from the first big wave:** per-level word files are lazy chunks; the eager
     shell imports only a slim generated index (word + translations + level) for instant search
     (standard §4.4 applied to words; module meta-split arrives later like the database guide's S19).
-  - **SRS**: port `../database guide/src/lib/srs.ts` (SM-2-lite) **verbatim** + its `srsStore`
-    localStorage pattern; decks = per CEFR level · My words (`custom.ts`) · irregular verbs.
-    Card ids are **stable forever** (they are progress keys) — never rename, only append.
+  - **SRS (built R1)**: `../database guide/src/lib/srs.ts` (SM-2-lite) ported **verbatim** + its
+    `srsStore` localStorage pattern (key `englishguide.srs`). **Decks = four by CORPUS** — Dictionary
+    (Oxford seed) · My words (`custom.ts`) · Idioms · Irregular verbs — mutually disjoint, with CEFR
+    level as a **filter** on top (owner decision R1; "per level" from CURRICULUM §B is the filter, not
+    five decks, so a word is never counted twice). Card ids are `<deck-prefix><data id>`
+    (`wd:` · `mw:` · `im:` · `ir:`) and **stable forever** (progress keys) — never rename, only append;
+    the prefix lets the nav due-badge attribute a stored state to its deck with **no corpus import**.
   - **Pronunciation:** IPA strings on cards + **Web Speech API** (`speechSynthesis`, `en-US`/`en-GB`
     voice pick, graceful no-voice fallback). No audio files.
   - **Dive levels (S5):** `Block.dive?: 2|3|4` — per-block depth tags (2 🚂 core rules + main
@@ -123,7 +127,7 @@ questions → the right tense + near-miss explanations; encodes the cross-time o
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
-figure + table everywhere else. Trainers (`#/review`, `#/practice`, `#/irregular`) and the
+figure + table everywhere else. Trainers (**`#/review` SRS — built R1**, `#/practice`, `#/irregular`) and the
 **Definitions study page** (`#/definitions`, D1 — the word front door: A–Z browse + Study/Recall/
 Describe/Cloze over the shared word corpus) are pages, not sims. **The Words hub (V1/V2)** groups
 Dictionary · Definitions · **Idioms** · Irregular under one nav section; the **Idioms trainer**
@@ -227,12 +231,18 @@ figure → **T3 (done):** `m9`+`m10` + the `timeline-future` / `timeline-perfect
 COMPLETE (6/6)**. →
 **D1 (done): Definitions study page** (`#/definitions`) over the SHARED word corpus (SSOT) — A–Z +
 Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 golden custom cards**
-(first custom wave). → **D2 (next): +100 definition cards** from the backlog (wave; runbook §16 —
-170 → ~270 words). →
-then **dictionary v2** (lazy chunks + index) + `#/review` SRS port + `#/irregular`; W2 start. →
-Sections I (m1–m5) · III (m12–m16) · V (m23–m30) · VI (m31–m34) + their sims + dictionary waves
-W2–W5, **with Reading OCR waves interleaved**. → polish: map · mental-models gallery · module +
-reading meta-splits · bilingual QA · a11y pass.
+(first custom wave). → **D2–D7 (done): +345 definition cards** (dictionary → 515 words; runbook §16). →
+**V1–V9 (done):** the Words hub · Idioms trainer (179) · Irregular trainer (75). →
+**RB1 (done):** Reading 100 → 131. →
+**R1 (done): the `#/review` SRS trainer** — `srs.ts` ported 1:1 + `srsStore` + 4 corpus decks over
+769 existing cards + mastery import + progress backup/restore + the nav due-badge. →
+**Next (the scale gate): dictionary v2** — the words meta-split (slim eager search index + lazy
+per-level chunks). The eager entry chunk is **1.39 MB** today because `TopBar → search.ts → WORDS`
+pulls the whole corpus; at 3,000 words that is ~6–8 MB before first paint, which violates the
+BRIEF §6 scale guard. **Do it BEFORE the next big words wave (W2), not after.** →
+Sections III (m12–m16) + `conditionals-machine` · VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
+V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
+polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
 CURRICULUM.md §G / §R.)
 
@@ -691,6 +701,71 @@ CURRICULUM.md §G / §R.)
   `_examples/reading.txt` (+ an APPLIED header block; held/dup lines tagged too) so next month's 10–40 new
   texts diff cleanly. Owner next: `npm run verify` → branch `rb1-reading-biographies` → commit. Deferred:
   owner decision on the held-back dialogues/jokes (own genre/category?); the `#/reading` counter auto-updates.
+
+- **R1 (2026-07-25) — `#/review`: the SRS trainer (SM-2-lite). The retention engine, live at last.**
+  The nav entry had been a ComingSoon stub since S1 while the corpus grew to **769 recallable items**
+  (515 words + 179 idioms + 75 irregular verbs) with **no scheduling** — so the guide could teach but not
+  make anything stick, against BRIEF §2's declared success metric ("owner's retained vocabulary"). This
+  session ports the schedule instead of adding content: **zero new datasets**, all four decks are
+  projections of the existing SSOT. **Engine** `lib/srs.ts` — `../database guide/src/lib/srs.ts` ported
+  **1:1** (BRIEF §5): grade transitions (again → 10 min + ease −0.20 · hard ×1.2 + ease −0.15 · good
+  1 d → 3 d → ×ease · easy 2 d → 5 d → ×ease×1.3), ease clamped 1.3–3.0, interval capped 365 d, queue =
+  due-oldest-first then new capped by `NEW_PER_DAY = 10`, plus `previewIntervals`/`dueSummary`/`dayKey`.
+  The **one addition** is `seedState()` (marked `CHANGED (R1)`) so the mastery import creates honest SM-2
+  states instead of hand-rolled literals. **Decks (owner decision this session):** four **by corpus** —
+  `dict` Dictionary/Oxford 150 · `mine` My words 365 · `idioms` 179 · `irregular` 75 — mutually
+  **disjoint** (Oxford vs custom split by `source`, so no word is counted twice), with **CEFR level as a
+  filter** on top like `#/practice`; the CURRICULUM §B wording "per level" is satisfied by the filter
+  rather than 8 toggles. `lib/reviewDecks.ts` builds the cards (`REVIEW_CARDS`, front = the ENGLISH study
+  object so it survives the EN/UA toggle; word cards reveal def + translations + a `general` example,
+  idioms add the `uaEquivalent` hook, irregular cards reveal `past · pastParticiple`). **Store**
+  `lib/srsStore.ts` (key `englishguide.srs`, its own key — Review owns the SCHEDULE, `#/definitions` keeps
+  mastery and `#/practice` keeps solved drills). **Architecture note:** the deck-id + prefix contract
+  (`wd:` · `mw:` · `im:` · `ir:`) lives in `srsStore` (which imports NO data) rather than in `reviewDecks`,
+  so `srsDueCount()` attributes a stored state to its deck **from the id prefix alone** — the eager shell's
+  due-badge never loads a corpus, and that stays true after the coming dictionary meta-split. **Page**
+  `components/pages/ReviewPage.tsx`: deck toggles with per-deck due/total, level filter, an `aria-live`
+  counts strip (due · new + budget left · scheduled), reveal-then-grade with **no flip animation** (so
+  inherently reduced-motion safe), Space/Enter reveals + 1–4 grade, each grade button shows the interval
+  it would schedule, TTS on the English side, and a deep link to the card's study surface
+  (`#/definitions/<id>` · `#/idioms/<id>` · `#/irregular`). **Mastery bridge:** an explicit *Import
+  progress from Definitions* button (owner chose explicit over a silent seed) — `known` → two clean
+  `good` grades (3-day interval), `learning` → due now, **idempotent**, and it can never rewind a card
+  already in review; it also picks up idiom mastery via the `idiom:<id>` namespace. **Progress backup**
+  `lib/backup.ts` — one JSON file over the four progress keys (srs · mastery · practice · known), UI
+  prefs deliberately excluded; strict validation rejects a foreign/mis-versioned file rather than
+  half-applying it, and restore reloads the page because `masteryStore`/`practiceStore` cache their maps
+  at first read. **Nav due-badge** in TopBar + Sidebar (`useSrsDueCount`, 60 s tick + focus + cross-tab
+  `storage` event). `ui.ts` gained the bilingual review/deck/grade block and **lost `reviewSoonNote`**;
+  `.rev-*` + `.due-badge` CSS appended (reuses `.card`/`.btn`/`.chip`/`.levelseg`/`.kbd`/`.tts-btn`).
+  **Gates:** new `scripts/test-srs.ts` (auto-discovered, **test ×10**) — the transitions with exact
+  numbers, ease floor/cap, interval cap, lapse-only-if-learned, queue policy incl. allowance 0/negative,
+  `nextDueAt`, preview labels, `dayKey` invariants (TZ-agnostic), `seedState`, then the deck projection
+  over the REAL corpora (769 cards, unique ids, prefix round-trip, no prefix is a prefix of another, per
+  deck shape), then store behaviour a bug would make destructive (a new grade spends exactly one daily
+  slot, regrading spends none, budget resets next day, a disabled deck drops out of the badge count,
+  import idempotency + the anti-rewind guarantee, corrupt/future-version storage degrades to fresh) and
+  backup validation. **Test note:** ease is accumulated float arithmetic (`2.8 + 0.15 ===
+  2.9499999999999997`), so ease assertions compare within an epsilon — the test bends, not the ported
+  engine. `smoke.ts` renders ReviewPage EN+UK with a **dynamic** queue fixture (`REVIEW_CARDS[0].front`,
+  the S5 hardcoded-fixture lesson) + the deck label `Irregular verbs`, which stays English in both
+  languages — now **236 checks**. **Verification: FULL `npm run verify` ✓ green end-to-end in the cloud
+  scratch** (fresh npm install; typecheck `tsc -b` · eslint clean · check:data 6/34 · 12 authored · 181
+  exercises · 515 words · 131 reading · 179 idioms · 75 irregular · test ×10 · smoke 236 · vite build) +
+  a headless-Chromium pass driving the REAL page: EN front → reveal → the four grade buttons with
+  `10 min`/`1 d`/`1 d`/`2 d`, UA chrome with the study object still English, grading advances the queue
+  (`be` → `have`, 10 new → 9, 1 scheduled), the import button's empty path, and a planted-state check
+  proving the badge shows **3** with the `irregular` deck toggled off (4 due cards, one excluded) — 0
+  page errors. **Bundle:** the ReviewPage chunk is **9.5 kB**; the eager chunk grew only ~8 kB (srsStore
+  + badge), since the corpora were already eager via `search.ts`. **Also fixed:** a pre-existing
+  working-tree diff had stripped **8 section comments** from `ui.ts` (comment-only, no code) — restored,
+  so this session's `ui.ts` diff is purely the R1 additions. Owner next: `npm run verify` locally →
+  branch `r1-review-srs` → commit → PR. **Deferred/next — the scale gate:** dictionary v2 (slim eager
+  search index + lazy per-level chunks) **before** the next words wave — the eager entry chunk is already
+  1.39 MB because `TopBar → search.ts → WORDS` pulls the whole corpus, and at 3,000 words that is ~6–8 MB
+  before first paint (BRIEF §6 scale guard). Then optionally a "Today" home page over the due counts, and
+  a UA→EN production drill (every example already has `en` + `uk`, so the content cost is ~zero) to
+  balance the recognition-heavy practice.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

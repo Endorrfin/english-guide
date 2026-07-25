@@ -24,5 +24,7 @@ export const readingCategories: ReadingCategory[] = [
   { id: 'countries', order: 17, title: { en: 'Countries & culture', uk: 'Країни' }, blurb: { en: 'Nations, cultures, and traditions.', uk: 'Народи, культури і традиції.' } },
   // CHANGED (Wave RB1): biographies & speeches — condensed, graded adaptations of real lives and talks.
   { id: 'biographies', order: 18, title: { en: 'Biographies & Speeches', uk: 'Біографії та промови' }, blurb: { en: 'Real lives, famous speeches, and the ideas behind them.', uk: 'Реальні життєписи, відомі промови та ідеї за ними.' } },
-  { id: 'other', order: 19, title: { en: 'Other', uk: 'Інше' }, blurb: { en: 'Everything that doesn’t fit a box yet.', uk: 'Усе, що поки не вклалося в рубрику.' } },
+  // CHANGED (Wave RB2): humour — light, clean jokes for reading practice. ('relationships' already exists above.)
+  { id: 'humour', order: 19, title: { en: 'Humour', uk: 'Гумор' }, blurb: { en: 'Jokes and funny short stories.', uk: 'Жарти та смішні короткі історії.' } },
+  { id: 'other', order: 20, title: { en: 'Other', uk: 'Інше' }, blurb: { en: 'Everything that doesn’t fit a box yet.', uk: 'Усе, що поки не вклалося в рубрику.' } },
 ];

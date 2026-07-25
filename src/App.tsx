@@ -19,7 +19,9 @@ const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').th
 const IdiomsPage = lazy(() => import('./components/pages/IdiomsPage').then((m) => ({ default: m.IdiomsPage })));
 const IrregularPage = lazy(() => import('./components/pages/IrregularPage').then((m) => ({ default: m.IrregularPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
-const ComingSoon = lazy(() => import('./components/pages/ComingSoon').then((m) => ({ default: m.ComingSoon })));
+// CHANGED (R1): #/review is the real SRS trainer now (was a ComingSoon stub since S1). ComingSoon
+// itself stays in use for unauthored module bodies (components/module/ModulePage.tsx).
+const ReviewPage = lazy(() => import('./components/pages/ReviewPage').then((m) => ({ default: m.ReviewPage })));
 // CHANGED (S3): Reading section pages.
 const ReadingIndexPage = lazy(() => import('./components/pages/ReadingIndexPage').then((m) => ({ default: m.ReadingIndexPage })));
 const ReadingTextPage = lazy(() => import('./components/pages/ReadingTextPage').then((m) => ({ default: m.ReadingTextPage })));
@@ -67,12 +69,7 @@ export function App() {
             {route.name === 'reading' && <ReadingIndexPage />}
             {route.name === 'reading-text' && <ReadingTextPage id={route.id} />}
             {route.name === 'practice' && <PracticePage />}
-            {route.name === 'review' && (
-              <div className="content">
-                <h1>{t(ui.review)}</h1>
-                <ComingSoon note={ui.reviewSoonNote} />
-              </div>
-            )}
+            {route.name === 'review' && <ReviewPage />}
             {route.name === 'irregular' && <IrregularPage />}
           </Suspense>
           <Footer />
