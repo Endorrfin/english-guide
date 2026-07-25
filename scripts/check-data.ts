@@ -20,7 +20,7 @@ import { customWords } from '../src/data/words/custom';
 import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
-import { isCollocationGroup } from '../src/lib/idioms'; // CHANGED (V10): collocation category contract
+import { isCollocationGroup, isIdiomCategory } from '../src/lib/idioms'; // CHANGED (V10/V11): idiom + collocation category contracts
 import type {
   Exercise, IdiomEntry, IrregularVerb, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
 } from '../src/data/types';
@@ -253,6 +253,9 @@ for (const e of IDIOMS as IdiomEntry[]) {
   // CHANGED (V10): collocations carry a known category `group`; other kinds must not; notes are bilingual.
   if (e.kind === 'collocation') err(isCollocationGroup(e.group), `${at}: collocation needs a known group (got '${e.group}')`);
   else err(e.group === undefined, `${at}: only collocations may have a group`);
+  // CHANGED (V11): idioms carry a known `category`; other kinds must not.
+  if (e.kind === 'idiom') err(isIdiomCategory(e.category), `${at}: idiom needs a known category (got '${e.category}')`);
+  else err(e.category === undefined, `${at}: only idioms may have a category`);
   if (e.note) locOk(e.note, `${at}.note`);
 }
 

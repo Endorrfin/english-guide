@@ -117,6 +117,10 @@ export type IdiomEntry = {
   // 'collocation' kind (make-do · verb-noun · adjective-noun · adverb-adjective · business · workplace).
   // Required on collocations (check:data), omitted on idioms/phrasals. Canonical ids in lib/idioms.ts.
   group?: string;
+  // CHANGED (V11): idiom semantic category id (kebab) — powers the #/idioms category bar for the
+  // 'idiom' kind (communication · work-business · emotions · …). Required on idioms (check:data),
+  // omitted on phrasals/collocations. Canonical ids in lib/idioms.ts (IDIOM_CATEGORY_IDS).
+  category?: string;
   meaning: Localized;      // EN definition + UA тлумачення
   uaEquivalent?: string;   // the matching Ukrainian idiom/phrase — the "aha" hook that anchors memory
   // CHANGED (V10): usage note — mainly the common wrong version of a collocation ("not *do a decision*")
