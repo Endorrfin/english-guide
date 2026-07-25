@@ -13,7 +13,7 @@ import {
   hrefReview,
   navigate,
 } from '../../lib/hashRouter';
-import { search } from '../../lib/search';
+import { primeWordCorpus, search } from '../../lib/search';
 import type { SearchKind, SearchResult } from '../../lib/search';
 import { useSrsDueCount } from '../../lib/srsStore'; // CHANGED (R1): due badge on Review
 import { cx } from '../../lib/utils';
@@ -43,6 +43,9 @@ export function TopBar() {
   const [q, setQ] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [openResults, setOpenResults] = useState(false);
+  // CHANGED (M1): bumped when the lazy word corpus lands, so the current query re-ranks WITH
+  // definition text (see lib/search.ts — the eager shell only carries the slim headword index).
+  const [deepReady, setDeepReady] = useState(0);
   const [active, setActive] = useState(0);
   const boxRef = useRef<HTMLDivElement>(null);
   // CHANGED (R1): due count runs off stored SRS states alone (no corpus import in the eager shell).
@@ -51,7 +54,13 @@ export function TopBar() {
   useEffect(() => {
     setResults(q.trim() ? search(q, lang, 8) : []);
     setActive(0);
-  }, [q, lang]);
+  }, [q, lang, deepReady]);
+
+  // Fetch the full corpus as soon as the user shows intent to search (focus or first keystroke).
+  // Idempotent; a failure is swallowed in the lib and search stays in slim mode.
+  const primeDeepSearch = () => {
+    void primeWordCorpus().then(() => setDeepReady((n) => n + 1));
+  };
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -120,8 +129,12 @@ export function TopBar() {
             onChange={(e) => {
               setQ(e.target.value);
               setOpenResults(true);
+              primeDeepSearch(); // CHANGED (M1)
             }}
-            onFocus={() => setOpenResults(true)}
+            onFocus={() => {
+              setOpenResults(true);
+              primeDeepSearch(); // CHANGED (M1)
+            }}
             onKeyDown={onKeyDown}
           />
         </div>

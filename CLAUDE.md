@@ -36,9 +36,18 @@ learning-UX + correctness, in that order.
     `#/practice` via `tags`.
   - Dictionary types: `WordEntry` (kind `word|phrasal|idiom`, **7 tagged examples: 4 general +
     business/office/dev**, `source: 'oxford'|'custom'`), `IrregularVerb`.
-  - **Words meta-split from the first big wave:** per-level word files are lazy chunks; the eager
-    shell imports only a slim generated index (word + translations + level) for instant search
-    (standard §4.4 applied to words; module meta-split arrives later like the database guide's S19).
+  - **Words meta-split — DONE (M1)** (standard §4.4). `scripts/gen-data-index.ts` emits two SLIM
+    generated modules that the eager shell imports *instead of* the corpora:
+    `src/data/words/index.generated.ts` (`WORD_INDEX` = id · word · level · joined translations,
+    ~52 kB + `WORD_COUNTS`) and `src/data/reading/index.generated.ts` (`READING_COUNTS` only).
+    The real datasets live in named lazy chunks (`vite.config` manualChunks: `words` · `reading` ·
+    `idioms`). **Search keeps definition matching** by deferring it, not dropping it:
+    `lib/search.ts` `primeWordCorpus()` dynamically imports the full corpus on first search intent
+    and the next query re-ranks with a `def` field (TopBar primes on focus). Enforced by
+    `check:index` (staleness) + `check:bundle` (the eager static-import graph and its budget) —
+    both chained into `verify`. **`WORD_INDEX` is a budget, not a bag**: every field costs eager
+    bytes on every page load, so measure before adding one. The **module** meta-split
+    (`data/meta.ts`, like the database guide's S19) is still open and is the next scale gate.
   - **SRS (built R1)**: `../database guide/src/lib/srs.ts` (SM-2-lite) ported **verbatim** + its
     `srsStore` localStorage pattern (key `englishguide.srs`). **Decks = four by CORPUS** — Dictionary
     (Oxford seed) · My words (`custom.ts`) · Idioms · Irregular verbs — mutually disjoint, with CEFR
@@ -68,7 +77,8 @@ learning-UX + correctness, in that order.
 src/
   main.tsx · App.tsx · vite-env.d.ts
   data/      concepts.ts (SSOT aggregator) · modules/mN-*.ts · types.ts
-             words/{a1,a2,b1,b2,c1,custom}.ts · words/index.generated.ts (slim search index)
+             words/{a1,a2,b1,b2,c1,custom}.ts · words/index.generated.ts (slim search index, M1)
+             reading/*.ts + reading/index.generated.ts (counts for the landing map, M1)
              irregular.ts · meta.ts/meta.json (later, module meta-split)
   i18n/      lang.ts (useLang) · LangProvider.tsx · ui.ts
   lib/       hashRouter.ts · registry.tsx · search.ts (modules + words) · exercise.ts · srs.ts ·
@@ -76,7 +86,8 @@ src/
   theme/     tokens.css · global.css · components.css
   components/ layout/ · module/ · map/ · pages/ (Dictionary, Practice, Review, Irregular) ·
              sims/ · figures/ (PascalCase.tsx)
-scripts/     check-data.ts · run-tests.ts · smoke.ts · gen-words-index.ts (with the first big wave) ·
+scripts/     check-data.ts · run-tests.ts · smoke.ts · gen-data-index.ts (M1 meta-split generator) ·
+             check-data-index.ts (staleness) · check-bundle.ts (eager-graph + budget guard) ·
              test-exercise.ts · test-srs.ts (ported)
 public/      favicon.svg · .nojekyll
 .github/workflows/deploy.yml
@@ -187,8 +198,9 @@ feature doc: `DEFINITIONS.md`.
 
 ## 11. Deploy
 
-GitHub Pages via Actions (`.github/workflows/deploy.yml`): typecheck → lint → check:data → test →
-smoke → build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `vite base:'./'` +
+GitHub Pages via Actions (`.github/workflows/deploy.yml`): typecheck → lint → **check:index** →
+check:data → test → smoke → build → **check:bundle** → upload `dist` → deploy. (M1 added the two
+new gates; `prebuild` also regenerates the slim indexes, so a stale index cannot reach the artifact.) `concurrency: cancel-in-progress: false`. `vite base:'./'` +
 `public/.nojekyll` = sub-path-safe. Repo **`endorrfin/english-guide`** (exists). **Agent sessions never
 push** — the owner deploys. NOTE (updated S1): S1 shipped the shell + golden module and the full
 gate is green in a scratch verify — the first push containing S1 turns CI green.
@@ -236,10 +248,13 @@ Study/Recall/Describe/Cloze + mastery; word search now deep-links there; **20 go
 **RB1 (done):** Reading 100 → 131. →
 **R1 (done): the `#/review` SRS trainer** — `srs.ts` ported 1:1 + `srsStore` + 4 corpus decks over
 769 existing cards + mastery import + progress backup/restore + the nav due-badge. →
-**Next (the scale gate): dictionary v2** — the words meta-split (slim eager search index + lazy
-per-level chunks). The eager entry chunk is **1.39 MB** today because `TopBar → search.ts → WORDS`
-pulls the whole corpus; at 3,000 words that is ~6–8 MB before first paint, which violates the
-BRIEF §6 scale guard. **Do it BEFORE the next big words wave (W2), not after.** →
+**M1 (done): the dictionary meta-split** — generated slim indexes for the eager shell, corpora in
+lazy chunks, definition search deferred via `primeWordCorpus()`; eager payload **1.39 MB → 745 kB**;
+`check:index` + `check:bundle` gates added. **W2 is unblocked.** →
+**Next (the new scale gate): the MODULE meta-split** — 450 kB of the remaining eager payload is
+authored module content the shell never reads (bodies 266 kB + exercises 103 kB + pitfalls/sources
+82 kB vs 19 kB of nav meta), at only 12/34 authored. Generate `data/meta.ts` + lazy bodies + a lazy
+drills chunk for `#/practice`. →
 Sections III (m12–m16) + `conditionals-machine` · VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -766,6 +781,65 @@ CURRICULUM.md §G / §R.)
   before first paint (BRIEF §6 scale guard). Then optionally a "Today" home page over the due counts, and
   a UA→EN production drill (every example already has `en` + `uk`, so the content cost is ~zero) to
   balance the recognition-heavy practice.
+
+- **M1 (2026-07-25) — the dictionary meta-split: the scale gate the roadmap kept deferring.** Owner's
+  call after R1: do this BEFORE the next words wave. **The measurement first**, because the cause was
+  not where the roadmap assumed: the eager entry chunk was **1.39 MB** not because of *one* edge
+  (`search.ts → WORDS`) but **two** — `data/concepts.ts` imported `WORDS` for a single
+  `COUNTS.words` in the footer, and `concepts.ts` is imported by the whole eager shell
+  (TopBar/Sidebar/Footer/search). Separately, `LandscapeMap` — the **default route** — imported
+  `data/reading` for `READING_COUNTS`, making all **629 kB** of reading bodies a first-screen cost for
+  three numbers. Sizes that drove every decision: words full **899 kB** vs slim index **52 kB** (id ·
+  word · level · joined translations) vs **152 kB** if `def` is included; reading full **639 kB** vs
+  counts **0.6 kB**. **Shipped:** `scripts/gen-data-index.ts` emits `src/data/words/index.generated.ts`
+  (`WORD_INDEX` + `WORD_COUNTS`) and `src/data/reading/index.generated.ts` (`READING_COUNTS`), both
+  committed (`tsc -b` typechecks them) and regenerated by `predev`/`prebuild`. `concepts.ts` and
+  `LandscapeMap` now import those. `vite.config` manualChunks gives each corpus ONE named chunk its
+  lazy consumers share (`words` · `reading` · `idioms`) — the word corpus is needed by both the Words
+  pages and `#/review`, so without this it splits unpredictably as routes are added; the generated
+  indexes are explicitly EXCLUDED from those chunks (pinning them there would drag the corpus back
+  into the shell). **Definition search is deferred, not dropped** — the one behaviour decision worth
+  recording: keeping `def` in the eager index costs 152 kB now and ~890 kB at the 3,000-word target,
+  i.e. it re-breaks the guard within two waves. So `lib/search.ts` indexes the slim list eagerly and
+  `primeWordCorpus()` dynamically imports the real corpus (the same chunk the Words pages use, so it
+  is usually already cached), after which the next query re-ranks with a `def` field; `TopBar` primes
+  on focus/first keystroke and re-runs the query via a `deepReady` counter. A failed import leaves
+  search working in slim mode instead of throwing. **Result: eager payload 1.39 MB → 745 kB**
+  (entry chunk 560 kB + react-vendor 190 kB + runtime), corpora fully lazy, and a words wave now
+  costs ~120 bytes of eager index per card instead of ~1.8 kB. **Two new gates, and the story of
+  getting them right:** `check:index` regenerates in memory and fails on staleness (verified against a
+  hand-edited count). `check:bundle` was written twice — the first version grepped the entry chunk for
+  corpus *sentences* and **passed while a deliberate regression was fully present**, because
+  manualChunks keeps the corpus in `words-*.js` and the entry chunk merely gains a *static import* of
+  it. The rewrite walks the **transitive static import graph** (`import"./x.js"` is an edge,
+  `import("./x.js")` is not) — and its first regex silently matched NOTHING against minified
+  `}from"./x.js"` output, making the gate a no-op a second time. Both bugs were found only by
+  **testing the gate against deliberate regressions**, which is now the documented procedure in the
+  file header. The gate finally asserts three things: no corpus chunk is statically reachable from the
+  entry chunk; **the default route `#/map` reaches no corpus either** (its own rule — LandscapeMap is
+  lazy, so the entry-graph rule cannot see that bug, which was the actual M1 bug); no corpus text is
+  inlined anywhere in the eager set (samples drawn from live data, so they cannot go stale); and a
+  **745 kB → 800 kB budget that must only ever go DOWN**. Both regressions now fail it, clean state
+  passes. **New golden test** `scripts/test-search.ts` (test ×11): the slim index covers every word,
+  entries carry ONLY the four budgeted fields (a structural assertion against "just one more field"),
+  the index stays ≥4× smaller than the corpus, and — using a **definition-only probe phrase derived
+  from the live corpus** — slim mode does NOT match definition text while primed mode does, additively.
+  **Verification: FULL `npm run verify` ✓ green** (typecheck · eslint · **check:index** · check:data
+  6/34 · 12 authored · 515 words · 141 reading in 20 categories · 179 idioms · 75 irregular · test ×11
+  · smoke 236 · build · **check:bundle**) + a headless-Chromium network trace proving the real
+  behaviour: **no corpus chunk fetched on load**, `words-*.js` fetched only on search intent, and all
+  three match paths alive — headword (`circumstances`), UA translation (`обставини` → context ·
+  circumstances) and definition text (`have information about` → `know`, reachable only after the lazy
+  upgrade). `package.json`'s `//meta-split` note rewritten from a TODO to what shipped. Owner next:
+  `npm run verify` locally → branch `m1-dictionary-meta-split` → commit → PR. **Deferred/next — the
+  MODULE meta-split, now the top scale gate:** of the 573 kB entry chunk, module content the shell
+  never needs is topic bodies **266 kB** + exercises **103 kB** + keyPoints/pitfalls/sources **82 kB**,
+  against just **19 kB** of nav meta (title · tagline · mentalModel · level) that the sidebar, map and
+  search actually use — and that is at **12 of 34** authored, so the current path returns to ~1.3 MB
+  when the guide is finished. Generate `data/meta.ts` + lazy module bodies (the database guide's S19
+  pattern); the awkward piece is `#/practice`, which aggregates exercises from EVERY module and needs
+  its own lazy drills chunk. Reading's per-text slim index (for the `#/reading` accordion, which today
+  searches full bodies) is the follow-up after that.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

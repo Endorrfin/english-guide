@@ -27,7 +27,10 @@ import { m10 } from './modules/m10-perfect-family';
 // CHANGED (T4): m11 authored — Choosing Tenses & Narrative (+ the ★ tense-chooser sim; the
 // ★ sentence-morpher lands on m6). Section II Tenses is COMPLETE (6/6).
 import { m11 } from './modules/m11-choosing-narrative';
-import { WORDS } from './words';
+// CHANGED (M1): the SLIM generated count, not the corpus. concepts.ts is imported by the EAGER
+// shell (TopBar/Sidebar/Footer/search), so importing `./words` here inlined all 899 kB of word
+// cards into the entry chunk just to render one number in the footer (standard §4.4 scale guard).
+import { WORD_COUNTS } from './words/index.generated';
 
 export const LEVELS: readonly Level[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
 
@@ -167,5 +170,5 @@ export function adjacentModules(id: string): { prev?: Module; next?: Module } {
 export const COUNTS = {
   sections: sections.length,
   modules: modules.length,
-  words: WORDS.length,
+  words: WORD_COUNTS.total, // CHANGED (M1): from the generated index — see the import note above
 } as const;

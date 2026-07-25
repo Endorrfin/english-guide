@@ -71,7 +71,10 @@ Quality gates (also enforced in CI before every deploy):
 ```bash
 npm run typecheck  # tsc -b --noEmit
 npm run lint       # eslint
+npm run gen:index  # regenerate the slim search/count indexes (predev + prebuild do this for you)
+npm run check:index# fails if a generated slim index is stale vs the corpora
 npm run check:data # bilingual completeness, unique ids, 7-example word cards, registry integrity
+npm run check:bundle # fails if a corpus leaks back onto the eager critical path, or the budget breaks
 npm run verify     # all of the above + tests + smoke + build
 ```
 
@@ -136,9 +139,14 @@ sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 aut
 **R1 — shipped:** **`#/review`, the SRS trainer** — SM-2-lite ported 1:1, four corpus decks over the 769
 cards that already existed, a nav due-badge, an explicit mastery import from Definitions, and JSON
 backup/restore of all progress. All four trainers are now live.
-**Next:** dictionary v2 — the words meta-split (lazy per-level chunks + a slim eager search index). It is
-the gate before the next big word wave: the eager bundle is already 1.39 MB because global search indexes
-the full corpus. Then Section III (Core Grammar) + `conditionals-machine`; more Reading and idiom waves.
+**M1 — shipped:** the **dictionary meta-split**. The word corpus and the reading library moved into lazy
+chunks; the eager app imports generated slim indexes instead. First load dropped **1.39 MB → 745 kB**, and
+opening the map no longer downloads all 141 reading texts to print three numbers. Global search still
+matches definition text — it just fetches the full corpus the moment you click the search box. Two new
+build gates keep it from regressing.
+**Next:** the **module meta-split** — 450 kB of the remaining first load is module content only the module
+pages need. Then Section III (Core Grammar) + `conditionals-machine`; dictionary wave W2; more Reading and
+idiom waves.
 
 ---
 
@@ -192,8 +200,8 @@ base:'./'`. Увесь контент — статичні дані в `src/data
 
 ## Розробка локально / команди
 
-Ті самі команди, що в EN-блоці (`npm run dev | build | preview | typecheck | lint | check:data |
-verify`). `npm install` і деплой виконує **власник**.
+Ті самі команди, що в EN-блоці (`npm run dev | build | preview | typecheck | lint | gen:index |
+check:index | check:data | check:bundle | verify`). `npm install` і деплой виконує **власник**.
 
 ## Додавання контенту
 

@@ -1,10 +1,18 @@
 // CHANGED (S1): global search over modules AND dictionary words (CURRICULUM §B), ported tiered
 // ranking from ../database guide (whole-word > prefix > word-boundary > substring × field weights).
-// S1 indexes the full word cards eagerly (W1 ≈ 150); S4's dictionary v2 swaps this to the slim
-// generated index without changing this API.
+//
+// CHANGED (M1) — the meta-split (standard §4.4). This module is reached from the EAGER shell
+// (TopBar), so it must never import the word corpus: it indexes the SLIM generated
+// `WORD_INDEX` (id · word · level · joined translations ≈ 52 kB) instead of 899 kB of full cards.
+//
+// Definition matching is NOT lost, it is DEFERRED: `primeWordCorpus()` dynamically imports the real
+// corpus (the same lazy chunk the Words pages use, so it is usually already cached), and the next
+// `search()` re-ranks with a `def` field added. TopBar primes on first focus of the search box, so
+// by the time a query is typed the deep index is normally ready — and if it is not, the user still
+// gets instant headword/translation hits and the definition hits appear a beat later.
 import { getSection, modules } from '../data/concepts';
-import { WORDS } from '../data/words';
-import type { Lang, Localized } from '../data/types';
+import { WORD_INDEX } from '../data/words/index.generated';
+import type { Lang, Localized, WordEntry } from '../data/types';
 
 export type SearchKind = 'module' | 'topic' | 'word';
 
@@ -34,6 +42,34 @@ const KIND_RANK: Record<SearchKind, number> = { word: 0, module: 1, topic: 2 };
 
 let INDEX: Entry[] | null = null;
 
+// The full corpus, once the deep upgrade has resolved. null = slim mode (headwords + translations).
+let CORPUS: readonly WordEntry[] | null = null;
+let priming: Promise<void> | null = null;
+
+/**
+ * Upgrade search to also match DEFINITION text, by lazily loading the full word corpus.
+ * Idempotent and safe to call on every keystroke: the import happens once, and a failure (offline,
+ * chunk 404) leaves search working in slim mode rather than throwing. Resolves when the next
+ * `search()` will include definitions — callers re-run their query then.
+ */
+export function primeWordCorpus(): Promise<void> {
+  if (CORPUS) return Promise.resolve();
+  priming ??= import('../data/words')
+    .then((m) => {
+      CORPUS = m.WORDS;
+      INDEX = null; // rebuild with the def field on the next search
+    })
+    .catch(() => {
+      priming = null; // let a later attempt retry; slim search keeps working meanwhile
+    });
+  return priming;
+}
+
+/** True once definition text is part of the index (exposed for tests/diagnostics). */
+export function isDeepSearchReady(): boolean {
+  return CORPUS !== null;
+}
+
 function buildIndex(): Entry[] {
   const entries: Entry[] = [];
   for (const m of modules) {
@@ -60,19 +96,23 @@ function buildIndex(): Entry[] {
       });
     }
   }
-  for (const w of WORDS) {
-    const translations = w.translations.join(', ');
+  // CHANGED (M1): headword + translations come from the slim index; the low-weight `def` field is
+  // added only once `primeWordCorpus()` has resolved (defOf is empty in slim mode).
+  const defOf = new Map<string, Localized>(CORPUS ? CORPUS.map((w) => [w.id, w.def]) : []);
+  for (const w of WORD_INDEX) {
+    const fields: Field[] = [
+      { en: w.word, uk: w.word, weight: W.word },
+      { en: '', uk: w.translations, weight: W.translation },
+    ];
+    const def = defOf.get(w.id);
+    if (def) fields.push({ en: def.en, uk: def.uk, weight: W.def });
     entries.push({
       kind: 'word',
       // CHANGED (D1): word search now deep-links into the Definitions study page (front door).
       href: `#/definitions/${encodeURIComponent(w.id)}`,
       title: { en: w.word, uk: w.word },
-      context: { en: translations, uk: translations },
-      fields: [
-        { en: w.word, uk: w.word, weight: W.word },
-        { en: '', uk: translations, weight: W.translation },
-        { en: w.def.en, uk: w.def.uk, weight: W.def },
-      ],
+      context: { en: w.translations, uk: w.translations },
+      fields,
     });
   }
   return entries;
@@ -163,7 +203,15 @@ export function search(query: string, lang: Lang, limit = 12): SearchResult[] {
   }));
 }
 
-/** Test hook: drop the memoized index (content is static in production). */
+/** Test hook: drop the memoized index + the deep-search upgrade (content is static in production). */
 export function __resetSearchIndex(): void {
+  INDEX = null;
+  CORPUS = null;
+  priming = null;
+}
+
+/** Test hook: inject the full corpus synchronously, skipping the dynamic import. */
+export function __setWordCorpus(words: readonly WordEntry[] | null): void {
+  CORPUS = words;
   INDEX = null;
 }

@@ -4,7 +4,9 @@
 // CHANGED (T1): Section II Tenses — the ✈️ mini-matrix card (the level-1 porthole view → m6),
 // six-section copy, Reading roman VI → VII, and the suggested path routed through m6.
 import { COUNTS, LEVELS, modulesBySection, sections } from '../../data/concepts';
-import { READING_COUNTS } from '../../data/reading';
+// CHANGED (M1): counts come from the generated slim index. The map is the DEFAULT route, and
+// importing `data/reading` made the whole 639 kB corpus a preload dependency of it — for 3 numbers.
+import { READING_COUNTS } from '../../data/reading/index.generated';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
