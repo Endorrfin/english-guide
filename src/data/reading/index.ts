@@ -18,6 +18,9 @@ import { technologyTexts } from './technology';
 import { friendshipTexts } from './friendship';
 // CHANGED (Wave RB1): biographies & speeches.
 import { biographiesTexts } from './biographies';
+// CHANGED (Wave RB2): relationships (existing category, first texts) + humour (new category).
+import { relationshipsTexts } from './relationships';
+import { humourTexts } from './humour';
 
 export const READING_CATEGORIES: readonly ReadingCategory[] = [...readingCategories].sort(
   (a, b) => a.order - b.order,
@@ -36,6 +39,8 @@ export const READING_TEXTS: readonly ReadingText[] = [
   ...technologyTexts,
   ...friendshipTexts,
   ...biographiesTexts,
+  ...relationshipsTexts,
+  ...humourTexts,
 ];
 
 const textById = new Map(READING_TEXTS.map((t) => [t.id, t]));

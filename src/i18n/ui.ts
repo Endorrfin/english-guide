@@ -54,10 +54,6 @@ export const ui = {
     en: 'This module is part of the navigable skeleton. Its full content is authored in a later session per the roadmap.',
     uk: 'Цей модуль — частина навігаційного каркасу. Його повний зміст буде створено в наступній сесії згідно з планом.',
   },
-  reviewSoonNote: {
-    en: 'Spaced-repetition flashcards (per-level decks · My words · irregular verbs) arrive in S4 per the roadmap.',
-    uk: 'Flashcards зі spaced repetition (колоди за рівнями · Мої слова · irregular verbs) зʼявляться в S4 згідно з планом.',
-  },
   irregularSoonNote: {
     en: 'The irregular-verbs table and the 3-forms drill arrive in S4 per the roadmap.',
     uk: 'Таблиця irregular verbs і тренажер трьох форм зʼявляться в S4 згідно з планом.',
@@ -259,6 +255,71 @@ export const ui = {
   idiomsSoonNote: {
     en: 'Idioms and set phrases arrive as a separate wave — a dedicated card format (≈178 phrases from the backlog), deliberately kept out of the single-word corpus.',
     uk: 'Ідіоми та сталі вирази зʼявляться окремою хвилею — окремий формат карток (≈178 фраз із беклогу), навмисно поза корпусом окремих слів.',
+  },
+
+  // CHANGED (R1): #/review — the SRS trainer (SM-2-lite). Grammar/technical terms stay English.
+  reviewLede: {
+    en: 'Spaced repetition over everything you have studied: dictionary words, your own words, idioms and irregular verbs. Recall the card, then rate how it went — the schedule decides when you see it again.',
+    uk: 'Spaced repetition по всьому, що ви вчили: слова словника, ваші власні слова, ідіоми та irregular verbs. Згадайте картку, тоді оцініть, як пішло — розклад сам вирішить, коли показати її знову.',
+  },
+  decksLabel: { en: 'Decks', uk: 'Колоди' },
+  deckDict: { en: 'Dictionary', uk: 'Словник' },
+  deckMine: { en: 'My words', uk: 'Мої слова' },
+  deckIdioms: { en: 'Idioms', uk: 'Ідіоми' },
+  deckIrregular: { en: 'Irregular verbs', uk: 'Irregular verbs' },
+  dueLabel: { en: 'due', uk: 'на повторення' },
+  newLabel: { en: 'new', uk: 'нові' },
+  newTodayLeft: { en: 'left today', uk: 'залишилось сьогодні' },
+  laterLabel: { en: 'scheduled', uk: 'заплановано' },
+  nothingDue: { en: 'Nothing due right now', uk: 'Зараз нічого повторювати' },
+  nothingDueLede: {
+    en: 'The schedule is clear. Come back later, or turn on another deck above.',
+    uk: 'Розклад чистий. Повертайтесь пізніше або увімкніть іншу колоду вище.',
+  },
+  newDoneToday: {
+    en: "Today's new-card budget is spent — new cards resume tomorrow.",
+    uk: 'Денний бюджет нових карток витрачено — нові картки продовжаться завтра.',
+  },
+  nextDueLabel: { en: 'Next card due', uk: 'Наступна картка' },
+  noCardsInFilter: {
+    en: 'No cards match the current deck and level filter.',
+    uk: 'Жодна картка не підходить під поточні колоди та фільтр рівня.',
+  },
+  gradeAgain: { en: 'Again', uk: 'Знову' },
+  gradeHard: { en: 'Hard', uk: 'Важко' },
+  gradeGood: { en: 'Good', uk: 'Добре' },
+  gradeEasy: { en: 'Easy', uk: 'Легко' },
+  reviewKeys: {
+    en: 'Keyboard: Space / Enter reveals the answer · 1–4 rate it.',
+    uk: 'Клавіатура: Space / Enter показує відповідь · 1–4 оцінюють її.',
+  },
+  reviewAnswerLabel: { en: 'Forms', uk: 'Форми' },
+  reviewOpenWord: { en: 'Study this word', uk: 'Вивчати це слово' },
+  reviewOpenIdiom: { en: 'Open in Idioms', uk: 'Відкрити в Ідіомах' },
+  reviewOpenIrregular: { en: 'Open the verb table', uk: 'Відкрити таблицю дієслів' },
+  reviewStats: { en: 'Schedule', uk: 'Розклад' },
+  importMastery: { en: 'Import progress from Definitions', uk: 'Імпортувати прогрес із Означень' },
+  importMasteryHint: {
+    en: 'Seeds the schedule from the words you already marked Learning or Known. Runs once per card — it never rewinds a card you have been reviewing.',
+    uk: 'Заповнює розклад зі слів, які ви вже позначили як «Вивчаю» чи «Знаю». Діє один раз на картку — ніколи не відкочує вже опрацьовану.',
+  },
+  importMasteryDone: { en: 'cards imported', uk: 'карток імпортовано' },
+  importMasteryNone: {
+    en: 'Nothing new to import — every marked word already has a schedule.',
+    uk: 'Нічого нового імпортувати — кожне позначене слово вже має розклад.',
+  },
+  backupProgress: { en: '⤓ Back up progress', uk: '⤓ Зберегти прогрес' },
+  restoreProgress: { en: '⤒ Restore', uk: '⤒ Відновити' },
+  backupHint: {
+    en: 'All progress lives in this browser only. Back it up to a JSON file so clearing site data cannot cost you the schedule.',
+    uk: 'Увесь прогрес зберігається лише в цьому браузері. Збережіть його у JSON-файл, щоб очищення даних сайту не забрало розклад.',
+  },
+  restoreDone: { en: 'Progress restored', uk: 'Прогрес відновлено' },
+  restoreFailed: { en: 'That file is not a valid progress backup', uk: 'Цей файл не є коректною резервною копією прогресу' },
+  resetSchedule: { en: '↺ Reset schedule', uk: '↺ Скинути розклад' },
+  resetScheduleConfirm: {
+    en: 'Delete the whole review schedule? Your Definitions and Practice progress stay untouched.',
+    uk: 'Видалити весь розклад повторень? Прогрес в Означеннях і Практиці залишиться недоторканим.',
   },
 } satisfies Record<string, Localized>;
 

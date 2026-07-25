@@ -166,7 +166,14 @@ async function main(): Promise<void> {
   const { IdiomsPage } = await import("../src/components/pages/IdiomsPage"); // CHANGED (V1/V2)
   const { IrregularPage } = await import("../src/components/pages/IrregularPage"); // CHANGED (V2)
   const { PracticePage } = await import("../src/components/pages/PracticePage");
+  const { ReviewPage } = await import("../src/components/pages/ReviewPage"); // CHANGED (R1)
   const { ComingSoon } = await import("../src/components/pages/ComingSoon");
+  // CHANGED (R1): the Review queue fixture is DYNAMIC (the S5 reading-fixture lesson) — under SSR the
+  // storage shim yields an unparseable SRS blob, so the store degrades to fresh: all decks on, full
+  // new-card allowance, queue[0] === REVIEW_CARDS[0]. Asserting its front proves a card really rendered.
+  const { REVIEW_CARDS } = await import("../src/lib/reviewDecks");
+  const firstReviewFront = REVIEW_CARDS[0]?.front ?? "";
+  ok(!!firstReviewFront, "review: at least one card exists for the queue fixture");
   // CHANGED (S3): Reading pages.
   const { ReadingIndexPage } = await import("../src/components/pages/ReadingIndexPage");
   const { ReadingTextPage } = await import("../src/components/pages/ReadingTextPage");
@@ -181,6 +188,9 @@ async function main(): Promise<void> {
     // CHANGED (V3): the real Irregular trainer renders the grouped table (verb forms are English → stable).
     check("IrregularPage", h(IrregularPage), lang, 1500, ["went", "brought"]);
     check("PracticePage", h(PracticePage), lang, 800);
+    // CHANGED (R1): the SRS trainer renders its deck toggles + the first queued card. "Irregular verbs"
+    // is a deck label that stays English in BOTH languages (standard §3.2), so it is a stable canary.
+    check("ReviewPage", h(ReviewPage), lang, 1200, ["Irregular verbs", firstReviewFront]);
     check("ComingSoon", h(ComingSoon), lang, 100);
     // Data-driven pages: length check only (bilingual, so no English-literal canary) — matches
     // DictionaryPage/PracticePage above. The reader shows the EN body by default, hence the larger min.
