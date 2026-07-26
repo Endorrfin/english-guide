@@ -7,7 +7,8 @@
 import { useLang } from '../../i18n/lang';
 import type { MachineVerb } from '../../data/tenseMachine';
 import { conjugate } from '../../lib/conjugator';
-import type { MachineSubject, Polarity } from '../../lib/conjugator';
+// CHANGED (TM3): + ConjStyle — the Wall renders in the page's full/short toggle state.
+import type { ConjStyle, MachineSubject, Polarity } from '../../lib/conjugator';
 import {
   ASPECTS,
   ASPECT_GLYPH,
@@ -31,6 +32,7 @@ export function TenseWall({
   verb,
   subject,
   polarity,
+  style,
   onSelect,
 }: {
   time: TenseTime;
@@ -38,6 +40,8 @@ export function TenseWall({
   verb: MachineVerb;
   subject: MachineSubject;
   polarity: Polarity;
+  /** CHANGED (TM3): the contractions toggle state — 'full' or 'short'. */
+  style: ConjStyle;
   onSelect: (time: TenseTime, aspect: Aspect) => void;
 }) {
   const { t } = useLang();
@@ -97,7 +101,7 @@ export function TenseWall({
                   )}
                 </span>
                 <span className="tm-cell-sent">
-                  <SentenceTokens conj={conjugate(tm, a, subject, polarity, verb)} color={color} />
+                  <SentenceTokens conj={conjugate(tm, a, subject, polarity, verb, style)} color={color} />
                 </span>
                 <MiniTimeline time={tm} aspect={a} />
               </button>

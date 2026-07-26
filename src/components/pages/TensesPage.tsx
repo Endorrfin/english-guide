@@ -14,8 +14,9 @@
 import { Suspense, lazy, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { MACHINE_VERBS, getMachineVerb } from '../../data/tenseMachine';
 import { useLang } from '../../i18n/lang';
-import { MACHINE_SUBJECTS, POLARITIES, POLARITY_SIGN } from '../../lib/conjugator';
-import type { MachineSubject, Polarity } from '../../lib/conjugator';
+// CHANGED (TM3): + the contractions toggle (CONJ_STYLES) — an engine style, not a UI patch.
+import { CONJ_STYLES, MACHINE_SUBJECTS, POLARITIES, POLARITY_SIGN } from '../../lib/conjugator';
+import type { ConjStyle, MachineSubject, Polarity } from '../../lib/conjugator';
 import { hrefModule, hrefPractice } from '../../lib/hashRouter';
 import {
   ASPECTS,
@@ -30,6 +31,7 @@ import {
 import type { Aspect, TenseTime } from '../../lib/tenses';
 import { cx } from '../../lib/utils';
 import { TenseCellDetail } from '../tense/TenseCellDetail';
+import { TenseSatellites } from '../tense/TenseSatellites'; // CHANGED (TM3)
 import { TenseWall } from '../tense/TenseWall';
 
 const TenseChooser = lazy(() => import('../sims/TenseChooser').then((m) => ({ default: m.TenseChooser })));
@@ -41,9 +43,11 @@ const TOUR: { time: TenseTime; aspect: Aspect }[] = ASPECTS.flatMap((a) =>
 const tourIndex = (time: TenseTime, aspect: Aspect): number =>
   TOUR.findIndex((s) => s.time === time && s.aspect === aspect);
 
-type EmuParams = { v?: string; s?: MachineSubject; p?: Polarity };
+type EmuParams = { v?: string; s?: MachineSubject; p?: Polarity; f?: ConjStyle };
 
-/** Restore the emulator share-state from the hash query; invalid values silently fall back. */
+/** Restore the emulator share-state from the hash query; invalid values silently fall back.
+ *  CHANGED (TM3): + `f` — the forms style ('full' | 'short'), so a listening-practice link
+ *  can share the contracted render. */
 function readEmuParams(): EmuParams {
   if (typeof window === 'undefined') return {};
   const q = String(window.location?.hash ?? '').split('?')[1];
@@ -52,10 +56,12 @@ function readEmuParams(): EmuParams {
   const v = sp.get('v') ?? undefined;
   const s = sp.get('s') ?? undefined;
   const p = sp.get('p') ?? undefined;
+  const f = sp.get('f') ?? undefined;
   return {
     v: v && getMachineVerb(v) ? v : undefined,
     s: s && (MACHINE_SUBJECTS as readonly string[]).includes(s) ? (s as MachineSubject) : undefined,
     p: p && (POLARITIES as readonly string[]).includes(p) ? (p as Polarity) : undefined,
+    f: f && (CONJ_STYLES as readonly string[]).includes(f) ? (f as ConjStyle) : undefined,
   };
 }
 
@@ -133,6 +139,7 @@ export function TensesPage({ time: routeTime, aspect: routeAspect }: { time?: Te
   const [verbId, setVerbId] = useState<string>(emu.v ?? 'write');
   const [subject, setSubject] = useState<MachineSubject>(emu.s ?? 'she');
   const [polarity, setPolarity] = useState<Polarity>(emu.p ?? 'aff');
+  const [style, setStyle] = useState<ConjStyle>(emu.f ?? 'full'); // CHANGED (TM3)
   const [playing, setPlaying] = useState(false);
   const [reduced, setReduced] = useState(false);
 
@@ -170,11 +177,12 @@ export function TensesPage({ time: routeTime, aspect: routeAspect }: { time?: Te
   }, [playing, step]);
 
   // Share-URL: keep the hash in sync (replaceState — no history spam, no hashchange loop).
+  // CHANGED (TM3): + the forms style, so contracted-mode links round-trip.
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.history?.replaceState !== 'function') return;
-    const next = `#/tenses/${time}/${aspect}?v=${verbId}&s=${subject}&p=${polarity}`;
+    const next = `#/tenses/${time}/${aspect}?v=${verbId}&s=${subject}&p=${polarity}&f=${style}`;
     if (window.location.hash !== next) window.history.replaceState(null, '', next);
-  }, [time, aspect, verbId, subject, polarity]);
+  }, [time, aspect, verbId, subject, polarity, style]);
 
   const select = (tm: TenseTime, a: Aspect) => {
     setPlaying(false);
@@ -322,6 +330,36 @@ export function TensesPage({ time: routeTime, aspect: routeAspect }: { time?: Te
                 ))}
               </div>
             </div>
+            {/* CHANGED (TM3): the contractions toggle — an engine render style (conjugate()'s
+                `style` arg), golden-tested in both positions; questions never contract. */}
+            <div className="tm-control">
+              <p className="mn-col-label" id={`${ids}-forms`}>
+                {t({ en: 'Forms', uk: 'Форми' })}
+              </p>
+              <div className="mn-times tm-pills" role="radiogroup" aria-labelledby={`${ids}-forms`}>
+                {CONJ_STYLES.map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    role="radio"
+                    aria-checked={style === f}
+                    tabIndex={style === f ? 0 : -1}
+                    className={cx('mn-time tm-pill', style === f && 'on')}
+                    onClick={() => setStyle(f)}
+                    onKeyDown={keyCycle(CONJ_STYLES, style, setStyle)}
+                    title={
+                      f === 'full'
+                        ? t({ en: 'the full machinery: do not / will not', uk: 'повна механіка: do not / will not' })
+                        : t({ en: 'natural speech: don’t / won’t / she’s', uk: 'природне мовлення: don’t / won’t / she’s' })
+                    }
+                  >
+                    {f === 'full'
+                      ? t({ en: 'full · do not', uk: 'повні · do not' })
+                      : t({ en: 'short · don’t', uk: 'скорочені · don’t' })}
+                  </button>
+                ))}
+              </div>
+            </div>
           </section>
 
           <section className="tm-axis-card">
@@ -393,9 +431,12 @@ export function TensesPage({ time: routeTime, aspect: routeAspect }: { time?: Te
             </div>
           </section>
 
-          <TenseWall time={time} aspect={aspect} verb={verb} subject={subject} polarity={polarity} onSelect={select} />
+          <TenseWall time={time} aspect={aspect} verb={verb} subject={subject} polarity={polarity} style={style} onSelect={select} />
 
-          <TenseCellDetail time={time} aspect={aspect} verb={verb} subject={subject} />
+          {/* CHANGED (TM3): the satellites row — chips under their Wall time column (spec §4.4). */}
+          <TenseSatellites />
+
+          <TenseCellDetail time={time} aspect={aspect} verb={verb} subject={subject} style={style} />
         </>
       )}
     </div>

@@ -21,6 +21,10 @@ import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
 import { isCollocationGroup, isIdiomCategory } from '../src/lib/idioms'; // CHANGED (V10/V11): idiom + collocation category contracts
+// CHANGED (TM3): the Tense Machine shades + satellites + showcase contracts (spec §4.3–§4.4).
+import { SATELLITES, SHOWCASE_UA, USES } from '../src/data/tenseMachine';
+import type { TenseCellKey } from '../src/data/tenseMachine';
+import { ASPECTS, TENSE_TIMES } from '../src/lib/tenses';
 import type {
   Exercise, IdiomEntry, IrregularVerb, Level, Localized, Module, ReadingCategory, ReadingQuestion, ReadingText, Section, WordEntry,
 } from '../src/data/types';
@@ -272,6 +276,61 @@ for (const v of IRREGULAR as IrregularVerb[]) {
   if (v.note) locOk(v.note, `${at}.note`);
 }
 
+// --- Tense Machine: shades + satellites + showcase (TM3, spec §4.3–§4.4) ----
+// Ids are IMMUTABLE (deep-linkable state; wave 2 appends, never renames). Every use/satellite is
+// bilingual; cell keys must be real matrix coordinates; the big five carry ≥4 uses in wave 1.
+const CELL_KEYS: TenseCellKey[] = TENSE_TIMES.flatMap((tm) => ASPECTS.map((a): TenseCellKey => `${tm}/${a}`));
+const BIG_FIVE: TenseCellKey[] = ['present/simple', 'past/simple', 'future/simple', 'present/perfect', 'present/continuous'];
+const tenseUseIds = new Set<string>();
+let tenseUseCount = 0;
+for (const [key, uses] of Object.entries(USES)) {
+  err((CELL_KEYS as string[]).includes(key), `USES: invalid cell key '${key}'`);
+  if (!uses) continue;
+  err(uses.length >= 1 && uses.length <= 6, `USES[${key}]: 1–6 uses expected, got ${uses.length}`);
+  const prefix = key.replace('/', '-');
+  for (const u of uses) {
+    tenseUseCount++;
+    err(!tenseUseIds.has(u.id), `duplicate tense use id ${u.id}`); tenseUseIds.add(u.id);
+    err(new RegExp(`^${prefix}/[a-z0-9]+(-[a-z0-9]+)*$`).test(u.id),
+      `USES[${key}]: id '${u.id}' must be '${prefix}/<kebab>'`);
+    locOk(u.label, `use ${u.id}.label`);
+    locOk(u.meaning, `use ${u.id}.meaning`);
+    locOk(u.example.text, `use ${u.id}.example`);
+    if (u.signals !== undefined) {
+      err(u.signals.length > 0 && u.signals.every((s) => s.trim().length > 0),
+        `use ${u.id}: signals must be non-empty strings`);
+    }
+  }
+}
+for (const k of BIG_FIVE) {
+  err((USES[k]?.length ?? 0) >= 4, `USES: big-five cell '${k}' needs ≥4 uses (wave 1), has ${USES[k]?.length ?? 0}`);
+}
+
+const SATELLITE_IDS = ['going-to', 'used-to', 'would-habit', 'be-about-to'];
+err(SATELLITES.length === 4 && SATELLITE_IDS.every((id, i) => SATELLITES[i]?.id === id),
+  `SATELLITES must be exactly [${SATELLITE_IDS.join(' · ')}] in that order (spec §4.4)`);
+for (const s of SATELLITES) {
+  const at = `satellite:${s.id}`;
+  err(s.name.trim().length > 0, `${at}: empty name`);
+  err((TENSE_TIMES as readonly string[]).includes(s.time), `${at}: bad time '${s.time}'`);
+  locOk(s.meaning, `${at}.meaning`);
+  err(!!s.forms.aff.trim() && !!s.forms.neg.trim() && !!s.forms.q.trim(), `${at}: forms + − ? must be non-empty`);
+  err(s.examples.length === 2, `${at}: exactly 2 examples expected, got ${s.examples.length}`);
+  s.examples.forEach((ex, i) => locOk(ex.text, `${at}.examples[${i}]`));
+  err(s.nearMiss.name.trim().length > 0, `${at}: nearMiss.name empty`);
+  locOk(s.nearMiss.why, `${at}.nearMiss.why`);
+  if (s.freqNote) locOk(s.freqNote, `${at}.freqNote`);
+}
+
+// The she+write showcase (spec §11.3): all 12 cells × + − ?, every UA line non-empty.
+err(Object.keys(SHOWCASE_UA).length === CELL_KEYS.length,
+  `SHOWCASE_UA must cover exactly the ${CELL_KEYS.length} cells, has ${Object.keys(SHOWCASE_UA).length}`);
+for (const key of CELL_KEYS) {
+  const row = SHOWCASE_UA[key];
+  err(!!row, `SHOWCASE_UA: missing cell '${key}'`);
+  if (row) err(!!row.aff.trim() && !!row.neg.trim() && !!row.q.trim(), `SHOWCASE_UA[${key}]: empty UA line`);
+}
+
 // --- generated nav META must mirror the real modules (M2) --------------------
 // `check:index` already regenerates and diffs the file; this is the semantic version of that check,
 // so a hand-edited meta file or a broken generator surfaces here with a readable message.
@@ -309,5 +368,6 @@ console.log(
   `✓ check:data — ${sections.length} sections, ${modules.length} modules ` +
   `(${modules.filter((m) => isAuthored(m.id)).length} authored), ${exerciseIds.size} exercises, ` +
   `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), ` +
-  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, ${IRREGULAR.length} irregular verbs, all bilingual, registry + links resolve.`,
+  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, ${IRREGULAR.length} irregular verbs, ` +
+  `${tenseUseCount} tense uses (big five ≥4) + ${SATELLITES.length} satellites + the she+write showcase, all bilingual, registry + links resolve.`,
 );

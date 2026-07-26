@@ -3,14 +3,20 @@
 // patterns · authored EN/UA examples with TTS · signal words · near-miss traps) plus the doors
 // deeper: the cell's home module (m7–m10), the m6 system overview and the #/practice drills.
 // Reuses the TenseNavigator's .tn-* / .mn-* look so the Machine and the m6 sims read as one.
+// CHANGED (TM3): + the SHADES chips (uses[], spec §4.3) — a radiogroup of the cell's structured
+// uses; the active chip swaps the annotation, the example pair and its signal words. + the
+// she+write showcase UA lines under the live trio (spec §11.3) and the contractions style prop.
+import { useEffect, useState } from 'react';
 import { getModule } from '../../data/concepts';
+import { SHOWCASE_UA, getUses } from '../../data/tenseMachine';
 import type { MachineVerb } from '../../data/tenseMachine';
 import { useLang } from '../../i18n/lang';
 import { conjugate, POLARITIES, POLARITY_SIGN } from '../../lib/conjugator';
-import type { MachineSubject } from '../../lib/conjugator';
+import type { ConjStyle, MachineSubject } from '../../lib/conjugator';
 import { hrefModule, hrefPractice } from '../../lib/hashRouter';
 import { ASPECT_GLYPH, TIME_COLOR_VAR, getTense } from '../../lib/tenses';
 import type { Aspect, TenseTime } from '../../lib/tenses';
+import { cx } from '../../lib/utils';
 import { MdInline } from '../module/Md';
 import { MiniTimeline, SentenceTokens, SpeakButton } from './TenseMachineBits';
 
@@ -27,15 +33,29 @@ export function TenseCellDetail({
   aspect,
   verb,
   subject,
+  style,
 }: {
   time: TenseTime;
   aspect: Aspect;
   verb: MachineVerb;
   subject: MachineSubject;
+  /** CHANGED (TM3): the contractions toggle state — 'full' or 'short'. */
+  style: ConjStyle;
 }) {
   const { t } = useLang();
+  // CHANGED (TM3): the active shade chip — reset to the first use when the cell changes.
+  const [useIdx, setUseIdx] = useState(0);
+  useEffect(() => {
+    setUseIdx(0);
+  }, [time, aspect]);
+
   const cell = getTense(time, aspect);
   if (!cell) return null;
+
+  const uses = getUses(time, aspect);
+  const activeUse = uses[Math.min(useIdx, uses.length - 1)];
+  // CHANGED (TM3): the §11.3 showcase — authored UA only for she + write; gloss-only otherwise.
+  const showcase = verb.id === 'write' && subject === 'she' ? SHOWCASE_UA[`${time}/${aspect}`] : undefined;
 
   const color = TIME_COLOR_VAR[time];
   const moduleId = cellModuleId(time, aspect);
@@ -67,17 +87,21 @@ export function TenseCellDetail({
 
       <MiniTimeline time={time} aspect={aspect} />
 
-      {/* The LIVE trio — the current verb + subject through + − ?, straight from the engine. */}
+      {/* The LIVE trio — the current verb + subject through + − ?, straight from the engine.
+          CHANGED (TM3): rendered in the chosen style; she + write adds the showcase UA line. */}
       <div className="tm-trio" aria-label={t({ en: 'Live forms', uk: 'Живі форми' })}>
         {POLARITIES.map((p) => {
-          const conj = conjugate(time, aspect, subject, p, verb);
+          const conj = conjugate(time, aspect, subject, p, verb, style);
           return (
-            <div className="tm-trio-row" key={p}>
-              <span className={`tn-form-sign${p === 'aff' ? ' tn-form-sign--aff' : p === 'neg' ? ' tn-form-sign--neg' : ''}`} aria-hidden="true">
-                {POLARITY_SIGN[p]}
-              </span>
-              <SentenceTokens conj={conj} color={color} />
-              <SpeakButton text={conj.full} />
+            <div className="tm-trio-item" key={p}>
+              <div className="tm-trio-row">
+                <span className={`tn-form-sign${p === 'aff' ? ' tn-form-sign--aff' : p === 'neg' ? ' tn-form-sign--neg' : ''}`} aria-hidden="true">
+                  {POLARITY_SIGN[p]}
+                </span>
+                <SentenceTokens conj={conj} color={color} />
+                <SpeakButton text={conj.full} />
+              </div>
+              {showcase && <p className="tm-trio-uk">{showcase[p]}</p>}
             </div>
           );
         })}
@@ -99,6 +123,70 @@ export function TenseCellDetail({
         </div>
       </div>
 
+      {/* CHANGED (TM3): the SHADES — one chip per structured use; the active chip swaps the
+          annotation, the example pair and the shade's own signal words (spec §4.3). */}
+      {uses.length > 0 && activeUse && (
+        <div className="tm-uses">
+          <p className="mn-col-label" id={`tm-uses-${time}-${aspect}`}>
+            {t({ en: 'Shades of use', uk: 'Відтінки вживання' })}
+          </p>
+          <div
+            className="mn-times tm-pills tm-uses-chips"
+            role="radiogroup"
+            aria-labelledby={`tm-uses-${time}-${aspect}`}
+          >
+            {uses.map((u, i) => (
+              <button
+                key={u.id}
+                type="button"
+                role="radio"
+                aria-checked={i === useIdx}
+                tabIndex={i === useIdx ? 0 : -1}
+                className={cx('mn-time tm-pill tm-use-chip', i === useIdx && 'on')}
+                onClick={() => setUseIdx(i)}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setUseIdx((i + 1) % uses.length);
+                  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    setUseIdx((i - 1 + uses.length) % uses.length);
+                  }
+                }}
+              >
+                {t(u.label)}
+              </button>
+            ))}
+          </div>
+          <div className="tm-use">
+            <p className="mn-why tm-use-meaning">
+              <MdInline text={t(activeUse.meaning)} />
+            </p>
+            <div className="mn-example">
+              <p className="mn-example-en">
+                {activeUse.example.text.en} <SpeakButton text={activeUse.example.text.en} />
+              </p>
+              <p className="mn-example-uk">{activeUse.example.text.uk}</p>
+            </div>
+            {activeUse.signals && activeUse.signals.length > 0 && (
+              <p className="tn-signals">
+                <span className="mn-col-label">{t({ en: 'Signal words', uk: 'Слова-сигнали' })}</span>
+                {activeUse.signals.map((s) => (
+                  <span className="tn-signal mono" key={s}>
+                    {s}
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* CHANGED (TM3): when shades render above, label the SSOT examples so the active shade's
+          example and the cell's authored pair read as two lists, not one. */}
+      {uses.length > 0 && (
+        <p className="mn-col-label tm-more-label">{t({ en: 'More examples', uk: 'Ще приклади' })}</p>
+      )}
       {cell.examples.map((ex) => (
         <div className="mn-example" key={ex.text.en}>
           <p className="mn-example-en">
