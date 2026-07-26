@@ -2,11 +2,24 @@
 // Routes: #/map · #/m/<moduleId>[/<topicId>] · #/definitions[/<id>] · #/dictionary[/<id>] · #/practice
 //         · #/review · #/irregular
 // CHANGED (D1): + #/definitions[/<id>] — the word STUDY page (front door for words; see search.ts).
+// CHANGED (TM1+TM2): + #/tenses[/<time>/<aspect>] — ★ The Tense Machine. The hash may carry a
+// share-URL query segment (#/tenses/present/perfect?v=write&s=she&p=neg) — parseHash strips it
+// for ALL routes (the page reads it itself), the Compass-spec pattern.
 // Hash routing + vite base:'./' = works under any GitHub Pages sub-path.
 import { useEffect, useState } from 'react';
+import type { Aspect, TenseTime } from './tenses';
+
+// CHANGED (TM1+TM2): local literals instead of importing TENSE_TIMES/ASPECTS — the router is in
+// the EAGER shell, and a runtime import of lib/tenses would drag the whole tense SSOT (matrix
+// data included) into it. Types above are type-only (erased); these two arrays are the price of
+// keeping the eager graph clean (check:bundle discipline, M1/M2).
+const TENSE_TIME_IDS: readonly TenseTime[] = ['past', 'present', 'future'];
+const ASPECT_IDS: readonly Aspect[] = ['simple', 'continuous', 'perfect', 'perfect-continuous'];
 
 export type Route =
   | { name: 'map' }
+  // CHANGED (TM1+TM2): ★ The Tense Machine — optional deep-link cell coordinates.
+  | { name: 'tenses'; time?: TenseTime; aspect?: Aspect }
   | { name: 'module'; moduleId: string; topicId?: string }
   | { name: 'definitions'; id?: string } // CHANGED (D1)
   | { name: 'dictionary'; id?: string }
@@ -19,12 +32,21 @@ export type Route =
   | { name: 'reading-text'; id: string };
 
 export function parseHash(raw: string): Route {
-  const hash = raw.replace(/^#/, '').replace(/^\/+/, '');
+  // CHANGED (TM1+TM2): strip a query segment before splitting — routes stay clean while pages
+  // (today: #/tenses) read their own share-params from the hash.
+  const hash = raw.replace(/^#/, '').split('?')[0].replace(/^\/+/, '');
   const parts = hash.split('/').filter(Boolean);
   if (parts.length === 0) return { name: 'map' };
   switch (parts[0]) {
     case 'map':
       return { name: 'map' };
+    // CHANGED (TM1+TM2): ★ The Tense Machine — invalid coordinates fall back to undefined
+    // (the page then keeps its own state / defaults) instead of 404-ing to the map.
+    case 'tenses': {
+      const time = TENSE_TIME_IDS.find((v) => v === parts[1]);
+      const aspect = ASPECT_IDS.find((v) => v === parts[2]);
+      return { name: 'tenses', time, aspect };
+    }
     case 'definitions': // CHANGED (D1)
       return { name: 'definitions', id: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'dictionary':
@@ -56,6 +78,9 @@ function safeDecode(s: string): string {
 }
 
 export const hrefMap = () => '#/map';
+// CHANGED (TM1+TM2): ★ The Tense Machine.
+export const hrefTenses = (time?: TenseTime, aspect?: Aspect) =>
+  time && aspect ? `#/tenses/${time}/${aspect}` : '#/tenses';
 export const hrefModule = (moduleId: string, topicId?: string) =>
   topicId ? `#/m/${moduleId}/${topicId}` : `#/m/${moduleId}`;
 export const hrefDefinitions = (id?: string) => // CHANGED (D1)

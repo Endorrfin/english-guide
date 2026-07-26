@@ -3546,3 +3546,294 @@
   color: var(--amber);
   white-space: nowrap;
 }
+
+/* ── CHANGED (TM1+TM2): ★ The Tense Machine (#/tenses) ──────────────────────────────────────────
+   The standalone home of the tense system: hero + mode tabs · emulator controls · master time
+   axis (draggable event token) · the 12-cell live Wall · the selected-cell detail panel.
+   Reuses the sims' shared vocabulary (.mn-* / .tn-* / .ttl-* / .chip) so the Machine and the m6
+   sims read as one system; only tm-* is new. Time hues come from the triad tokens only. */
+
+.tm-hero {
+  margin: 0 0 1.1rem;
+}
+.tm-title {
+  font-family: var(--font-display);
+  font-size: 2.05rem;
+  margin: 0 0 0.4rem;
+}
+.tm-lede {
+  max-width: 660px;
+  margin: 0 0 0.75rem;
+}
+.tm-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+}
+.tm-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.tm-tab {
+  border: none;
+  background: transparent;
+  color: var(--tx2);
+  padding: 0.38rem 0.95rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+.tm-tab:hover {
+  color: var(--tx);
+}
+.tm-tab.on {
+  background: var(--accent-soft);
+  color: var(--accent-bright);
+}
+
+/* Emulator controls (verb · subject · polarity) */
+.tm-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.6rem;
+  align-items: flex-start;
+  padding: 0.9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  margin-bottom: 0.8rem;
+}
+.tm-control .mn-col-label {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.tm-select {
+  background: var(--s2);
+  color: var(--tx);
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+  padding: 0.42rem 0.6rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+.tm-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.tm-pills {
+  margin-bottom: 0;
+}
+.tm-pill--sign {
+  min-width: 42px;
+  justify-content: center;
+  font-weight: 700;
+}
+.tm-pill.on,
+.tm-pill[aria-checked='true'] {
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-soft);
+}
+
+/* Master time axis + tour */
+.tm-axis-card {
+  padding: 0.75rem 1rem 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  margin-bottom: 1rem;
+}
+.tm-axis {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: grab;
+}
+.tm-axis:active {
+  cursor: grabbing;
+}
+.tm-axis-token {
+  transition: cx var(--dur) var(--ease);
+}
+.tm-axis-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.2rem;
+  margin-top: 0.35rem;
+}
+.tm-axis-row .mn-times {
+  margin-bottom: 0;
+}
+.tm-tour {
+  margin: 0 0 0 auto;
+}
+
+/* The Wall — 12 live cells */
+.tm-wall {
+  display: grid;
+  grid-template-columns: 30px repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 0 1rem;
+}
+.tm-wall-row {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  gap: 10px;
+}
+.tm-wall-corner {
+  /* empty top-left cell */
+}
+.tm-wall-col {
+  font: 600 0.72rem var(--font-body);
+  letter-spacing: 0.05em;
+  text-align: center;
+  align-self: end;
+}
+.tm-wall-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tx3);
+  font-size: 0.9rem;
+}
+.tm-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--s2);
+  color: var(--tx2);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.tm-cell:hover {
+  border-color: var(--line2);
+  background: var(--s3);
+}
+.tm-cell.on {
+  box-shadow: var(--shadow-1);
+}
+.tm-cell .tn-timeline {
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+.tm-cell-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+}
+.tm-cell-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.tm-cell-freq {
+  font-size: 0.66rem;
+  color: var(--tx3);
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+.tm-cell-sent {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  min-height: 2.7em;
+}
+
+/* Live sentence tokens (Wall cells + the detail trio) */
+.tm-tok--subject {
+  color: var(--tx);
+}
+.tm-tok--aux {
+  font-weight: 700;
+}
+.tm-tok--not {
+  color: var(--danger);
+  font-weight: 700;
+}
+.tm-tok--head {
+  color: var(--tx);
+  font-weight: 700;
+  border-bottom: 2px solid;
+}
+.tm-tok--comp,
+.tm-tok--end {
+  color: var(--tx3);
+}
+
+/* Selected-cell detail */
+.tm-detail {
+  margin-top: 0.4rem;
+}
+.tm-trio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.7rem 0 0.3rem;
+}
+.tm-trio-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 1rem;
+}
+.tm-patterns {
+  margin-top: 0.6rem;
+}
+.tm-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.9rem 0 0;
+}
+
+/* Decide tab */
+.tm-decide > .muted {
+  margin: 0 0 0.7rem;
+}
+.tm-decide-note {
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .tm-wall {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .tm-wall-corner,
+  .tm-wall-col,
+  .tm-wall-glyph {
+    display: none;
+  }
+  .tm-wall-row {
+    display: contents;
+  }
+  .tm-tour {
+    margin-left: 0;
+  }
+  .tm-cell-sent {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tm-axis-token {
+    transition: none;
+  }
+}

@@ -19,7 +19,9 @@ learning-UX + correctness, in that order.
 ## 2. Stack & key decisions (with why)
 
 - **Vite + React 19 + TypeScript (strict).** Static content, no runtime fetch — works offline, deploys anywhere.
-- **No router library** — small custom **hash router**: `#/map`, `#/m/<module>/<topic>`,
+- **No router library** — small custom **hash router**: `#/map`, `#/tenses[/<time>/<aspect>]`
+  (TM1+TM2 — may carry a `?v=&s=&p=` share query; parseHash strips a query segment for ALL routes),
+  `#/m/<module>/<topic>`,
   `#/definitions/<id?>` (D1), `#/dictionary/<id?>`, `#/idioms` (V2), `#/practice`, `#/review`,
   `#/irregular`. Hash routing + `vite base:'./'` works under any GitHub Pages sub-path with zero
   config. **Words hub (V1/V2):** `#/dictionary` · `#/definitions` · `#/idioms` · `#/irregular` are one
@@ -148,6 +150,13 @@ questions → the right tense + near-miss explanations; encodes the cross-time o
 `conditionals-machine` (m13) · `article-tree` (m28) ·
 `word-formation-lab` (m31). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
+**★ The Tense Machine** (`#/tenses`, TM1+TM2 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
+sim**: the standalone live home of the tense system — the 12-cell WALL conjugated live by the pure
+`lib/conjugator.ts` over `data/tenseMachine.ts` (12 curated verbs, precomputed forms; golden test
+`scripts/test-conjugator.ts`), a draggable master time axis + 12-step Tour, the `TenseCell`-SSOT
+detail panel, and the m11 `tense-chooser` embedded as its Decide tab (two lenses, same SSOT; the
+m6/m11 sims untouched). Its components live in `components/tense/` + `components/pages/` — NEVER
+in `sims|figures/` (smoke asserts those dirs 1:1 against registry keys).
 Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
 figure + table everywhere else. Trainers (**`#/review` SRS — built R1**, `#/practice`, `#/irregular`) and the
@@ -275,6 +284,10 @@ lazy chunks, definition search deferred via `primeWordCorpus()`; eager payload *
 drills chunk for `#/practice`; `ModulePage` renders header/TOC instantly. Eager payload **745 → 326 kB**
 (cumulative M1+M2: **1.39 MB → 326 kB, −77%**). Also fixed the `npm ci` break M1 caused (a stray
 `playwright` devDependency). **Nothing is blocking content now.** →
+**TM1+TM2 (done): ★ The Tense Machine** (`#/tenses`) — the standalone live home of the tense
+system (spec `TENSE-MACHINE-SPEC.md`): the 12-cell wall + `lib/conjugator.ts` + master axis +
+Tour + Decide tab; nav entry + porthole retarget. **TM3 open** (shades · satellites ·
+contractions toggle). →
 Sections III (m12–m16) + `conditionals-machine` · VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -930,6 +943,62 @@ CURRICULUM.md §G / §R.)
   `conditionals-machine`** are both unblocked. The remaining split candidate is reading's per-text
   slim index for the `#/reading` accordion (it searches full bodies today); worth doing past ~300
   texts, using M1's defer-the-deep-search pattern.
+
+- **TM1+TM2 (2026-07-26) — ★ The Tense Machine (`#/tenses`): the standalone live home of the tense
+  system.** Built from the owner-approved **`TENSE-MACHINE-SPEC.md`** (planning session, same day:
+  §5 locked name/place/scope/emulator; §11 resolved by its recommendations; §11.8 = TM1+TM2 merged
+  into one session — the owner's call). **Engine `lib/conjugator.ts`** — pure, deterministic:
+  (time × aspect × subject × polarity × verb) → a token list (`subject/aux/not/head/comp`; the UI
+  tints auxiliaries by TIME hue and underlines the head form — the "rows share machinery, only the
+  auxiliary changes its time" insight made per-token visible) + the assembled sentence. Rules are
+  encoded, never guessed: be/do/have agreement, do-support only in simple past/present, `-s3` only
+  in present-simple affirmative he/she, questions front the first auxiliary, `not` attaches to it.
+  Full forms only in v1 (contractions toggle = TM3, spec §11.4). **Data `data/tenseMachine.ts`** —
+  12 curated verbs with **precomputed** forms (no runtime morphology — the correctness mandate;
+  spelling machinery covered: -es go/fix · -ies study · doubling stop/run · e-drop write/make ·
+  unchanged read) + fixed natural complements (write code · run the tests · make coffee…) + UA
+  glosses; deliberately self-contained (no `data/irregular.ts` import — the chunk stays decoupled).
+  **Golden test `scripts/test-conjugator.ts`** (auto-discovered → test ×12): **72 hand-checked
+  goldens** (write × {I, she} × 12 cells × + − ?) + 21 morphology spots + a **2,592-combo property
+  sweep** (terminal punctuation, token/full agreement, do-support placement, -s3 scope,
+  head-form-by-aspect, `not` iff negative, fronted-aux capitalization, determinism) + verb-set
+  integrity. **Page** `components/pages/TensesPage.tsx` + `components/tense/{TenseWall,
+  TenseCellDetail,TenseMachineBits}.tsx` (in `tense/`, NOT `sims|figures/` — the smoke files==keys
+  constraint): hero + Machine/Decide tabs · emulator controls (verb select, subject + polarity
+  radiogroups) · **master time axis** with a pointer-draggable event token bound to the SAME state
+  as the canonical time radiogroup (the drag is an aria-hidden enhancement) · aspect glyph
+  radiogroup · the **12-step aspect-major Tour** (2.4 s, Morpher parity; hidden under
+  `prefers-reduced-motion`) · the **WALL** — all 12 cells alive at once (tense name + LIVE engine
+  sentence + mini-timeline in the shared notation + freq badge; one radiogroup, arrows walk
+  time/aspect; zero hand-written sentences) · the **detail panel** (aria-live) — meaning, the live
+  + − ? trio with TTS, the SSOT form patterns, authored EN/UA examples, signal words, near-misses,
+  and Go-deeper chips (the cell's home module m7–m10 · m6 · `#/practice`) · **Decide tab** = the
+  m11 `TenseChooser` embedded as-is via React.lazy (two lenses, same SSOT; all three m6/m11 sims
+  untouched). **Deep links** `#/tenses/<time>/<aspect>?v=&s=&p=` — written via
+  `history.replaceState` (no history spam), restored on load, invalid values fall back; `parseHash`
+  now strips a query segment for ALL routes. **Router discipline:** hashRouter validates
+  time/aspect against LOCAL literal arrays + type-only imports — importing `lib/tenses` runtime
+  values would drag the tense SSOT into the eager shell. **Nav:** TopBar + Sidebar **Tenses** entry
+  after Map (`ui.tenses`, English in both languages); the landing-map porthole `tmx-card`
+  retargeted → `#/tenses` (⚙; the m6 course stays via the Machine's hero CTA + unchanged
+  START_PATH); m6 gained a "⚙ Feel it live" callout and m11 a dive-3 note — both use the **new
+  `[text](#/hash)` link support in `Md.tsx`** (the first in-content app links; content stays
+  authored data). `.tm-*` CSS appended (reuses `.mn/.tn/.ttl/.chip`; subgrid wall reflows to 1
+  column < 760 px; the axis-token transition is disabled under reduced motion). **Gates:** smoke +
+  TensesPage default & `past/perfect` deep-link variants — canaries are ENGINE OUTPUT greppable via
+  the sentence `title` attribute ("She writes code.", "She had been writing code.") — + 2 App
+  hashes → **285 checks**. **Verification: FULL `npm run verify` ✓ green in the cloud scratch**
+  (typecheck `tsc -b` · eslint clean · check:index · check:data — counts unchanged, registry+links
+  resolve · test ×12 incl. test-conjugator · smoke 285 · vite build · check:bundle **327.9 kB /
+  420 kB** — page, engine and data all in the lazy route chunk; the eager shell grew ~0.6 kB =
+  router/nav only) **+ a headless-Chromium behaviour pass on the real build:** default load writes
+  the share hash (`#/tenses/present/simple?v=write&s=she&p=aff`), go + they + − rebuilds the wall
+  ("They had not been going to the gym."), the Tour advances past→present at 2.4 s, the deep link
+  `#/tenses/future/continuous?v=run&s=we&p=q` restores cell + state ("Will we be running the
+  tests?"), the porthole opens `#/tenses`, **0 page errors**; screenshots EN + UA. Owner next:
+  `npm run verify` locally → branch `feat/tm1-2-tense-machine` → commit → PR. **Deferred → TM3
+  (spec §11):** the shades `uses[]` wave (big five ≥4 each) + satellites (going to · used to ·
+  would · be about to) + the contractions toggle + optional showcase UA translations.
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

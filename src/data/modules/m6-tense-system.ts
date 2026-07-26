@@ -380,6 +380,16 @@ export const m6: Module = {
             uk: 'Розділ II дає вам **чотири різні інструменти** — навмисно різні, щоб ви обрали той, що «клацне»: **★ Tense Navigator** (ця сторінка, топік 1) — ходити матрицею клітинка за клітинкою; **★ Sentence Morpher** (одразу поруч) — дивитися, як ОДНЕ речення трансформується через усі 12 клітинок; **параметрична таймлайн-фігура** всередині m7–m10 — картинка кожного tense у спільній нотації; і **★ Tense Chooser** (m11), що ставить три питання про зміст і видає tense. Користуйтеся одним або всіма — вони вчать ту саму матрицю з чотирьох боків.',
           },
         },
+        // CHANGED (TM1+TM2): the door to the standalone ★ Tense Machine page.
+        {
+          kind: 'callout',
+          tone: 'tip',
+          title: { en: '⚙ Feel it live — The Tense Machine', uk: '⚙ Відчуйте наживо — The Tense Machine' },
+          md: {
+            en: 'The whole matrix also lives on its own page — **[The Tense Machine](#/tenses)**: all 12 cells alive at once, conjugating your choice of verb, subject and + − ? polarity as you watch, with a draggable event on the time axis and a 12-step tour. The tools above teach the matrix; the Machine lets you *touch* it.',
+            uk: 'Уся матриця живе й на окремій сторінці — **[The Tense Machine](#/tenses)**: усі 12 клітинок одночасно, з живою кон’югацією обраного вами дієслова, підмета й полярності + − ? на ваших очах, із подією, яку можна тягнути віссю часу, і туром на 12 кроків. Інструменти вище вчать матрицю; Machine дає її *торкнутися*.',
+          },
+        },
         {
           kind: 'prose',
           md: {

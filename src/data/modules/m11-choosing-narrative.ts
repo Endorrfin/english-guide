@@ -49,6 +49,15 @@ export const m11: Module = {
             uk: '★ Tense Chooser — дайте відповіді на три питання й отримайте tense із сусідніми пастками. Стежте за відтінком: іноді правильна форма живе в ІНШІЙ колонці часу, ніж ваша перша відповідь — цей стрибок і є уроком.',
           },
         },
+        // CHANGED (TM1+TM2): the Chooser's second home — the Decide tab of ★ The Tense Machine.
+        {
+          kind: 'prose',
+          dive: 3,
+          md: {
+            en: 'The Chooser also lives inside **[The Tense Machine](#/tenses)** (its *Decide* tab) — same tree, same verdicts, one click from the live 12-cell wall, so you can check any verdict against the matrix immediately.',
+            uk: 'Chooser також живе всередині **[The Tense Machine](#/tenses)** (його вкладка *Decide*) — те саме дерево, ті самі вердикти, за один клік від живої стіни з 12 клітинок, тож будь-який вердикт можна одразу звірити з матрицею.',
+          },
+        },
         {
           kind: 'table',
           caption: {

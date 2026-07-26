@@ -11,6 +11,7 @@ import {
   hrefPractice,
   hrefReading,
   hrefReview,
+  hrefTenses, // CHANGED (TM1+TM2)
   navigate,
 } from '../../lib/hashRouter';
 import { primeWordCorpus, search } from '../../lib/search';
@@ -169,6 +170,8 @@ export function TopBar() {
       <div className="topbar-right">
         <nav className="top-links" aria-label="Pages">
           <a href={hrefMap()}>{t(ui.guideMap)}</a>
+          {/* CHANGED (TM1+TM2): ★ The Tense Machine. */}
+          <a href={hrefTenses()}>{t(ui.tenses)}</a>
           {/* CHANGED (V1): Definitions + Dictionary collapsed into one "Words" hub entry (→ Dictionary tab). */}
           <a href={hrefDictionary()}>{t(ui.words)}</a>
           <a href={hrefReading()}>{t(ui.reading)}</a>

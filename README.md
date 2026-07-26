@@ -20,6 +20,11 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
   + the parametric `TenseTimeline` figure. Planned: `conditionals-machine`, `article-tree`,
   `word-formation-lab`.
+- **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
+  time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
+  as you watch (a pure, golden-tested engine — no canned sentences); drag the event along the time
+  axis or take the 12-step tour; open any cell for meaning, forms, examples, signal words and
+  traps; the **Decide** tab embeds the `tense-chooser`. Share any state by URL.
 - **Words hub** — one nav section with four tabs: **Dictionary · Definitions · Idioms · Irregular
   verbs**. All word surfaces in one place; each keeps its own deep links and search.
 - **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
@@ -172,6 +177,11 @@ mental model, key points, pitfalls (типові помилки україном
 `deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense), `sentence-morpher` (одне
 речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
 `TenseTimeline`. Заплановані — `conditionals-machine`, `article-tree`, `word-formation-lab`.
+**★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
+time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
+ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); тягніть подію віссю
+часу або пройдіть тур на 12 кроків; відкрийте будь-яку клітинку — значення, форми, приклади,
+слова-сигнали й пастки; вкладка **Decide** вбудовує `tense-chooser`. Будь-який стан шериться URL-ом.
 **Words hub** — один розділ навігації з чотирма вкладками: **Dictionary · Definitions · Idioms ·
 Irregular verbs**. Усі «словникові» поверхні в одному місці; кожна зберігає свої deep-links і пошук.
 **Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
