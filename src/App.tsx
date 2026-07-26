@@ -12,6 +12,8 @@ import { useRoute } from './lib/hashRouter';
 
 const LandscapeMap = lazy(() => import('./components/map/LandscapeMap').then((m) => ({ default: m.LandscapeMap })));
 const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) => ({ default: m.ModulePage })));
+// CHANGED (TM1+TM2): ★ The Tense Machine — the standalone home of the tense system (#/tenses).
+const TensesPage = lazy(() => import('./components/pages/TensesPage').then((m) => ({ default: m.TensesPage })));
 // CHANGED (D1): the Definitions study page (front door for words).
 const DefinitionsPage = lazy(() => import('./components/pages/DefinitionsPage').then((m) => ({ default: m.DefinitionsPage })));
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
@@ -62,6 +64,8 @@ export function App() {
         <main className="main-col" id="main" tabIndex={-1}>
           <Suspense fallback={<div className="content" style={{ padding: '2rem', color: 'var(--tx3)' }}>Loading…</div>}>
             {route.name === 'map' && <LandscapeMap />}
+            {/* CHANGED (TM1+TM2): ★ The Tense Machine. */}
+            {route.name === 'tenses' && <TensesPage time={route.time} aspect={route.aspect} />}
             {route.name === 'module' && <ModulePage moduleId={route.moduleId} topicId={route.topicId} />}
             {route.name === 'definitions' && <DefinitionsPage id={route.id} />}
             {route.name === 'dictionary' && <DictionaryPage id={route.id} />}

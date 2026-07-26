@@ -12,6 +12,7 @@ import {
   hrefPractice,
   hrefReading,
   hrefReview,
+  hrefTenses, // CHANGED (TM1+TM2)
   isWordsRoute,
   useRoute,
 } from '../../lib/hashRouter';
@@ -21,6 +22,8 @@ import { cx } from '../../lib/utils';
 // CHANGED (V1): Definitions + Dictionary collapsed into one "Words" hub entry (active on all 3 tabs).
 const PAGE_LINKS: { name: string; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
   { name: 'map', href: hrefMap(), label: ui.guideMap },
+  // CHANGED (TM1+TM2): ★ The Tense Machine — right after Map (the second flagship's front door).
+  { name: 'tenses', href: hrefTenses(), label: ui.tenses },
   { name: 'words', href: hrefDictionary(), label: ui.words },
   { name: 'reading', href: hrefReading(), label: ui.reading }, // CHANGED (S3)
   { name: 'practice', href: hrefPractice(), label: ui.practice },

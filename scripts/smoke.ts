@@ -166,6 +166,7 @@ async function main(): Promise<void> {
   const { IdiomsPage } = await import("../src/components/pages/IdiomsPage"); // CHANGED (V1/V2)
   const { IrregularPage } = await import("../src/components/pages/IrregularPage"); // CHANGED (V2)
   const { PracticePage } = await import("../src/components/pages/PracticePage");
+  const { TensesPage } = await import("../src/components/pages/TensesPage"); // CHANGED (TM1+TM2)
   const { ReviewPage } = await import("../src/components/pages/ReviewPage"); // CHANGED (R1)
   const { ComingSoon } = await import("../src/components/pages/ComingSoon");
   // CHANGED (R1): the Review queue fixture is DYNAMIC (the S5 reading-fixture lesson) — under SSR the
@@ -188,6 +189,20 @@ async function main(): Promise<void> {
     // CHANGED (V3): the real Irregular trainer renders the grouped table (verb forms are English → stable).
     check("IrregularPage", h(IrregularPage), lang, 1500, ["went", "brought"]);
     check("PracticePage", h(PracticePage), lang, 800);
+    // CHANGED (TM1+TM2): ★ The Tense Machine — the default state (present × simple · write · she
+    // · aff) SSR-renders the hero, the full 12-cell wall of LIVE engine-built sentences and the
+    // detail panel. Canaries are engine output + tense names — English in both languages. The
+    // deep-link variant proves route props select a cell (its detail shows the ⤺ near-misses).
+    check("TensesPage", h(TensesPage), lang, 4000, [
+      "The Tense Machine",
+      "She writes code.",
+      "She had been writing code.",
+      "Future Perfect Continuous",
+    ]);
+    check("TensesPage:past/perfect", h(TensesPage, { time: "past", aspect: "perfect" }), lang, 4000, [
+      "Past Perfect",
+      "She had written code.",
+    ]);
     // CHANGED (R1): the SRS trainer renders its deck toggles + the first queued card. "Irregular verbs"
     // is a deck label that stays English in BOTH languages (standard §3.2), so it is a stable canary.
     check("ReviewPage", h(ReviewPage), lang, 1200, ["Irregular verbs", firstReviewFront]);
@@ -277,6 +292,8 @@ async function main(): Promise<void> {
   for (const hash of [
     "",
     "#/map",
+    "#/tenses", // CHANGED (TM1+TM2)
+    "#/tenses/present/perfect?v=go&s=he&p=neg", // CHANGED (TM1+TM2): deep link + share query
     "#/m/m17-modal-system",
     "#/m/m17-modal-system/function-x-time-grid",
     "#/m/m6-tense-system", // CHANGED (T1)

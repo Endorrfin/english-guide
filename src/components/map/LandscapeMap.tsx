@@ -10,7 +10,7 @@ import { READING_COUNTS } from '../../data/reading/index.generated';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
-import { hrefDictionary, hrefIrregular, hrefModule, hrefPractice, hrefReading, hrefReview } from '../../lib/hashRouter';
+import { hrefDictionary, hrefIrregular, hrefModule, hrefPractice, hrefReading, hrefReview, hrefTenses } from '../../lib/hashRouter'; // CHANGED (TM1+TM2): + hrefTenses
 import { ASPECTS, ASPECT_GLYPH, ASPECT_LABEL, TENSE_TIMES, TIME_COLOR_VAR, TIME_LABEL, getTense } from '../../lib/tenses';
 import { cx } from '../../lib/utils';
 
@@ -111,23 +111,25 @@ export function LandscapeMap() {
         </ol>
       </section>
 
-      {/* CHANGED (T1): the ✈️ porthole card — the whole tense system as a mini 3×4 matrix → m6. */}
+      {/* CHANGED (T1): the porthole card — the whole tense system as a mini 3×4 matrix.
+          CHANGED (TM1+TM2): it now opens ★ The Tense Machine (#/tenses) — the live wall of all
+          12 cells; the m6 course stays one click away (the Machine's hero CTA + START_PATH). */}
       <section className="map-tenses">
-        <a className="tmx-card" href={hrefModule('m6-tense-system')}>
+        <a className="tmx-card" href={hrefTenses()}>
           <div className="tmx-head">
             <span className="ov-roman" style={{ color: 'var(--sec-tenses)' }}>
               II
             </span>
             <span className="tmx-title">
-              <strong>{t({ en: 'Tenses ★ — the whole system in one place', uk: 'Tenses ★ — уся система в одному місці' })}</strong>
+              <strong>{t({ en: 'Tenses ★ — touch the whole system, live', uk: 'Tenses ★ — торкніться всієї системи наживо' })}</strong>
               <span className="dim">
                 {t({
-                  en: '3 times × 4 aspects = 12 cells · 5 forms carry 96% of speech · 4 reading depths',
-                  uk: '3 часи × 4 aspects = 12 клітинок · 5 форм несуть 96% мовлення · 4 глибини читання',
+                  en: '3 times × 4 aspects = 12 cells · live conjugation in + − ? · 5 forms carry 96% of speech',
+                  uk: '3 часи × 4 aspects = 12 клітинок · жива кон’югація у + − ? · 5 форм несуть 96% мовлення',
                 })}
               </span>
             </span>
-            <span className="tmx-cta mono dim">✈️ →</span>
+            <span className="tmx-cta mono dim">⚙ →</span>
           </div>
           <div className="tmx-grid" aria-hidden="true">
             <span className="tmx-corner" />

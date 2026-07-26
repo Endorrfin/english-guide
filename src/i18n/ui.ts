@@ -22,6 +22,8 @@ export const ui = {
   language: { en: 'Language', uk: 'Мова' },
 
   guideMap: { en: 'Map', uk: 'Карта' },
+  // CHANGED (TM1+TM2): the ★ Tense Machine nav entry — a grammar term, stays English in both.
+  tenses: { en: 'Tenses', uk: 'Tenses' },
   dictionary: { en: 'Dictionary', uk: 'Словник' },
   practice: { en: 'Practice', uk: 'Практика' },
   review: { en: 'Review', uk: 'Повторення' },
