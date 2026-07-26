@@ -3812,6 +3812,69 @@
   margin-top: 0.9rem;
 }
 
+/* CHANGED (TM3): shades chips · satellites row + card · showcase UA line. No transitions —
+   the reduced-motion path is the only path. */
+.tm-trio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tm-trio-uk {
+  margin: 0;
+  padding-left: 30px; /* the sign width + gap — the UA line hangs under the sentence */
+  color: var(--tx3);
+  font-size: 0.84rem;
+}
+.tm-uses {
+  margin-top: 0.85rem;
+}
+.tm-uses-chips {
+  margin: 0.4rem 0 0.55rem;
+}
+.tm-use-meaning {
+  margin: 0 0 0.5rem;
+}
+.tm-more-label {
+  display: block;
+  margin: 0.85rem 0 0.35rem;
+}
+.tm-sats {
+  margin: -0.35rem 0 1rem;
+}
+.tm-sats-row {
+  display: grid;
+  grid-template-columns: 30px repeat(3, 1fr); /* mirrors .tm-wall — chips align under columns */
+  gap: 10px;
+  align-items: start;
+}
+.tm-sats-glyph {
+  font-size: 1rem;
+}
+.tm-sats-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.tm-sat-chip[aria-expanded='true'] {
+  font-weight: 600;
+}
+.tm-sat-card {
+  margin-top: 0.7rem;
+  padding: 0.9rem 1.1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--time, var(--line2));
+  border-radius: var(--r-lg);
+}
+.tm-sat-close {
+  margin-left: auto;
+}
+.tm-sat-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.85rem;
+}
+
 @media (max-width: 760px) {
   .tm-wall {
     grid-template-columns: 1fr;
@@ -3830,6 +3893,14 @@
   }
   .tm-cell-sent {
     min-height: 0;
+  }
+  /* CHANGED (TM3): satellites stack as plain chip rows when the wall reflows to one column. */
+  .tm-sats-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .tm-sats-col {
+    justify-content: flex-start;
   }
 }
 @media (prefers-reduced-motion: reduce) {

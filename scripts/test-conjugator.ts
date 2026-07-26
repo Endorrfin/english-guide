@@ -10,6 +10,14 @@
 //   3. PROPERTY SWEEP — every verb × subject × cell × polarity (2,592 combos): terminal
 //      punctuation, token/full agreement, do-support placement, -s3 scope, head-form-by-aspect,
 //      `not` iff negative, fronted-aux capitalization, determinism.
+// CHANGED (TM3): + the contractions layer (spec §10 note / §11.4) — BOTH renders golden-tested:
+//   4. SHORT GOLDEN TABLE — 72 more hand-checked strings (write × {I, she} × 12 cells × + − ?)
+//      in the 'short' style, + n’t/clitic edge spots (won’t · isn’t · I’m not · doesn’t · ’d).
+//   5. SHORT PROPERTY SWEEP — the same 2,592 combos again: default arg === 'full' byte-for-byte,
+//      questions never contract, glue-aware token/full agreement, negativity carried by n’t/not,
+//      determinism, and the lib/exercise.ts COMPATIBILITY CONTRACT: canonical(short) ===
+//      canonical(full) exactly where the clitic is unambiguous — the only divergences are the
+//      by-design ambiguous ’s/’d (affirmative is/has/had), which canonical() refuses to guess.
 import { MACHINE_VERBS } from '../src/data/tenseMachine';
 import type { MachineVerb } from '../src/data/tenseMachine';
 import {
@@ -17,6 +25,7 @@ import {
   POLARITIES,
   conjugate,
 } from '../src/lib/conjugator';
+import { canonical } from '../src/lib/exercise';
 import type { MachineSubject, Polarity } from '../src/lib/conjugator';
 import { ASPECTS, TENSE_TIMES } from '../src/lib/tenses';
 import type { Aspect, TenseTime } from '../src/lib/tenses';
@@ -225,8 +234,157 @@ for (const verb of MACHINE_VERBS) {
 }
 ok(combos === 12 * 3 * 4 * 6 * 3, `full sweep expected 2592 combos, ran ${combos}`);
 
+// ── CHANGED (TM3) — Layer 4: the SHORT golden table — write × {I, she} × 12 cells × {+ − ?} ─────
+const GOLDEN_SHORT: Record<`${TenseTime}/${Aspect}`, Record<'I' | 'she', Trio>> = {
+  'past/simple': {
+    I: ['I wrote code.', 'I didn’t write code.', 'Did I write code?'],
+    she: ['She wrote code.', 'She didn’t write code.', 'Did she write code?'],
+  },
+  'present/simple': {
+    I: ['I write code.', 'I don’t write code.', 'Do I write code?'],
+    she: ['She writes code.', 'She doesn’t write code.', 'Does she write code?'],
+  },
+  'future/simple': {
+    I: ['I’ll write code.', 'I won’t write code.', 'Will I write code?'],
+    she: ['She’ll write code.', 'She won’t write code.', 'Will she write code?'],
+  },
+  'past/continuous': {
+    I: ['I was writing code.', 'I wasn’t writing code.', 'Was I writing code?'],
+    she: ['She was writing code.', 'She wasn’t writing code.', 'Was she writing code?'],
+  },
+  'present/continuous': {
+    I: ['I’m writing code.', 'I’m not writing code.', 'Am I writing code?'],
+    she: ['She’s writing code.', 'She isn’t writing code.', 'Is she writing code?'],
+  },
+  'future/continuous': {
+    I: ['I’ll be writing code.', 'I won’t be writing code.', 'Will I be writing code?'],
+    she: ['She’ll be writing code.', 'She won’t be writing code.', 'Will she be writing code?'],
+  },
+  'past/perfect': {
+    I: ['I’d written code.', 'I hadn’t written code.', 'Had I written code?'],
+    she: ['She’d written code.', 'She hadn’t written code.', 'Had she written code?'],
+  },
+  'present/perfect': {
+    I: ['I’ve written code.', 'I haven’t written code.', 'Have I written code?'],
+    she: ['She’s written code.', 'She hasn’t written code.', 'Has she written code?'],
+  },
+  'future/perfect': {
+    I: ['I’ll have written code.', 'I won’t have written code.', 'Will I have written code?'],
+    she: ['She’ll have written code.', 'She won’t have written code.', 'Will she have written code?'],
+  },
+  'past/perfect-continuous': {
+    I: ['I’d been writing code.', 'I hadn’t been writing code.', 'Had I been writing code?'],
+    she: ['She’d been writing code.', 'She hadn’t been writing code.', 'Had she been writing code?'],
+  },
+  'present/perfect-continuous': {
+    I: ['I’ve been writing code.', 'I haven’t been writing code.', 'Have I been writing code?'],
+    she: ['She’s been writing code.', 'She hasn’t been writing code.', 'Has she been writing code?'],
+  },
+  'future/perfect-continuous': {
+    I: ['I’ll have been writing code.', 'I won’t have been writing code.', 'Will I have been writing code?'],
+    she: ['She’ll have been writing code.', 'She won’t have been writing code.', 'Will she have been writing code?'],
+  },
+};
+
+let goldensShort = 0;
+for (const time of TENSE_TIMES) {
+  for (const aspect of ASPECTS) {
+    const cell = GOLDEN_SHORT[`${time}/${aspect}`];
+    ok(!!cell, `short golden table missing cell ${time}/${aspect}`);
+    if (!cell) continue;
+    for (const subject of ['I', 'she'] as const) {
+      const [aff, neg, q] = cell[subject];
+      for (const [polarity, expected] of [['aff', aff], ['neg', neg], ['q', q]] as [Polarity, string][]) {
+        goldensShort++;
+        const got = conjugate(time, aspect, subject, polarity, write, 'short').full;
+        ok(got === expected, `short ${time}/${aspect} ${subject} ${polarity}: got '${got}', want '${expected}'`);
+      }
+    }
+  }
+}
+ok(goldensShort === 72, `72 short golden assertions expected, ran ${goldensShort}`);
+
+// Short edge spots across other subjects/verbs: n’t fusion, the am → “I’m not” special case,
+// aren’t/weren’t, and clitics on we/they/you.
+const SHORT_SPOTS: [TenseTime, Aspect, MachineSubject, Polarity, string, string][] = [
+  ['present', 'simple', 'he', 'neg', 'stop', 'He doesn’t stop the recording.'],
+  ['past', 'simple', 'they', 'neg', 'go', 'They didn’t go to the gym.'],
+  ['present', 'continuous', 'I', 'neg', 'work', 'I’m not working at the office.'],
+  ['present', 'continuous', 'we', 'aff', 'run', 'We’re running the tests.'],
+  ['present', 'continuous', 'they', 'neg', 'play', 'They aren’t playing chess.'],
+  ['past', 'continuous', 'you', 'neg', 'study', 'You weren’t studying English.'],
+  ['present', 'perfect', 'we', 'aff', 'eat', 'We’ve eaten lunch.'],
+  ['present', 'perfect', 'he', 'aff', 'go', 'He’s gone to the gym.'],
+  ['past', 'perfect', 'they', 'aff', 'build', 'They’d built the app.'],
+  ['future', 'simple', 'you', 'aff', 'fix', 'You’ll fix the bug.'],
+  ['future', 'perfect-continuous', 'we', 'neg', 'read', 'We won’t have been reading the docs.'],
+  ['present', 'simple', 'I', 'q', 'make', 'Do I make coffee?'],
+];
+for (const [time, aspect, subject, polarity, verbId, expected] of SHORT_SPOTS) {
+  const got = conjugate(time, aspect, subject, polarity, need(verbId), 'short').full;
+  ok(got === expected, `short spot ${verbId} ${time}/${aspect} ${subject} ${polarity}: got '${got}', want '${expected}'`);
+}
+
+// ── CHANGED (TM3) — Layer 5: short property sweep + the exercise-normalization contract ─────────
+// The ONLY combos whose canonical forms may (and must) diverge: affirmative is/has/had, whose
+// clitics ’s/’d are ambiguous by the lib/exercise.ts policy (never guessed, never expanded).
+let combosShort = 0;
+for (const verb of MACHINE_VERBS) {
+  for (const time of TENSE_TIMES) {
+    for (const aspect of ASPECTS) {
+      for (const subject of MACHINE_SUBJECTS) {
+        for (const polarity of POLARITIES) {
+          combosShort++;
+          const full = conjugate(time, aspect, subject, polarity, verb);
+          const short = conjugate(time, aspect, subject, polarity, verb, 'short');
+          const at = `${verb.id} ${time}/${aspect} ${subject} ${polarity} [short]`;
+
+          // The default arg IS 'full' — byte-for-byte (backward compatibility with TM1+TM2).
+          ok(full.full === conjugate(time, aspect, subject, polarity, verb, 'full').full, `${at}: default !== 'full'`);
+          // Determinism + glue-aware token/full agreement + terminal punctuation.
+          ok(short.full === conjugate(time, aspect, subject, polarity, verb, 'short').full, `${at}: not deterministic`);
+          const terminal = polarity === 'q' ? '?' : '.';
+          ok(short.full.endsWith(terminal), `${at}: '${short.full}' must end with '${terminal}'`);
+          ok(
+            short.tokens.map((t, i) => (i > 0 && !t.glue ? ' ' : '') + t.text).join('') + terminal === short.full,
+            `${at}: tokens (glue-aware) do not reassemble to full`,
+          );
+          // Questions NEVER contract — the fronted auxiliary has no host.
+          if (polarity === 'q') ok(short.full === full.full, `${at}: question changed under 'short'`);
+          // Negativity is carried by n’t on an auxiliary — or by a plain `not` (the am case,
+          // and any auxiliary-less render). Never both lost.
+          const negMarked =
+            short.tokens.some((t) => t.kind === 'not') ||
+            short.tokens.some((t) => t.kind === 'aux' && t.text.endsWith('n’t'));
+          ok(negMarked === (polarity === 'neg'), `${at}: negativity marker wrong in '${short.full}'`);
+          // A glue token is always an auxiliary clitic starting with ’ and following the subject.
+          for (const [i, t] of short.tokens.entries()) {
+            if (!t.glue) continue;
+            ok(t.kind === 'aux' && t.text.startsWith('’'), `${at}: glue token '${t.text}' must be a ’-clitic aux`);
+            ok(short.tokens[i - 1]?.kind === 'subject', `${at}: clitic '${t.text}' must follow the subject`);
+          }
+
+          // The lib/exercise.ts compatibility contract: one canonical answer for both renders,
+          // EXCEPT the by-design-ambiguous ’s/’d (affirmative is/has/had).
+          const firstAux = full.tokens.find((t) => t.kind === 'aux')?.text;
+          const ambiguous = polarity === 'aff' && (firstAux === 'is' || firstAux === 'has' || firstAux === 'had');
+          const equal = canonical(short.full) === canonical(full.full);
+          ok(
+            equal === !ambiguous,
+            `${at}: canonical('${short.full}') vs canonical('${full.full}') — expected ${!ambiguous ? 'equal' : 'distinct (ambiguous clitic)'}`,
+          );
+        }
+      }
+    }
+  }
+}
+ok(combosShort === 12 * 3 * 4 * 6 * 3, `short sweep expected 2592 combos, ran ${combosShort}`);
+
 if (failures > 0) {
   console.error(`\n✖ test-conjugator: ${failures} failure(s).`);
   process.exit(1);
 }
-console.log(`✓ test-conjugator: ${goldens} goldens + ${SPOTS.length} morphology spots + ${combos} property combos hold.`);
+console.log(
+  `✓ test-conjugator: ${goldens} full + ${goldensShort} short goldens, ${SPOTS.length + SHORT_SPOTS.length} spots, ` +
+  `${combos} full + ${combosShort} short property combos (incl. the canonical() contract) hold.`,
+);

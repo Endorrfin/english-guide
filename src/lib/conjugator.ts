@@ -4,9 +4,17 @@
 // "rows share machinery, only the auxiliary changes its time" insight, made per-token visible.
 // Rules are ENCODED, never guessed: be/do/have agreement by subject; do-support only in simple
 // past/present; -s3 only in present simple affirmative; question = front the first auxiliary;
-// negation attaches to the first auxiliary. Full forms only in v1 (the learner sees the
-// machinery; a contractions toggle is TM3 — spec §11.4). Mirrors lib/tenses.ts / lib/morpher.ts.
-// Golden-tested via scripts/test-conjugator.ts (72 goldens + morphology spots + property sweep).
+// negation attaches to the first auxiliary. Mirrors lib/tenses.ts / lib/morpher.ts.
+// CHANGED (TM3): + the contractions layer (spec §11.4) — conjugate() takes an optional render
+// style: 'full' (default, the v1 behaviour byte-for-byte) or 'short'. Short is a pure token
+// post-transform, table-driven like everything else: the FIRST auxiliary either cliticizes onto
+// the subject in the affirmative (’ll ’m ’s ’re ’ve ’d — was/were have no clitic and stay full)
+// or fuses with `not` in the negative (won’t isn’t hasn’t don’t…; am+not has no n’t form, so it
+// renders as the subject clitic + full not: “I’m not writing”). Questions never contract — the
+// fronted auxiliary has no host to cliticize onto. The n’t/clitic sets are exactly the ones
+// lib/exercise.ts canonical() expands, so both renders normalize to one answer wherever the
+// clitic is unambiguous (’s/’d stay distinct by design — the exercise-engine ambiguity policy).
+// Golden-tested via scripts/test-conjugator.ts (72 + 72 goldens + morphology spots + sweeps).
 import type { MachineVerb } from '../data/tenseMachine';
 import type { Aspect, TenseTime } from './tenses';
 
@@ -19,10 +27,16 @@ export const POLARITIES: readonly Polarity[] = ['aff', 'neg', 'q'];
 /** The +/−/? signs the sims already use (TenseNavigator's forms trio) — reused for the toggle. */
 export const POLARITY_SIGN: Record<Polarity, string> = { aff: '+', neg: '−', q: '?' };
 
+// CHANGED (TM3): the render style — 'full' shows the machinery, 'short' the natural speech.
+export type ConjStyle = 'full' | 'short';
+export const CONJ_STYLES: readonly ConjStyle[] = ['full', 'short'];
+
 export type ConjTokenKind = 'subject' | 'aux' | 'not' | 'head' | 'comp';
 export interface ConjToken {
   text: string;
   kind: ConjTokenKind;
+  /** CHANGED (TM3): a clitic that attaches to the PREVIOUS token with no space (’ll ’m ’s …). */
+  glue?: true;
 }
 export interface Conjugation {
   /** Sentence tokens in display order (questions start with the fronted auxiliary). */
@@ -41,6 +55,62 @@ const haveAux = (time: TenseTime, subject: MachineSubject): string =>
   time === 'past' ? 'had' : THIRD.has(subject) ? 'has' : 'have';
 
 const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+
+// CHANGED (TM3): the contraction tables — the whole 'short' style, encoded. Typographic ’ per
+// house style; lib/exercise.ts unifies ’ → ' before comparing, so both renders stay one answer.
+/** Affirmative: the FIRST auxiliary cliticizes onto the subject. No entry (was/were) = no clitic. */
+const AFF_CLITIC: Record<string, string> = {
+  will: '’ll',
+  am: '’m',
+  is: '’s',
+  are: '’re',
+  have: '’ve',
+  has: '’s',
+  had: '’d',
+};
+/** Negative: the FIRST auxiliary fuses with `not`. am+not has no n’t form (see toShort). */
+const NEG_SHORT: Record<string, string> = {
+  will: 'won’t',
+  do: 'don’t',
+  does: 'doesn’t',
+  did: 'didn’t',
+  is: 'isn’t',
+  are: 'aren’t',
+  was: 'wasn’t',
+  were: 'weren’t',
+  have: 'haven’t',
+  has: 'hasn’t',
+  had: 'hadn’t',
+};
+
+/** CHANGED (TM3): pure token transform full → short. Questions pass through untouched — the
+ *  fronted auxiliary has no subject host to its left, so English keeps it full (Will she …?). */
+function toShort(tokens: ConjToken[]): ConjToken[] {
+  if (tokens[0]?.kind !== 'subject') return tokens; // a question — nothing contracts
+  const auxAt = tokens.findIndex((t) => t.kind === 'aux');
+  if (auxAt === -1) return tokens; // simple past/present affirmative — no auxiliary at all
+  const aux = tokens[auxAt];
+  const negAt = tokens.findIndex((t) => t.kind === 'not');
+  if (negAt === auxAt + 1) {
+    // Negative: fuse aux + not → n’t … except am, which contracts on the subject side instead.
+    if (aux.text === 'am') {
+      return tokens.map((t, i) => (i === auxAt ? { text: '’m', kind: 'aux' as const, glue: true as const } : t));
+    }
+    const fused = NEG_SHORT[aux.text];
+    if (!fused) return tokens;
+    return tokens.flatMap((t, i) =>
+      i === auxAt ? [{ text: fused, kind: 'aux' as const }] : i === negAt ? [] : [t],
+    );
+  }
+  // Affirmative: the first auxiliary becomes a clitic on the subject (if it has one).
+  const clitic = AFF_CLITIC[aux.text];
+  if (!clitic) return tokens; // was/were — English has no affirmative clitic for them
+  return tokens.map((t, i) => (i === auxAt ? { text: clitic, kind: 'aux' as const, glue: true as const } : t));
+}
+
+/** CHANGED (TM3): assembly is glue-aware — a clitic token joins the previous one with no space. */
+const assemble = (tokens: ConjToken[], terminal: '.' | '?'): string =>
+  tokens.map((t, i) => (i > 0 && !t.glue ? ' ' : '') + t.text).join('') + terminal;
 
 /** The AFFIRMATIVE skeleton of a cell: its auxiliary chain + the content-verb head form. */
 function skeleton(
@@ -70,13 +140,16 @@ function skeleton(
   }
 }
 
-/** Pure + deterministic: same inputs → byte-identical output. */
+/** Pure + deterministic: same inputs → byte-identical output.
+ *  CHANGED (TM3): `style` picks the render — 'full' (default; TM1+TM2 behaviour byte-for-byte)
+ *  or 'short' (contracted). Same machinery, one extra table-driven transform. */
 export function conjugate(
   time: TenseTime,
   aspect: Aspect,
   subject: MachineSubject,
   polarity: Polarity,
   verb: MachineVerb,
+  style: ConjStyle = 'full',
 ): Conjugation {
   const { aux, head } = skeleton(time, aspect, subject, verb);
   const tokens: ConjToken[] = [];
@@ -103,6 +176,7 @@ export function conjugate(
   }
 
   tokens.push({ text: verb.comp, kind: 'comp' });
-  const full = tokens.map((t) => t.text).join(' ') + (polarity === 'q' ? '?' : '.');
-  return { tokens, full };
+  // CHANGED (TM3): apply the contraction transform, then assemble glue-aware.
+  const rendered = style === 'short' ? toShort(tokens) : tokens;
+  return { tokens: rendered, full: assemble(rendered, polarity === 'q' ? '?' : '.') };
 }

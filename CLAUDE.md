@@ -150,13 +150,16 @@ questions → the right tense + near-miss explanations; encodes the cross-time o
 `conditionals-machine` (m13) · `article-tree` (m28) ·
 `word-formation-lab` (m31). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
-**★ The Tense Machine** (`#/tenses`, TM1+TM2 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
+**★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
 sim**: the standalone live home of the tense system — the 12-cell WALL conjugated live by the pure
 `lib/conjugator.ts` over `data/tenseMachine.ts` (12 curated verbs, precomputed forms; golden test
-`scripts/test-conjugator.ts`), a draggable master time axis + 12-step Tour, the `TenseCell`-SSOT
-detail panel, and the m11 `tense-chooser` embedded as its Decide tab (two lenses, same SSOT; the
-m6/m11 sims untouched). Its components live in `components/tense/` + `components/pages/` — NEVER
-in `sims|figures/` (smoke asserts those dirs 1:1 against registry keys).
+`scripts/test-conjugator.ts`), a **full ↔ short contractions toggle** (an engine style — don’t ·
+won’t · she’s; questions never contract), a draggable master time axis + 12-step Tour, the
+`TenseCell`-SSOT detail panel (+ TM3 **`uses[]` shade chips** on the big five and the she+write
+showcase UA trio), a **satellites row** (going to · used to · would · be about to — chips under
+their wall column, cards with near-misses), and the m11 `tense-chooser` embedded as its Decide tab
+(two lenses, same SSOT; the m6/m11 sims untouched). Its components live in `components/tense/` +
+`components/pages/` — NEVER in `sims|figures/` (smoke asserts those dirs 1:1 against registry keys).
 Each sim: pure engine in `lib/*` where algorithmic, deterministic,
 play/pause/step where animated, **`prefers-reduced-motion` fallback**, ARIA + live region. Crisp SVG
 figure + table everywhere else. Trainers (**`#/review` SRS — built R1**, `#/practice`, `#/irregular`) and the
@@ -250,6 +253,10 @@ gate is green in a scratch verify — the first push containing S1 turns CI gree
   generated slim index instead. `npm run check:bundle` fails the build on either mistake (M1/M2).
 - **A generated file is never hand-edited.** `npm run gen:index` rewrites `*.generated.ts`;
   `check:index` fails if the committed copies drift from the corpora.
+- **The uploads mount caches file CONTENT (TM3).** After `device_commit_files`, re-staging a
+  previously-staged path can serve the OLD bytes to the container (`/mnt/user-data/uploads/...`
+  keeps the first version; only never-staged paths read fresh). Verify byte-exact write-back with
+  `md5sum` **on the device via `device_bash`**, never through a re-stage of the same path.
 - **Test a new build gate against a deliberate regression before trusting it.** Two versions of
   `check:bundle` were silently no-ops (M1 §14) — a gate that has never failed has not been tested.
 
@@ -286,8 +293,11 @@ drills chunk for `#/practice`; `ModulePage` renders header/TOC instantly. Eager 
 `playwright` devDependency). **Nothing is blocking content now.** →
 **TM1+TM2 (done): ★ The Tense Machine** (`#/tenses`) — the standalone live home of the tense
 system (spec `TENSE-MACHINE-SPEC.md`): the 12-cell wall + `lib/conjugator.ts` + master axis +
-Tour + Decide tab; nav entry + porthole retarget. **TM3 open** (shades · satellites ·
-contractions toggle). →
+Tour + Decide tab; nav entry + porthole retarget. →
+**TM3 (done): the Machine's final wave** — `uses[]` shades wave 1 (big five, 24 uses, chips in
+the detail panel) + the 4 satellites (going to · used to · would · be about to) + the full↔short
+contractions toggle in the engine (golden-tested both renders) + the she+write showcase UA trio.
+Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 Sections III (m12–m16) + `conditionals-machine` · VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -999,6 +1009,69 @@ CURRICULUM.md §G / §R.)
   `npm run verify` locally → branch `feat/tm1-2-tense-machine` → commit → PR. **Deferred → TM3
   (spec §11):** the shades `uses[]` wave (big five ≥4 each) + satellites (going to · used to ·
   would · be about to) + the contractions toggle + optional showcase UA translations.
+
+- **TM3 (2026-07-26) — ★ The Tense Machine: shades · satellites · contractions · showcase (the
+  spec's final wave).** Built per `TENSE-MACHINE-SPEC.md` §4.3–§4.4 / §10–§11 (decisions
+  pre-locked; the §11.3 showcase shipped — time remained). **Shades (§4.3):** `USES` in
+  `data/tenseMachine.ts` — wave 1 = the big five, **24 uses**: Present Simple 5 (habit · fact ·
+  state verbs · timetable→future · stories&docs) · Present Continuous 4 (now · temporary ·
+  arrangement→future · always-complaint) · Past Simple 5 (finished-time · story plot · past habit ·
+  past state · AmE just/yet) · Future Simple 5 (decision · promise/offer · prediction-opinion ·
+  won’t-refusal · shall-offers) · Present Perfect 5 (result · experience · news/just · unfinished
+  period · for/since). Each: immutable id (`<time>-<aspect>/<use>`), bilingual label/meaning/
+  example, optional signals. **Content RESTRUCTURED from the authored (already-sourced) m6–m11
+  topics — zero new grammar claims, zero re-research** (even always-complaint and AmE just/yet
+  live in m11's exercises; be-about-to's present form sits in m11's NOW-vs-BACK-THEN compare). UI:
+  a chips radiogroup in `TenseCellDetail` — the active chip swaps the annotation, the example pair
+  and its signal words; a "More examples" label keeps the shade's example and the SSOT pair
+  visually distinct; chip state resets on cell change. **Satellites (§4.4):** `SATELLITES` —
+  exactly going-to · used-to · would-habit · be-about-to; new
+  `components/tense/TenseSatellites.tsx` renders chips in a `.tm-sats` grid that MIRRORS the
+  wall's `30px repeat(3, 1fr)` template, so each chip sits under its time column without entering
+  the matrix geometry (past: used to · would; future: going to · be about to). A chip opens the
+  card: meaning · forms + − ? · 2 EN/UA examples with TTS · the near-miss vs its matrix neighbour
+  (will's ringing-phone test; used-to/would vs Past Simple with the states limit) · usage notes
+  (gonna; the used-to-then-would style note); time-hue left border; aria-expanded chips + a polite
+  live region; ✕ closes. **Contractions toggle (§11.4):** an ENGINE extension, not a UI patch —
+  `conjugate()` gained `style: 'full' | 'short' = 'full'` (TM1+TM2 calls byte-identical). 'short'
+  is a pure token post-transform driven by two tables: affirmative first-aux clitics (’ll ’m ’s
+  ’re ’ve ’d; was/were have none) emitted as `glue` tokens that keep the aux TIME tint, and
+  negative aux+not fusions (won’t · isn’t · hasn’t · don’t …; am+not renders “I’m not” — no n’t
+  form exists); **questions never contract** (the fronted auxiliary has no host). The n’t/clitic
+  sets are exactly what `lib/exercise.ts` canonical() expands, so both renders normalize to ONE
+  answer everywhere except the by-design-ambiguous ’s/’d. UI: a Forms radiogroup (full · do not /
+  short · don’t) + the new `f=` share param (`#/tenses/<t>/<a>?v=&s=&p=&f=`), restored on load,
+  invalid → full. **Showcase (§11.3):** `SHOWCASE_UA` — 36 authored UA lines (she + write × 12
+  cells × + − ?, the Morpher register; «до того моменту / на той момент» carries the reference
+  point, the ⤺ rows deliberately show UA rendering Perfect without a perfect form); rendered under
+  the detail trio ONLY for she+write — every other combo keeps the locked gloss-only rule (§4.2).
+  **Gates:** `test-conjugator` → **72 + 72 goldens** + 12 short edge spots + a second **2,592-combo
+  sweep** (default===full byte-for-byte · questions-never-contract · glue-aware reassembly ·
+  negativity marker · clitic placement/kind · determinism · the canonical() equivalence contract
+  with its exact divergence set). `check-data` gained the TM3 block (valid cell keys · unique
+  immutable ids with the `<time>-<aspect>/` prefix rule · bilingual everywhere · 1–6 uses per
+  cell, big five ≥4 · satellites exactly the four with 2 examples + near-miss each · showcase
+  12 × 3 non-empty) — **tested against two deliberate regressions** (a duplicated use id; a
+  renamed cell key → invalid-key + big-five-hole) per the §12 convention: both caught, clean state
+  restored byte-exact. `smoke` **285 → 305**: the default TensesPage now asserts the first shade
+  example, the three satellite names and a showcase UA line; a new `TensesPage:short` fixture
+  presets `f=short` in the location shim and asserts the contracted trio (She’s been writing ·
+  She hasn’t been writing · Has she been writing?) + the ’ll wall cell — engine output stays
+  greppable via the sentence `title` attr. **Verification: FULL `npm run verify` ✓ green in the
+  cloud scratch** (typecheck `tsc -b` · eslint clean · check:index · check:data — **24 tense uses
+  + 4 satellites + the showcase**, counts otherwise unchanged · test ×12 · smoke **305** · vite
+  build · check:bundle **327.9 kB / 420 kB — the eager shell did not grow a byte**; the TensesPage
+  lazy chunk 20.7 → 46.0 kB carries all TM3 data/UI) **+ a 20-assert headless-Chromium behaviour
+  pass on the real build, 0 page errors**: the share hash gains `f=full`; the Fact chip swaps
+  example + annotation; the going-to card shows forms/near-miss/gonna and ✕-closes; the short
+  toggle contracts the wall (She’ll write · She’s written) while aux-less Past Simple stays
+  unchanged and the hash carries `f=short`; a deep link with `f=short` round-trips ("They aren’t
+  going to the gym."); the showcase UA line is she+write-only; the UA pass localizes chip labels
+  («Звичка / рутина») while study sentences stay English — screenshots EN + UA. Docs: CLAUDE.md
+  §6/§13/§14 · CURRICULUM §F/§G · README EN+UA. Owner next: `npm run verify` locally → branch
+  `feat/tm3-tense-machine-shades` → commit → PR. **Deferred (shades wave 2):** the remaining seven
+  cells get 2–4 uses each — the check:data key/id machinery already accepts them; free-input verbs
+  stay in the backlog (spec §11.2).
 
 ## 15. Reading OCR wave — runbook (for the next session → grow to 100)
 

@@ -59,13 +59,15 @@ export function MiniTimeline({ time, aspect }: { time: TenseTime; aspect: Aspect
 /** One live sentence, token by token: auxiliaries tinted by the TIME hue, the head form
  *  underlined (the aspect machinery), `not` flagged, the complement muted. Real spaces between
  *  tokens keep the text selectable/wrappable; `title` carries the assembled sentence (it also
- *  makes the engine output greppable in SSR markup — the smoke canaries rely on that). */
+ *  makes the engine output greppable in SSR markup — the smoke canaries rely on that).
+ *  CHANGED (TM3): glue-aware — a clitic token (’ll ’s …) joins the previous one with no space,
+ *  so the short render reads “She’ll write code.” while the clitic keeps its aux tint. */
 export function SentenceTokens({ conj, color }: { conj: Conjugation; color: string }) {
   return (
     <span className="tm-sent" title={conj.full}>
       {conj.tokens.map((tok, i) => (
         <Fragment key={`${i}-${tok.text}`}>
-          {i > 0 && ' '}
+          {i > 0 && !tok.glue && ' '}
           <span
             className={cx('tm-tok', `tm-tok--${tok.kind}`)}
             style={tok.kind === 'aux' ? { color } : tok.kind === 'head' ? { borderColor: color } : undefined}

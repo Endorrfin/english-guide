@@ -163,8 +163,9 @@ from the `definition.txt` backlog. The Dictionary page stays for now (demote/red
 **6 sections · 34 modules · 8 sims** (built: `modal-navigator` ★ · `deduction-lab` · and all three
 Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4);
 planned: `conditionals-machine` ★ · `article-tree` ★ · `word-formation-lab` ★) + the parametric
-**`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1+TM2 — the live 12-cell
-wall over the pure `lib/conjugator.ts`, master time axis + 12-step tour, Decide tab) ·
+**`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
+wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
+12-step tour, `uses[]` shade chips on the big five, 4 satellite cards, Decide tab) ·
 ~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses ≥12) · dictionary **≥3,000
 words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live** (`#/review` SRS ★R1 —
 769 cards across 4 decks · `#/practice` ·
@@ -190,9 +191,16 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    any subject in + − ? (pure `lib/conjugator.ts` + `data/tenseMachine.ts`, golden-tested), the
    draggable master time axis + aspect glyphs + the 12-step aspect-major Tour, the selected-cell
    panel over the `TenseCell` SSOT, and the m11 `tense-chooser` embedded as the Decide tab. Nav
-   entry after Map; the landing-map porthole now opens the Machine. **TM3 (spec §11, open):**
-   shades `uses[]` wave + satellites (going to · used to · would · be about to) + contractions
-   toggle + share-showcase UA line.
+   entry after Map; the landing-map porthole now opens the Machine. **TM3 (done):** shades —
+   `uses[]` wave 1 on the big five (**24 uses**, chips in the detail panel that swap the
+   annotation + example + signals; content restructured from m6–m11, no new claims) · the **4
+   satellites** (going to · used to · would (past habit) · be about to) as chips under their wall
+   time column, each opening a card with meaning, forms + − ?, 2 EN/UA examples and a near-miss
+   vs its matrix neighbour · the **contractions toggle** as an engine extension
+   (`conjugate(…, 'full' | 'short')`, golden-tested in BOTH renders + the `lib/exercise.ts`
+   canonical() contract; questions never contract; `f=` share param) · the she+write **showcase
+   UA trio** (36 authored lines, spec §11.3). **Open (wave 2):** the remaining seven cells get
+   2–4 uses each — the check:data id/key machinery already accepts them.
 5. **`#/review` SRS (done, R1):** `srs.ts` ported 1:1 + `srsStore` + `reviewDecks` (4 corpus decks over
    the 769 existing cards) + mastery import + progress backup + nav due-badge. `#/irregular` shipped V3.
 5b. **Dictionary v2 — the scale gate (DONE, M1):** the corpus moved to a lazy `words` chunk and the

@@ -193,11 +193,19 @@ async function main(): Promise<void> {
     // · aff) SSR-renders the hero, the full 12-cell wall of LIVE engine-built sentences and the
     // detail panel. Canaries are engine output + tense names — English in both languages. The
     // deep-link variant proves route props select a cell (its detail shows the ⤺ near-misses).
+    // CHANGED (TM3): + the shades block (the default cell's first use renders its EN example —
+    // stable across EN/UK, house pattern shows both languages), the satellites row (names stay
+    // English) and the she+write showcase UA line (a fixed UA string, present in both passes).
     check("TensesPage", h(TensesPage), lang, 4000, [
       "The Tense Machine",
       "She writes code.",
       "She had been writing code.",
       "Future Perfect Continuous",
+      "I check email every morning.", // the first Present Simple shade (uses[] wave 1)
+      "going to", // satellites row — future column
+      "used to", // satellites row — past column
+      "be about to", // satellites row — future column
+      "Вона пише код.", // SHOWCASE_UA present/simple aff (she + write, spec §11.3)
     ]);
     check("TensesPage:past/perfect", h(TensesPage, { time: "past", aspect: "perfect" }), lang, 4000, [
       "Past Perfect",
@@ -213,6 +221,22 @@ async function main(): Promise<void> {
     // CHANGED (S5): dynamic fixture id (see above) — survives future Reading waves/renames.
     check("ReadingTextPage", h(ReadingTextPage, { id: readingFixtureId }), lang, 800);
   }
+
+  // CHANGED (TM3): the contractions toggle — the page restores `f=short` from the share hash
+  // (readEmuParams reads the SSR location shim) and renders the CONTRACTED engine output:
+  // clitics in the detail trio and across the wall, while questions stay full (the fronted
+  // auxiliary has no host to cliticize onto). Canaries are engine output via the sentence
+  // `title` attribute, English in both languages; typographic ’ per house style.
+  (g.location as { hash: string }).hash = "#/tenses/present/perfect-continuous?v=write&s=she&p=aff&f=short";
+  for (const lang of langs) {
+    check("TensesPage:short", h(TensesPage, { time: "present", aspect: "perfect-continuous" }), lang, 4000, [
+      "She’s been writing code.", // detail trio aff — the ’s clitic
+      "She hasn’t been writing code.", // detail trio neg — the n’t fusion
+      "Has she been writing code?", // detail trio q — questions never contract
+      "She’ll write code.", // the future/simple wall cell — the ’ll clitic
+    ]);
+  }
+  (g.location as { hash: string }).hash = "";
 
   // ── Layer C: per-module page for all modules (authored bodies + stub headers) ──────────────────────
   // CHANGED (S1): wired — every module renders in both languages; lazy sim/figure chunks resolve to
