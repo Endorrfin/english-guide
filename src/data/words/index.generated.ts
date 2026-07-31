@@ -16,9 +16,9 @@ export type WordIndexEntry = {
 };
 
 export const WORD_COUNTS = {
-  total: 515,
+  total: 535,
   a1: 150,
-  custom: 365,
+  custom: 385,
 } as const;
 
 export const WORD_INDEX: readonly WordIndexEntry[] = [
@@ -537,4 +537,24 @@ export const WORD_INDEX: readonly WordIndexEntry[] = [
   { id: "compatibility", word: "compatibility", level: "b2", translations: "сумісність, узгодженість" },
   { id: "sustainable", word: "sustainable", level: "b2", translations: "сталий, екологічно відповідальний, життєздатний" },
   { id: "overlap", word: "overlap", level: "b2", translations: "частково збігатися, накладатися, збіг" },
+  { id: "thread", word: "thread", level: "b2", translations: "нитка, ланцюжок повідомлень, потік (у програмуванні)" },
+  { id: "awkward", word: "awkward", level: "b2", translations: "незручний, ніяковий, незграбний" },
+  { id: "fluctuate", word: "fluctuate", level: "c1", translations: "коливатися, змінюватися то вгору, то вниз" },
+  { id: "venture", word: "venture", level: "b2", translations: "ризикована справа, підприємство, наважитися" },
+  { id: "renewable", word: "renewable", level: "b2", translations: "відновлюваний, поновлюваний, такий, що можна продовжити" },
+  { id: "capability", word: "capability", level: "b2", translations: "спроможність, можливість, здатність" },
+  { id: "establish", word: "establish", level: "b2", translations: "заснувати, встановити, з’ясувати" },
+  { id: "equally", word: "equally", level: "b1", translations: "однаково, порівну, так само" },
+  { id: "committee", word: "committee", level: "b2", translations: "комітет, комісія" },
+  { id: "contingency", word: "contingency", level: "c1", translations: "непередбачений випадок, запасний варіант, резерв" },
+  { id: "accelerate", word: "accelerate", level: "b2", translations: "прискорювати, пришвидшуватися, набирати швидкість" },
+  { id: "reasonable", word: "reasonable", level: "b1", translations: "розумний, обґрунтований, прийнятний" },
+  { id: "acceptance", word: "acceptance", level: "b2", translations: "прийняття, згода, визнання" },
+  { id: "cause", word: "cause", level: "b1", translations: "причина, спричиняти, справа (за яку борються)" },
+  { id: "narrate", word: "narrate", level: "b2", translations: "розповідати, вести оповідь, начитувати текст" },
+  { id: "efficient", word: "efficient", level: "b1", translations: "ефективний, раціональний, економний" },
+  { id: "awareness", word: "awareness", level: "b2", translations: "обізнаність, усвідомлення, поінформованість" },
+  { id: "stuck", word: "stuck", level: "b1", translations: "застряглий, у глухому куті, приклеєний" },
+  { id: "stale", word: "stale", level: "b2", translations: "несвіжий, черствий, застарілий" },
+  { id: "particular", word: "particular", level: "b1", translations: "конкретний, особливий, вибагливий" },
 ];

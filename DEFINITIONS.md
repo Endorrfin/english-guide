@@ -107,6 +107,8 @@ acknowledge · willingness · assertive · cautious · transparent · allocate.
 
 **Applied so far (D7 — 68 words → 365 total):** ranking · emphasis · takeaway · dedication · contribution · perform · outperform · outstanding · enthusiastic · workplace · workflow · career · networking · collaboration · coworker · upcoming · proactive · occasion · allocation · assignment · permanent · pressure · confusion · ensure · throughout · entire · perspective · context · clarification · formal · informal · slang · certainly · especially · overhear · adjust · projection · trend · tweak · reveal · revise · investigate · sophisticated · represent · relevant · review · cover · ultimate · effort · waste · admit · noteworthy · negotiation · proposal · offer · deal · agree · agreement · agreeable · persuasive · withdraw · refund · chargeback · strength · weakness · compatibility · sustainable · overlap.
 
+**Applied so far (D8 — 20 words → 385 total):** thread · awkward · fluctuate · venture · renewable · capability · establish · equally · committee · contingency · accelerate · reasonable · acceptance · cause · narrate · efficient · awareness · stuck · stale · particular. *(Owner's inline add-words request of 22 items; `concerns` → `concern` and `tweaks` → `tweak` were already carded in D4/D7, so 22 requests → 20 new cards; `threads`/`capabilities` normalized to their base lemmas per the D6/D7 convention.)*
+
 ## 7. Verification (D1)
 
 Full `npm run verify` green in the cloud scratch — typecheck · eslint · check:data (**170 words = 150
