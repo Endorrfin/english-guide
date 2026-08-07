@@ -109,6 +109,8 @@ acknowledge · willingness · assertive · cautious · transparent · allocate.
 
 **Applied so far (D8 — 20 words → 385 total):** thread · awkward · fluctuate · venture · renewable · capability · establish · equally · committee · contingency · accelerate · reasonable · acceptance · cause · narrate · efficient · awareness · stuck · stale · particular. *(Owner's inline add-words request of 22 items; `concerns` → `concern` and `tweaks` → `tweak` were already carded in D4/D7, so 22 requests → 20 new cards; `threads`/`capabilities` normalized to their base lemmas per the D6/D7 convention.)*
 
+**Applied so far (D9 — 37 words → 422 total):** verdict · matter · hint · exactly · transition · aspiration · resilience · overcome · revenue · accomplish · reputation · consistent · scan · sketch · passage · shape · capture · range · curiosity · robust · crucial · presence · endorsement · proof · consistently · authentic · genuine · meaningful · equity · mindset · vital · consistency · ultimately · distinguish · vision · evidence · readiness. *(Owner's inline add-words request of 39 items; `obstacles` → `obstacle` [D3] and `inferences` → `inference` [D6] were already carded, so 39 requests → 37 new cards; `hints`/`passages`/`captures`/`endorsements` normalized to their base lemmas per the D6/D7 convention. The -ly adverbs `consistently` and `ultimately` get their own cards per the D5 precedent, cross-linked to `consistent`/`consistency` and the shipped `ultimate` [D7].)*
+
 ## 7. Verification (D1)
 
 Full `npm run verify` green in the cloud scratch — typecheck · eslint · check:data (**170 words = 150
