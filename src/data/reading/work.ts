@@ -349,4 +349,351 @@ export const workTexts: ReadingText[] = [
       },
     ],
   },
+  // CHANGED (Wave S2, §15 screenshot OCR): +7 texts from the "stage II text_screenshots" backlog.
+  {
+    id: 'government-job-vs-private-job',
+    title: { en: 'Government Job vs Private Job', uk: 'Державна робота проти приватної' },
+    category: 'work',
+    level: 'b1',
+    minutes: 2,
+    topics: ['work', 'career', 'jobs'],
+    body: {
+      en: [
+        'Government jobs are known for job security, stability and fixed working hours. They offer regular salary, pensions and other benefits. It is a good choice for those who want a peaceful and stress-free life with long-term security.',
+        'Private jobs provide faster salary growth, performance based promotions and more career opportunities. It helps in learning new skills and gaining experience. It is ideal for those who are ambitious, hardworking and ready to take challenges.',
+        'Both government and private jobs have their own advantages and challenges. The right choice depends on your goals, priorities and the lifestyle you want. Success comes from your hard work, dedication and continuous learning, no matter which path you choose.',
+        'What is your opinion, please write in English only.',
+      ].join('\n\n'),
+      uk: [
+        'Державна робота відома стабільністю, гарантією зайнятості та фіксованим графіком. Вона пропонує регулярну зарплату, пенсію та інші пільги. Це гарний вибір для тих, хто хоче спокійного, безстресового життя з довготривалою стабільністю.',
+        'Приватна робота забезпечує швидше зростання зарплати, підвищення на основі результатів роботи й більше карʼєрних можливостей. Вона допомагає опановувати нові навички й здобувати досвід. Це ідеальний варіант для тих, хто амбітний, працьовитий і готовий братися за виклики.',
+        'І державна, і приватна робота мають свої переваги та труднощі. Правильний вибір залежить від ваших цілей, пріоритетів і бажаного способу життя. Успіх приходить завдяки тяжкій праці, відданості справі й безперервному навчанню, незалежно від того, який шлях ви обираєте.',
+        'Яка ваша думка, будь ласка, пишіть лише англійською.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what do government jobs offer, besides job security and stability?', uk: 'Згідно з текстом, що пропонує державна робота, крім гарантії зайнятості та стабільності?' },
+        options: [
+          { en: 'Unlimited paid vacation only', uk: 'Лише необмежену оплачувану відпустку' },
+          { en: 'Free housing for all employees', uk: 'Безкоштовне житло для всіх працівників' },
+          { en: 'Regular salary, pensions and other benefits', uk: 'Регулярну зарплату, пенсію та інші пільги' },
+        ],
+        correct: 2,
+        explain: { en: 'The text says government jobs \'offer regular salary, pensions and other benefits.\'', uk: 'У тексті сказано, що державна робота «пропонує регулярну зарплату, пенсію та інші пільги».' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Per the text, who are private jobs ideal for?', uk: 'За текстом, для кого ідеально підходить приватна робота?' },
+        options: [
+          { en: 'Only people who dislike responsibility', uk: 'Лише для тих, хто уникає відповідальності' },
+          { en: 'Those who are ambitious, hardworking and ready to take challenges', uk: 'Для тих, хто амбітний, працьовитий і готовий братися за виклики' },
+          { en: 'Only people close to retirement', uk: 'Лише для людей передпенсійного віку' },
+        ],
+        correct: 1,
+        explain: { en: 'The text states private jobs are \'ideal for those who are ambitious, hardworking and ready to take challenges.\'', uk: 'У тексті сказано, що приватна робота — «ідеальний варіант для тих, хто амбітний, працьовитий і готовий братися за виклики».' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'The text asks for your opinion on government versus private jobs. Which would you choose and why, based on your own goals and priorities?', uk: 'Текст запитує вашу думку щодо державної та приватної роботи. Який варіант обрали б ви і чому, зважаючи на власні цілі та пріоритети?' },
+        sample: { en: 'I would lean toward a private job right now because I value fast growth and new challenges, but I can imagine wanting the stability of a government job later in life, once security matters more to me than speed.', uk: 'Наразі я схилявся б до приватної роботи, бо ціную швидке зростання й нові виклики, але можу уявити, що згодом захочу стабільності державної роботи, коли безпека стане для мене важливішою за швидкість.' },
+      },
+    ],
+    source: { author: 'Learn With Sonali' },
+  },
+  {
+    id: 'leadership-by-example',
+    title: { en: 'Leadership by Example', uk: 'Лідерство власним прикладом' },
+    category: 'work',
+    level: 'b1',
+    minutes: 2,
+    topics: ['leadership', 'teamwork', 'responsibility'],
+    body: {
+      en: [
+        'Leadership is the ability to inspire, guide and influence people to achieve a common goal. A true leader does not just give orders, but leads by example. The way a leader thinks, speaks and acts has a direct impact on his team. Good leaders take responsibility for their actions, accept their mistakes and always try to improve themselves.',
+        'A leader listens to others with patience and respects their ideas. He communicates clearly, motivates his team and helps each member grow. In difficult situations, a leader stays calm, makes the right decisions and finds solutions instead of making excuses. Leadership is not about having power or a high position, it is about earning trust and confidence. It is about serving the team and working together for success.',
+        'Anyone can become a good leader by developing self-discipline, confidence, honesty, integrity and a positive attitude. A leader should be hardworking, focused and always ready to learn. Great leaders create more leaders, not just followers. Real leadership is about making a positive difference in the lives of others and leaving a good legacy.',
+      ].join('\n\n'),
+      uk: [
+        'Лідерство — це здатність надихати, спрямовувати і впливати на людей заради досягнення спільної мети. Справжній лідер не просто віддає накази, а веде за собою власним прикладом. Те, як лідер думає, говорить і діє, безпосередньо впливає на його команду. Хороші лідери беруть відповідальність за свої дії, визнають свої помилки і завжди прагнуть вдосконалюватися.',
+        'Лідер терпляче вислуховує інших і поважає їхні ідеї. Він чітко висловлюється, мотивує свою команду і допомагає кожному її члену розвиватися. У складних ситуаціях лідер зберігає спокій, ухвалює правильні рішення і шукає шляхи розвʼязання проблем, а не виправдовується. Лідерство — це не про владу чи високу посаду, а про те, щоб заслужити довіру. Це про служіння команді та спільну працю заради успіху.',
+        'Кожен може стати хорошим лідером, розвиваючи самодисципліну, впевненість, чесність, доброчесність і позитивний настрій. Лідер має бути працьовитим, зосередженим і завжди готовим вчитися. Великі лідери виховують нових лідерів, а не просто послідовників. Справжнє лідерство — це про те, щоб робити позитивний внесок у життя інших і залишити по собі добру спадщину.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what does a true leader do instead of just giving orders?', uk: 'Що, за текстом, робить справжній лідер замість того, щоб просто віддавати накази?' },
+        options: [
+          { en: 'Leads by example', uk: 'Веде за собою власним прикладом' },
+          { en: 'Avoids the team completely', uk: 'Повністю уникає команди' },
+          { en: 'Waits for someone else to decide', uk: 'Чекає, поки рішення ухвалить хтось інший' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says a true leader does not just give orders, but leads by example.', uk: 'У тексті сказано, що справжній лідер не просто віддає накази, а веде за собою власним прикладом.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say leadership is really about?', uk: 'Про що, за текстом, насправді йдеться в лідерстві?' },
+        options: [
+          { en: 'Having power and a high position', uk: 'Про владу і високу посаду' },
+          { en: 'Earning trust and confidence', uk: 'Про те, щоб заслужити довіру' },
+          { en: 'Giving as many orders as possible', uk: 'Про те, щоб віддавати якомога більше наказів' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says leadership is not about power or position, it is about earning trust and confidence.', uk: 'У тексті сказано, що лідерство не про владу чи посаду, а про те, щоб заслужити довіру.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Think of a leader you admire, in real life or history. Which quality from the text do they show best?', uk: 'Згадайте лідера, яким ви захоплюєтеся, — реального або з історії. Яку якість із тексту він демонструє найкраще?' },
+        sample: { en: 'I admire a former teacher of mine who always stayed calm under pressure and listened patiently to students. She showed the quality of finding solutions instead of making excuses, and it made the whole class trust and respect her.', uk: 'Я захоплююся своєю колишньою вчителькою, яка завжди зберігала спокій під тиском і терпляче вислуховувала учнів. Вона демонструвала якість шукати рішення, а не виправдання, і саме тому весь клас довіряв їй і поважав її.' },
+      },
+    ],
+    source: { author: 'Learn With Sonali' },
+  },
+  {
+    id: 'communication-skills-matter-more-than-marks',
+    title: { en: 'Why Communication Skills Matter More Than Marks', uk: 'Чому навички спілкування важливіші за оцінки' },
+    category: 'work',
+    level: 'b1',
+    minutes: 2,
+    topics: ['communication', 'career', 'soft-skills'],
+    body: {
+      en: [
+        'Good marks are important because they help you qualify for exams, colleges, and job opportunities. However, communication skills play an even bigger role in achieving long-term success.',
+        'A person with excellent communication can confidently express ideas, solve problems, work effectively in a team, and build meaningful relationships. These skills are valuable in interviews, presentations, meetings, and everyday conversations.',
+        'Many talented people miss great opportunities because they struggle to communicate their knowledge clearly. On the other hand, someone with average marks but strong communication skills can leave a lasting impression, earn trust, and grow faster in both personal and professional life.',
+        'Employers today look for candidates who can think clearly, listen carefully, and communicate with confidence.',
+        'Communication is not only about speaking English; it is also about listening, understanding others, and expressing your thoughts respectfully. It improves confidence, leadership, and decision-making.',
+        'How to Improve Communication Skills:\nRead books, newspapers, and useful articles daily.\nLearn new words and use them in sentences.\nPractice speaking every day, even if it\'s with yourself.\nListen carefully and learn from others.\nBe confident, positive, and patient.',
+        'Remember: Marks may help you get an opportunity, but communication skills help you make the best use of it. Investing in your communication skills today is an investment in your future success.',
+      ].join('\n\n'),
+      uk: [
+        'Хороші оцінки важливі, адже вони допомагають вступити на іспити, потрапити до коледжів і отримати роботу. Проте навички спілкування відіграють ще більшу роль у досягненні довготривалого успіху.',
+        'Людина з відмінними комунікативними навичками може впевнено висловлювати ідеї, розвʼязувати проблеми, ефективно працювати в команді та вибудовувати змістовні стосунки. Ці навички цінні на співбесідах, презентаціях, зустрічах і в повсякденному спілкуванні.',
+        'Багато талановитих людей втрачають чудові можливості, бо їм важко чітко донести свої знання. Натомість людина із середніми оцінками, але сильними навичками спілкування, може справити незабутнє враження, завоювати довіру і швидше розвиватися як в особистому, так і в професійному житті.',
+        'Сучасні роботодавці шукають кандидатів, які вміють чітко мислити, уважно слухати і впевнено спілкуватися.',
+        'Спілкування — це не лише вміння говорити англійською; це ще й уміння слухати, розуміти інших і шанобливо висловлювати свої думки. Воно розвиває впевненість, лідерські якості та здатність ухвалювати рішення.',
+        'Як покращити навички спілкування:\nЧитайте книжки, газети та корисні статті щодня.\nВивчайте нові слова і вживайте їх у реченнях.\nТренуйте усне мовлення щодня, навіть наодинці із собою.\nУважно слухайте і вчіться в інших.\nБудьте впевненими, позитивними і терплячими.',
+        'Памʼятайте: оцінки можуть відкрити вам можливість, але саме навички спілкування допомагають скористатися нею якнайкраще. Інвестиції у свої комунікативні навички сьогодні — це інвестиції у ваш майбутній успіх.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what can someone with average marks but strong communication skills do?', uk: 'Що, за текстом, може людина із середніми оцінками, але сильними навичками спілкування?' },
+        options: [
+          { en: 'Fail to get any job opportunities', uk: 'Не отримати жодної можливості працевлаштування' },
+          { en: 'Leave a lasting impression, earn trust, and grow faster', uk: 'Справити незабутнє враження, завоювати довіру і швидше розвиватися' },
+          { en: 'Avoid working in teams', uk: 'Уникати роботи в команді' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says such a person can leave a lasting impression, earn trust, and grow faster in both personal and professional life.', uk: 'У тексті сказано, що така людина може справити незабутнє враження, завоювати довіру і швидше розвиватися.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What do employers look for in candidates, according to the text?', uk: 'Що, за текстом, шукають роботодавці в кандидатах?' },
+        options: [
+          { en: 'Only high marks and test scores', uk: 'Лише високі оцінки й результати тестів' },
+          { en: 'Candidates who never ask questions', uk: 'Кандидатів, які ніколи не ставлять запитань' },
+          { en: 'People who can think clearly, listen carefully, and communicate with confidence', uk: 'Людей, які вміють чітко мислити, уважно слухати і впевнено спілкуватися' },
+        ],
+        correct: 2,
+        explain: { en: 'The text says employers today look for candidates who can think clearly, listen carefully, and communicate with confidence.', uk: 'У тексті сказано, що сучасні роботодавці шукають кандидатів, які вміють чітко мислити, уважно слухати і впевнено спілкуватися.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Which tip for improving communication skills from the text would you start with, and why?', uk: 'З якої поради щодо покращення навичок спілкування ви почали б і чому?' },
+        sample: { en: 'I would start with practicing speaking every day, even alone, because I think speaking out loud regularly is the fastest way to become more comfortable and confident when talking to other people.', uk: 'Я почав би з щоденного тренування усного мовлення, навіть наодинці із собою, бо вважаю, що регулярне промовляння вголос — найшвидший спосіб почуватися впевненіше під час розмови з іншими людьми.' },
+      },
+    ],
+    source: { author: 'Learn With Sonali' },
+  },
+  {
+    id: 'teacher-life',
+    title: { en: 'Teacher Life', uk: 'Життя вчителя' },
+    category: 'work',
+    level: 'a2',
+    minutes: 1,
+    topics: ['teaching', 'career', 'education'],
+    body: {
+      en: [
+        'Teacher life is busy but very meaningful. A teacher starts the day early and prepares lessons for students.',
+        'They teach different subjects and help students understand new ideas. Teachers are patient and kind, even when students make mistakes. They work hard to make learning easy and interesting. Teachers also guide students in behavior and good values. Many teachers spend extra time checking homework and planning lessons. Teaching can be tiring, but it brings happiness and pride. Teachers feel proud when students succeed and grow. Teacher life is a journey of helping others learn and become better people.',
+      ].join('\n\n'),
+      uk: [
+        'Життя вчителя насичене, але дуже змістовне. Учитель починає день рано і готує уроки для учнів.',
+        'Вчителі викладають різні предмети і допомагають учням зрозуміти нові ідеї. Вони терплячі й добрі, навіть коли учні помиляються. Вчителі старанно працюють, щоб зробити навчання легким і цікавим. Вони також скеровують учнів у поведінці й прищеплюють добрі цінності. Багато вчителів витрачають додатковий час на перевірку домашніх завдань і планування уроків. Викладання буває виснажливим, але воно приносить щастя і гордість. Вчителі пишаються, коли їхні учні досягають успіху і зростають. Життя вчителя — це шлях допомоги іншим у навчанні й становленні кращими людьми.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What do teachers do besides teaching subjects, according to the text?', uk: 'Що, за текстом, роблять вчителі окрім викладання предметів?' },
+        options: [
+          { en: 'Guide students in behavior and good values', uk: 'Скеровують учнів у поведінці й прищеплюють добрі цінності' },
+          { en: 'Only grade tests', uk: 'Лише перевіряють тести' },
+          { en: 'Manage the school\'s finances', uk: 'Керують фінансами школи' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says teachers also guide students in behavior and good values.', uk: 'У тексті сказано, що вчителі також скеровують учнів у поведінці й прищеплюють добрі цінності.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'How do teachers feel when students succeed and grow, according to the text?', uk: 'Що відчувають вчителі, коли їхні учні досягають успіху й зростають, за текстом?' },
+        options: [
+          { en: 'Indifferent', uk: 'Байдужість' },
+          { en: 'Proud', uk: 'Гордість' },
+          { en: 'Annoyed', uk: 'Роздратування' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says teachers feel proud when students succeed and grow.', uk: 'У тексті сказано, що вчителі пишаються, коли їхні учні досягають успіху і зростають.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What do you think is the most rewarding part of being a teacher?', uk: 'Що, на твою думку, найбільше винагороджує в роботі вчителя?' },
+        sample: { en: 'I think the most rewarding part is seeing a student finally understand something they struggled with, because that moment shows your effort really made a difference.', uk: 'Гадаю, найбільше винагороджує момент, коли учень нарешті розуміє те, з чим довго боровся, адже це показує, що твої зусилля справді щось змінили.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'the-habit-of-hard-work',
+    title: { en: 'The Habit of Hard Work', uk: 'Звичка наполегливої праці' },
+    category: 'work',
+    level: 'b1',
+    minutes: 1,
+    topics: ['hard-work', 'dedication', 'success'],
+    body: {
+      en: [
+        'Hard work is a powerful habit that helps me grow and achieve my goals in life. It teaches me to stay focused and never give up, even when things are difficult. I try to give my best effort in everything I do, whether it is studying or learning new skills. Hard work helps me become stronger, more confident, and responsible. It also shows me that success comes from patience and dedication.',
+        'I feel proud of myself when I work hard and see my progress. I believe that hard work will help me build a bright and successful future.',
+      ].join('\n\n'),
+      uk: [
+        'Тяжка праця — це потужна звичка, яка допомагає мені рости й досягати життєвих цілей. Вона вчить мене залишатися зосередженим і ніколи не здаватися, навіть коли все складно. Я намагаюся докладати максимум зусиль у всьому, що роблю, — чи то в навчанні, чи в опануванні нових навичок. Тяжка праця робить мене сильнішим, впевненішим і відповідальнішим. Вона також показує мені, що успіх приходить через терпіння та відданість справі.',
+        'Я пишаюся собою, коли тяжко працюю і бачу свій прогрес. Я вірю, що тяжка праця допоможе мені побудувати світле й успішне майбутнє.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what does hard work teach the author?', uk: 'Згідно з текстом, чого навчає автора тяжка праця?' },
+        options: [
+          { en: 'To stay focused and never give up', uk: 'Залишатися зосередженим і ніколи не здаватися' },
+          { en: 'To avoid difficult tasks', uk: 'Уникати складних завдань' },
+          { en: 'To depend on other people', uk: 'Покладатися на інших людей' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says hard work teaches the author to stay focused and never give up, even when things are difficult.', uk: 'У тексті сказано, що тяжка праця вчить автора залишатися зосередженим і ніколи не здаватися, навіть коли все складно.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Where does the text say success comes from?', uk: 'Звідки, за текстом, приходить успіх?' },
+        options: [
+          { en: 'Luck and talent', uk: 'Удача і талант' },
+          { en: 'Patience and dedication', uk: 'Терпіння та відданість справі' },
+          { en: 'Money and connections', uk: 'Гроші і звʼязки' },
+        ],
+        correct: 1,
+        explain: { en: 'The text states that hard work shows the author that success comes from patience and dedication.', uk: 'Текст стверджує, що тяжка праця показує авторові, що успіх приходить через терпіння та відданість справі.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Describe a time when hard work helped you achieve something important. How did it make you feel?', uk: 'Опиши випадок, коли тяжка праця допомогла тобі досягти чогось важливого. Що ти тоді відчував(ла)?' },
+        sample: { en: 'Last year I worked hard to pass a difficult exam, studying every evening for weeks. When I finally passed, I felt proud and confident, and I realized that consistent effort really does pay off.', uk: 'Минулого року я старанно готувався до складного іспиту, навчаючись щовечора кілька тижнів поспіль. Коли я нарешті склав його, то відчув гордість і впевненість у собі й зрозумів, що постійні зусилля справді дають результат.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'getting-laid-off',
+    title: { en: 'Getting Laid Off', uk: 'Звільнення з роботи' },
+    category: 'work',
+    level: 'b1',
+    minutes: 1,
+    topics: ['job-loss', 'career', 'resilience', 'change'],
+    body: {
+      en: [
+        'Losing my job was a sad and difficult experience. I worked hard every day, but the company could not keep me. At first, I felt worried and unsure about the future. I learned to stay calm and think about my next steps.',
+        'Losing a job teaches important lessons about life and work. I started looking for new opportunities and improving my skills. Friends and family supported me during this time. I used the experience to become stronger and more confident. Losing a job can be challenging, but it is not the end. With patience and effort, new chances can appear.',
+      ].join('\n\n'),
+      uk: [
+        'Втрата роботи стала для мене сумним і важким досвідом. Я щодня наполегливо працювала, але компанія не змогла мене залишити. Спочатку я почувалася стривоженою і невпевненою в майбутньому. Я навчилася зберігати спокій і думати про свої наступні кроки.',
+        'Втрата роботи вчить важливих життєвих і професійних уроків. Я почала шукати нові можливості та вдосконалювати свої навички. Друзі та родина підтримували мене в цей час. Я скористалася цим досвідом, щоб стати сильнішою і впевненішою в собі. Втрата роботи може бути випробуванням, але це не кінець. Завдяки терпінню й старанням зʼявляються нові шанси.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What did the author feel right after losing the job, according to the text?', uk: 'Що відчувала авторка одразу після втрати роботи, за текстом?' },
+        options: [
+          { en: 'Relieved and happy', uk: 'Полегшення і радість' },
+          { en: 'Worried and unsure about the future', uk: 'Тривогу і невпевненість у майбутньому' },
+          { en: 'Angry at her former colleagues', uk: 'Злість на колишніх колег' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says that at first, she felt worried and unsure about the future.', uk: 'У тексті сказано, що спочатку вона почувалася стривоженою і невпевненою в майбутньому.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, who supported the author during this difficult time?', uk: 'Хто, за текстом, підтримував авторку в цей важкий час?' },
+        options: [
+          { en: 'Friends and family', uk: 'Друзі та родина' },
+          { en: 'A career coach', uk: 'Карʼєрний коуч' },
+          { en: 'Her former boss', uk: 'Її колишній начальник' },
+        ],
+        correct: 0,
+        explain: { en: 'The text states that friends and family supported her during this time.', uk: 'У тексті сказано, що друзі та родина підтримували її в цей час.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'The author says losing a job “is not the end” and that “new chances can appear.” What next step would you take if you lost your job?', uk: 'Авторка каже, що втрата роботи «це не кінець» і що «зʼявляються нові шанси». Який наступний крок зробили б ви, якби втратили роботу?' },
+        sample: { en: 'If I lost my job, I would first give myself a short time to process the disappointment, then focus on updating my resume and skills, reaching out to my network, and staying open to different kinds of opportunities. Like the author, I would lean on friends and family for support instead of facing the stress alone.', uk: 'Якби я втратила роботу, я спершу дала б собі трохи часу, щоб пережити розчарування, а потім зосередилася б на оновленні резюме й навичок, спілкуванні зі своїми контактами та відкритості до нових можливостей. Як і авторка тексту, я спиралася б на підтримку друзів і родини, а не переживала б стрес наодинці.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'taxi-driver',
+    title: { en: 'Taxi Driver', uk: 'Таксист' },
+    category: 'work',
+    level: 'a2',
+    minutes: 1,
+    topics: ['work', 'transport', 'respect'],
+    body: {
+      en: 'Hello How are you everyone. Today I want to talk about a taxi driver. A taxi driver plays an important role in our daily life. He helps people travel safely from one place to another. Taxi drivers work long hours to earn an honest living. They face traffic, weather, and many challenges, but they remain patient and responsible. A good taxi driver is polite, helpful, and knows the roads well. We should respect taxi drivers for their hard work and service to society. Their job helps keep the city moving. Thank you.',
+      uk: 'Привіт! Як у всіх справи? Сьогодні я хочу поговорити про таксиста. Таксист відіграє важливу роль у нашому повсякденному житті. Він допомагає людям безпечно дістатися з одного місця в інше. Таксисти працюють довгі години, щоб чесно заробити на життя. Вони стикаються із заторами, негодою та багатьма труднощами, але залишаються терплячими й відповідальними. Хороший таксист ввічливий, готовий допомогти і добре знає дороги. Ми маємо поважати таксистів за їхню важку працю і служіння суспільству. Їхня робота допомагає місту рухатися. Дякую за увагу.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say a taxi driver helps people do?', uk: 'Що, за текстом, допомагає робити таксист людям?' },
+        options: [
+          { en: 'Travel safely from one place to another', uk: 'Безпечно діставатися з одного місця в інше' },
+          { en: 'Learn how to drive', uk: 'Навчитися керувати автомобілем' },
+          { en: 'Repair their cars', uk: 'Ремонтувати їхні автомобілі' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says a taxi driver helps people travel safely from one place to another.', uk: 'У тексті сказано, що таксист допомагає людям безпечно діставатися з одного місця в інше.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what qualities does a good taxi driver have?', uk: 'За текстом, якими якостями володіє хороший таксист?' },
+        options: [
+          { en: 'Rich and famous', uk: 'Багатий і відомий' },
+          { en: 'Polite, helpful, and knows the roads well', uk: 'Ввічливий, готовий допомогти і добре знає дороги' },
+          { en: 'Fast but careless', uk: 'Швидкий, але необережний' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says a good taxi driver is polite, helpful, and knows the roads well.', uk: 'У тексті сказано, що хороший таксист ввічливий, готовий допомогти і добре знає дороги.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Why do you think it is important to respect people who do everyday jobs, like taxi drivers?', uk: 'Як ви думаєте, чому важливо поважати людей, які виконують повсякденну роботу, як-от таксисти?' },
+        sample: { en: 'Everyday workers like taxi drivers keep society running smoothly, often facing difficult conditions, so respecting their effort acknowledges the real value of their hard work.', uk: 'Такі працівники, як таксисти, забезпечують нормальне функціонування суспільства, часто працюючи в непростих умовах, тож поважати їхню працю означає визнавати її справжню цінність.' },
+      },
+    ],
+    source: { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' },
+  },
 ];

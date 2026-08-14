@@ -129,4 +129,47 @@ export const technologyTexts: ReadingText[] = [
       },
     ],
   },
+  // CHANGED (Wave S2, §15 screenshot OCR): +1 texts from the "stage II text_screenshots" backlog.
+  {
+    id: 'mobile-phone',
+    title: { en: 'Mobile Phone', uk: 'Мобільний телефон' },
+    category: 'technology',
+    level: 'a2',
+    minutes: 1,
+    topics: ['technology', 'phones', 'communication', 'health'],
+    body: {
+      en: 'Hello How are you everyone. Today I want to talk about the mobile phone. Mobile phones have become an important part of our daily life. They help us communicate with family and friends easily. Mobile phones are also useful for learning, business, and getting information. However, too much use of mobile phones can waste time and harm our health. We should use mobile phones wisely and for good purposes. When used properly, mobile phones make life easier and more connected. Therefore, we should balance our time and use mobile phones responsibly. Thank you.',
+      uk: 'Привіт, як у вас справи? Сьогодні я хочу поговорити про мобільний телефон. Мобільні телефони стали важливою частиною нашого повсякденного життя. Вони допомагають нам легко спілкуватися з родиною та друзями. Мобільні телефони також корисні для навчання, бізнесу та отримання інформації. Однак надмірне використання мобільних телефонів може марнувати час і шкодити нашому здоровʼю. Нам слід використовувати мобільні телефони розумно і з добрими цілями. Коли їх використовують правильно, мобільні телефони роблять життя легшим і більш повʼязаним. Тому нам слід збалансувати свій час і користуватися мобільними телефонами відповідально. Дякую.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what can too much use of mobile phones do?', uk: 'Що, за текстом, може статися через надмірне використання мобільних телефонів?' },
+        options: [
+          { en: 'Improve our eyesight', uk: 'Покращити наш зір' },
+          { en: 'Waste time and harm our health', uk: 'Марнувати час і шкодити здоровʼю' },
+          { en: 'Make us more disciplined', uk: 'Зробити нас дисциплінованішими' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says too much use of mobile phones can waste time and harm our health.', uk: 'У тексті сказано, що надмірне використання мобільних телефонів може марнувати час і шкодити здоровʼю.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Besides communication, what does the text say mobile phones are useful for?', uk: 'Для чого ще, крім спілкування, за текстом, корисні мобільні телефони?' },
+        options: [
+          { en: 'Learning, business, and getting information', uk: 'Навчання, бізнесу та отримання інформації' },
+          { en: 'Cooking and cleaning', uk: 'Приготування їжі та прибирання' },
+          { en: 'Building houses', uk: 'Будівництва будинків' },
+        ],
+        correct: 0,
+        explain: { en: 'The text states mobile phones are also useful for learning, business, and getting information.', uk: 'У тексті сказано, що мобільні телефони також корисні для навчання, бізнесу та отримання інформації.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'How can we use mobile phones wisely without letting them harm our health or waste our time?', uk: 'Як можна розумно користуватися мобільними телефонами, щоб вони не шкодили здоровʼю і не марнували наш час?' },
+        sample: { en: 'We can set time limits for phone use, turn off notifications during work or study, and make sure to spend enough time on physical activity and face-to-face conversations.', uk: 'Можна встановити обмеження на час користування телефоном, вимикати сповіщення під час роботи чи навчання та приділяти достатньо часу фізичній активності й живому спілкуванню.' },
+      },
+    ],
+    source: { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' },
+  },
 ];
