@@ -1074,34 +1074,110 @@ CURRICULUM.md §G / §R.)
   `feat/tm3-tense-machine-shades` → commit → PR. **Deferred (shades wave 2):** the remaining seven
   cells get 2–4 uses each — the check:data key/id machinery already accepts them; free-input verbs
   stay in the backlog (spec §11.2).
+- **S2 (2026-08-14) — Reading OCR wave 2: +157 texts, 141 → 298; two new rubrics.** The whole
+  `_examples/stage II text_screenshots/` backlog processed in one run per §15: **181 screenshots**
+  (105 `IMG_*.PNG` phone shots + 76 macOS `Screenshot *.png`) → **157 unique texts**. Run as a
+  **subagent wave** (26 workers × ~7 images, `general-purpose`/sonnet, one JSON record per image to
+  `/tmp/rout/` so every screenshot is accounted for), then aggregated + deduped inline.
+  **Dedupe:** 18 worker skips (8 exact re-posts of shipped texts — *Mistakes That Are Holding You
+  Back* · *Karma Says* · *Stop Complaining* · *Think Positive* · *The Importance of Discipline* ·
+  *Never Give Up* · *Believe in Your Journey* · *Healthy Life / Success / My Daily Routine*; 5
+  **source-side garbled** AI-text cards — JOGGING / SPORTS / WATER×2 / SLEEP, unreadable in the
+  original image, not an OCR failure; 1 sub-50-word quote card), **4 merges** (top/bottom halves of
+  one desktop post), and **2 aggregation-time drops** on body similarity
+  (`the-power-of-communication` .58 vs shipped `communication`; `speaking-2` .44 + identical title
+  vs `speaking`). Six ids/titles renamed so the accordion stays unambiguous
+  (`leadership-by-example`, `confidence-in-everyday-life`, `books-our-best-friends`,
+  `what-happiness-means-to-me`, `a-good-life-with-purpose`, `respect-in-daily-life`). An
+  **automated dup sweep** (token-Jaccard over EN bodies, new×new and new×141-shipped) found nothing
+  else ≥ .45. **Taxonomy 20 → 22:** `values` came back with 50 texts, so the self-belief/confidence
+  half moved to a new **`mindset`** rubric (Мислення та впевненість, 26) and the first-person
+  micro-stories to a new **`short-stories`** rubric (Оповідання, 9); `travel` gets its first 4
+  texts. Three new files (`mindset.ts`, `shortStories.ts`, `travel.ts`), 11 category files appended,
+  `categories.ts` renumbered (`order` is display-only and not persisted), `index.ts` +3
+  imports/spreads. **Split:** mindset 26 · study 26 · values 24 · discipline 17 · life 14 · family
+  12 · short-stories 9 · work 7 · friendship 6 · everyday 5 · relationships 4 · travel 4 · humour 2
+  · technology 1. **Levels:** 93 b1 · 47 a2 · 15 b2 · 2 a1. **Attribution:** English StoryStream 83
+  · Mind Boost English 40 · Learn With Sonali 14 · Power of Positivity 8 · Sophai 2 · Talking Easy
+  BBC 1 · 9 with no visible page name (`source` omitted — the reader hides the line). Two authors
+  are new vs §15's list: **English StoryStream** and **Power of Positivity**. **QA:** an adversarial
+  10-record spot-check (image ↔ record: EN verbatim · UA fidelity · mcq correctness · metadata)
+  found no invented or dropped narrative content and no wrong `correct` index; it did surface one
+  systematic defect — **33 straight `'`/`’` apostrophes inside Ukrainian words** where the corpus
+  convention is **ʼ (U+02BC)** — normalized corpus-wide (19 records), plus 11 targeted fixes (neuter
+  agreement + a logically inverted question in `the-lost-puppy`, a coarse register slip in
+  `baby-camel-and-mother`, a dropped greeting clause in `s030`, "loved" mistranslated as the active
+  verb in `home`, …). A mechanical EN↔UA length-ratio sweep over all 157 flagged **no** outliers
+  (all 0.80–1.35), so nothing was silently dropped in translation. **Verification: FULL
+  `npm run verify` ✓ green in a cloud scratch clone** (fresh `npm install` — the device
+  `node_modules` are macOS-native) — typecheck · eslint (0 warnings) · check:index · check:data
+  (**298 reading texts in 22 categories**, 572 words, 357 idioms, all bilingual, registry + links
+  resolve) · test ×12 · smoke **305** · vite build · check:bundle (**eager 334.7 kB / 420 kB —
+  unchanged; the reading corpus stays lazy**). Files written back to the device; the agent did
+  **not** commit or push (the mount blocks `unlink`, so git write is unreliable there — owner
+  commits locally, per the D1/D2 pattern). All **181 screenshots archived** to `🗂️ archive/` under
+  their original names; the ASCII working copies and the dedupe scratch TSV are parked in
+  `_examples/stage II text_screenshots/_to_delete/` for the owner to remove (`device_bash` cannot
+  `rm`). **Watch item:** the lazy `reading` chunk is now **1,419 kB** (was 639 kB) — the largest in
+  the build. It stays fully lazy so the eager budget is untouched, but the per-category lazy split
+  flagged at M1 is now the obvious next perf move. Owner next: `npm run verify` locally → branch
+  `s2-reading-ocr-wave` → commit.
 
-## 15. Reading OCR wave — runbook (for the next session → grow to 100)
+## 15. Reading OCR wave — runbook (standing procedure)
 
-Owner decision: run the bulk **in a fresh session via a multi-agent workflow**. Steps:
+> ✅ **Wave S2 DONE (2026-08-14) — 181 screenshots → +157 texts, 141 → 298, taxonomy 20 → 22.**
+> The `stage II text_screenshots/` backlog is **cleared**. The steps below are the standing
+> procedure for the next screenshot drop; §14's S2 entry is the worked example.
 
-1. **Backlog:** `_examples/text_screenshots/` (~265 left); processed screenshots move to `🗂️ arhive/`.
-   Skip non-narrative sheets (e.g. the idioms table `IMG_1578`) — those belong to a dictionary idioms wave.
-2. **Filename gotcha:** macOS screenshot names contain a **U+202F** (narrow no-break space) before “AM”, so
-   exact-path `device_stage_files` fails. First `device_bash`-`cp` the next batch to ASCII names
-   (`_ascii/wN_NN.png`) AND append each original basename to a manifest; then `device_stage_files` the ASCII
-   copies (≤50 per call) into the container so subagents can `Read` them.
-3. **Workflow:** one `general-purpose` subagent per screenshot (model `sonnet` is fine) → `Read` the image →
-   author the record → `Write` JSON to `/tmp/rout/NN.json` → return a tiny status. **Pass `args` as a DIRECT
-   JSON array** (the earlier pilot failed because `args` arrived as a string and `args.items` was undefined —
-   either pass an array or parse-tolerate in the script).
-4. **Aggregate (inline after the run):** read `/tmp/rout/*.json` → validate (bilingual, 3 questions = 2 mcq +
-   1 open, mcq `correct` in range, category ∈ taxonomy, level a1–c1, minutes ≥1, `source.author`) → dedupe by
-   id + `title.en` and against existing ids → emit `src/data/reading/rN.ts` (`export const rNTexts`) → import
-   in `reading/index.ts` (spread into `READING_TEXTS`).
-5. **Per-text contract:** stable kebab `id`, `title{en,uk}`, `category` (one of the 18), CEFR `level`,
-   `minutes`≥1, `body{en,uk}` (verbatim EN + full natural UA), `questions` (2 mcq + 1 open, bilingual),
-   `source`. **Attribution:** green-title series → Mind Boost English (FB,
-   `facebook.com/profile.php?id=61584114885870`); footer-visible → Learn With Sonali / English Growth Academy /
-   Mind Boost English `.com`; unknown → omit `source` (reader hides the line).
-6. **Verify:** `check:data` + scoped `tsc` on reading data in a cloud scratch copy; owner runs full
-   `npm run verify` locally. **Write back** via SendUserFile + device_commit_files; **archive** the processed
-   screenshots via the manifest. The `#/reading` counter updates automatically from `READING_TEXTS.length`.
-7. **Target:** 100 texts (now 18). Keep waves ~40–80/run until reached.
+Run the bulk **in a fresh session via a subagent wave**. Steps:
+
+1. **Backlog:** the current screenshot folder under `_examples/`. Processed screenshots move to
+   `🗂️ archive/` **with their original names** — archive everything reviewed, duplicates included,
+   so the source folder ends empty. Skip non-narrative sheets (vocabulary / idiom tables — those
+   belong to a dictionary idioms wave), sub-50-word quote cards, and **source-side garbled**
+   AI-text cards (the text is broken in the original image, not by OCR; five turned up in S2).
+   `device_bash` cannot `rm`, so working copies go to a `_to_delete/` subfolder for the owner.
+2. **Filename gotcha:** macOS screenshot names contain a **U+202F** (narrow no-break space) before
+   “AM”/“PM”, so exact-path `device_stage_files` fails. First `device_bash`-`cp` them to ASCII names
+   (`_ascii/sNNN.png`) AND write `_ascii/MANIFEST.tsv` (ascii-name ⇥ original-name); then
+   `device_stage_files` the copies into the container so subagents can `Read` them. Stage in batches
+   of ≤ 20 with a pause — 50 at once returns **HTTP 429** part-way through and you must retry the
+   failures.
+3. **Wave:** write ONE shared brief to `/tmp/BRIEF.md` (contract + taxonomy + the full list of
+   already-shipped ids + attribution rules + a UA style sample), then spawn `general-purpose`
+   subagents (`sonnet`) with **~7 consecutive images each** — consecutive matters, so a worker can
+   spot that two shots are halves of the same post and merge them. Tell each worker to `Write`
+   `/tmp/rout/<STEM>.json` **immediately after each image** (partial progress then survives a
+   session-limit or content-filter kill) and to emit a record for *every* image — `status: "ok"`,
+   `"skip"` (with a reason) or `"merged-into"` — so nothing is silently lost. Re-run the missing
+   stems afterwards: `ls /tmp/rout` vs the expected list. Batches occasionally die on
+   `Output blocked by content filtering policy`; re-run those images in groups of 3–4.
+4. **Aggregate (inline after the run):** read `/tmp/rout/*.json` → validate (bilingual, 3 questions
+   = 2 mcq + 1 open, mcq `correct` in range, category ∈ taxonomy, level a1–c1, minutes ≥ 1,
+   `source.author`, EN/UA paragraph parity) → **dedupe by token-Jaccard over EN bodies**, new×new
+   and new×shipped: ≥ .45 is a duplicate, and an identical title with ≥ .40 is too; rename ids +
+   titles on the survivors so no two entries read the same in the accordion → append into the
+   **per-category files** (`study.ts`, `values.ts`, …), creating a new file + `categories.ts` entry
+   + `index.ts` import/spread when a rubric is new. (§15 used to say "emit `rN.ts`" — waves RB1/RB2/S2
+   all went per-category instead; per-category is the convention.)
+5. **Per-text contract:** stable kebab `id`, `title{en,uk}`, `category` (one of the 22), CEFR
+   `level`, `minutes` ≥ 1, `body{en,uk}` (verbatim EN + full natural UA), `questions` (2 mcq + 1
+   open, bilingual), `source`. **Ukrainian house style:** « » quotes, **ʼ U+02BC** for the
+   apostrophe (never `'` or `’` — S2 had to normalize 33 of them), — for dashes.
+   **Attribution:** green-title series → Mind Boost English (FB,
+   `facebook.com/profile.php?id=61584114885870`); footer-visible → Learn With Sonali / English
+   Growth Academy / English StoryStream / Power of Positivity / Mind Boost English `.com`; unknown →
+   omit `source` (the reader hides the line).
+6. **Verify:** clone the repo into a cloud scratch dir, `npm install`, and run the **full**
+   `npm run verify` there (the device `node_modules` are macOS-native and unusable in the sandbox);
+   owner re-runs it locally. Also worth running: an **adversarial QA subagent** over ~10 random
+   image↔record pairs (EN verbatim · UA fidelity · mcq correctness · metadata) and a mechanical
+   EN↔UA length-ratio sweep to catch silently dropped clauses. **Write back** via SendUserFile +
+   device_commit_files; **archive** the processed screenshots via the manifest. The `#/reading`
+   counter updates automatically from `READING_TEXTS.length`.
+7. **Scale note:** the `reading` lazy chunk is 1,419 kB at 298 texts. It is lazy, so `check:bundle`
+   stays green, but past ~400 texts do the **per-category lazy split** (M1's deferred item) before
+   the next big wave.
 
 ## 16. Definitions wave D2 — runbook (next session → +100 cards)
 

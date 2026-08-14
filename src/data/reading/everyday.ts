@@ -214,4 +214,220 @@ export const everydayTexts: ReadingText[] = [
       },
     ],
   },
+  // CHANGED (Wave S2, §15 screenshot OCR): +5 texts from the "stage II text_screenshots" backlog.
+  {
+    id: 'phone-talk',
+    title: { en: 'Phone Talk', uk: 'Розмова по телефону' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['communication', 'phone-etiquette', 'everyday-english'],
+    body: {
+      en: 'Talking on the phone is an important communication skill. First, we should greet the other person politely. Speaking clearly helps the listener understand better. It is important to listen carefully and not interrupt. Using simple words makes the conversation easy. We should speak in a calm and respectful tone. If we do not understand, we can ask the person to repeat. Ending the call politely is also important. Good phone manners show respect and confidence. Knowing how to talk on the phone helps in daily life and work.',
+      uk: 'Розмова по телефону — важлива навичка спілкування. Перш за все, варто ввічливо привітати співрозмовника. Чітка вимова допомагає слухачеві краще зрозуміти сказане. Важливо уважно слухати і не перебивати. Прості слова роблять розмову легшою для сприйняття. Говорити слід спокійним і шанобливим тоном. Якщо щось незрозуміло, можна попросити співрозмовника повторити. Ввічливо завершити розмову — також важливо. Гарні телефонні манери демонструють повагу і впевненість. Уміння правильно розмовляти по телефону допомагає і в повсякденному житті, і на роботі.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what should you do if you don\'t understand what the other person said?', uk: 'Що, згідно з текстом, варто зробити, якщо ви не зрозуміли співрозмовника?' },
+        options: [
+          { en: 'Hang up immediately', uk: 'Одразу покласти слухавку' },
+          { en: 'Pretend you understood', uk: 'Вдати, що зрозуміли' },
+          { en: 'Ask the person to repeat', uk: 'Попросити повторити' },
+        ],
+        correct: 2,
+        explain: { en: 'The text says: "If we do not understand, we can ask the person to repeat."', uk: 'У тексті сказано: якщо ми не розуміємо, можна попросити співрозмовника повторити.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say using simple words does for a conversation?', uk: 'Що, за текстом, роблять прості слова для розмови?' },
+        options: [
+          { en: 'Makes you sound rude', uk: 'Роблять вас грубим' },
+          { en: 'Makes the conversation easy', uk: 'Роблять розмову легкою' },
+          { en: 'Confuses the listener', uk: 'Плутають слухача' },
+        ],
+        correct: 1,
+        explain: { en: 'The text states: "Using simple words makes the conversation easy."', uk: 'У тексті зазначено: прості слова роблять розмову легшою.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Which phone manners from the text do you already practice, and which one could you improve?', uk: 'Які телефонні манери з тексту ви вже практикуєте, а над якою варто попрацювати?' },
+        sample: { en: 'I usually greet people politely and speak clearly, but I sometimes interrupt when I\'m excited. I could work on listening more carefully before responding.', uk: 'Зазвичай я ввічливо вітаюся і говорю чітко, але іноді перебиваю, коли хвилююся. Мені варто попрацювати над тим, щоб уважніше слухати, перш ніж відповідати.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'our-house',
+    title: { en: 'Our House', uk: 'Наш дім' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['home', 'family', 'dreams'],
+    body: {
+      en: [
+        'My dream house is a beautiful and peaceful place where I can feel happy and relaxed. It has big windows, a cozy living room, and a lovely garden full of flowers. I imagine a quiet space where I can read, learn, and spend time with my family. My dream house is filled with love, comfort, and positive energy. It is not just about luxury, but about feeling safe and at home.',
+        'I hope to build my dream house one day with hard work and dedication. It will be a place where my dreams come true and memories are made.',
+      ].join('\n\n'),
+      uk: [
+        'Дім моєї мрії — це прекрасне й затишне місце, де я можу почуватися щасливим і розслабленим. У ньому великі вікна, затишна вітальня та чудовий сад, повний квітів. Я уявляю тиху місцину, де можна читати, вчитися і проводити час із родиною. Дім моєї мрії наповнений любовʼю, теплом і позитивною енергією. Річ не лише в розкоші, а в тому, щоб почуватися в безпеці і як удома.',
+        'Я сподіваюся колись збудувати дім своєї мрії наполегливою працею і відданістю справі. Це буде місце, де здійснюються мої мрії і народжуються спогади.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say the dream house has, besides big windows and a cozy living room?', uk: 'Що, за текстом, є в домі мрії, окрім великих вікон і затишної вітальні?' },
+        options: [
+          { en: 'A swimming pool', uk: 'Басейн' },
+          { en: 'A home cinema', uk: 'Домашній кінотеатр' },
+          { en: 'A lovely garden full of flowers', uk: 'Чудовий сад, повний квітів' },
+        ],
+        correct: 2,
+        explain: { en: 'The text lists big windows, a cozy living room, and a lovely garden full of flowers.', uk: 'У тексті перераховано великі вікна, затишну вітальню та чудовий сад, повний квітів.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what is the dream house really about, not just luxury?', uk: 'Про що насправді дім мрії, а не лише про розкіш, за текстом?' },
+        options: [
+          { en: 'Feeling safe and at home', uk: 'Почуватися в безпеці і як удома' },
+          { en: 'Having expensive furniture', uk: 'Мати дорогі меблі' },
+          { en: 'Impressing neighbors', uk: 'Вразити сусідів' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says it is not just about luxury, but about feeling safe and at home.', uk: 'У тексті сказано, що річ не лише в розкоші, а в тому, щоб почуватися в безпеці і як удома.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What would your own dream house look like, and why is it important to you?', uk: 'Яким був би твій власний дім мрії і чому він для тебе важливий?' },
+        sample: { en: 'My dream house would be a small cottage near the sea with a big library and a garden. It matters to me because I want a quiet place where I can relax, read, and spend time with the people I love.', uk: 'Мій дім мрії — це невеликий котедж біля моря з великою бібліотекою і садом. Для мене це важливо, бо я хочу мати тихе місце, де можна відпочивати, читати й проводити час із тими, кого я люблю.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'my-dream-house',
+    title: { en: 'My Dream House', uk: 'Дім моєї мрії' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['home', 'dreams', 'hard-work'],
+    body: {
+      en: 'My dream house is not just a building, it is a place full of hope and happiness. It has big windows where sunlight comes in and fills every room with warmth. In my dream house, there is a small study room where I work hard to achieve my goals every day. There is also a garden that reminds me to stay calm, patient, and grow like the plants. My dream house teaches me that success comes from effort and belief in myself. I know that one day, with hard work and dedication, I will build this beautiful home. This dream gives me strength to keep going and never give up.',
+      uk: 'Дім моєї мрії — це не просто будівля, це місце, сповнене надії та щастя. У ньому великі вікна, крізь які проникає сонячне світло і наповнює теплом кожну кімнату. У домі моєї мрії є невеликий кабінет, де я щодня наполегливо працюю, щоб досягти своїх цілей. Там також є сад, який нагадує мені залишатися спокійним, терплячим і рости, як ті рослини. Дім моєї мрії вчить мене, що успіх приходить через зусилля і віру в себе. Я знаю, що одного дня, завдяки тяжкій праці та відданості справі, я збудую цей прекрасний дім. Ця мрія дає мені сили рухатися далі і ніколи не здаватися.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does the small study room in the dream house represent, according to the text?', uk: 'Що, за текстом, символізує невеликий кабінет у домі мрії?' },
+        options: [
+          { en: 'A place to relax and sleep', uk: 'Місце для відпочинку і сну' },
+          { en: 'A place to work hard and achieve goals', uk: 'Місце, де наполегливо працюють і досягають цілей' },
+          { en: 'A place to entertain guests', uk: 'Місце для прийому гостей' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says the study room is where the author works hard every day to achieve their goals.', uk: 'У тексті сказано, що в кабінеті автор щодня наполегливо працює, щоб досягти своїх цілей.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what does the garden remind the author to do?', uk: 'Про що, за текстом, нагадує авторові сад?' },
+        options: [
+          { en: 'Sell the house', uk: 'Продати будинок' },
+          { en: 'Invite more friends', uk: 'Запросити більше друзів' },
+          { en: 'Stay calm, patient, and grow like the plants', uk: 'Залишатися спокійним, терплячим і рости, як рослини' },
+        ],
+        correct: 2,
+        explain: { en: 'The text says the garden reminds the author to stay calm, patient, and grow like the plants.', uk: 'У тексті сказано, що сад нагадує авторові залишатися спокійним, терплячим і рости, як рослини.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'The text says \'success comes from effort and belief in myself.\' Do you agree? Why or why not?', uk: 'Текст стверджує: «успіх приходить через зусилля і віру в себе». Чи погоджуєшся ти з цим? Чому так або ні?' },
+        sample: { en: 'I agree, because I have noticed that when I believe I can succeed and keep working steadily, I make progress even on difficult tasks, while doubting myself usually makes me give up too soon.', uk: 'Я погоджуюся, бо помітив(ла), що коли я вірю у власний успіх і продовжую наполегливо працювати, то досягаю прогресу навіть у складних справах, тоді як сумніви в собі зазвичай змушують мене здаватися надто рано.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'my-village',
+    title: { en: 'My Village', uk: 'Моє село' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['village', 'community', 'tradition', 'home'],
+    body: {
+      en: 'Hello How are you everyone. Today I want to talk about my village. My village is a place of peace, simplicity, and natural beauty. People in my village are kind, honest, and always ready to help each other. The air is fresh, and life is simple and calm. We respect our traditions and live like a family. Children play freely, and elders share wisdom and stories. My village teaches me the values of hard work, unity, and respect. No matter where I go, I always feel proud of my village. Thank you.',
+      uk: 'Привіт, як у вас справи? Сьогодні я хочу розповісти про своє село. Моє село — місце спокою, простоти й природної краси. Люди в моєму селі добрі, чесні і завжди готові допомогти одне одному. Повітря тут свіже, а життя просте та спокійне. Ми шануємо свої традиції і живемо як одна родина. Діти вільно бавляться, а старші діляться мудрістю та історіями. Моє село вчить мене цінувати працю, єдність і повагу. Хоч би куди я поїхав, я завжди пишаюся своїм селом. Дякую.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How does the author describe the people in the village?', uk: 'Як автор описує людей у селі?' },
+        options: [
+          { en: 'Kind, honest, and always ready to help each other', uk: 'Добрі, чесні й завжди готові допомогти одне одному' },
+          { en: 'Competitive and distant from one another', uk: 'Конкурентні й відсторонені одне від одного' },
+          { en: 'Busy and too tired to talk', uk: 'Заклопотані й надто втомлені, щоб спілкуватися' },
+        ],
+        correct: 0,
+        explain: { en: 'The text says people in the village are kind, honest, and always ready to help each other.', uk: 'У тексті сказано, що люди в селі добрі, чесні й завжди готові допомогти одне одному.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What values does the author say the village teaches them?', uk: 'Яких цінностей, за словами автора, навчає село?' },
+        options: [
+          { en: 'Speed and competition', uk: 'Швидкості й суперництва' },
+          { en: 'Hard work, unity, and respect', uk: 'Праці, єдності й поваги' },
+          { en: 'Wealth and fame', uk: 'Багатства й слави' },
+        ],
+        correct: 1,
+        explain: { en: 'The author states the village teaches the values of hard work, unity, and respect.', uk: 'Автор каже, що село вчить цінувати працю, єдність і повагу.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What makes you feel proud of the place where you grew up?', uk: 'Що змушує вас пишатися місцем, де ви виросли?' },
+        sample: { en: 'I feel proud of my hometown because of its close community, the traditions we share, and the way people support one another in difficult times.', uk: 'Я пишаюся своїм рідним містом через його згуртовану громаду, традиції, які ми поділяємо, та готовність людей підтримувати одне одного у важкі часи.' },
+      },
+    ],
+    source: { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' },
+  },
+  {
+    id: 'new-food',
+    title: { en: 'New Food', uk: 'Нова їжа' },
+    category: 'everyday',
+    level: 'a2',
+    minutes: 1,
+    topics: ['food', 'family', 'new experiences'],
+    body: {
+      en: 'One day, my mom made sushi for dinner. I had never eaten it before and felt unsure. She encouraged me to take a small bite. To my surprise, I loved it! The flavors were different but delicious. I asked for another piece. Now, sushi is one of my favorite foods. I realized that trying new things can be exciting. That day, I learned to be more open to new experiences.',
+      uk: 'Одного дня моя мама приготувала суші на вечерю. Я ніколи раніше їх не їв і почувався невпевнено. Вона підбадьорила мене спробувати маленький шматочок. На мій подив, мені сподобалось! Смак був незвичний, але дуже смачний. Я попросив ще один шматочок. Тепер суші — одна з моїх улюблених страв. Я зрозумів, що пробувати нове може бути захопливо. Того дня я навчився бути більш відкритим до нового досвіду.',
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How did the narrator feel before trying sushi for the first time?', uk: 'Як почувався оповідач перед тим, як уперше спробувати суші?' },
+        options: [
+          { en: 'Excited and confident', uk: 'Схвильовано та впевнено' },
+          { en: 'Unsure', uk: 'Невпевнено' },
+          { en: 'Angry', uk: 'Розлючено' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says: \'I had never eaten it before and felt unsure.\'', uk: 'У тексті сказано: «Я ніколи раніше їх не їв і почувався невпевнено».' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What lesson did the narrator learn that day?', uk: 'Якого уроку навчився оповідач того дня?' },
+        options: [
+          { en: 'Sushi is the best food in the world', uk: 'Суші — найкраща їжа у світі' },
+          { en: 'Cooking Japanese food is difficult', uk: 'Готувати японську їжу складно' },
+          { en: 'Trying new things can be exciting', uk: 'Пробувати нове може бути захопливо' },
+        ],
+        correct: 2,
+        explain: { en: 'The text says: \'I realized that trying new things can be exciting. That day, I learned to be more open to new experiences.\'', uk: 'У тексті сказано: «Я зрозумів, що пробувати нове може бути захопливо. Того дня я навчився бути більш відкритим до нового досвіду».' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Describe a time you tried a new food or activity that you were unsure about at first. What happened?', uk: 'Опишіть випадок, коли ви спробували нову їжу чи заняття, у якому спочатку сумнівалися. Що сталося?' },
+        sample: { en: 'I was nervous to try snorkeling for the first time, but once I saw the colorful fish underwater, I forgot my fear and loved every minute of it.', uk: 'Я хвилювався, коли вперше пробував пірнати з маскою, але щойно побачив під водою кольорових рибок, забув про страх і насолоджувався кожною миттю.' },
+      },
+    ],
+  },
 ];

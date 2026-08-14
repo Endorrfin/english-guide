@@ -21,6 +21,11 @@ import { biographiesTexts } from './biographies';
 // CHANGED (Wave RB2): relationships (existing category, first texts) + humour (new category).
 import { relationshipsTexts } from './relationships';
 import { humourTexts } from './humour';
+// CHANGED (Wave S2, §15 screenshot OCR): three new files — mindset + short-stories (new rubrics)
+// and travel (existing rubric, first texts).
+import { mindsetTexts } from './mindset';
+import { shortStoriesTexts } from './shortStories';
+import { travelTexts } from './travel';
 
 export const READING_CATEGORIES: readonly ReadingCategory[] = [...readingCategories].sort(
   (a, b) => a.order - b.order,
@@ -41,6 +46,10 @@ export const READING_TEXTS: readonly ReadingText[] = [
   ...biographiesTexts,
   ...relationshipsTexts,
   ...humourTexts,
+  // CHANGED (Wave S2).
+  ...mindsetTexts,
+  ...shortStoriesTexts,
+  ...travelTexts,
 ];
 
 const textById = new Map(READING_TEXTS.map((t) => [t.id, t]));

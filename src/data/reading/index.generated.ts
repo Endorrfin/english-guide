@@ -7,7 +7,7 @@
 // The reading pages still import the real dataset; they are the routes that actually read texts.
 
 export const READING_COUNTS = {
-  categories: 20,
-  categoriesWithTexts: 14,
-  texts: 141,
+  categories: 22,
+  categoriesWithTexts: 17,
+  texts: 298,
 } as const;

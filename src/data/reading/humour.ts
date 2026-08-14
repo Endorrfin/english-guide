@@ -111,4 +111,103 @@ export const humourTexts: ReadingText[] = [
       },
     ],
   },
+  // CHANGED (Wave S2, §15 screenshot OCR): +2 texts from the "stage II text_screenshots" backlog.
+  {
+    id: 'baby-camel-and-mother',
+    title: { en: 'Baby Camel and Mother', uk: 'Верблюденя та його мама' },
+    category: 'humour',
+    level: 'b1',
+    minutes: 2,
+    topics: ['animals', 'story', 'humour'],
+    body: {
+      en: [
+        'A mother and a baby camel were lying around, and suddenly the baby camel asked, "Mother, may I ask you some questions?" Mother said, "Sure! Why, son, is there something bothering you?" Baby said, "Why do camels have humps?" Mother said, "Well, son, we are desert animals. We need the humps to store water, and we are known to survive without water." Baby said, "Okay, then why are our legs long and our feet rounded?" Mother said, "Son, obviously they are meant for walking in the desert. You know, with these legs I can move around the desert better than anyone does!" Baby said, "Okay, then why are our eyelashes long? Sometimes it bothers my sight." Mother, with pride, said, "My son, those long, thick eyelashes are your protective cover. They help to protect your eyes from the desert sand and wind."',
+        'Baby, after thinking, said, "I see. So the hump is to store water when we are in the desert, the legs are for walking through the desert, and these eyelashes protect my eyes from the desert. Then what in God\'s name are we doing here in the Zoo!?"',
+        'Moral: Skills, knowledge, abilities and experiences are only useful if you are at the right place.',
+      ].join('\n\n'),
+      uk: [
+        'Мама верблюдиця і верблюденя лежали собі спокійно, аж раптом верблюденя запитало: «Мамо, можна я поставлю тобі кілька запитань?» Мама відповіла: «Звісно! А що, синку, щось тебе турбує?» Верблюденя запитало: «Чому у верблюдів є горби?» Мама сказала: «Ну, синку, ми пустельні тварини. Нам потрібні горби, щоб зберігати воду, адже ми вміємо довго обходитися без води». Верблюденя запитало: «Гаразд, а чому в нас довгі ноги і круглі ступні?» Мама відповіла: «Синку, це ж очевидно — вони створені для ходьби пустелею. Знаєш, із такими ногами я пересуваюся пустелею краще за будь-кого!» Верблюденя запитало: «Добре, а чому в нас довгі вії? Іноді вони заважають мені бачити». Мама з гордістю сказала: «Синку мій, ці довгі густі вії — твій захисний покрив. Вони захищають твої очі від піску й вітру пустелі».',
+        'Верблюденя, трохи подумавши, сказало: «Зрозуміло. Виходить, горб потрібен, щоб зберігати воду, поки ми в пустелі, ноги — щоб ходити пустелею, а вії захищають мої очі від пустелі. То що ж ми, заради всього святого, робимо тут, у зоопарку?!»',
+        'Мораль: навички, знання, здібності та досвід корисні лише тоді, коли ти перебуваєш у правильному місці.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'Why, according to the mother camel, do camels have humps?', uk: 'Чому, за словами мами-верблюдиці, у верблюдів є горби?' },
+        options: [
+          { en: 'To store water and survive without it for a long time', uk: 'Щоб зберігати воду й довго обходитися без неї' },
+          { en: 'To help them run faster', uk: 'Щоб бігати швидше' },
+          { en: 'To keep them warm at night', uk: 'Щоб не мерзнути вночі' },
+        ],
+        correct: 0,
+        explain: { en: 'The mother explains that camels are desert animals and need humps to store water and survive without water.', uk: 'Мама пояснює, що верблюди — пустельні тварини, і їм потрібні горби, щоб зберігати воду й виживати без неї.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is the moral of the story?', uk: 'У чому мораль цієї історії?' },
+        options: [
+          { en: 'Camels are the strongest desert animals', uk: 'Верблюди — найсильніші тварини пустелі' },
+          { en: 'Skills, knowledge and experience are only useful if you are in the right place', uk: 'Навички, знання та досвід корисні лише тоді, коли ти в правильному місці' },
+          { en: 'Baby animals should not ask too many questions', uk: 'Малятам тварин не варто ставити забагато запитань' },
+        ],
+        correct: 1,
+        explain: { en: 'The moral of the story is that skills, knowledge, abilities and experiences are only useful if you are at the right place.', uk: 'Мораль історії в тому, що навички, знання, здібності та досвід корисні лише тоді, коли ти перебуваєш у правильному місці.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'Why do you think the baby camel\'s final question (\'what are we doing here in the Zoo?\') is funny? Have you ever felt like your skills weren\'t being used in the right place?', uk: 'Чому, на вашу думку, останнє запитання верблюденяти («що ми робимо тут, у зоопарку?») смішне? Чи траплялося вам відчувати, що ваші навички застосовують не там, де треба?' },
+        sample: { en: 'It\'s funny because all the camel\'s desert adaptations are useless in a zoo, showing how strange it is to have skills you can\'t use. I\'ve felt similar when I studied a skill for a job I never actually got to use it in.', uk: 'Це смішно, бо всі пустельні пристосування верблюда абсолютно марні в зоопарку, і це показує, як дивно мати навички, якими ти не можеш скористатися. Я теж почувався подібно, коли вивчив навичку для роботи, на якій так і не встиг її застосувати.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
+  {
+    id: 'smartest-man-in-the-world',
+    title: { en: 'Smartest Man in the World', uk: 'Найрозумніша людина у світі' },
+    category: 'humour',
+    level: 'b1',
+    minutes: 2,
+    topics: ['humour', 'cleverness', 'character'],
+    body: {
+      en: [
+        'A doctor, a lawyer, a little boy and a priest were out for a Sunday afternoon flight on a small private plane. Suddenly, the plane developed engine trouble. In spite of the best efforts of the pilot, the plane started to go down. Finally, the pilot grabbed a parachute and yelled to the passengers that they better jump, and he himself bailed out. Unfortunately, there were only three parachutes remaining. The doctor grabbed one and said “I’m a doctor, I save lives, so I must live,” and jumped out. The lawyer then said, “I’m a lawyer and lawyers are the smartest people in the world. I deserve to live.” He also grabbed a parachute and jumped. The priest looked at the little boy and said, “My son, I’ve lived a long and full life. You are young and have your whole life ahead of you. Take the last parachute and live in peace.” The little boy handed the parachute back to the priest and said, “Not to worry Father. The smartest man in the world just took off with my back pack.”',
+        'Moral: Your job doesn’t always define you, but being a Good Human being Does.',
+      ].join('\n\n'),
+      uk: [
+        'Лікар, юрист, маленький хлопчик і священник летіли недільного дня невеликим приватним літаком. Раптом у літака виникли проблеми з двигуном. Попри всі зусилля пілота, літак почав падати. Зрештою пілот схопив парашут, крикнув пасажирам, що їм краще стрибати, і сам вистрибнув першим. На жаль, залишилося тільки три парашути. Лікар схопив один зі словами: «Я лікар, я рятую життя, тож я мушу жити», — і вистрибнув. Тоді юрист сказав: «Я юрист, а юристи — найрозумніші люди у світі. Я заслуговую жити». Він теж схопив парашут і стрибнув. Священник подивився на хлопчика і сказав: «Сину мій, я прожив довге й насичене життя. Ти молодий, і в тебе ще все життя попереду. Візьми останній парашут і живи спокійно». Хлопчик віддав парашут назад священнику і сказав: «Не хвилюйтеся, отче. Найрозумніша людина у світі щойно втекла з моїм рюкзаком».',
+        'Мораль: посада не завжди визначає, хто ти, а от те, що ти Добра Людина, — визначає завжди.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How many parachutes were left after the pilot grabbed one and jumped out first?', uk: 'Скільки парашутів залишилося після того, як пілот схопив один і вистрибнув першим?' },
+        options: [
+          { en: 'Four', uk: 'Чотири' },
+          { en: 'Three', uk: 'Три' },
+          { en: 'Two', uk: 'Два' },
+        ],
+        correct: 1,
+        explain: { en: 'The text says there were only three parachutes remaining after the pilot took his.', uk: 'У тексті сказано, що після того, як пілот узяв свій, залишилося лише три парашути.' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Why did the little boy still have a parachute at the end of the story?', uk: 'Чому в кінці історії у хлопчика все ще був парашут?' },
+        options: [
+          { en: 'Because he was too scared to jump', uk: 'Бо він занадто боявся стрибати' },
+          { en: 'Because the priest gave him two parachutes', uk: 'Бо священник дав йому два парашути' },
+          { en: 'Because the lawyer had mistakenly grabbed the boy\'s back pack instead of a parachute', uk: 'Бо юрист помилково схопив рюкзак хлопчика замість парашута' },
+        ],
+        correct: 2,
+        explain: { en: 'The boy reveals that the “smartest man in the world” (the lawyer) took off with his back pack, not a parachute, so the boy\'s real parachute was never taken.', uk: 'Хлопчик пояснює, що «найрозумніша людина у світі» (юрист) забрала його рюкзак, а не парашут, тож справжній парашут хлопчика залишився на місці.' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What do you think the story\'s moral, “Your job doesn’t always define you, but being a Good Human being Does,” means? Do you agree?', uk: 'Як ви розумієте мораль історії: «Посада не завжди визначає тебе, а от те, що ти Добра Людина, — визначає завжди»? Чи погоджуєтесь ви з цим?' },
+        sample: { en: 'It means that a title or profession doesn\'t automatically make someone wise or worthy — their character and actions do. In the story, the lawyer\'s claim to be the “smartest” is undercut by his own mistake, while the boy\'s calm honesty shows real integrity. I agree: how we treat others says far more about us than any job title.', uk: 'Це означає, що посада чи професія самі по собі не роблять людину мудрою чи гідною поваги — це визначають її характер і вчинки. У цій історії заява юриста про те, що він «найрозумніший», спростовується його власною помилкою, тоді як спокійна чесність хлопчика демонструє справжню гідність. Я погоджуюся: те, як ми ставимося до інших, говорить про нас набагато більше, ніж будь-яка посада.' },
+      },
+    ],
+    source: { author: 'English StoryStream' },
+  },
 ];
