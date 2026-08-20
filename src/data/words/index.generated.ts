@@ -16,9 +16,9 @@ export type WordIndexEntry = {
 };
 
 export const WORD_COUNTS = {
-  total: 572,
+  total: 594,
   a1: 150,
-  custom: 422,
+  custom: 444,
 } as const;
 
 export const WORD_INDEX: readonly WordIndexEntry[] = [
@@ -594,4 +594,26 @@ export const WORD_INDEX: readonly WordIndexEntry[] = [
   { id: "vision", word: "vision", level: "b2", translations: "бачення, зір, уявлення про майбутнє" },
   { id: "evidence", word: "evidence", level: "b2", translations: "докази, свідчення, підтвердження" },
   { id: "readiness", word: "readiness", level: "c1", translations: "готовність, підготовленість, бажання" },
+  { id: "accessible", word: "accessible", level: "b2", translations: "доступний, зрозумілий, легкодоступний" },
+  { id: "jargon", word: "jargon", level: "c1", translations: "жаргон, професійна лексика, спеціальні терміни" },
+  { id: "reach", word: "reach", level: "b1", translations: "досягати, дотягнутися, зв’язатися, охоплення" },
+  { id: "avoid", word: "avoid", level: "b1", translations: "уникати, обходити, запобігати" },
+  { id: "controversial", word: "controversial", level: "b2", translations: "суперечливий, спірний, який викликає суперечки" },
+  { id: "topic", word: "topic", level: "b1", translations: "тема, предмет розмови, питання" },
+  { id: "subject", word: "subject", level: "a2", translations: "тема, навчальний предмет, підмет, залежний (від)" },
+  { id: "misunderstanding", word: "misunderstanding", level: "b2", translations: "непорозуміння, хибне розуміння, неправильне тлумачення" },
+  { id: "disagreement", word: "disagreement", level: "b2", translations: "незгода, розбіжність, суперечка" },
+  { id: "wise", word: "wise", level: "b2", translations: "мудрий, розважливий, розсудливий" },
+  { id: "occupation", word: "occupation", level: "b2", translations: "рід занять, професія, заняття, окупація" },
+  { id: "validate", word: "validate", level: "c1", translations: "підтверджувати, перевіряти на правильність, визнавати (почуття)" },
+  { id: "conscious", word: "conscious", level: "b2", translations: "свідомий, притомний, який усвідомлює" },
+  { id: "concise", word: "concise", level: "c1", translations: "стислий, лаконічний, небагатослівний" },
+  { id: "terrain", word: "terrain", level: "c1", translations: "місцевість, рельєф, ландшафт" },
+  { id: "elevation", word: "elevation", level: "c1", translations: "висота над рівнем моря, підвищення, підняття" },
+  { id: "snapshot", word: "snapshot", level: "b2", translations: "миттєвий знімок, фото на швидку руку, зріз (стану)" },
+  { id: "expectation", word: "expectation", level: "c1", translations: "очікування, сподівання, вимоги (до когось)" },
+  { id: "within", word: "within", level: "a2", translations: "у межах, протягом, усередині" },
+  { id: "playful", word: "playful", level: "b2", translations: "грайливий, жартівливий, пустотливий" },
+  { id: "qualification", word: "qualification", level: "b2", translations: "кваліфікація, диплом чи фах, застереження" },
+  { id: "fit", word: "fit", level: "a2", translations: "підходити за розміром, вміщатися, у добрій формі, відповідність" },
 ];
