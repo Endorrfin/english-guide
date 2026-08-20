@@ -134,8 +134,8 @@ sim) and `m22` Requests & politeness.
 **D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
 Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
 dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
-**D2–D9 — shipped:** eight more Definitions waves (**+402 cards**) — the dictionary is now **572 words
-(150 A1 + 422 custom)**. D7 (+68) is the first monthly wave from `_examples/definition_v2.txt` (business/
+**D2–D10 — shipped:** nine more Definitions waves (**+424 cards**) — the dictionary is now **594 words
+(150 A1 + 444 custom)**. D7 (+68) is the first monthly wave from `_examples/definition_v2.txt` (business/
 office & career vocabulary). The teachable single-word backlog is cleared (the ~178 short phrases go to a
 future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
@@ -157,7 +157,7 @@ ships only nav metadata, so a module page shows its title, mental model and tabl
 and streams the lesson in. First load is now **326 kB** — down from 1.39 MB across M1+M2 (**−77%**), and
 over half of what's left is React itself. Build gates enforce it: a corpus or a module body that sneaks
 back onto the first load fails the build.
-**Next:** content again — dictionary wave W2 (572 → ~1,000 words) and Section III (Core Grammar) with the
+**Next:** content again — dictionary wave W2 (594 → ~1,000 words) and Section III (Core Grammar) with the
 `conditionals-machine` sim; more Reading and idiom waves.
 
 ---

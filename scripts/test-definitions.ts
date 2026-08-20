@@ -48,7 +48,8 @@ ok(buildCloze('No headword here.', ['xyzzy']) === null, 'no match → null');
 // CHANGED (D7): custom corpus 297 → 365 (+68 business/office vocabulary from definition_v2.txt).
 // CHANGED (D8): custom corpus 365 → 385 (+20 from the owner's inline add-words list).
 // CHANGED (D9): custom corpus 385 → 422 (+37 from the owner's inline add-words list of 39).
-ok(customWords.length === 422, `expected 422 custom cards, got ${customWords.length}`);
+// CHANGED (D10): custom corpus 422 → 444 (+22 from the owner's inline add-words list of 22).
+ok(customWords.length === 444, `expected 444 custom cards, got ${customWords.length}`);
 for (const w of customWords) {
   const { general, professional } = splitExamples(w);
   ok(general.length === 4, `${w.id}: 4 general examples`);
@@ -73,4 +74,4 @@ if (failures > 0) {
   console.error(`\n✖ test-definitions: ${failures} failure(s).`);
   process.exit(1);
 }
-console.log('✓ test-definitions: all checks passed (A–Z grouping, 4+3 split, cloze, describe-it scaffold on 422 cards).');
+console.log('✓ test-definitions: all checks passed (A–Z grouping, 4+3 split, cloze, describe-it scaffold on 444 cards).');
