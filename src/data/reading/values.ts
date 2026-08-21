@@ -2400,4 +2400,361 @@ export const valuesTexts: ReadingText[] = [
     ],
     source: { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' },
   },
+  // CHANGED (Wave LE1, §15): +7 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'sacrifice-is-the-bridge',
+    title: { en: 'Sacrifice Is the Bridge', uk: 'Самопожертва — це міст' },
+    category: 'values',
+    level: 'b1',
+    minutes: 2,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/5674761569415978' },
+    topics: ['sacrifice', 'dedication', 'discipline'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of sacrifice in our life.',
+        'Sacrifice is very important because it shows our love, dedication, and strong willpower. We sacrifice many things to achieve our goals and build a better future. Success is never easy. It comes after giving up comfort, time, and sometimes even our own desires. When we sacrifice today, we get a better tomorrow. Sacrifice teaches us patience, discipline, and respect for our dreams.',
+        'In our daily life, we make sacrifices in many ways. Students sacrifice fun to study. Parents sacrifice their happiness for their children. Workers sacrifice rest to support their families. Great people in the world sacrificed many things to help others and make a difference. Every small sacrifice has a big value and shapes a successful life. In short, sacrifice is the bridge between dreams and achievements.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість самопожертви в нашому житті.',
+        'Самопожертва дуже важлива, бо вона показує нашу любов, відданість і сильну волю. Ми жертвуємо багатьма речами, щоб досягти цілей і збудувати краще майбутнє. Успіх ніколи не буває легким. Він приходить після того, як ми відмовляємося від комфорту, часу, а іноді й від власних бажань. Коли ми жертвуємо сьогодні, ми отримуємо краще завтра. Самопожертва вчить нас терпіння, дисципліни й поваги до власних мрій.',
+        'У повсякденні ми йдемо на жертви по-різному. Учні жертвують розвагами заради навчання. Батьки жертвують власним щастям заради дітей. Працівники жертвують відпочинком, щоб утримувати сімʼю. Видатні люди світу пожертвували багато чим, щоб допомогти іншим і щось змінити. Кожна маленька жертва має велику цінність і формує успішне життя. Коротко кажучи, самопожертва — це міст між мріями й досягненнями.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say success comes after?', uk: 'Після чого, за текстом, приходить успіх?' },
+        options: [
+          { en: 'Giving up comfort, time, and sometimes our own desires', uk: 'Відмови від комфорту, часу, а іноді й власних бажань' },
+          { en: 'One lucky opportunity', uk: 'Однієї щасливої нагоди' },
+          { en: 'Choosing an easier goal', uk: 'Вибору легшої цілі' },
+        ],
+        correct: 0,
+        explain: { en: '“It comes after giving up comfort, time, and sometimes even our own desires.”', uk: '«It comes after giving up comfort, time, and sometimes even our own desires.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does sacrifice teach us, according to the text?', uk: 'Чого, за текстом, вчить нас самопожертва?' },
+        options: [
+          { en: 'Patience, discipline, and respect for our dreams', uk: 'Терпіння, дисципліни й поваги до власних мрій' },
+          { en: 'Speed and competition', uk: 'Швидкості й змагання' },
+          { en: 'Silence and distance from others', uk: 'Мовчання й дистанції від інших' },
+        ],
+        correct: 0,
+        explain: { en: '“Sacrifice teaches us patience, discipline, and respect for our dreams.”', uk: '«Sacrifice teaches us patience, discipline, and respect for our dreams.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you have sacrificed for your future?', uk: 'Чим ви пожертвували заради свого майбутнього?' },
+        sample: { en: 'Answers will vary. A thoughtful answer names the sacrifice and says honestly whether it has been worth it so far.', uk: 'Відповіді різнитимуться. Вдумлива відповідь називає саму жертву й чесно каже, чи виправдала вона себе досі.' },
+      },
+    ],
+  },
+  {
+    id: 'grateful-for-what-we-have',
+    title: { en: 'Grateful for What We Have', uk: 'Вдячні за те, що маємо' },
+    category: 'values',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1398963855747567' },
+    topics: ['gratitude', 'happiness', 'kindness'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of gratitude in our life.',
+        'Gratitude is very important because it helps us focus on the good things in life and feel happier. When we are grateful, we appreciate what we have instead of worrying about what we don’t have. A grateful person is more positive, kind, and peaceful. Gratitude improves our relationships and brings more joy. It also helps us stay strong during hard times. Students, workers, and leaders all need gratitude to succeed.',
+        'Even small moments like a kind word or a helping hand can fill our heart with gratitude. When we say thank you and mean it, we spread happiness around us. In short, gratitude is the key to a happy and successful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість вдячності в нашому житті.',
+        'Вдячність дуже важлива, бо вона допомагає нам зосереджуватися на хорошому в житті й почуватися щасливішими. Коли ми вдячні, ми цінуємо те, що маємо, замість того, щоб хвилюватися про те, чого не маємо. Вдячна людина позитивніша, добріша й спокійніша. Вдячність покращує наші стосунки й додає більше радості. Вона також допомагає лишатися сильними у важкі часи. Учням, працівникам і лідерам — усім потрібна вдячність, щоб досягати успіху.',
+        'Навіть маленькі моменти — добре слово чи простягнута рука — можуть наповнити серце вдячністю. Коли ми кажемо «дякую» й робимо це щиро, ми поширюємо щастя навколо себе. Коротко кажучи, вдячність — це ключ до щасливого й успішного життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does gratitude do to our relationships, according to the text?', uk: 'Що, за текстом, вдячність робить із нашими стосунками?' },
+        options: [
+          { en: 'It improves them', uk: 'Вона їх покращує' },
+          { en: 'It makes them more difficult', uk: 'Вона робить їх складнішими' },
+          { en: 'It has no effect on them', uk: 'Вона на них не впливає' },
+        ],
+        correct: 0,
+        explain: { en: '“Gratitude improves our relationships and brings more joy.”', uk: '«Gratitude improves our relationships and brings more joy.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What happens when we say thank you and mean it?', uk: 'Що стається, коли ми кажемо «дякую» щиро?' },
+        options: [
+          { en: 'We spread happiness around us', uk: 'Ми поширюємо щастя навколо себе' },
+          { en: 'We look weak to others', uk: 'Ми виглядаємо слабкими в очах інших' },
+          { en: 'We get a reward', uk: 'Ми отримуємо винагороду' },
+        ],
+        correct: 0,
+        explain: { en: '“When we say thank you and mean it, we spread happiness around us.”', uk: '«When we say thank you and mean it, we spread happiness around us.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you are truly grateful for today?', uk: 'За що ви по-справжньому вдячні сьогодні?' },
+        sample: { en: 'Answers will vary. A good answer names something specific from today rather than a general idea, and says why it mattered.', uk: 'Відповіді різнитимуться. Хороша відповідь називає щось конкретне саме із сьогодні, а не загальну ідею, і пояснює, чому це було важливо.' },
+      },
+    ],
+  },
+  {
+    id: 'responsibility-builds-trust',
+    title: { en: 'Responsibility Builds Trust', uk: 'Відповідальність зміцнює довіру' },
+    category: 'values',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/2506397643138867' },
+    topics: ['responsibility', 'trust', 'character'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of responsibility in our life.',
+        'Responsibility is very important because it helps us do our duties and take care of our tasks. It means being reliable and doing what is right, even when it is difficult. A responsible person keeps promises, respects others, and accepts the result of their actions. Responsibility builds trust and makes us a better person. It helps us become independent and prepared for the future. Students, workers, and leaders all need responsibility to succeed.',
+        'Even small responsibilities, like completing homework on time or helping at home, can make a big difference. When we take responsibility, we grow in character and earn respect. In short, responsibility is the key to a happy and successful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість відповідальності в нашому житті.',
+        'Відповідальність дуже важлива, бо вона допомагає нам виконувати свої обовʼязки й дбати про свої завдання. Вона означає бути надійним і робити те, що правильно, навіть коли це важко. Відповідальна людина дотримується обіцянок, поважає інших і приймає наслідки своїх дій. Відповідальність зміцнює довіру й робить нас кращими. Вона допомагає стати самостійними й підготовленими до майбутнього. Учням, працівникам і лідерам — усім потрібна відповідальність, щоб досягати успіху.',
+        'Навіть маленькі обовʼязки — вчасно зроблене домашнє завдання чи допомога вдома — можуть багато що змінити. Коли ми беремо відповідальність, ми гартуємо характер і заслуговуємо на повагу. Коротко кажучи, відповідальність — це ключ до щасливого й успішного життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does responsibility mean, according to the text?', uk: 'Що, за текстом, означає відповідальність?' },
+        options: [
+          { en: 'Being reliable and doing what is right, even when it is difficult', uk: 'Бути надійним і робити правильне, навіть коли це важко' },
+          { en: 'Doing only the tasks you enjoy', uk: 'Робити лише те, що подобається' },
+          { en: 'Letting others decide for you', uk: 'Дозволяти іншим вирішувати за вас' },
+        ],
+        correct: 0,
+        explain: { en: '“It means being reliable and doing what is right, even when it is difficult.”', uk: '«It means being reliable and doing what is right, even when it is difficult.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does a responsible person accept?', uk: 'Що приймає відповідальна людина?' },
+        options: [
+          { en: 'The result of their actions', uk: 'Наслідки своїх дій' },
+          { en: 'Every task they are given', uk: 'Кожне доручене завдання' },
+          { en: 'Other people’s opinions', uk: 'Думки інших людей' },
+        ],
+        correct: 0,
+        explain: { en: '“A responsible person keeps promises, respects others, and accepts the result of their actions.”', uk: '«…accepts the result of their actions.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one responsibility that has made you a stronger person?', uk: 'Яка відповідальність зробила вас сильнішою людиною?' },
+        sample: { en: 'Answers will vary. A strong answer describes the responsibility and what changed in the writer because of it.', uk: 'Відповіді різнитимуться. Сильна відповідь описує цю відповідальність і те, що вона змінила в самому авторі.' },
+      },
+    ],
+  },
+  {
+    id: 'courage-means-moving-when-afraid',
+    title: { en: 'Courage Means Moving Even When Afraid', uk: 'Сміливість — це рухатися навіть у страху' },
+    category: 'values',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1002700789439056' },
+    topics: ['courage', 'fear', 'self-respect'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of courage in our life.',
+        'Courage is very important because it helps us face our fears and take action. Without courage, we may miss many opportunities in life. Courage does not mean you are not afraid. It means you keep moving even when you are afraid. A courageous person stays strong, believes in himself, and never gives up. Courage teaches us confidence, responsibility, and self-respect. It helps us make the right decision and stand up for what is right. Students, workers, and leaders all need courage to succeed.',
+        'Even small acts of courage like speaking up, trying something new, or helping someone can make a big difference. In short, courage opens the door to a better and more meaningful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість сміливості в нашому житті.',
+        'Сміливість дуже важлива, бо вона допомагає нам дивитися страхам в очі й діяти. Без сміливості ми можемо проґавити багато можливостей у житті. Сміливість не означає, що вам не страшно. Вона означає, що ви рухаєтеся далі навіть тоді, коли страшно. Смілива людина лишається сильною, вірить у себе й ніколи не здається. Сміливість вчить нас впевненості, відповідальності й самоповаги. Вона допомагає ухвалити правильне рішення й стати на захист того, що правильно. Учням, працівникам і лідерам — усім потрібна сміливість, щоб досягати успіху.',
+        'Навіть маленькі вчинки сміливості — висловити свою думку, спробувати щось нове чи комусь допомогти — можуть багато що змінити. Коротко кажучи, сміливість відчиняє двері до кращого й змістовнішого життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does courage teach us, according to the text?', uk: 'Чого, за текстом, вчить нас сміливість?' },
+        options: [
+          { en: 'Confidence, responsibility, and self-respect', uk: 'Впевненості, відповідальності й самоповаги' },
+          { en: 'Patience, silence, and obedience', uk: 'Терпіння, мовчання й послуху' },
+          { en: 'Speed, luck, and competition', uk: 'Швидкості, удачі й змагання' },
+        ],
+        correct: 0,
+        explain: { en: '“Courage teaches us confidence, responsibility, and self-respect.”', uk: '«Courage teaches us confidence, responsibility, and self-respect.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What may we miss without courage?', uk: 'Що ми можемо проґавити без сміливості?' },
+        options: [
+          { en: 'Many opportunities in life', uk: 'Багато можливостей у житті' },
+          { en: 'Our daily rest', uk: 'Наш щоденний відпочинок' },
+          { en: 'The support of our family', uk: 'Підтримку своєї сімʼї' },
+        ],
+        correct: 0,
+        explain: { en: '“Without courage, we may miss many opportunities in life.”', uk: '«Without courage, we may miss many opportunities in life.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one time you showed courage even when you were scared?', uk: 'Коли ви виявили сміливість попри страх?' },
+        sample: { en: 'Answers will vary. A strong answer tells one short story: the fear, the action taken anyway, and what followed.', uk: 'Відповіді різнитимуться. Сильна відповідь розповідає одну коротку історію: страх, дію, зроблену попри нього, і те, що сталося далі.' },
+      },
+    ],
+  },
+  {
+    id: 'good-things-take-time',
+    title: { en: 'Good Things Take Time', uk: 'Хороше потребує часу' },
+    category: 'values',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1066688895705887' },
+    topics: ['patience', 'calm', 'progress'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of patience in our life.',
+        'Patience is very important because it helps us stay calm and keep going, even when results take time. It teaches us not to give up when things are slow. A patient person understands that good things take time and effort.',
+        'Patience helps us handle problems better, build strong relationships, and achieve our goals step by step. It keeps us from getting angry or frustrated. Students, workers, and leaders all need patience to grow and succeed.',
+        'Even small moments of patience, like waiting, listening, or trying again, can create a big change. In short, patience brings peace, progress, and success.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість терпіння в нашому житті.',
+        'Терпіння дуже важливе, бо воно допомагає нам лишатися спокійними й іти далі навіть тоді, коли результати потребують часу. Воно вчить не здаватися, коли справи рухаються повільно. Терпляча людина розуміє, що хороше потребує часу й зусиль.',
+        'Терпіння допомагає краще давати раду проблемам, будувати міцні стосунки й досягати цілей крок за кроком. Воно вберігає нас від злості й роздратування. Учням, працівникам і лідерам — усім потрібне терпіння, щоб рости й досягати успіху.',
+        'Навіть маленькі моменти терпіння — почекати, вислухати чи спробувати ще раз — можуть багато що змінити. Коротко кажучи, терпіння приносить спокій, поступ і успіх.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How does patience help us reach our goals, according to the text?', uk: 'Як, за текстом, терпіння допомагає досягати цілей?' },
+        options: [
+          { en: 'Step by step', uk: 'Крок за кроком' },
+          { en: 'All at once, when we are ready', uk: 'Усе одразу, коли ми готові' },
+          { en: 'By letting others do the work', uk: 'Дозволяючи іншим робити роботу' },
+        ],
+        correct: 0,
+        explain: { en: '“Patience helps us handle problems better, build strong relationships, and achieve our goals step by step.”', uk: '«…achieve our goals step by step.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does patience keep us from, according to the text?', uk: 'Від чого, за текстом, вберігає нас терпіння?' },
+        options: [
+          { en: 'Getting angry or frustrated', uk: 'Від злості й роздратування' },
+          { en: 'Making any plans', uk: 'Від будь-яких планів' },
+          { en: 'Asking questions', uk: 'Від запитань' },
+        ],
+        correct: 0,
+        explain: { en: '“It keeps us from getting angry or frustrated.”', uk: '«It keeps us from getting angry or frustrated.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you are patiently waiting to achieve?', uk: 'Чого ви терпляче прагнете досягти?' },
+        sample: { en: 'Answers will vary. A good answer names the goal and one thing the writer keeps doing while waiting.', uk: 'Відповіді різнитимуться. Хороша відповідь називає ціль і одну справу, яку автор продовжує робити, поки чекає.' },
+      },
+    ],
+  },
+  {
+    id: 'the-hardest-person-to-control',
+    title: { en: 'The Hardest Person to Control', uk: 'Найважче контролювати себе' },
+    category: 'values',
+    level: 'a2',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1708320150385235' },
+    topics: ['self-control', 'willpower', 'choices'],
+    body: {
+      en: [
+        'Sometimes the hardest person to control is yourself.',
+        'You may want to quit, react, waste time, or choose the easy way. But self-control means stopping for a moment and choosing what is better for your future.',
+        'Real strength is not always doing what you want. Sometimes it is having the power to say “no” to yourself.',
+      ].join('\n\n'),
+      uk: [
+        'Іноді найважче контролювати самого себе.',
+        'Вам може захотітися здатися, зірватися, згаяти час чи обрати легкий шлях. Але самоконтроль означає спинитися на мить і обрати те, що краще для вашого майбутнього.',
+        'Справжня сила — це не завжди робити те, що хочеться. Іноді це мати силу сказати «ні» самому собі.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does self-control mean, according to the text?', uk: 'Що, за текстом, означає самоконтроль?' },
+        options: [
+          { en: 'Stopping for a moment and choosing what is better for your future', uk: 'Спинитися на мить і обрати краще для свого майбутнього' },
+          { en: 'Always doing what you want', uk: 'Завжди робити те, що хочеться' },
+          { en: 'Letting other people decide', uk: 'Дозволяти вирішувати іншим' },
+        ],
+        correct: 0,
+        explain: { en: '“But self-control means stopping for a moment and choosing what is better for your future.”', uk: '«…stopping for a moment and choosing what is better for your future.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text call real strength?', uk: 'Що текст називає справжньою силою?' },
+        options: [
+          { en: 'Having the power to say “no” to yourself', uk: 'Мати силу сказати «ні» самому собі' },
+          { en: 'Never feeling tempted', uk: 'Ніколи не відчувати спокуси' },
+          { en: 'Controlling other people', uk: 'Контролювати інших людей' },
+        ],
+        correct: 0,
+        explain: { en: '“Sometimes it is having the power to say ‘no’ to yourself.”', uk: '«Sometimes it is having the power to say “no” to yourself.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you need more self-control over?', uk: 'У чому вам потрібно більше самоконтролю?' },
+        sample: { en: 'Answers will vary. A thoughtful answer names the habit and the exact moment when the choice is hardest.', uk: 'Відповіді різнитимуться. Вдумлива відповідь називає звичку й точний момент, коли вибір найважчий.' },
+      },
+    ],
+  },
+  {
+    id: 'money-is-a-tool',
+    title: { en: 'Money Is a Tool', uk: 'Гроші — це інструмент' },
+    category: 'values',
+    level: 'b1',
+    minutes: 2,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/2002863233766915' },
+    topics: ['money', 'saving', 'responsibility'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of money in our life.',
+        'Money is very important because it helps us live a comfortable life and fulfill our needs. We earn money by working hard, and we use it to buy things, pay bills, and save for the future. Money can solve many problems, but it cannot buy happiness, love, or good health.',
+        'It is important to use money wisely and avoid wasting it. Saving money gives us security and helps us in difficult times. A good understanding of money teaches responsibility and self-control.',
+        'In our daily life, money plays many roles. It helps in education, business, travel, and taking care of our family. But the key is not to chase money, but to create value and live honestly. In short, money is a tool that can make our life better when we use it in the right way.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість грошей у нашому житті.',
+        'Гроші дуже важливі, бо вони допомагають нам жити комфортно й задовольняти свої потреби. Ми заробляємо їх наполегливою працею й витрачаємо на покупки та рахунки, а також відкладаємо на майбутнє. Гроші можуть розвʼязати багато проблем, але вони не можуть купити щастя, любові чи міцного здоровʼя.',
+        'Важливо витрачати гроші розумно й не марнувати їх. Заощадження дають нам відчуття захищеності й допомагають у складні часи. Добре розуміння грошей вчить відповідальності та самоконтролю.',
+        'У повсякденні гроші відіграють багато ролей. Вони допомагають в освіті, бізнесі, подорожах і турботі про сімʼю. Але суть не в тому, щоб гнатися за грошима, а в тому, щоб створювати цінність і жити чесно. Коротко кажучи, гроші — це інструмент, який може зробити наше життя кращим, коли ми користуємося ним правильно.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What can money NOT buy, according to the text?', uk: 'Чого, за текстом, гроші НЕ можуть купити?' },
+        options: [
+          { en: 'Happiness, love, or good health', uk: 'Щастя, любові чи міцного здоровʼя' },
+          { en: 'Things and bills', uk: 'Речі та оплату рахунків' },
+          { en: 'Education and travel', uk: 'Освіту й подорожі' },
+        ],
+        correct: 0,
+        explain: { en: '“Money can solve many problems, but it cannot buy happiness, love, or good health.”', uk: '«…it cannot buy happiness, love, or good health.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say the key is?', uk: 'У чому, за текстом, суть?' },
+        options: [
+          { en: 'Not to chase money, but to create value and live honestly', uk: 'Не гнатися за грошима, а створювати цінність і жити чесно' },
+          { en: 'To earn as much as possible', uk: 'Заробляти якомога більше' },
+          { en: 'To save every coin you get', uk: 'Відкладати кожну монету' },
+        ],
+        correct: 0,
+        explain: { en: '“But the key is not to chase money, but to create value and live honestly.”', uk: '«But the key is not to chase money, but to create value and live honestly.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is more important to you: money or peace of mind?', uk: 'Що для вас важливіше: гроші чи душевний спокій?' },
+        sample: { en: 'Answers will vary. A thoughtful answer takes a side and admits the cost of that choice — e.g. peace of mind, accepting a smaller income; or money, accepting less free time.', uk: 'Відповіді різнитимуться. Вдумлива відповідь обирає позицію й визнає її ціну — напр., спокій ціною меншого доходу; або гроші ціною меншої кількості вільного часу.' },
+      },
+    ],
+  },
 ];

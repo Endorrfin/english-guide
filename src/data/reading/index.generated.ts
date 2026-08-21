@@ -9,5 +9,5 @@
 export const READING_COUNTS = {
   categories: 22,
   categoriesWithTexts: 17,
-  texts: 298,
+  texts: 323,
 } as const;

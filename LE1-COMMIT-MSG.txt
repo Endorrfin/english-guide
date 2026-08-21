@@ -1,0 +1,43 @@
+feat(reading): LE1 wave — +25 texts from the "Learn English" reel series (298 → 323)
+
+Source: _examples/Reading/reading new.txt (27 blocks, single-author series).
+
+Dedupe: the series shares one boilerplate frame, so raw token-Jaccard scored
+new×new at .35–.53 on texts sharing nothing but the template — §15's ≥.45 rule
+applied mechanically would have discarded ~10 legitimate texts. Re-scored with
+the frame's stopwords removed: all 325 new×new pairs fall below .30, leaving one
+true duplicate against the shipped corpus (Discipline vs discipline-is-the-key-
+to-success, .477) which is skipped. 26 → 25 shipped; `Template` dropped.
+
+Split: discipline 9 · values 7 · mindset 6 · family 1 · study 1 · friendship 1.
+No new rubric, so categories.ts and index.ts are untouched. Levels 21 b1 / 4 a2;
+minutes computed from the final body word count (≤130 → 1). All 25 attributed to
+"Learn English" with a per-text reel URL.
+
+Owner decisions: 22 speech-to-text defects in the source corrected silently
+(successful like→life, per assistant effort→persistent effort, a save place→
+safe, Weather→Whether, …); source contractions and the speaker's own sentence
+breaks left alone. Each text's closing reflective question is carried into its
+`open` question rather than left in the body.
+
+QA: three adversarial passes. EN fidelity and every mcq `correct` index were
+clean from the start; the Ukrainian needed ~90 edits for calques and eight
+outright mistranslations (має велику вартість, маємо це на увазі, зривають
+проєкти, відкатами, владу сказати «ні», Витривалість for perseverance, спікер
+for a narrator). 7 mcq items rewritten — 4 records printed their own answer in
+their title, 3 were answerable without reading — and one title changed for the
+same reason. Mechanical gates: EN↔UA char-ratio (76 pairs, 0.87–1.16), sentence
+parity, a house-style linter, and a new title↔answer leak check.
+
+Verified: full `npm run verify` green in a clean clone, run twice (on
+integration and after the Ukrainian pass). check:data 323 texts in 22
+categories · test ×14 · smoke 312 · build · check:bundle (eager 339.8 kB /
+420 kB, reading corpus stays lazy). Reading chunk 1,419 → 1,486 kB — §15's
+per-category lazy split at ~400 texts is getting closer.
+
+CLAUDE.md: §14 LE1 entry, plus two corrections to the §15 runbook (dedupe on
+content not frame; check a renamed title against its own answer key).
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JnAQ39D3wTHM3RgXqBgEBY
+

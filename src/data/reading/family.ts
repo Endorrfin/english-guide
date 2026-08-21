@@ -747,4 +747,57 @@ export const familyTexts: ReadingText[] = [
       },
     ],
   },
+  // CHANGED (Wave LE1, §15): +1 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'a-fathers-silent-support',
+    title: { en: 'A Father’s Silent Support', uk: 'Тиха підтримка батька' },
+    category: 'family',
+    level: 'b1',
+    minutes: 2,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1368137771523012' },
+    topics: ['father', 'family', 'gratitude'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of a father in our life.',
+        'A father is not just a provider. He is a guide, a protector, and a silent supporter. He works hard, often without showing his struggles. He sacrifices his own dreams to give us a better future. A father teaches us values, discipline, and the meaning of responsibility. He may not always say “I love you,” but his actions speak louder than words.',
+        'In our daily life, a father helps us become stronger, wiser and kinder. He stands by us in our good times and bad times. His love gives us courage, and his belief in us helps us keep going. A father’s presence creates a safe place, where we can learn, grow, and be ourselves.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про те, наскільки важливий батько в нашому житті.',
+        'Батько — це не просто той, хто забезпечує. Він провідник, захисник і тиха опора. Він наполегливо працює, часто не показуючи своїх труднощів. Він жертвує власними мріями, щоб дати нам краще майбутнє. Батько вчить нас цінностей, дисципліни й того, що означає відповідальність. Він може не завжди казати «я тебе люблю», але його вчинки говорять більше за слова.',
+        'У повсякденні батько допомагає нам ставати сильнішими, мудрішими й добрішими. Він поруч і в хороші, і в погані часи. Його любов дає нам сміливість, а його віра в нас допомагає йти далі. Присутність батька створює безпечне місце, де ми можемо вчитися, рости й бути собою.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How does the text describe a father, beyond being a provider?', uk: 'Як текст описує батька, окрім того, що він забезпечує?' },
+        options: [
+          { en: 'A guide, a protector, and a silent supporter', uk: 'Провідник, захисник і тиха опора' },
+          { en: 'A strict teacher and a judge', uk: 'Суворий вчитель і суддя' },
+          { en: 'A friend who is always talking', uk: 'Друг, який завжди говорить' },
+        ],
+        correct: 0,
+        explain: { en: '“He is a guide, a protector, and a silent supporter.”', uk: '«He is a guide, a protector, and a silent supporter.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say about a father saying “I love you”?', uk: 'Що текст каже про батькове «я тебе люблю»?' },
+        options: [
+          { en: 'He may not always say it, but his actions speak louder', uk: 'Він може не завжди це казати, але вчинки говорять більше' },
+          { en: 'He says it every day', uk: 'Він каже це щодня' },
+          { en: 'He never says it at all', uk: 'Він не каже цього ніколи' },
+        ],
+        correct: 0,
+        explain: { en: '“He may not always say ‘I love you,’ but his actions speak louder than words.”', uk: '«He may not always say “I love you,” but his actions speak louder than words.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you are most grateful to your father for?', uk: 'За що ви найбільше вдячні своєму батькові?' },
+        sample: { en: 'Answers will vary. A strong answer names one concrete thing he did, not a general quality.', uk: 'Відповіді різнитимуться. Сильна відповідь називає одну конкретну річ, яку він зробив, а не загальну рису.' },
+      },
+    ],
+  },
 ];
