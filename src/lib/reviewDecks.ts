@@ -2,6 +2,7 @@
  * reviewDecks.ts — the four SRS decks of #/review (R1), built from the EXISTING corpora.
  *
  * No new dataset: this module is a projection of the SSOT (`data/words`, `data/idioms`,
+ * `data/collocations`,
  * `data/irregular`) into flat recall cards. Owner decision (R1): four decks by corpus, mutually
  * disjoint, with CEFR level as a FILTER on top (like #/practice) rather than five level decks —
  * CURRICULUM §B's "per level · My words · irregular verbs" is satisfied without 8 toggles, and
@@ -13,6 +14,7 @@
  * the id alone (the nav badge never loads a content chunk). Prefixes and the underlying data ids
  * are permanent: append, never rename (PROJECT-BRIEF §10).
  */
+import { COLLOCATIONS } from '../data/collocations'; // CHANGED (V12)
 import { IDIOMS } from '../data/idioms';
 import { IRREGULAR } from '../data/irregular';
 import type { IdiomEntry, IrregularVerb, Level, Localized, WordEntry } from '../data/types';
@@ -93,13 +95,16 @@ function irregularCard(v: IrregularVerb): ReviewCard {
 export const REVIEW_CARDS: readonly ReviewCard[] = [
   ...a1Words.map((w) => wordCard(w, 'dict')),
   ...customWords.map((w) => wordCard(w, 'mine')),
+  // CHANGED (V12): collocations moved to their own file but stay in the SAME deck under the SAME
+  // `DECK_PREFIX.idioms` key — re-prefixing them would reset 117 cards of the owner's progress.
   ...IDIOMS.map(idiomCard),
+  ...COLLOCATIONS.map(idiomCard),
   ...IRREGULAR.map(irregularCard),
 ];
 
 const OXFORD_WORD_IDS = new Set(a1Words.map((w) => w.id));
 const CUSTOM_WORD_IDS = new Set(customWords.map((w) => w.id));
-const IDIOM_IDS = new Set(IDIOMS.map((e) => e.id));
+const IDIOM_IDS = new Set([...IDIOMS, ...COLLOCATIONS].map((e) => e.id)); // CHANGED (V12)
 
 /**
  * word/idiom id → its SRS card id, for the #/definitions mastery import.

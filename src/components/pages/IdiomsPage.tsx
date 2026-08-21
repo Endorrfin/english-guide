@@ -1,44 +1,33 @@
-// CHANGED (V2): the Idioms hub page (#/idioms) — an engaging trainer for multi-word English
-// (idioms · phrasal verbs · collocations), a SEPARATE dataset from the word corpus (§14 D3/D6).
-// Three modes reuse the guide's proven patterns: Learn (theme/type-filtered cards with the Ukrainian
-// equivalent up front, examples + TTS, origin story, mastery), Guess (meaning/blanked-context →
-// recall the expression → self-rate), and Match (a click-to-pair mini-game). Pure logic + the match
-// shuffle live in lib/idioms.ts (golden-tested); mastery persists per id via lib/masteryStore.
+// CHANGED (V2): the Idioms hub page (#/idioms) — an engaging trainer for multi-word English, a
+// SEPARATE dataset from the word corpus (§14 D3/D6). Three modes reuse the guide's proven patterns:
+// Learn (category-filtered cards with the Ukrainian equivalent up front, examples + TTS, origin
+// story, mastery), Guess (meaning/blanked-context → recall the expression → self-rate), and Match
+// (a click-to-pair mini-game).
+// CHANGED (V12): collocations left this page for their own tab (#/collocations, data/collocations.ts).
+// This page is now idioms + phrasal verbs only, and the card/Guess/Match implementations moved to
+// components/words/* so both pages share one copy. Pure logic lives in lib/phrases.ts (generic) and
+// lib/idioms.ts (categories); mastery persists per id via lib/masteryStore.
 import { useEffect, useMemo, useState } from 'react';
 import { LEVELS } from '../../data/concepts';
 import { IDIOMS } from '../../data/idioms';
-import type { IdiomEntry, IdiomKind, Level } from '../../data/types';
+import type { IdiomKind, Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
-import { allThemes, blankInExample, buildMatchRound, COLLOCATION_GROUP_IDS, groupByKind, groupCollocations, groupIdiomsByCategory, IDIOM_CATEGORY_IDS, idiomOfDay } from '../../lib/idioms';
-import { getMastery, setMastery, useMastery } from '../../lib/masteryStore';
-import type { Mastery } from '../../lib/masteryStore';
-import { useTts } from '../../lib/tts';
+import { groupIdiomsByCategory, IDIOM_CATEGORY_IDS } from '../../lib/idioms';
+import { allThemes, groupByKind, phraseOfDay } from '../../lib/phrases';
+import { getMastery, useMastery } from '../../lib/masteryStore';
 import { cx } from '../../lib/utils';
-import { LevelBadge } from '../module/LevelBadge';
 import { WordsLayout } from '../layout/WordsLayout';
+import { PhraseCard } from '../words/PhraseCard';
+import { KIND_LABEL, mkey } from '../words/phraseMeta';
+import { GuessView, MatchView } from '../words/PhraseModes';
 
 type Mode = 'learn' | 'guess' | 'match';
 
-// Mastery lives in the shared store; namespace idiom keys so they never collide with word ids.
-const mkey = (id: string) => `idiom:${id}`;
+// CHANGED (V12): 'collocation' is gone from this page's kind chips — it has its own tab now. The
+// KIND union itself is unchanged (it is the shared IdiomEntry contract).
+const PAGE_KINDS: IdiomKind[] = ['idiom', 'phrasal'];
 
-const KIND_LABEL: Record<IdiomKind, typeof ui.idiomTypeIdiom> = {
-  idiom: ui.idiomTypeIdiom,
-  phrasal: ui.idiomTypePhrasal,
-  collocation: ui.idiomTypeCollocation,
-};
-// CHANGED (V10): collocation category labels — keyed by IdiomEntry.group (canonical order in lib/idioms).
-const GROUP_LABEL: Record<string, typeof ui.collGroupMakeDo> = {
-  'make-do': ui.collGroupMakeDo,
-  'verb-noun': ui.collGroupVerbNoun,
-  'adjective-noun': ui.collGroupAdjNoun,
-  'adverb-adjective': ui.collGroupAdvAdj,
-  business: ui.collGroupBusiness,
-  workplace: ui.collGroupWorkplace,
-  other: ui.collGroupOther,
-};
-const groupLabel = (id: string) => GROUP_LABEL[id] ?? ui.collGroupOther;
 // CHANGED (V11): idiom category labels — keyed by IdiomEntry.category (canonical order in lib/idioms).
 const CAT_LABEL: Record<string, typeof ui.idiomCatCommunication> = {
   communication: ui.idiomCatCommunication,
@@ -55,176 +44,26 @@ const CAT_LABEL: Record<string, typeof ui.idiomCatCommunication> = {
   other: ui.idiomCatOther,
 };
 const catLabel = (id: string) => CAT_LABEL[id] ?? ui.idiomCatOther;
-const MASTERY_STATES: Mastery[] = ['new', 'learning', 'known'];
-const MASTERY_LABEL: Record<Mastery, typeof ui.masteryNew> = {
-  new: ui.masteryNew,
-  learning: ui.masteryLearning,
-  known: ui.masteryKnown,
-};
 
-function SpeakButton({ text }: { text: string }) {
-  const { supported, speaking, speak } = useTts();
-  const { t } = useLang();
-  return (
-    <button
-      type="button"
-      className={cx('tts-btn', speaking && 'speaking')}
-      onClick={(e) => {
-        e.stopPropagation();
-        speak(text);
-      }}
-      disabled={!supported}
-      title={supported ? t(ui.listen) : t(ui.ttsUnavailable)}
-      aria-label={`${t(ui.listen)}: ${text}`}
-    >
-      <span aria-hidden="true">🔊</span>
-    </button>
-  );
-}
-
-function MasteryBar({ id }: { id: string }) {
-  const { t } = useLang();
-  const map = useMastery();
-  const current = map.get(mkey(id)) ?? 'new';
-  return (
-    <div className="def-mastery" role="group" aria-label={t(ui.masteryLabel)}>
-      {MASTERY_STATES.map((s) => (
-        <button
-          key={s}
-          type="button"
-          className={cx('def-mastery-btn', `is-${s}`, current === s && 'on')}
-          aria-pressed={current === s}
-          onClick={() => setMastery(mkey(id), s)}
-        >
-          {t(MASTERY_LABEL[s])}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function ExampleRow({ en, uk }: { en: string; uk: string }) {
-  return (
-    <div className="dict-ex idiom-ex">
-      <div>
-        <p className="dict-ex-en">
-          {en} <SpeakButton text={en} />
-        </p>
-        <p className="dict-ex-uk">{uk}</p>
-      </div>
-    </div>
-  );
-}
-
-function IdiomCard({
-  e,
-  open,
-  mastery,
-  onToggle,
-}: {
-  e: IdiomEntry;
-  open: boolean;
-  mastery: Mastery;
-  onToggle: () => void;
-}) {
-  const { t } = useLang();
-  return (
-    <div className={cx('dict-card', open && 'def-card--open')} id={`idiom-${e.id}`}>
-      <button className="dict-head" onClick={onToggle} aria-expanded={open}>
-        <span className={cx('dict-caret', open && 'open')} aria-hidden="true">
-          ›
-        </span>
-        <span className={cx('def-mstate', `is-${mastery}`)} aria-hidden="true" />
-        <span className="dict-word">{e.phrase}</span>
-        <SpeakButton text={e.phrase} />
-        <span className="chip chip-kind" data-kind={e.kind}>
-          {t(KIND_LABEL[e.kind])}
-        </span>
-        <span className="idiom-reg" data-reg={e.register}>
-          {e.register}
-        </span>
-        {e.uaEquivalent && <span className="idiom-ua-inline dim">≈ {e.uaEquivalent}</span>}
-        <LevelBadge level={e.level} />
-      </button>
-      {open && (
-        <div className="dict-body">
-          <div className="dict-def">
-            <p>{e.meaning.en}</p>
-            <p className="muted">{e.meaning.uk}</p>
-          </div>
-
-          {e.uaEquivalent && (
-            <p className="idiom-ua">
-              <span className="idiom-ua-tag">{t(ui.idiomUaEquivalent)}</span> {e.uaEquivalent}
-            </p>
-          )}
-          {e.literal && (
-            <p className="idiom-literal dim">
-              <span className="mono">{t(ui.idiomLiteral)}:</span> {e.literal.en} · {e.literal.uk}
-            </p>
-          )}
-          {e.note && (
-            <p className="idiom-note">
-              <span className="idiom-note-tag">⚠ {t(ui.idiomNote)}</span>
-              <span>
-                {e.note.en} <span className="muted">{e.note.uk}</span>
-              </span>
-            </p>
-          )}
-
-          <div className="dict-examples">
-            {e.examples.map((ex, i) => (
-              <ExampleRow key={i} en={ex.text.en} uk={ex.text.uk} />
-            ))}
-          </div>
-
-          {e.synonyms && e.synonyms.length > 0 && (
-            <p className="dim idiom-syn">
-              <span className="mono">{t(ui.synonymsLabel)}:</span> {e.synonyms.join(', ')}
-            </p>
-          )}
-          {e.origin && (
-            <p className="idiom-origin">
-              <span className="idiom-origin-tag" aria-hidden="true">
-                💡
-              </span>
-              <span>
-                <strong>{t(ui.idiomOrigin)}. </strong>
-                {e.origin.en} <span className="muted">{e.origin.uk}</span>
-              </span>
-            </p>
-          )}
-
-          <MasteryBar id={e.id} />
-        </div>
-      )}
-    </div>
-  );
-}
-
-// CHANGED (V10): `byGroup` switches the section headers from kind → collocation category (make-do,
-// verb-noun, …). Used when the Collocations kind is active so the list reads as a navigable syllabus.
-function LearnView({ list, byGroup, byCategory }: { list: IdiomEntry[]; byGroup: boolean; byCategory: boolean }) {
+// CHANGED (V11): `byCategory` switches the section headers from kind → idiom category. Used when the
+// Idioms kind is active so the list reads as a navigable syllabus.
+function LearnView({ list, byCategory }: { list: import('../../data/types').IdiomEntry[]; byCategory: boolean }) {
   const { t } = useLang();
   const masteryMap = useMastery();
   const [openId, setOpenId] = useState<string | undefined>(undefined);
   const kindGroups = useMemo(() => groupByKind(list), [list]);
-  const collGroups = useMemo(() => groupCollocations(list), [list]);
   const idiomCatGroups = useMemo(() => groupIdiomsByCategory(list), [list]);
   if (list.length === 0) return <p className="dict-empty muted">{t(ui.searchNoResults)}</p>;
-  // CHANGED (V11): section headers switch to idiom categories when the Idioms kind is active.
   const sections = byCategory
     ? idiomCatGroups.map((g) => ({ key: g.category, title: t(catLabel(g.category)), items: g.items, anchor: `idiomcat-${g.category}` }))
-    : byGroup
-      ? collGroups.map((g) => ({ key: g.group, title: t(groupLabel(g.group)), items: g.items, anchor: `collgroup-${g.group}` }))
-      : kindGroups.map((g) => ({ key: g.kind, title: t(KIND_LABEL[g.kind]), items: g.items, anchor: undefined }));
+    : kindGroups.map((g) => ({ key: g.kind, title: t(KIND_LABEL[g.kind]), items: g.items, anchor: undefined }));
   return (
     <div className="dict-list">
       {sections.map((s) => (
         <section className="def-group" key={s.key} id={s.anchor} aria-label={s.title}>
           <h2 className="def-group-h">{s.title}</h2>
           {s.items.map((e) => (
-            <IdiomCard
+            <PhraseCard
               key={e.id}
               e={e}
               open={openId === e.id}
@@ -234,148 +73,6 @@ function LearnView({ list, byGroup, byCategory }: { list: IdiomEntry[]; byGroup:
           ))}
         </section>
       ))}
-    </div>
-  );
-}
-
-function GuessView({ list }: { list: IdiomEntry[] }) {
-  const { t } = useLang();
-  const [i, setI] = useState(0);
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    setI(0);
-    setRevealed(false);
-  }, [list]);
-
-  if (list.length === 0) return <p className="dict-empty muted">{t(ui.searchNoResults)}</p>;
-  const e = list[i % list.length];
-  const gap = blankInExample(e, 1) ?? blankInExample(e, 0);
-
-  const next = () => {
-    setRevealed(false);
-    setI((n) => (list.length <= 1 ? n : (n + 1 + Math.floor(Math.random() * (list.length - 1))) % list.length));
-  };
-
-  return (
-    <div className="def-studio idiom-guess">
-      <p className="def-task">{t(ui.idiomGuessTask)}</p>
-      <div className="dict-def">
-        <p>{e.meaning.en}</p>
-        <p className="muted">{e.meaning.uk}</p>
-      </div>
-      {gap && <p className="idiom-guess-ctx">“{gap.masked}”</p>}
-
-      {revealed ? (
-        <div className="def-reveal">
-          <p className="def-answer">
-            <span className="dict-word">{e.phrase}</span>
-            <SpeakButton text={e.phrase} />
-          </p>
-          {e.uaEquivalent && (
-            <p className="idiom-ua">
-              <span className="idiom-ua-tag">{t(ui.idiomUaEquivalent)}</span> {e.uaEquivalent}
-            </p>
-          )}
-          <div className="def-rate" role="group" aria-label={t(ui.masteryLabel)}>
-            <button type="button" className="def-btn def-rate-btn is-known" onClick={() => { setMastery(mkey(e.id), 'known'); next(); }}>
-              {t(ui.defGotIt)}
-            </button>
-            <button type="button" className="def-btn def-rate-btn is-learning" onClick={() => { setMastery(mkey(e.id), 'learning'); next(); }}>
-              {t(ui.defAgain)}
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="idiom-guess-actions">
-          <button type="button" className="def-btn def-reveal-btn" onClick={() => setRevealed(true)}>
-            {t(ui.idiomReveal)}
-          </button>
-          <button type="button" className="def-btn def-btn-ghost" onClick={next}>
-            {t(ui.idiomNext)}
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function MatchView({ list }: { list: IdiomEntry[] }) {
-  const { t, lang } = useLang();
-  const [data, setData] = useState(() => buildMatchRound(list, 5, Math.random, lang));
-  const [pickedLeft, setPickedLeft] = useState<string | undefined>(undefined);
-  const [matched, setMatched] = useState<Set<string>>(new Set());
-  const [wrong, setWrong] = useState<string | undefined>(undefined);
-
-  const newRound = () => {
-    setData(buildMatchRound(list, 5, Math.random, lang));
-    setPickedLeft(undefined);
-    setMatched(new Set());
-    setWrong(undefined);
-  };
-
-  // Rebuild the board when the filtered list or the language changes.
-  useEffect(() => {
-    setData(buildMatchRound(list, 5, Math.random, lang));
-    setPickedLeft(undefined);
-    setMatched(new Set());
-    setWrong(undefined);
-  }, [list, lang]);
-
-  if (list.length < 2) return <p className="dict-empty muted">{t(ui.idiomMatchTooFew)}</p>;
-
-  const done = matched.size === data.left.length;
-
-  const clickRight = (rid: string) => {
-    if (!pickedLeft || matched.has(pickedLeft)) return;
-    if (rid === pickedLeft) {
-      setMatched((prev) => new Set(prev).add(rid));
-      setPickedLeft(undefined);
-    } else {
-      setWrong(rid);
-      window.setTimeout(() => setWrong(undefined), 500);
-    }
-  };
-
-  return (
-    <div className="idiom-match">
-      <p className="def-task">{t(ui.idiomMatchTask)}</p>
-      <div className="idiom-match-grid">
-        <div className="idiom-match-col" role="list">
-          {data.left.map((l) => (
-            <button
-              key={l.id}
-              role="listitem"
-              className={cx('idiom-chip', matched.has(l.id) && 'is-matched', pickedLeft === l.id && 'is-picked')}
-              disabled={matched.has(l.id)}
-              onClick={() => setPickedLeft(l.id)}
-            >
-              {l.phrase}
-            </button>
-          ))}
-        </div>
-        <div className="idiom-match-col" role="list">
-          {data.right.map((r) => (
-            <button
-              key={r.id}
-              role="listitem"
-              className={cx('idiom-chip', 'idiom-chip-meaning', matched.has(r.id) && 'is-matched', wrong === r.id && 'is-wrong')}
-              disabled={matched.has(r.id)}
-              onClick={() => clickRight(r.id)}
-            >
-              {r.meaning}
-            </button>
-          ))}
-        </div>
-      </div>
-      {done && (
-        <p className="idiom-match-done" aria-live="polite">
-          <span>✅ {t(ui.idiomMatchDone)}</span>
-          <button type="button" className="def-btn" onClick={newRound}>
-            {t(ui.idiomNewRound)}
-          </button>
-        </p>
-      )}
     </div>
   );
 }
@@ -391,15 +88,9 @@ export function IdiomsPage() {
   const [mode, setMode] = useState<Mode>('learn');
   const [q, setQ] = useState('');
   const [kind, setKind] = useState<IdiomKind | 'all'>('all');
-  const [group, setGroup] = useState<string | 'all'>('all'); // CHANGED (V10): collocation category filter
   const [category, setCategory] = useState<string | 'all'>('all'); // CHANGED (V11): idiom category filter
   const [theme, setTheme] = useState<string | 'all'>('all');
   const [level, setLevel] = useState<Level | 'all'>('all');
-
-  // CHANGED (V10): the category bar is meaningful only for collocations — drop the filter otherwise.
-  useEffect(() => {
-    if (kind !== 'collocation') setGroup('all');
-  }, [kind]);
 
   // CHANGED (V11): the idiom category bar is meaningful only for idioms — drop the filter otherwise.
   useEffect(() => {
@@ -408,14 +99,12 @@ export function IdiomsPage() {
 
   const themes = useMemo(() => allThemes(IDIOMS), []);
   // CHANGED (V3): idiom of the day — deterministic per calendar day (rotates daily, stable within it).
-  const today = useMemo(() => idiomOfDay(IDIOMS, Math.floor(Date.now() / 86_400_000)), []);
+  const today = useMemo(() => phraseOfDay(IDIOMS, Math.floor(Date.now() / 86_400_000)), []);
   const needle = q.trim().toLowerCase();
   const filtered = useMemo(
     () =>
       IDIOMS.filter((e) => {
         if (kind !== 'all' && e.kind !== kind) return false;
-        // CHANGED (V10): category filter (only bites in the Collocations kind; reset otherwise).
-        if (group !== 'all' && (e.kind !== 'collocation' || e.group !== group)) return false;
         // CHANGED (V11): idiom category filter (only bites in the Idioms kind; reset otherwise).
         if (category !== 'all' && (e.kind !== 'idiom' || e.category !== category)) return false;
         if (theme !== 'all' && !e.themes.includes(theme)) return false;
@@ -428,7 +117,7 @@ export function IdiomsPage() {
           (e.uaEquivalent ?? '').toLowerCase().includes(needle)
         );
       }),
-    [needle, kind, group, category, theme, level],
+    [needle, kind, category, theme, level],
   );
 
   return (
@@ -466,7 +155,7 @@ export function IdiomsPage() {
           <button className={cx('chip', kind === 'all' && 'known-on')} onClick={() => setKind('all')}>
             {t(ui.allKinds)}
           </button>
-          {(['idiom', 'phrasal', 'collocation'] as IdiomKind[]).map((k) => (
+          {PAGE_KINDS.map((k) => (
             <button
               key={k}
               className={cx('chip', kind === k && 'known-on')}
@@ -506,31 +195,6 @@ export function IdiomsPage() {
         </span>
       </div>
 
-      {/* CHANGED (V10): collocation category bar — jump to / filter by grammatical pattern. */}
-      {kind === 'collocation' && (
-        <div className="coll-catbar" role="group" aria-label={t(ui.collAllGroups)}>
-          <button
-            type="button"
-            className={cx('chip', group === 'all' && 'known-on')}
-            aria-pressed={group === 'all'}
-            onClick={() => setGroup('all')}
-          >
-            {t(ui.collAllGroups)}
-          </button>
-          {COLLOCATION_GROUP_IDS.map((gid) => (
-            <button
-              key={gid}
-              type="button"
-              className={cx('chip', group === gid && 'known-on')}
-              aria-pressed={group === gid}
-              onClick={() => setGroup(group === gid ? 'all' : gid)}
-            >
-              {t(groupLabel(gid))}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* CHANGED (V11): idiom category bar — jump to / filter by theme (reuses the .coll-catbar chip row). */}
       {kind === 'idiom' && (
         <div className="coll-catbar" role="group" aria-label={t(ui.idiomAllCategories)}>
@@ -564,7 +228,7 @@ export function IdiomsPage() {
           {today.uaEquivalent && <span className="idiom-otd-ua">≈ {today.uaEquivalent}</span>}
         </button>
       )}
-      {mode === 'learn' && <LearnView list={filtered} byGroup={kind === 'collocation'} byCategory={kind === 'idiom'} />}
+      {mode === 'learn' && <LearnView list={filtered} byCategory={kind === 'idiom'} />}
       {mode === 'guess' && <GuessView list={filtered} />}
       {mode === 'match' && <MatchView list={filtered} />}
     </WordsLayout>

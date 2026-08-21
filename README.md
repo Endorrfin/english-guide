@@ -28,8 +28,8 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   big five: habit vs fact vs timetable…), examples, signal words and traps; **satellite chips**
   under the wall (going to · used to · would · be about to) open near-tense cards with their own
   near-misses; the **Decide** tab embeds the `tense-chooser`. Share any state by URL.
-- **Words hub** — one nav section with four tabs: **Dictionary · Definitions · Idioms · Irregular
-  verbs**. All word surfaces in one place; each keeps its own deep links and search.
+- **Words hub** — one nav section with five tabs: **Dictionary · Definitions · Idioms · Collocations ·
+  Irregular verbs**. All word surfaces in one place; each keeps its own deep links and search.
 - **Definitions ★ (word study)** — `#/definitions`, the **front door for words**: browse A–Z or
   search, then open a word and engrave it four ways — **Study** (definition + synonyms + the 4 general
   / 3 professional examples), **Recall** (definition-first flashcard, the word hidden until you
@@ -40,17 +40,24 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   IPA + TTS pronunciation, UA translations, bilingual definitions, **7 examples per word (4 general +
   business / office / dev)**, forms, collocations, cross-links; **A–Z rail** + search by English word
   **or** Ukrainian translation; filters by CEFR level, part of speech, topic.
-- **Idioms ★ (word study)** — `#/idioms`, an engaging trainer for **multi-word English** (idioms ·
-  phrasal verbs · collocations — a dataset kept separate from single words): each card carries its
-  **Ukrainian equivalent**, real examples with TTS and — for idioms — the **story behind it**. Three
-  modes: **Learn** (browse by type/theme), **Guess** (meaning → recall the expression), **Match** (pair
+- **Idioms ★ (word study)** — `#/idioms`, an engaging trainer for **multi-word English** (252 idioms ·
+  phrasal verbs — a dataset kept separate from single words): each card carries its **Ukrainian
+  equivalent**, real examples with TTS and — for idioms — the **story behind it**. Three modes:
+  **Learn** (browse by category/theme), **Guess** (meaning → recall the expression), **Match** (pair
   expressions to meanings). Mastery per expression.
+- **Collocations ★ (word study)** — `#/collocations`, the tab for the pairs English simply insists on:
+  you *make* a decision but *do* your homework, and rain is *heavy*, never *strong*. 162 entries in
+  eight categories (Make vs Do · Verb + Noun · Adjective + Noun · Adverb + Adjective / Verb · Business ·
+  Workplace & Tech · Soft skills & interview · Everyday & routine), each with its Ukrainian version, two
+  real examples and — where learners slip — the **wrong version and its fix**. Four modes: **Learn**,
+  **★ Which word?** (the base is given, you supply the collocate — `___ a decision` → make / do / have),
+  **Guess** and **Match**.
 - **Reading (Section VII)** — a growing library of short, real-life texts in an accordion by category:
   read in English with a **full Ukrainian translation** on demand, TTS, and **comprehension questions**
   (auto-checked multiple-choice + open questions with a model answer). Search across all texts, filter by
   CEFR level, mark texts as read. ~100 texts now, growing to 1000+ in waves.
-- **Trainers** — **`#/review` spaced repetition (SM-2-lite)** over **769 cards in four decks**: Dictionary
-  (Oxford seed) · My words · Idioms · Irregular verbs, filterable by CEFR level. Recall the card, then rate
+- **Trainers** — **`#/review` spaced repetition (SM-2-lite)** over **1083 cards in four decks**: Dictionary
+  (Oxford seed) · My words · Idioms & collocations · Irregular verbs, filterable by CEFR level. Recall the card, then rate
   it *Again / Hard / Good / Easy* (keys 1–4) — each button shows the interval it would schedule; a badge in
   the nav counts what is due. It can **import the progress you already made on Definitions**, and it can
   **back up all your progress to a JSON file** (and restore it). Plus `#/practice` gap-fill + MCQ with
@@ -90,11 +97,13 @@ npm run verify     # all of the above + tests + smoke + build
 
 ```
 src/
-  data/        concepts.ts (SSOT) · modules/ · words/{a1..c1,custom}.ts · irregular.ts · types.ts
+  data/        concepts.ts (SSOT) · modules/ · words/{a1..c1,custom}.ts · idioms.ts · collocations.ts
+               · irregular.ts · types.ts · *.generated.ts (slim indexes + tab counts)
   i18n/        ui strings + EN/UA language provider
   theme/       tokens.css · global.css · components.css
   lib/         hashRouter · search (modules+words) · exercise · srs · tts · registry · appState
-  components/  layout/ (incl. VocabTabs·WordsLayout) · module/ · map/ · pages/ (Definitions·Dictionary·Idioms·Irregular·Practice·Review) · sims/ · figures/
+  components/  layout/ (incl. VocabTabs·WordsLayout) · module/ · map/ · words/ (shared phrase card + modes)
+               · pages/ (Definitions·Dictionary·Idioms·Collocations·Irregular·Practice·Review) · sims/ · figures/
 scripts/       check-data.ts · run-tests.ts · smoke.ts (+ engine tests)
 ```
 
@@ -141,8 +150,9 @@ future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
 `tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
 sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 authored**.
-**V1–V11 — shipped:** the **Words hub** (four tabs), the **Idioms trainer** (357 entries — **182 idioms** · 58 phrasal verbs · 117 collocations; idioms and collocations each in a navigable category bar) and the
-**Irregular-verbs trainer** (75 verbs, table + 3-forms drill).
+**V1–V12 — shipped:** the **Words hub** (five tabs), the **Idioms trainer** (252 entries — **183 idioms** in
+11 categories · 69 phrasal verbs), the **Collocations trainer** (**162 entries** in 8 categories, with the
+★ *Which word?* drill — V12) and the **Irregular-verbs trainer** (75 verbs, table + 3-forms drill).
 **RB1 — shipped:** Reading grew 100 → **131 texts**, incl. a new *Biographies & Speeches* category.
 **R1 — shipped:** **`#/review`, the SRS trainer** — SM-2-lite ported 1:1, four corpus decks over the 769
 cards that already existed, a nav due-badge, an explicit mastery import from Definitions, and JSON
@@ -189,8 +199,8 @@ time × aspect одночасно**, з живою кон'югацією обр�
 пастки; **чипи-сателіти** під стіною (going to · used to · would · be about to) відкривають картки
 навколо-tense форм із власними near-miss; вкладка **Decide** вбудовує `tense-chooser`. Будь-який
 стан шериться URL-ом.
-**Words hub** — один розділ навігації з чотирма вкладками: **Dictionary · Definitions · Idioms ·
-Irregular verbs**. Усі «словникові» поверхні в одному місці; кожна зберігає свої deep-links і пошук.
+**Words hub** — один розділ навігації з пʼятьма вкладками: **Dictionary · Definitions · Idioms ·
+Collocations · Irregular verbs**. Усі «словникові» поверхні в одному місці; кожна зберігає свої deep-links і пошук.
 **Definitions ★ (вивчення слів)** — `#/definitions`, **головний вхід для слів**: перегляд A–Z або
 пошук, тоді відкрий слово й закарбуй його чотирма способами — **Study** (означення + синоніми +
 приклади 4 general / 3 professional), **Recall** (flashcard зі схованим словом), **Describe** (опиши,
@@ -200,13 +210,19 @@ Irregular verbs**. Усі «словникові» поверхні в одно�
 (TTS), переклади, тлумачення, **7 прикладів на слово (4 загальні + business / office / dev)**, форми,
 collocations, перехресні посилання; **рейка A–Z** + пошук за англійським словом **або** українським
 перекладом; фільтри за рівнем, частиною мови, темою.
-**Idioms ★ (вивчення слів)** — `#/idioms`, захопливий тренажер **багатослівної англійської** (ідіоми ·
-phrasal verbs · колокації — датасет, окремий від окремих слів): кожна картка має **український
-відповідник**, живі приклади з озвученням і — для ідіом — **історію походження**. Три режими: **Learn**
-(перегляд за типом/темою), **Guess** (значення → пригадай вираз), **Match** (спаруй вирази зі значеннями).
+**Idioms ★ (вивчення слів)** — `#/idioms`, захопливий тренажер **багатослівної англійської** (252 ідіоми
+та phrasal verbs — датасет, окремий від окремих слів): кожна картка має **український відповідник**,
+живі приклади з озвученням і — для ідіом — **історію походження**. Три режими: **Learn** (перегляд за
+категорією/темою), **Guess** (значення → пригадай вираз), **Match** (спаруй вирази зі значеннями).
 Mastery на кожен вираз.
-**Тренажери** — **`#/review` — spaced repetition (SM-2-lite)** по **769 картках у чотирьох колодах**:
-Словник (Oxford) · Мої слова · Ідіоми · Irregular verbs, з фільтром за рівнем CEFR. Згадай картку й оціни
+**Collocations ★ (вивчення слів)** — `#/collocations`, вкладка про пари, на яких англійська наполягає:
+ви *make* a decision, але *do* your homework, а дощ буває *heavy*, ніколи не *strong*. 162 записи у
+восьми категоріях (Make vs Do · Verb + Noun · Adjective + Noun · Adverb + Adjective / Verb · Business ·
+Workplace & Tech · Soft skills · Побут), кожен з українським відповідником, двома прикладами і — там, де
+найчастіше помиляються — **типовою помилкою та її виправленням**. Чотири режими: **Learn**,
+**★ Which word?** (база дана, добери колокат — `___ a decision` → make / do / have), **Guess** і **Match**.
+**Тренажери** — **`#/review` — spaced repetition (SM-2-lite)** по **1083 картках у чотирьох колодах**:
+Словник (Oxford) · Мої слова · Ідіоми та колокації · Irregular verbs, з фільтром за рівнем CEFR. Згадай картку й оціни
 її — *Знову / Важко / Добре / Легко* (клавіші 1–4); на кожній кнопці видно інтервал, який вона запланує, а
 бейдж у навігації показує, скільки карток на повторення. Можна **імпортувати прогрес, уже зроблений в
 Означеннях**, і **зберегти весь прогрес у JSON-файл** (та відновити з нього). Плюс `#/practice` gap-fill +

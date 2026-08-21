@@ -164,6 +164,7 @@ async function main(): Promise<void> {
   const { DefinitionsPage } = await import("../src/components/pages/DefinitionsPage");
   const { DictionaryPage } = await import("../src/components/pages/DictionaryPage");
   const { IdiomsPage } = await import("../src/components/pages/IdiomsPage"); // CHANGED (V1/V2)
+  const { CollocationsPage } = await import("../src/components/pages/CollocationsPage"); // CHANGED (V12)
   const { IrregularPage } = await import("../src/components/pages/IrregularPage"); // CHANGED (V2)
   const { PracticePage } = await import("../src/components/pages/PracticePage");
   const { TensesPage } = await import("../src/components/pages/TensesPage"); // CHANGED (TM1+TM2)
@@ -186,6 +187,9 @@ async function main(): Promise<void> {
     check("DictionaryPage", h(DictionaryPage), lang, 800);
     // CHANGED (V2): Idioms trainer renders the Learn list (phrases are English → stable across EN/UK).
     check("IdiomsPage", h(IdiomsPage), lang, 1200, ["spot on", "break the ice"]);
+    // CHANGED (V12): the Collocations tab renders its Learn list, sectioned by category. Canaries
+    // are one V10 entry and one V12 entry, so this fails if the split dropped either half.
+    check("CollocationsPage", h(CollocationsPage), lang, 1200, ["make a decision", "take initiative"]);
     // CHANGED (V3): the real Irregular trainer renders the grouped table (verb forms are English → stable).
     check("IrregularPage", h(IrregularPage), lang, 1500, ["went", "brought"]);
     check("PracticePage", h(PracticePage), lang, 800);
@@ -326,6 +330,7 @@ async function main(): Promise<void> {
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
     "#/idioms", // CHANGED (V1)
+    "#/collocations", // CHANGED (V12)
     "#/reading",
     `#/reading/${readingFixtureId}`, // CHANGED (S5): dynamic fixture id (see note above)
     "#/practice",
