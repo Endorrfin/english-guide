@@ -236,15 +236,36 @@ export const ui = {
   idiomNewRound: { en: 'New round', uk: 'Новий раунд' },
   idiomMatchTooFew: { en: 'Pick filters that leave at least two expressions to match.', uk: 'Обери фільтри так, щоб лишилось хоча б два вирази для гри.' },
   idiomOfDay: { en: 'Idiom of the day', uk: 'Ідіома дня' },
+  // CHANGED (V12): the Collocations tab (#/collocations).
+  collocationsLede: {
+    en: 'Word partnerships English insists on: you make a decision but do your homework, and rain is heavy, never strong. Each entry carries the natural Ukrainian version, two real examples and — where learners slip — the wrong version and its fix.',
+    uk: 'Сталі пари слів, на яких англійська наполягає: ви make a decision, але do your homework, а дощ буває heavy, ніколи не strong. Кожна картка має природний український відповідник, два приклади і — там, де найчастіше помиляються — типову помилку та її виправлення.',
+  },
+  collSearchPlaceholder: { en: 'Search collocations, meanings, translations…', uk: 'Пошук колокацій, значень, перекладів…' },
+  collOfDay: { en: 'Collocation of the day', uk: 'Колокація дня' },
+  collModePick: { en: 'Which word?', uk: 'Яке слово?' },
+  collPickTask: { en: 'Which word does English pair with this?', uk: 'Яке слово англійська ставить у цю пару?' },
+  collPickRight: { en: 'Correct', uk: 'Правильно' },
+  collPickWrong: { en: 'Not this one', uk: 'Не це слово' },
+  collPickTooFew: {
+    en: 'Pick filters that leave at least one drillable collocation.',
+    uk: 'Обери фільтри так, щоб лишилась хоча б одна колокація для тренування.',
+  },
+  collGuessTask: { en: 'Which collocation means this?', uk: 'Яка колокація це означає?' },
   // CHANGED (V10): collocation category bar (shown for the Collocations kind) + common-mistake note.
   idiomNote: { en: 'Common mistake', uk: 'Типова помилка' },
   collAllGroups: { en: 'All categories', uk: 'Всі категорії' },
   collGroupMakeDo: { en: 'Make vs Do', uk: 'Make vs Do' },
   collGroupVerbNoun: { en: 'Verb + Noun', uk: 'Дієслово + іменник' },
   collGroupAdjNoun: { en: 'Adjective + Noun', uk: 'Прикметник + іменник' },
-  collGroupAdvAdj: { en: 'Adverb + Adjective', uk: 'Прислівник + прикметник' },
+  // CHANGED (V12): the bucket also holds adverb+VERB pairs ('totally agree', 'highly recommend'),
+  // so the LABEL widens. The id stays `adverb-adjective` — it is a stored filter value.
+  collGroupAdvAdj: { en: 'Adverb + Adjective / Verb', uk: 'Прислівник + прикметник / дієслово' },
   collGroupBusiness: { en: 'Business English', uk: 'Ділова англійська' },
   collGroupWorkplace: { en: 'Workplace & Tech', uk: 'Робота й tech' },
+  // CHANGED (V12): two categories the V10 six could not house.
+  collGroupSoftSkills: { en: 'Soft skills & interview', uk: 'Soft skills та співбесіда' },
+  collGroupEveryday: { en: 'Everyday & routine', uk: 'Побут і рутина' },
   collGroupOther: { en: 'Other', uk: 'Інше' },
   // CHANGED (V11): idiom category bar labels (keyed by IdiomEntry.category; canonical order in lib/idioms).
   idiomAllCategories: { en: 'All categories', uk: 'Всі категорії' },
@@ -293,7 +314,9 @@ export const ui = {
   decksLabel: { en: 'Decks', uk: 'Колоди' },
   deckDict: { en: 'Dictionary', uk: 'Словник' },
   deckMine: { en: 'My words', uk: 'Мої слова' },
-  deckIdioms: { en: 'Idioms', uk: 'Ідіоми' },
+  // CHANGED (V12): the deck covers data/idioms.ts AND data/collocations.ts. Label only — the
+  // `DECK_PREFIX.idioms` progress key is permanent (PROJECT-BRIEF §10).
+  deckIdioms: { en: 'Idioms & collocations', uk: 'Ідіоми та колокації' },
   deckIrregular: { en: 'Irregular verbs', uk: 'Irregular verbs' },
   dueLabel: { en: 'due', uk: 'на повторення' },
   newLabel: { en: 'new', uk: 'нові' },

@@ -18,9 +18,11 @@ import { WORDS } from '../src/data/words';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
 import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
+import { COLLOCATIONS } from '../src/data/collocations'; // CHANGED (V12)
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
-import { isCollocationGroup, isIdiomCategory } from '../src/lib/idioms'; // CHANGED (V10/V11): idiom + collocation category contracts
+import { isCollocationGroup } from '../src/lib/collocations'; // CHANGED (V10/V12)
+import { isIdiomCategory } from '../src/lib/idioms'; // CHANGED (V11)
 // CHANGED (TM3): the Tense Machine shades + satellites + showcase contracts (spec §4.3–§4.4).
 import { SATELLITES, SHOWCASE_UA, USES } from '../src/data/tenseMachine';
 import type { TenseCellKey } from '../src/data/tenseMachine';
@@ -231,18 +233,27 @@ for (const rt of READING_TEXTS as ReadingText[]) {
   }
 }
 
-// --- idioms checks (V2 — the Idioms hub, a separate dataset) ----------------
-const idiomIds = new Set<string>();
-const idiomPhrases = new Set<string>();
+// --- expression checks (V2 — the Idioms hub, a separate dataset) --------------
+// CHANGED (V12): the corpus is now TWO files — data/idioms.ts (idioms + phrasal verbs) and
+// data/collocations.ts. They are validated as ONE list on purpose: ids are the shared
+// `idiom:<id>` mastery/SRS keys, so a collision across the files would silently merge two cards'
+// progress, and a duplicate phrase would teach the same expression on two tabs. Per-file checks
+// cannot see either. `home()` names the offending file so the message is actionable.
+const EXPRESSIONS: IdiomEntry[] = [...(IDIOMS as IdiomEntry[]), ...(COLLOCATIONS as IdiomEntry[])];
+const home = (e: IdiomEntry) => (e.kind === 'collocation' ? 'data/collocations.ts' : 'data/idioms.ts');
+const idiomIds = new Map<string, string>();
+const idiomPhrases = new Map<string, string>();
 const IDIOM_KINDS = new Set(['idiom', 'phrasal', 'collocation']);
 const IDIOM_REGISTERS = new Set(['neutral', 'informal', 'formal', 'business']);
-for (const e of IDIOMS as IdiomEntry[]) {
+for (const e of EXPRESSIONS) {
   const at = `idiom:${e.id}`;
-  err(!idiomIds.has(e.id), `duplicate idiom id ${e.id}`); idiomIds.add(e.id);
+  err(!idiomIds.has(e.id), `duplicate id ${e.id} — in ${idiomIds.get(e.id)} and ${home(e)}`);
+  idiomIds.set(e.id, home(e));
   err(KEBAB.test(e.id), `${at}: id not kebab-case`);
   err(e.phrase.trim().length > 0, `${at}: empty phrase`);
-  const pk = e.phrase.toLowerCase();
-  err(!idiomPhrases.has(pk), `${at}: duplicate phrase '${e.phrase}'`); idiomPhrases.add(pk);
+  const pk = e.phrase.trim().toLowerCase();
+  err(!idiomPhrases.has(pk), `${at}: duplicate phrase '${e.phrase}' — in ${idiomPhrases.get(pk)} and ${home(e)}`);
+  idiomPhrases.set(pk, home(e));
   err(IDIOM_KINDS.has(e.kind), `${at}: bad kind '${e.kind}'`);
   err(IDIOM_REGISTERS.has(e.register), `${at}: bad register '${e.register}'`);
   err(LEVELS.includes(e.level), `${at}: bad level '${e.level}'`);
@@ -257,6 +268,12 @@ for (const e of IDIOMS as IdiomEntry[]) {
   // CHANGED (V10): collocations carry a known category `group`; other kinds must not; notes are bilingual.
   if (e.kind === 'collocation') err(isCollocationGroup(e.group), `${at}: collocation needs a known group (got '${e.group}')`);
   else err(e.group === undefined, `${at}: only collocations may have a group`);
+  // CHANGED (V12): each file holds exactly one side of the split — that is what makes the two
+  // lazy chunks meaningful, and what stops a collocation from silently reappearing on #/idioms.
+  err(
+    e.kind === 'collocation' ? home(e) === 'data/collocations.ts' : home(e) === 'data/idioms.ts',
+    `${at}: a ${e.kind} must not live in ${home(e)}`,
+  );
   // CHANGED (V11): idioms carry a known `category`; other kinds must not.
   if (e.kind === 'idiom') err(isIdiomCategory(e.category), `${at}: idiom needs a known category (got '${e.category}')`);
   else err(e.category === undefined, `${at}: only idioms may have a category`);
@@ -368,6 +385,7 @@ console.log(
   `✓ check:data — ${sections.length} sections, ${modules.length} modules ` +
   `(${modules.filter((m) => isAuthored(m.id)).length} authored), ${exerciseIds.size} exercises, ` +
   `${WORDS.length} words (${a1Words.length} a1 + ${customWords.length} custom), ` +
-  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms, ${IRREGULAR.length} irregular verbs, ` +
+  `${READING_TEXTS.length} reading texts in ${readingCatIds.size} categories, ${IDIOMS.length} idioms/phrasals, ` +
+  `${COLLOCATIONS.length} collocations, ${IRREGULAR.length} irregular verbs, ` +
   `${tenseUseCount} tense uses (big five ≥4) + ${SATELLITES.length} satellites + the she+write showcase, all bilingual, registry + links resolve.`,
 );

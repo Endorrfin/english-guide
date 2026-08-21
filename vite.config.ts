@@ -29,6 +29,9 @@ export default defineConfig({
           if (id.includes('/src/data/words/')) return 'words';
           if (id.includes('/src/data/reading/')) return 'reading';
           if (id.includes('/src/data/idioms')) return 'idioms';
+          // CHANGED (V12): collocations are their own tab now — their own chunk, so the Idioms
+          // tab stops paying for them and vice versa.
+          if (id.includes('/src/data/collocations')) return 'collocations';
         },
       },
     },

@@ -1,5 +1,6 @@
 // CHANGED (S1): tiny hash router (no router lib — CLAUDE.md §2), ported pattern from ../database guide.
 // Routes: #/map · #/m/<moduleId>[/<topicId>] · #/definitions[/<id>] · #/dictionary[/<id>] · #/practice
+//         · #/idioms · #/collocations (V12)
 //         · #/review · #/irregular
 // CHANGED (D1): + #/definitions[/<id>] — the word STUDY page (front door for words; see search.ts).
 // CHANGED (TM1+TM2): + #/tenses[/<time>/<aspect>] — ★ The Tense Machine. The hash may carry a
@@ -24,6 +25,8 @@ export type Route =
   | { name: 'definitions'; id?: string } // CHANGED (D1)
   | { name: 'dictionary'; id?: string }
   | { name: 'idioms'; id?: string } // CHANGED (V1): the Words-hub Idioms tab
+  // CHANGED (V12): the Words-hub Collocations tab — its own route, dataset and lazy chunk.
+  | { name: 'collocations'; id?: string }
   | { name: 'practice' }
   | { name: 'review' }
   | { name: 'irregular' }
@@ -53,6 +56,8 @@ export function parseHash(raw: string): Route {
       return { name: 'dictionary', id: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'idioms': // CHANGED (V1)
       return { name: 'idioms', id: parts[1] ? safeDecode(parts[1]) : undefined };
+    case 'collocations': // CHANGED (V12)
+      return { name: 'collocations', id: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'practice':
       return { name: 'practice' };
     case 'review':
@@ -89,6 +94,8 @@ export const hrefDictionary = (id?: string) =>
   id ? `#/dictionary/${encodeURIComponent(id)}` : '#/dictionary';
 export const hrefIdioms = (id?: string) => // CHANGED (V1)
   id ? `#/idioms/${encodeURIComponent(id)}` : '#/idioms';
+export const hrefCollocations = (id?: string) => // CHANGED (V12)
+  id ? `#/collocations/${encodeURIComponent(id)}` : '#/collocations';
 export const hrefPractice = () => '#/practice';
 export const hrefReview = () => '#/review';
 export const hrefIrregular = () => '#/irregular';
@@ -98,7 +105,14 @@ export const hrefReadingText = (id: string) => `#/reading/${encodeURIComponent(i
 // CHANGED (V1): the three tabs of the Words hub — lets TopBar/Sidebar light one nav entry for all.
 export function isWordsRoute(name: Route['name']): boolean {
   // CHANGED (V2): Irregular verbs is now a Words-hub tab too.
-  return name === 'dictionary' || name === 'definitions' || name === 'idioms' || name === 'irregular';
+  // CHANGED (V12): + Collocations (five tabs).
+  return (
+    name === 'dictionary' ||
+    name === 'definitions' ||
+    name === 'idioms' ||
+    name === 'collocations' ||
+    name === 'irregular'
+  );
 }
 
 export function navigate(href: string): void {

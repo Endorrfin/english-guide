@@ -14,6 +14,7 @@
  *   src/data/words/index.generated.ts    slim WORD_INDEX (id · word · level · joined translations)
  *                                        + WORD_COUNTS
  *   src/data/reading/index.generated.ts  READING_COUNTS only (the landing map's three numbers)
+ *   src/data/phrases.generated.ts        PHRASE_COUNTS — the Words-hub tab badges (V12)
  *
  * DELIBERATELY NOT IN THE WORD INDEX: `def`. Including both languages of every definition triples
  * the index (52 kB → 152 kB now, ~890 kB at 3,000 words) and would re-break the scale guard. Search
@@ -26,6 +27,9 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { COLLOCATIONS } from '../src/data/collocations';
+import { IDIOMS } from '../src/data/idioms';
+import { IRREGULAR } from '../src/data/irregular';
 import { modules } from '../src/data/modules/all';
 import { a1Words } from '../src/data/words/a1';
 import { customWords } from '../src/data/words/custom';
@@ -35,6 +39,12 @@ const here = dirname(fileURLToPath(import.meta.url));
 
 export const WORDS_INDEX_PATH = resolve(here, '../src/data/words/index.generated.ts');
 export const READING_INDEX_PATH = resolve(here, '../src/data/reading/index.generated.ts');
+// CHANGED (V12): the Words-hub tab badges. VocabTabs used to import WORDS + IDIOMS + IRREGULAR
+// just to print five numbers — and VocabTabs renders on EVERY Words tab, so opening #/dictionary
+// downloaded the whole idioms corpus. check:bundle cannot see it (all of this is behind
+// React.lazy, so it never touches the EAGER graph): the split into per-tab chunks would have
+// been silently cosmetic. Counts come from here now; the corpora stay in their own chunks.
+export const PHRASES_COUNTS_PATH = resolve(here, '../src/data/phrases.generated.ts');
 // CHANGED (M2): the module meta-split — nav meta, the aggregated drill set, and the per-module
 // lazy-import map, all derived from src/data/modules/all.ts.
 export const MODULE_META_PATH = resolve(here, '../src/data/meta.generated.ts');
@@ -213,11 +223,37 @@ ${rows.join('\n')}
 `;
 }
 
+/**
+ * The five numbers the Words-hub tab bar shows. Deliberately counts, never entries: this module is
+ * imported by a component that every Words route renders, so anything bigger than a number here
+ * re-creates the exact regression it was written to remove.
+ */
+function phraseCountsModule(): string {
+  const idioms = IDIOMS.filter((e) => e.kind === 'idiom').length;
+  const phrasals = IDIOMS.filter((e) => e.kind === 'phrasal').length;
+  return `${BANNER}
+//
+// Tab-badge counts for the Words hub (components/layout/VocabTabs.tsx). See gen-data-index.ts
+// for why these are generated instead of read off the corpora.
+
+export const PHRASE_COUNTS = {
+  /** data/idioms.ts total — idioms + phrasal verbs. */
+  expressions: ${IDIOMS.length},
+  idioms: ${idioms},
+  phrasals: ${phrasals},
+  /** data/collocations.ts total (V12). */
+  collocations: ${COLLOCATIONS.length},
+  irregular: ${IRREGULAR.length},
+} as const;
+`;
+}
+
 /** The generated sources, as they should exist on disk. Shared with check-data-index.ts. */
 export function generate(): { path: string; source: string }[] {
   return [
     { path: WORDS_INDEX_PATH, source: wordsModule() },
     { path: READING_INDEX_PATH, source: readingModule() },
+    { path: PHRASES_COUNTS_PATH, source: phraseCountsModule() }, // CHANGED (V12)
     { path: MODULE_META_PATH, source: metaModule() },
     { path: DRILLS_PATH, source: drillsModule() },
     { path: MODULE_LOADERS_PATH, source: moduleLoadersModule() },
@@ -246,7 +282,8 @@ if (isMain) {
   console.log(
     `✓ gen:index — ${WORD_COUNTS_LOG()} · ${READING_TEXTS.length} reading texts in ${READING_CATEGORIES.length} categories` +
       ` · ${modules.length} modules (${authored} authored) · ${modules.flatMap((m) => m.exercises ?? []).length} drills` +
-      ` (${changed === 0 ? 'already up to date' : `${changed} file(s) rewritten`}).`,
+      ` · ${IDIOMS.length} expressions + ${COLLOCATIONS.length} collocations`
+      + ` (${changed === 0 ? 'already up to date' : `${changed} file(s) rewritten`}).`,
   );
 }
 

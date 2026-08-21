@@ -1,28 +1,9 @@
 // CHANGED (V2): pure helpers for the Idioms hub page (#/idioms). No React, no side effects —
-// golden-tested via scripts/test-idioms.ts. Everything the page needs but that can be reasoned about
-// in isolation lives here: kind grouping, theme collection, the Guess-mode blank, a deterministic
-// shuffle, and Match-round construction (the randomness is injected so tests can pin the order).
-import type { IdiomEntry, IdiomKind } from '../data/types';
-
-export const IDIOM_KINDS: readonly IdiomKind[] = ['idiom', 'phrasal', 'collocation'];
-
-// CHANGED (V10): the collocation categories, in canonical display order. `id` matches
-// IdiomEntry.group; the bilingual labels live in i18n/ui.ts (collGroup*). Drives the category
-// bar + the grouped Learn view shown when the 'collocation' kind is active. Append, never rename.
-export const COLLOCATION_GROUP_IDS = [
-  'make-do',
-  'verb-noun',
-  'adjective-noun',
-  'adverb-adjective',
-  'business',
-  'workplace',
-] as const;
-export type CollocationGroupId = (typeof COLLOCATION_GROUP_IDS)[number];
-
-/** True if `g` is one of the known collocation category ids (used by check:data + the page). */
-export function isCollocationGroup(g: string | undefined): g is CollocationGroupId {
-  return g !== undefined && (COLLOCATION_GROUP_IDS as readonly string[]).includes(g);
-}
+// golden-tested via scripts/test-idioms.ts.
+// CHANGED (V12): slimmed to IDIOM-specific concerns only. The generic phrase engine (kind grouping ·
+// theme collection · Guess blanks · deterministic shuffle · Match rounds) moved to lib/phrases.ts so
+// the Collocations tab can share it; the collocation categories moved to lib/collocations.ts.
+import type { IdiomEntry } from '../data/types';
 
 // CHANGED (V11): the idiom categories, in canonical display order. `id` matches IdiomEntry.category;
 // the bilingual labels live in i18n/ui.ts (idiomCat*). Drives the category bar + the grouped Learn
@@ -48,25 +29,6 @@ export function isIdiomCategory(c: string | undefined): c is IdiomCategoryId {
 }
 
 /**
- * Group the collocations of a list by `group` in canonical order, each bucket alphabetized by
- * phrase; empty groups are dropped. Non-collocations are ignored. Any collocation with a missing
- * or unknown group lands in a trailing 'other' bucket, so nothing is ever silently hidden.
- */
-export function groupCollocations(list: readonly IdiomEntry[]): { group: string; items: IdiomEntry[] }[] {
-  const buckets = new Map<string, IdiomEntry[]>();
-  for (const id of COLLOCATION_GROUP_IDS) buckets.set(id, []);
-  for (const e of list) {
-    if (e.kind !== 'collocation') continue;
-    const key = isCollocationGroup(e.group) ? e.group : 'other';
-    if (!buckets.has(key)) buckets.set(key, []);
-    buckets.get(key)!.push(e);
-  }
-  return [...buckets.entries()]
-    .map(([group, items]) => ({ group, items: [...items].sort((a, b) => a.phrase.localeCompare(b.phrase)) }))
-    .filter((g) => g.items.length > 0);
-}
-
-/**
  * Group the idioms of a list by `category` in canonical order, each bucket alphabetized by phrase;
  * empty categories are dropped. Non-idioms are ignored. Any idiom with a missing or unknown category
  * lands in a trailing 'other' bucket, so nothing is ever silently hidden.
@@ -83,84 +45,4 @@ export function groupIdiomsByCategory(list: readonly IdiomEntry[]): { category: 
   return [...buckets.entries()]
     .map(([category, items]) => ({ category, items: [...items].sort((a, b) => a.phrase.localeCompare(b.phrase)) }))
     .filter((g) => g.items.length > 0);
-}
-
-/** Sorted, de-duplicated theme tags across a list — drives the theme filter. */
-export function allThemes(list: readonly IdiomEntry[]): string[] {
-  return [...new Set(list.flatMap((i) => i.themes))].sort();
-}
-
-/** Group entries by kind (canonical order), each bucket alphabetized by phrase; empty kinds dropped. */
-export function groupByKind(list: readonly IdiomEntry[]): { kind: IdiomKind; items: IdiomEntry[] }[] {
-  return IDIOM_KINDS.map((kind) => ({
-    kind,
-    items: list.filter((i) => i.kind === kind).sort((a, b) => a.phrase.localeCompare(b.phrase)),
-  })).filter((g) => g.items.length > 0);
-}
-
-/** A stable "idiom of the day": deterministic pick by a day index (same all day, rotates daily). */
-export function idiomOfDay(list: readonly IdiomEntry[], dayIndex: number): IdiomEntry | null {
-  if (list.length === 0) return null;
-  return list[((Math.trunc(dayIndex) % list.length) + list.length) % list.length];
-}
-
-function esc(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-/**
- * Blank the phrase inside one of its example sentences (the Guess-mode gap). If the phrase does not
- * appear literally (e.g. an inflected phrasal), the raw sentence is returned with the phrase as the
- * answer. Null only when the entry carries no examples.
- */
-export function blankInExample(
-  entry: IdiomEntry,
-  exampleIndex = 0,
-): { masked: string; answer: string } | null {
-  const ex = entry.examples[exampleIndex] ?? entry.examples[0];
-  if (!ex) return null;
-  const sentence = ex.text.en;
-  const re = new RegExp(`\\b${esc(entry.phrase)}\\b`, 'i');
-  const m = re.exec(sentence);
-  if (!m) return { masked: sentence, answer: entry.phrase };
-  return {
-    masked: sentence.slice(0, m.index) + '____' + sentence.slice(m.index + m[0].length),
-    answer: m[0],
-  };
-}
-
-/** Fisher–Yates using an injected [0,1) generator, so tests can pin the order (Math.random in-app). */
-export function shuffle<T>(arr: readonly T[], rand: () => number): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-export type MatchRound = {
-  left: { id: string; phrase: string }[]; // phrases (given order)
-  right: { id: string; meaning: string }[]; // the SAME entries' meanings, shuffled
-};
-
-/**
- * Build a Match round of 2..min(size, list) entries. `left` keeps the chosen order; `right` carries
- * the same entries' meanings, shuffled — a correct pairing links left[i] to the right item whose id
- * equals left[i].id. Pure: pass `rand` for deterministic tests.
- */
-export function buildMatchRound(
-  list: readonly IdiomEntry[],
-  size: number,
-  rand: () => number,
-  lang: 'en' | 'uk' = 'en',
-): MatchRound {
-  const n = Math.max(2, Math.min(size, list.length));
-  const chosen = shuffle(list, rand).slice(0, n);
-  const left = chosen.map((e) => ({ id: e.id, phrase: e.phrase }));
-  const right = shuffle(chosen, rand).map((e) => ({
-    id: e.id,
-    meaning: lang === 'uk' ? e.meaning.uk : e.meaning.en,
-  }));
-  return { left, right };
 }

@@ -20,6 +20,7 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { COLLOCATIONS } from '../src/data/collocations';
 import { IDIOMS } from '../src/data/idioms';
 import { modules } from '../src/data/modules/all';
 import { READING_TEXTS } from '../src/data/reading';
@@ -38,7 +39,7 @@ import { customWords } from '../src/data/words/custom';
 const EAGER_BUDGET_KB = 420;
 
 /** Corpus chunk names from vite.config manualChunks — none of these may be eager. */
-const CORPUS_CHUNKS = ['words', 'reading', 'idioms'];
+const CORPUS_CHUNKS = ['words', 'reading', 'idioms', 'collocations']; // CHANGED (V12)
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assets = resolve(here, '../dist/assets');
@@ -146,6 +147,51 @@ if (entryName) {
     }
   }
 
+
+  // ── 1c. ROUTE ISOLATION: a Words tab may reach its OWN corpus and no other ─────────────────
+  // CHANGED (V12). The V12 split gave collocations their own chunk — but every Words page renders
+  // VocabTabs, and VocabTabs used to import WORDS + IDIOMS + IRREGULAR for its five count badges.
+  // That made opening #/dictionary download the whole idioms corpus, and would have made the new
+  // collocations chunk load on all five tabs: the split would have been PURELY COSMETIC.
+  //
+  // Rules 1 and 1b cannot see this. Both walk from an EAGER root (the entry chunk, the default
+  // route), and every Words page is behind React.lazy — so the regression is invisible to them,
+  // invisible in review, and invisible in the build log (each chunk is still its own file; the page
+  // chunk simply gains a static import of it). Hence a rule that walks from each route instead.
+  //
+  // The fix this protects: counts come from src/data/phrases.generated.ts (+ words/index.generated),
+  // never from a corpus. If a badge ever needs more than a number, generate that too.
+  const ROUTE_CORPORA: Record<string, readonly string[]> = {
+    DictionaryPage: ['words'],
+    DefinitionsPage: ['words'],
+    IdiomsPage: ['idioms'],
+    CollocationsPage: ['collocations'],
+    IrregularPage: [],
+    ReviewPage: ['words', 'idioms', 'collocations'], // the SRS decks legitimately span every corpus
+  };
+  for (const [page, allowed] of Object.entries(ROUTE_CORPORA)) {
+    const chunk = files.find((f) => new RegExp(`^${page}-.*\\.js$`).test(f));
+    if (!chunk) {
+      errors.push(`no ${page}-*.js chunk found — cannot verify route isolation`);
+      continue;
+    }
+    const reach = eagerClosure(chunk, read);
+    for (const corpus of CORPUS_CHUNKS) {
+      if (allowed.includes(corpus)) continue;
+      const hit = [...reach].find((n) => new RegExp(`^${corpus}-.*\\.js$`).test(n));
+      if (hit) {
+        errors.push(
+          `${page} statically pulls the '${corpus}' corpus (${hit}, ${(sizeOf(hit) / 1024).toFixed(1)} kB), ` +
+            `which it does not use.\n` +
+            '      cause: usually a shared component importing a corpus for a count or a label\n' +
+            '             (VocabTabs did exactly this before V12).\n' +
+            '      fix:   import the generated slim module instead — src/data/phrases.generated.ts\n' +
+            '             or src/data/words/index.generated.ts.',
+        );
+      }
+    }
+  }
+
   // ── 2. belt and braces: no corpus TEXT anywhere in the eager set ───────────────────────────
   // Guards the other failure mode — manualChunks changing so a corpus gets inlined instead.
   // Samples come from the live data at check time, so they can never go stale like fixed probes.
@@ -168,6 +214,8 @@ if (entryName) {
   probe('word cards (a1)', a1Words.flatMap((w) => [w.def.en, ...w.examples.map((e) => e.text.en)]));
   probe('word cards (custom)', customWords.flatMap((w) => [w.def.en, ...w.examples.map((e) => e.text.en)]));
   probe('idioms', IDIOMS.flatMap((e) => [e.meaning.en, ...e.examples.map((x) => x.text.en)]));
+  // CHANGED (V12): the collocations corpus is its own chunk now — guard it the same way.
+  probe('collocations', COLLOCATIONS.flatMap((e) => [e.meaning.en, ...e.examples.map((x) => x.text.en)]));
   probe('reading texts', READING_TEXTS.map((t) => t.body.en.slice(0, 120)));
   // CHANGED (M2): module BODIES must stay in their per-module lazy chunks. The classic way to break
   // this is importing `data/modules/all.ts` (or a module file) from anywhere the shell reaches.
@@ -200,8 +248,8 @@ if (entryName) {
   if (errors.length === 0) {
     console.log(
       `✓ check:bundle — eager payload ${totalKb.toFixed(1)} kB / ${EAGER_BUDGET_KB} kB budget ` +
-        `across ${eager.size} statically-imported chunk(s); word, reading and idiom corpora plus all ` +
-        'module bodies are lazy, and none of their content is inlined.',
+        `across ${eager.size} statically-imported chunk(s); word, reading, idiom and collocation ` +
+        'corpora plus all module bodies are lazy, none of their content is inlined, and every Words\n  tab reaches only its own corpus.',
     );
   }
 }

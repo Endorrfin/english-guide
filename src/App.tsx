@@ -19,6 +19,10 @@ const DefinitionsPage = lazy(() => import('./components/pages/DefinitionsPage').
 const DictionaryPage = lazy(() => import('./components/pages/DictionaryPage').then((m) => ({ default: m.DictionaryPage })));
 // CHANGED (V1/V2): the Words-hub Idioms trainer, and (V2) the Irregular-verbs tab moved into the hub.
 const IdiomsPage = lazy(() => import('./components/pages/IdiomsPage').then((m) => ({ default: m.IdiomsPage })));
+// CHANGED (V12): Collocations left the Idioms page for their own tab, dataset and lazy chunk.
+const CollocationsPage = lazy(() =>
+  import('./components/pages/CollocationsPage').then((m) => ({ default: m.CollocationsPage })),
+);
 const IrregularPage = lazy(() => import('./components/pages/IrregularPage').then((m) => ({ default: m.IrregularPage })));
 const PracticePage = lazy(() => import('./components/pages/PracticePage').then((m) => ({ default: m.PracticePage })));
 // CHANGED (R1): #/review is the real SRS trainer now (was a ComingSoon stub since S1). ComingSoon
@@ -70,6 +74,7 @@ export function App() {
             {route.name === 'definitions' && <DefinitionsPage id={route.id} />}
             {route.name === 'dictionary' && <DictionaryPage id={route.id} />}
             {route.name === 'idioms' && <IdiomsPage />}
+            {route.name === 'collocations' && <CollocationsPage />}
             {route.name === 'reading' && <ReadingIndexPage />}
             {route.name === 'reading-text' && <ReadingTextPage id={route.id} />}
             {route.name === 'practice' && <PracticePage />}

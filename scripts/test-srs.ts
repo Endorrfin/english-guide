@@ -10,6 +10,7 @@
  *      Those two touch localStorage, so the test installs a Map-backed shim BEFORE calling them
  *      (module import is safe: neither reads storage at import time).
  */
+import { COLLOCATIONS } from '../src/data/collocations'; // CHANGED (V12)
 import { IDIOMS } from '../src/data/idioms';
 import { IRREGULAR } from '../src/data/irregular';
 import { a1Words } from '../src/data/words/a1';
@@ -176,7 +177,11 @@ ok(!isDue(seedKnown, T0), "a 'known' seed is not due today");
 eq(seedKnown.lapses, 0, 'a seed never invents a lapse history');
 
 // ═══ 2. the four decks over the REAL corpora ═══════════════════════════════════════════
-const EXPECTED_TOTAL = a1Words.length + customWords.length + IDIOMS.length + IRREGULAR.length;
+// CHANGED (V12): the `idioms` deck spans BOTH expression files. Collocations kept their ids and
+// their `DECK_PREFIX.idioms` keys through the split, so the deck grew a file, not a prefix —
+// which is exactly what preserves the owner's existing SRS progress.
+const EXPRESSION_TOTAL = IDIOMS.length + COLLOCATIONS.length;
+const EXPECTED_TOTAL = a1Words.length + customWords.length + EXPRESSION_TOTAL + IRREGULAR.length;
 eq(REVIEW_CARDS.length, EXPECTED_TOTAL, 'one card per corpus entry, no duplication across decks');
 
 const ids = new Set<string>();
@@ -194,7 +199,21 @@ for (const c of REVIEW_CARDS) {
 const byDeck = (d: string) => REVIEW_CARDS.filter((c) => c.deck === d);
 eq(byDeck('dict').length, a1Words.length, 'dict deck = the Oxford seed');
 eq(byDeck('mine').length, customWords.length, 'mine deck = the custom words');
-eq(byDeck('idioms').length, IDIOMS.length, 'idioms deck = the idiom corpus');
+eq(byDeck('idioms').length, EXPRESSION_TOTAL, 'idioms deck = idioms + phrasals + collocations');
+eq(
+  new Set(byDeck('idioms').map((c) => c.id)).size,
+  EXPRESSION_TOTAL,
+  'no id collision between the two expression files inside the deck',
+);
+ok(
+  byDeck('idioms').some((c) => c.refId === COLLOCATIONS[0].id),
+  'a collocation is present in the idioms deck after the V12 split',
+);
+eq(
+  cardIdForMasteryKey(`idiom:${COLLOCATIONS[0].id}`),
+  DECK_PREFIX.idioms + COLLOCATIONS[0].id,
+  'a collocation mastery key still maps into the idioms deck (progress preserved)',
+);
 eq(byDeck('irregular').length, IRREGULAR.length, 'irregular deck = the verb table');
 ok(byDeck('irregular').every((c) => !!c.answer), 'every irregular card carries its two forms');
 ok(byDeck('dict').every((c) => !!c.meaning && !!c.translations?.length), 'every word card carries a definition + UA translations');

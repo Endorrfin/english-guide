@@ -2481,14 +2481,19 @@
   margin: 0.9rem 0 1.3rem;
   border-bottom: 1px solid var(--line);
 }
+/* CHANGED (V12): tightened for the fifth tab. The content column is capped at ~863px at EVERY
+   viewport, so a media query can never help here — five roomy tabs needed ~984px and wrapped to a
+   second row on every screen size. Sized against the LONGER language: the Ukrainian labels need
+   ~893px at the previous step, so these numbers are set from UA, not EN. If a sixth tab is ever
+   added, shorten a label or drop the icons rather than shrinking this further. */
 .vocab-tab {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.55rem 0.95rem;
+  gap: 0.28rem;
+  padding: 0.55rem 0.52rem;
   color: var(--tx2);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   border-radius: var(--r-sm) var(--r-sm) 0 0;
@@ -2505,7 +2510,7 @@
   border-bottom-color: var(--accent);
 }
 .vocab-tab-ic {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   line-height: 1;
 }
 .vocab-tab--soon,
@@ -3142,7 +3147,7 @@
   background: var(--s2);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.02rem 0.36rem;
+  padding: 0.02rem 0.3rem;
 }
 .vocab-tab--active .vocab-count {
   color: var(--accent-bright);
@@ -3907,4 +3912,62 @@
   .tm-axis-token {
     transition: none;
   }
+}
+
+/* ── V12: the Collocations tab ──────────────────────────────────────────────── */
+
+/* ★ "Which word?" — the collocate drill. Deliberately reuses .def-btn so the
+   options inherit the guide's button shape; only the verdict states are new. */
+.coll-pick-prompt {
+  margin: 0.9rem 0 0.2rem;
+  text-align: center;
+}
+.coll-pick-gap {
+  font: 700 1.5rem/1.3 var(--font-display, inherit);
+  color: var(--tx);
+  letter-spacing: 0.01em;
+}
+.coll-pick-clue {
+  margin: 0 0 1.1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.coll-pick-opts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.coll-pick-opt {
+  min-width: 8.5rem;
+  justify-content: center;
+  font-weight: 600;
+}
+/* The right answer is always revealed once answered — including when the reader
+   picked it — so a wrong pick teaches the pair rather than just scoring it. */
+.coll-pick-opt.is-right,
+.coll-pick-opt.is-right:disabled {
+  color: var(--ok);
+  border-color: var(--ok);
+  background: var(--ok-soft);
+  opacity: 1;
+}
+.coll-pick-opt.is-wrong,
+.coll-pick-opt.is-wrong:disabled {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  opacity: 1;
+}
+.coll-pick-verdict {
+  margin: 1.1rem 0 0.3rem;
+  font: 700 0.7rem var(--font-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.coll-pick-verdict.is-right {
+  color: var(--ok);
+}
+.coll-pick-verdict.is-wrong {
+  color: var(--danger);
 }
