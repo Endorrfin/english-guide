@@ -1518,4 +1518,453 @@ export const disciplineTexts: ReadingText[] = [
     ],
     source: { author: 'Sophai' },
   },
+  // CHANGED (Wave LE1, §15): +9 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'consistency-beats-excitement',
+    title: { en: 'Consistency Beats Excitement', uk: 'Послідовність перемагає запал' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1623698792812456' },
+    topics: ['consistency', 'habits', 'discipline'],
+    body: {
+      en: [
+        'Hello everyone, today I would like to talk about the importance of consistency in life. Many people start something with great excitement, but they stop when they do not see quick results. Consistency teaches us to keep going, even when the progress is small. A little effort every day can slowly become a big change.',
+        'We do not need to be perfect every day. We only need to keep trying and not give up. Whether we are learning English, studying, working, or building a new habit, regular practice makes us stronger. Success does not always come from doing something big. Sometimes, it comes from doing something small every day without stopping.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім! Сьогодні я хотів би поговорити про важливість послідовності в житті. Багато людей починають щось із великим запалом, але зупиняються, коли не бачать швидких результатів. Послідовність вчить нас іти далі навіть тоді, коли поступ малий. Невелике зусилля щодня може поволі перерости у велику зміну.',
+        'Нам не потрібно бути ідеальними щодня. Потрібно лише продовжувати старатися й не здаватися. Байдуже, чи вчимо ми англійську, навчаємось, працюємо, чи виробляємо нову звичку — регулярна практика робить нас сильнішими. Успіх не завжди приходить від чогось великого. Іноді він приходить від чогось маленького, зробленого щодня без зупинок.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'Why do many people stop, according to the text?', uk: 'Чому багато людей зупиняються, за текстом?' },
+        options: [
+          { en: 'They do not see quick results', uk: 'Вони не бачать швидких результатів' },
+          { en: 'They run out of money', uk: 'У них закінчуються гроші' },
+          { en: 'They have no talent', uk: 'У них немає таланту' },
+        ],
+        correct: 0,
+        explain: { en: '“…but they stop when they do not see quick results.”', uk: '«…but they stop when they do not see quick results.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does consistency teach us, according to the text?', uk: 'Чого, за текстом, вчить нас послідовність?' },
+        options: [
+          { en: 'To keep going even when the progress is small', uk: 'Іти далі навіть тоді, коли поступ малий' },
+          { en: 'To wait for a better moment to start', uk: 'Чекати на кращий момент, щоб почати' },
+          { en: 'To be perfect every single day', uk: 'Бути ідеальним кожнісінького дня' },
+        ],
+        correct: 0,
+        explain: { en: '“Consistency teaches us to keep going, even when the progress is small.” The text explicitly rejects the other two: “We do not need to be perfect every day.”', uk: '«Consistency teaches us to keep going, even when the progress is small.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you want to do consistently?', uk: 'Що ви хочете робити послідовно?' },
+        sample: { en: 'Answers will vary. A good answer names one concrete habit and a realistic daily size for it — e.g. “ten minutes of English every morning, even on busy days.”', uk: 'Відповіді різнитимуться. Хороша відповідь називає одну конкретну звичку й реалістичний щоденний обсяг — напр., «десять хвилин англійської щоранку, навіть у зайняті дні».' },
+      },
+    ],
+  },
+  {
+    id: 'nothing-great-comes-easy',
+    title: { en: 'Nothing Great Comes Easy', uk: 'Ніщо велике не дається легко' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1354517109640762' },
+    topics: ['hard work', 'skills', 'success'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of hard work in our life.',
+        'Hard work is very important because it helps us achieve our dreams and reach our goals. Nothing great comes easy in life. When we work hard, we learn new things, improve our skills, and become stronger. Without hard work, success is very difficult. A hard-working person stays focused, accepts challenges, and never gives up. Hard work builds confidence, discipline, and respect. It opens the door to many opportunities. Students, workers, and leaders all need hard work to grow and succeed.',
+        'Even small efforts, like studying with honest focus or practicing every day, can make a big difference over time. In short, hard work is the key to success, self-growth and a better future.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість наполегливої праці в нашому житті.',
+        'Наполеглива праця дуже важлива, бо вона допомагає нам здійснювати мрії й досягати цілей. У житті ніщо велике не дається легко. Коли ми наполегливо працюємо, ми вчимося нового, вдосконалюємо навички й стаємо сильнішими. Без наполегливої праці успіх дається дуже важко. Працьовита людина лишається зосередженою, приймає виклики й ніколи не здається. Наполеглива праця виховує впевненість, дисципліну й повагу. Вона відчиняє двері до багатьох можливостей. Учням, працівникам і лідерам — усім потрібна наполеглива праця, щоб рости й досягати успіху.',
+        'Навіть маленькі зусилля — як-от чесна зосередженість у навчанні чи щоденна практика — з часом багато що змінюють. Коротко кажучи, наполеглива праця — це ключ до успіху, власного зростання й кращого майбутнього.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say a hard-working person does?', uk: 'Що, за текстом, робить працьовита людина?' },
+        options: [
+          { en: 'Stays focused and accepts challenges', uk: 'Лишається зосередженою і приймає виклики' },
+          { en: 'Avoids difficult tasks', uk: 'Уникає складних завдань' },
+          { en: 'Waits for luck', uk: 'Чекає на удачу' },
+        ],
+        correct: 0,
+        explain: { en: '“A hard-working person stays focused, accepts challenges, and never gives up.”', uk: '«A hard-working person stays focused, accepts challenges, and never gives up.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'According to the text, what does hard work build?', uk: 'Що, за текстом, виховує наполеглива праця?' },
+        options: [
+          { en: 'Confidence, discipline, and respect', uk: 'Впевненість, дисципліну й повагу' },
+          { en: 'Money and fame only', uk: 'Лише гроші й славу' },
+          { en: 'Stress and tiredness', uk: 'Стрес і втому' },
+        ],
+        correct: 0,
+        explain: { en: '“Hard work builds confidence, discipline, and respect.”', uk: '«Hard work builds confidence, discipline, and respect.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing hard work has helped you achieve?', uk: 'Чого вам допомогла досягти наполеглива праця?' },
+        sample: { en: 'Answers will vary. A strong answer names a real achievement and the effort behind it, not just the result.', uk: 'Відповіді різнитимуться. Сильна відповідь називає реальне досягнення й зусилля за ним, а не лише результат.' },
+      },
+    ],
+  },
+  {
+    id: 'the-most-valuable-thing-we-have',
+    title: { en: 'The Most Valuable Thing We Have', uk: 'Найцінніше, що ми маємо' },
+    category: 'discipline',
+    level: 'a2',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1560464049106559' },
+    topics: ['time', 'time management', 'productivity'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of time in our life. Time is the most valuable thing we have. Once it is gone, we can never get it back. That is why we should use our time wisely and carefully.',
+        'Good time management helps us do our work on time, reduces stress, and gives us more time for family, health, and our dreams. It also helps us become more productive and successful in life.',
+        'In our daily life, we often waste time on things that do not really matter. But every minute we save today can create a better tomorrow.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість часу в нашому житті. Час — найцінніше, що ми маємо. Щойно він минув, повернути його вже неможливо. Саме тому свій час варто витрачати мудро й обачно.',
+        'Добре керування часом допомагає нам виконувати роботу вчасно, зменшує стрес і дає більше часу для сімʼї, здоровʼя й наших мрій. Воно також робить нас продуктивнішими й успішнішими в житті.',
+        'У повсякденні ми часто витрачаємо час на речі, які насправді не мають значення. Але кожна хвилина, яку ми заощаджуємо сьогодні, може створити краще завтра.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'Why should we use time carefully, according to the text?', uk: 'Чому, за текстом, час варто витрачати обачно?' },
+        options: [
+          { en: 'Once it is gone, we can never get it back', uk: 'Щойно він минув, його не повернути' },
+          { en: 'Because it is expensive', uk: 'Бо він дорого коштує' },
+          { en: 'Because other people need it', uk: 'Бо він потрібен іншим людям' },
+        ],
+        correct: 0,
+        explain: { en: '“Once it is gone, we can never get it back.”', uk: '«Once it is gone, we can never get it back.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say good time management gives us more time for?', uk: 'На що, за текстом, добре керування часом дає нам більше часу?' },
+        options: [
+          { en: 'Family, health, and our dreams', uk: 'На сімʼю, здоровʼя й наші мрії' },
+          { en: 'Extra work and new projects', uk: 'На додаткову роботу й нові проєкти' },
+          { en: 'Travel and entertainment', uk: 'На подорожі й розваги' },
+        ],
+        correct: 0,
+        explain: { en: '“…gives us more time for family, health, and our dreams.”', uk: '«…gives us more time for family, health, and our dreams.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you wish you had more time for?', uk: 'На що ви хотіли б мати більше часу?' },
+        sample: { en: 'Answers will vary. A good answer names something specific (a person, a skill, rest) and one habit that steals that time now.', uk: 'Відповіді різнитимуться. Хороша відповідь називає щось конкретне (людину, навичку, відпочинок) і одну звичку, яка зараз цей час забирає.' },
+      },
+    ],
+  },
+  {
+    id: 'a-goal-gives-life-direction',
+    title: { en: 'A Goal Gives Life Direction', uk: 'Ціль дає життю напрям' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1943267329695190' },
+    topics: ['goals', 'planning', 'motivation'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of goals in our life.',
+        'Having a goal gives our life direction. It tells us what we want to achieve and keeps us focused. Without a goal, we may feel lost and waste our time on things that do not really matter.',
+        'A clear goal helps us make a plan and work with full energy. It gives us motivation when we feel tired or face difficulties. Big achievements in life always start with a small goal.',
+        'In our daily life, students set goals for their studies, workers set goals for their career, and everyone has personal goals like being healthy, happy, or helping others. When we work on our goals every day, we move closer to success.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість цілей у нашому житті.',
+        'Мати ціль означає мати напрям у житті. Вона показує нам, чого ми хочемо досягти, і допомагає лишатися зосередженими. Без цілі ми можемо почуватися загубленими й марнувати час на речі, які насправді не мають значення.',
+        'Чітка ціль допомагає скласти план і працювати на повну силу. Вона дає мотивацію, коли ми втомлені чи стикаємося з труднощами. Великі досягнення в житті завжди починаються з маленької цілі.',
+        'У повсякденні учні ставлять цілі в навчанні, працівники — у карʼєрі, і в кожного є особисті цілі: бути здоровим, щасливим або допомагати іншим. Коли ми працюємо над своїми цілями щодня, ми наближаємося до успіху.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What may happen without a goal, according to the text?', uk: 'Що, за текстом, може статися без цілі?' },
+        options: [
+          { en: 'We may feel lost and waste time', uk: 'Ми можемо почуватися загубленими й марнувати час' },
+          { en: 'We become more creative', uk: 'Ми стаємо креативнішими' },
+          { en: 'We finish work faster', uk: 'Ми швидше завершуємо роботу' },
+        ],
+        correct: 0,
+        explain: { en: '“Without a goal, we may feel lost and waste our time on things that do not really matter.”', uk: '«Without a goal, we may feel lost and waste our time…»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'How do big achievements start, according to the text?', uk: 'Як, за текстом, починаються великі досягнення?' },
+        options: [
+          { en: 'With a small goal', uk: 'З маленької цілі' },
+          { en: 'With a lot of money', uk: 'З великих грошей' },
+          { en: 'With other people’s help', uk: 'З допомоги інших людей' },
+        ],
+        correct: 0,
+        explain: { en: '“Big achievements in life always start with a small goal.”', uk: '«Big achievements in life always start with a small goal.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one goal you are working hard to achieve?', uk: 'Над якою ціллю ви наполегливо працюєте?' },
+        sample: { en: 'Answers will vary. A strong answer states the goal clearly and names one thing done toward it this week.', uk: 'Відповіді різнитимуться. Сильна відповідь чітко називає ціль і одну дію, зроблену для неї цього тижня.' },
+      },
+    ],
+  },
+  {
+    id: 'persistence-turns-dreams-into-reality',
+    title: { en: 'Persistence Turns Dreams into Reality', uk: 'Наполегливість перетворює мрії на реальність' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1674261787016981' },
+    topics: ['persistence', 'resilience', 'obstacles'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of persistence in our life.',
+        'Persistence is very important because it keeps us going even when things are difficult. Success is not achieved overnight. It comes after many failures and many attempts. A persistent person learns from mistakes, tries again, and never gives up. Persistence builds strength, confidence, and resilience. It helps us overcome obstacles and reach our goals.',
+        'In our daily life, persistence helps us improve our skills and achieve great results. Whether in studies, work, or personal goals, persistent effort always pays off. Even small steps, taken every day, lead to big achievements. In short, persistence turns dreams into reality.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість наполегливості в нашому житті.',
+        'Наполегливість дуже важлива, бо вона веде нас далі навіть тоді, коли важко. Успіх не досягається за одну ніч. Він приходить після багатьох невдач і багатьох спроб. Наполеглива людина вчиться на помилках, пробує знову й ніколи не здається. Наполегливість зміцнює силу, впевненість і стійкість. Вона допомагає долати перешкоди й досягати цілей.',
+        'У повсякденні наполегливість допомагає вдосконалювати навички й досягати чудових результатів. Байдуже, чи це навчання, робота, чи особисті цілі — наполегливі зусилля завжди себе виправдовують. Навіть маленькі кроки, зроблені щодня, ведуть до великих досягнень. Коротко кажучи, наполегливість перетворює мрії на реальність.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'When does success come, according to the text?', uk: 'Коли, за текстом, приходить успіх?' },
+        options: [
+          { en: 'After many failures and attempts', uk: 'Після багатьох невдач і спроб' },
+          { en: 'Overnight, if you are lucky', uk: 'За одну ніч, якщо пощастить' },
+          { en: 'Only to talented people', uk: 'Лише до талановитих людей' },
+        ],
+        correct: 0,
+        explain: { en: '“Success is not achieved overnight. It comes after many failures and many attempts.”', uk: '«Success is not achieved overnight. It comes after many failures and many attempts.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does a persistent person do after a mistake?', uk: 'Що робить наполеглива людина після помилки?' },
+        options: [
+          { en: 'Learns from it and tries again', uk: 'Вчиться на ній і пробує знову' },
+          { en: 'Changes the goal', uk: 'Змінює ціль' },
+          { en: 'Waits for someone to help', uk: 'Чекає, щоб хтось допоміг' },
+        ],
+        correct: 0,
+        explain: { en: '“A persistent person learns from mistakes, tries again, and never gives up.”', uk: '«A persistent person learns from mistakes, tries again, and never gives up.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you are refusing to give up on?', uk: 'Від чого ви не готові відступитися?' },
+        sample: { en: 'Answers will vary. A thoughtful answer names the thing, the hardest part of it, and why it is still worth continuing.', uk: 'Відповіді різнитимуться. Вдумлива відповідь називає саму справу, найважче в ній і причину, чому її варто продовжувати.' },
+      },
+    ],
+  },
+  {
+    id: 'perseverance-turns-problems-into-possibilities',
+    title: { en: 'Perseverance Turns Problems into Possibilities', uk: 'Незламність перетворює проблеми на можливості' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 2,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/898287692941075' },
+    topics: ['perseverance', 'setbacks', 'long-term success'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of perseverance in our life.',
+        'Perseverance is very important because it helps us keep going even when things are difficult. Life is full of challenges and we often face failures, problems, and setbacks. Without perseverance, we may give up too early and miss great opportunities. Perseverance does not mean that the journey is easy. It means you continue to try even when you feel tired or discouraged. A persevering person stays focused on the goal, learns from mistakes, and keeps moving forward. It builds strength, patience, and a never-give-up attitude. Students, workers, and leaders all need perseverance to achieve long-term success.',
+        'Even small steps of perseverance every day, like studying regularly, practicing a skill, or working hard can lead to amazing results. In short, perseverance turns problems into possibilities and dreams into reality.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість незламності в нашому житті.',
+        'Незламність дуже важлива, бо вона допомагає нам іти далі навіть тоді, коли важко. Життя сповнене викликів, і ми часто стикаємося з невдачами, проблемами й поразками. Без незламності ми можемо здатися надто рано й проґавити чудові можливості. Незламність не означає, що шлях буде легким. Вона означає, що ви продовжуєте пробувати навіть тоді, коли втомлені чи зневірені. Незламна людина не випускає цілі з очей, вчиться на помилках і рухається вперед. Вона формує силу, терпіння й готовність ніколи не здаватися. Учням, працівникам і лідерам — усім потрібна незламність, щоб досягати успіху на довгій дистанції.',
+        'Навіть маленькі кроки незламності щодня — регулярне навчання, тренування навички чи наполеглива робота — можуть привести до вражаючих результатів. Коротко кажучи, незламність перетворює проблеми на можливості, а мрії — на реальність.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does perseverance NOT mean, according to the text?', uk: 'Чого, за текстом, незламність НЕ означає?' },
+        options: [
+          { en: 'That the journey is easy', uk: 'Що шлях буде легким' },
+          { en: 'That you learn from mistakes', uk: 'Що ви вчитеся на помилках' },
+          { en: 'That you stay focused', uk: 'Що ви лишаєтеся зосередженими' },
+        ],
+        correct: 0,
+        explain: { en: '“Perseverance does not mean that the journey is easy.”', uk: '«Perseverance does not mean that the journey is easy.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is the risk of having no perseverance?', uk: 'У чому ризик відсутності незламності?' },
+        options: [
+          { en: 'Giving up too early and missing opportunities', uk: 'Здатися надто рано й проґавити можливості' },
+          { en: 'Working without any rest', uk: 'Працювати зовсім без відпочинку' },
+          { en: 'Setting goals that are too small', uk: 'Ставити надто малі цілі' },
+        ],
+        correct: 0,
+        explain: { en: '“Without perseverance, we may give up too early and miss great opportunities.”', uk: '«Without perseverance, we may give up too early and miss great opportunities.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one challenge you are persevering through right now?', uk: 'Який виклик ви долаєте просто зараз?' },
+        sample: { en: 'Answers will vary. A strong answer describes the challenge, how long it has lasted, and what keeps the effort going.', uk: 'Відповіді різнитимуться. Сильна відповідь описує виклик, як довго він триває і що підтримує зусилля.' },
+      },
+    ],
+  },
+  {
+    id: 'determination-keeps-you-working',
+    title: { en: 'Determination Keeps You Working', uk: 'Рішучість не дає зупинитися' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/4822002498011217' },
+    topics: ['determination', 'goals', 'confidence'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of determination in our life.',
+        'Determination is very important because it helps us keep working toward our goals. Without determination, it is easy to give up when things become difficult. A determined person stays strong, works hard, and keeps trying. Determination teaches courage, patience, and confidence. It helps us stay focused and move forward, even when we face problems. Students, workers, and leaders all need determination to succeed.',
+        'Even small steps like trying again after failure or working toward a goal every day can make a big difference. In short, determination is the key to turning our goals into reality.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість рішучості в нашому житті.',
+        'Рішучість дуже важлива, бо вона допомагає нам далі працювати над своїми цілями. Без рішучості легко здатися, щойно стає важко. Рішуча людина лишається сильною, наполегливо працює й продовжує пробувати. Рішучість вчить сміливості, терпіння та впевненості. Вона допомагає тримати фокус і рухатися вперед навіть тоді, коли ми стикаємося з проблемами. Учням, працівникам і лідерам — усім потрібна рішучість, щоб досягати успіху.',
+        'Навіть маленькі кроки — спробувати знову після невдачі чи щодня працювати над ціллю — можуть багато що змінити. Коротко кажучи, рішучість — це ключ до перетворення наших цілей на реальність.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What is easy to do without determination, according to the text?', uk: 'Що, за текстом, легко зробити без рішучості?' },
+        options: [
+          { en: 'Give up when things become difficult', uk: 'Здатися, щойно стає важко' },
+          { en: 'Find a better goal', uk: 'Знайти кращу ціль' },
+          { en: 'Ask others for help', uk: 'Попросити допомоги в інших' },
+        ],
+        correct: 0,
+        explain: { en: '“Without determination, it is easy to give up when things become difficult.”', uk: '«Without determination, it is easy to give up when things become difficult.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does determination teach, according to the text?', uk: 'Чого, за текстом, вчить рішучість?' },
+        options: [
+          { en: 'Courage, patience, and confidence', uk: 'Сміливості, терпіння та впевненості' },
+          { en: 'Speed and competition', uk: 'Швидкості та змагання' },
+          { en: 'Silence and distance', uk: 'Мовчання та дистанції' },
+        ],
+        correct: 0,
+        explain: { en: '“Determination teaches courage, patience, and confidence.”', uk: '«Determination teaches courage, patience, and confidence.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one goal you are determined to achieve?', uk: 'Якої цілі ви твердо налаштовані досягти?' },
+        sample: { en: 'Answers will vary. A strong answer names the goal and one difficulty the writer already expects to meet.', uk: 'Відповіді різнитимуться. Сильна відповідь називає ціль і одну складність, яку автор уже передбачає.' },
+      },
+    ],
+  },
+  {
+    id: 'staying-committed-when-it-gets-hard',
+    title: { en: 'Staying Committed When It Gets Hard', uk: 'Лишатися відданим, коли стає важко' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1042362311717258' },
+    topics: ['commitment', 'promises', 'follow-through'],
+    body: {
+      en: [
+        'Hello, everyone. Today I would like to talk about the importance of commitment in life. It is easy to start something when we feel excited. But staying committed when things become difficult is not easy. Commitment means keeping your promise to yourself and continuing your work even when you do not see quick results.',
+        'There will be days when you feel tired, confused, or ready to give up. But if you stay committed to your goal, every small effort takes you one step closer to it. Success is not only about starting something. It is about staying with it until you see the result.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хотів би поговорити про важливість відданості в житті. Легко почати щось, коли ми сповнені запалу. Але лишатися відданим, коли стає важко, — уже нелегко. Відданість означає тримати слово, дане самому собі, і продовжувати роботу навіть тоді, коли швидких результатів не видно.',
+        'Будуть дні, коли ви почуватиметеся втомленими, розгубленими чи готовими здатися. Але якщо ви лишаєтеся відданими своїй цілі, кожне маленьке зусилля наближає вас до неї на крок. Успіх — це не лише почати щось. Успіх — це лишатися зі справою, доки не побачите результат.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does commitment mean, according to the text?', uk: 'Що, за текстом, означає відданість справі?' },
+        options: [
+          { en: 'Keeping your promise to yourself and continuing the work', uk: 'Тримати слово, дане самому собі, й продовжувати роботу' },
+          { en: 'Only starting when you feel excited', uk: 'Починати лише коли є запал' },
+          { en: 'Changing your goal when it gets hard', uk: 'Змінювати ціль, коли стає важко' },
+        ],
+        correct: 0,
+        explain: { en: '“Commitment means keeping your promise to yourself and continuing your work even when you do not see quick results.”', uk: '«Commitment means keeping your promise to yourself…»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is success about, according to the last sentence?', uk: 'У чому, за останнім реченням, полягає успіх?' },
+        options: [
+          { en: 'Staying with something until you see the result', uk: 'Лишатися зі справою, доки не побачите результат' },
+          { en: 'Starting as many things as possible', uk: 'Починати якомога більше справ' },
+          { en: 'Never feeling tired or confused', uk: 'Ніколи не втомлюватися й не губитися' },
+        ],
+        correct: 0,
+        explain: { en: '“It is about staying with it until you see the result.”', uk: '«It is about staying with it until you see the result.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you are committed to achieving?', uk: 'Чого ви віддано прагнете досягти?' },
+        sample: { en: 'Answers will vary. A strong answer names the commitment and what the writer does on the days they do not feel like it.', uk: 'Відповіді різнитимуться. Сильна відповідь називає справу, якій автор відданий, і те, що він робить у дні, коли немає настрою.' },
+      },
+    ],
+  },
+  {
+    id: 'a-world-full-of-distractions',
+    title: { en: 'A World Full of Distractions', uk: 'Світ, повний відволікань' },
+    category: 'discipline',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/2838761363171387' },
+    topics: ['focus', 'attention', 'distractions'],
+    body: {
+      en: [
+        'Hello, everyone. Today I would like to talk about the importance of focus in our life. We live in a world full of distractions, and sometimes it is difficult to give our full attention to one thing. When we focus on our goal, we use our time and energy in a better way. We make fewer mistakes and become more confident.',
+        'Focus does not mean working all day without rest. It means knowing what is important and giving it our best attention. When you stop giving your attention to everything around you, you start giving your energy to what truly matters.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хотів би поговорити про важливість зосередженості в нашому житті. Ми живемо у світі, повному відволікань, і часом важко зосередити всю увагу на чомусь одному. Коли ми зосереджені на цілі, ми краще використовуємо свій час і енергію. Ми робимо менше помилок і стаємо впевненішими.',
+        'Зосередженість не означає працювати цілий день без відпочинку. Вона означає знати, що є важливим, і приділяти йому максимум уваги. Коли ви перестаєте роздавати увагу всьому навколо, ви починаєте віддавати енергію тому, що справді має значення.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What happens when we focus on our goal?', uk: 'Що стається, коли ми зосереджуємось на цілі?' },
+        options: [
+          { en: 'We make fewer mistakes and become more confident', uk: 'Ми робимо менше помилок і стаємо впевненішими' },
+          { en: 'We finish every task in one day', uk: 'Ми завершуємо всі завдання за день' },
+          { en: 'We stop needing rest', uk: 'Нам більше не потрібен відпочинок' },
+        ],
+        correct: 0,
+        explain: { en: '“We make fewer mistakes and become more confident.”', uk: '«We make fewer mistakes and become more confident.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does focus NOT mean, according to the text?', uk: 'Чого, за текстом, зосередженість НЕ означає?' },
+        options: [
+          { en: 'Working all day without rest', uk: 'Працювати цілий день без відпочинку' },
+          { en: 'Knowing what is important', uk: 'Знати, що важливо' },
+          { en: 'Giving your best attention', uk: 'Приділяти максимум уваги' },
+        ],
+        correct: 0,
+        explain: { en: '“Focus does not mean working all day without rest.”', uk: '«Focus does not mean working all day without rest.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing you need to focus on right now?', uk: 'На чому вам потрібно зосередитися просто зараз?' },
+        sample: { en: 'Answers will vary. A strong answer names the one thing and one distraction the writer is willing to drop for it.', uk: 'Відповіді різнитимуться. Сильна відповідь називає цю річ і одне відволікання, від якого автор готовий відмовитися заради неї.' },
+      },
+    ],
+  },
 ];

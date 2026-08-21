@@ -381,4 +381,57 @@ export const friendshipTexts: ReadingText[] = [
     ],
     source: { author: 'Mind Boost English', url: 'https://www.facebook.com/profile.php?id=61584114885870&sk=reels_tab' },
   },
+  // CHANGED (Wave LE1, §15): +1 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'what-makes-a-true-friend',
+    title: { en: 'What Makes a True Friend', uk: 'Що робить друга справжнім' },
+    category: 'friendship',
+    level: 'a2',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1360585398965096' },
+    topics: ['friendship', 'support', 'loyalty'],
+    body: {
+      en: [
+        'Hello, everyone. Today I would like to talk about friendship.',
+        'A good friend is someone who stays with us in both good and difficult times. They listen to us, support us, and make us feel less alone. Sometimes we do not need many friends. We only need a few people who truly care about us.',
+        'As we grow older, we may meet many people, but only some become special to us. We may not talk every day or meet for a long time, but true friendship can still remain strong. A real friend is not always the person who is beside you, but the person who still cares when you are far away.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хотів би поговорити про дружбу.',
+        'Хороший друг — це той, хто лишається з нами і в хороші, і у важкі часи. Він слухає нас, підтримує й робить так, що ми почуваємося менш самотніми. Іноді нам не потрібно багато друзів. Потрібно лише кілька людей, яким ми справді небайдужі.',
+        'Із роками ми можемо зустріти багато людей, але лише деякі стають для нас особливими. Ми можемо не говорити щодня чи довго не бачитися, але справжня дружба все одно може лишатися міцною. Справжній друг — це не завжди той, хто поруч, а той, кому ви все ще небайдужі, коли ви далеко.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'How many friends do we need, according to the text?', uk: 'Скільки друзів нам потрібно, за текстом?' },
+        options: [
+          { en: 'Only a few people who truly care about us', uk: 'Лише кілька людей, яким ми справді небайдужі' },
+          { en: 'As many as possible', uk: 'Якомога більше' },
+          { en: 'At least one from every place we have lived', uk: 'Принаймні по одному з кожного місця, де ми жили' },
+        ],
+        correct: 0,
+        explain: { en: '“Sometimes we do not need many friends. We only need a few people who truly care about us.”', uk: '«We only need a few people who truly care about us.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'How does the text define a real friend?', uk: 'Як текст визначає справжнього друга?' },
+        options: [
+          { en: 'The person who still cares when you are far away', uk: 'Той, кому ви все ще небайдужі, коли ви далеко' },
+          { en: 'The person you see every day', uk: 'Той, кого ви бачите щодня' },
+          { en: 'The person who agrees with you', uk: 'Той, хто з вами погоджується' },
+        ],
+        correct: 0,
+        explain: { en: '“A real friend is not always the person who is beside you, but the person who still cares when you are far away.”', uk: '«…the person who still cares when you are far away.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What do you think makes a true friend?', uk: 'Що, на вашу думку, робить друга справжнім?' },
+        sample: { en: 'Answers will vary. A strong answer gives one quality and an example of that quality in action.', uk: 'Відповіді різнитимуться. Сильна відповідь називає одну рису й наводить приклад цієї риси в дії.' },
+      },
+    ],
+  },
 ];

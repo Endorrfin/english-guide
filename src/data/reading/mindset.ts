@@ -1224,4 +1224,309 @@ export const mindsetTexts: ReadingText[] = [
     ],
     source: { author: 'Power of Positivity' },
   },
+  // CHANGED (Wave LE1, §15): +6 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'failure-is-not-the-end',
+    title: { en: 'Failure Is Not the End', uk: 'Невдача — це не кінець' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1352634940367320' },
+    topics: ['failure', 'learning', 'growth'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of failure in our life.',
+        'Failure is a part of life. Everyone fails sometimes. It happens when things don’t go as we plan. But failure is not the end. It teaches us important lessons and helps us grow. When we fail, we learn what went wrong and find better ways to try again.',
+        'Many successful people failed many times before they achieved their dreams. Failure builds patience, strength, and confidence. It teaches us to keep going and not give up easily.',
+        'In our daily life, students fail in exams, workers fail in projects, and businesses face losses. But every failure brings us one step closer to success if we learn from it.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість невдачі в нашому житті.',
+        'Невдача — частина життя. Кожен інколи зазнає невдачі. Це стається, коли все йде не так, як ми планували. Але невдача — не кінець. Вона вчить нас важливих уроків і допомагає рости. Коли ми зазнаємо невдачі, ми дізнаємося, що пішло не так, і знаходимо кращі способи спробувати знову.',
+        'Багато успішних людей зазнавали невдач багато разів, перш ніж здійснили свої мрії. Невдача виховує терпіння, силу та впевненість. Вона вчить нас іти далі й не здаватися легко.',
+        'У повсякденні учні провалюють іспити, працівники зазнають невдач у проєктах, а бізнеси зазнають збитків. Але кожна невдача наближає нас на крок до успіху, якщо ми з неї вчимося.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What do we learn when we fail, according to the text?', uk: 'Що, за текстом, ми дізнаємося, коли зазнаємо невдачі?' },
+        options: [
+          { en: 'What went wrong, and better ways to try again', uk: 'Що пішло не так, і кращі способи спробувати знову' },
+          { en: 'That the goal was impossible', uk: 'Що ціль була неможлива' },
+          { en: 'That we should stop planning', uk: 'Що більше не варто планувати' },
+        ],
+        correct: 0,
+        explain: { en: '“When we fail, we learn what went wrong and find better ways to try again.”', uk: '«When we fail, we learn what went wrong and find better ways to try again.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'Under what condition does failure bring us closer to success?', uk: 'За якої умови невдача наближає нас до успіху?' },
+        options: [
+          { en: 'If we learn from it', uk: 'Якщо ми з неї вчимося' },
+          { en: 'If nobody notices it', uk: 'Якщо її ніхто не помітив' },
+          { en: 'If it happens only once', uk: 'Якщо вона трапилася лише раз' },
+        ],
+        correct: 0,
+        explain: { en: '“But every failure brings us one step closer to success if we learn from it.”', uk: '«…if we learn from it.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is the failure that taught you an important lesson?', uk: 'Яка невдача навчила вас важливого уроку?' },
+        sample: { en: 'Answers will vary. A strong answer names the failure and states the lesson in one clear sentence.', uk: 'Відповіді різнитимуться. Сильна відповідь називає саму невдачу й формулює урок одним чітким реченням.' },
+      },
+    ],
+  },
+  {
+    id: 'hope-gives-us-strength',
+    title: { en: 'Hope Gives Us Strength', uk: 'Надія дає нам силу' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 2,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1036610842525871' },
+    topics: ['hope', 'hard times', 'faith'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of hope in our life.',
+        'Hope is very important because it gives us strength during hard times. When we have hope, we believe that things will get better. It keeps us going, even when we face problems or feel sad. Hope helps us stay positive and never lose faith in ourselves. It gives us the courage to try again and work for a better future. Without hope, life can feel empty and difficult.',
+        'In our daily life, hope helps us in many ways. It motivates us to study, work hard, and chase our dreams. It also helps us be patient and strong. Even small hope can bring big changes in our life. In short, hope is like a light that shows us the path, even in the darkest times.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість надії в нашому житті.',
+        'Надія дуже важлива, бо вона дає нам силу у важкі часи. Коли ми маємо надію, ми віримо, що стане краще. Вона веде нас далі навіть тоді, коли ми стикаємося з проблемами чи сумуємо. Надія допомагає нам лишатися позитивними й не втрачати віри в себе. Вона дає сміливість спробувати знову й працювати заради кращого майбутнього. Без надії життя може здаватися порожнім і важким.',
+        'У повсякденні надія допомагає нам по-різному. Вона мотивує нас вчитися, наполегливо працювати та йти за своїми мріями. Вона також допомагає бути терплячими й сильними. Навіть маленька надія може принести великі зміни в наше життя. Коротко кажучи, надія — наче світло, що показує нам шлях навіть у найтемніші часи.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What do we believe when we have hope?', uk: 'У що ми віримо, коли маємо надію?' },
+        options: [
+          { en: 'That things will get better', uk: 'Що стане краще' },
+          { en: 'That problems will never come', uk: 'Що проблем ніколи не буде' },
+          { en: 'That others will solve our problems', uk: 'Що інші розвʼяжуть наші проблеми' },
+        ],
+        correct: 0,
+        explain: { en: '“When we have hope, we believe that things will get better.”', uk: '«When we have hope, we believe that things will get better.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What image does the text use for hope?', uk: 'Який образ текст використовує для надії?' },
+        options: [
+          { en: 'A light that shows us the path', uk: 'Світло, що показує шлях' },
+          { en: 'A door that opens by itself', uk: 'Двері, що відчиняються самі' },
+          { en: 'A road with no end', uk: 'Дорога без кінця' },
+        ],
+        correct: 0,
+        explain: { en: '“…hope is like a light that shows us the path, even in the darkest times.”', uk: '«…hope is like a light that shows us the path…»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What are you still hoping to achieve?', uk: 'Чого ви досі сподіваєтеся досягти?' },
+        sample: { en: 'Answers will vary. A strong answer names the hope and one small step that keeps it alive.', uk: 'Відповіді різнитимуться. Сильна відповідь називає саму надію й один маленький крок, що не дає їй згаснути.' },
+      },
+    ],
+  },
+  {
+    id: 'adapting-to-change',
+    title: { en: 'Adapting to Change', uk: 'Адаптація до змін' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/4638123516471122' },
+    topics: ['adaptability', 'change', 'problem solving'],
+    body: {
+      en: [
+        'Hello, everyone. Today, I want to talk about the importance of adaptability in our life.',
+        'Adaptability is very important because it helps us adjust to new situations and changes in life. Change is a part of life, and we cannot always control it. An adaptable person accepts change, learns quickly, and finds new ways to solve problems. It helps us stay calm, reduce stress, and move forward with confidence. Students, workers, and leaders all need adaptability to succeed.',
+        'Even small changes like learning new technology or working in a new team can help us grow stronger. In short, adaptability is the key to a happy and successful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість адаптивності в нашому житті.',
+        'Адаптивність дуже важлива, бо вона допомагає нам пристосовуватися до нових ситуацій і змін у житті. Зміни — частина життя, і ми не завжди можемо їх контролювати. Адаптивна людина приймає зміни, швидко вчиться й знаходить нові способи розвʼязувати проблеми. Це допомагає нам лишатися спокійними, зменшувати стрес і впевнено рухатися вперед. Учням, працівникам і лідерам — усім потрібна адаптивність, щоб досягати успіху.',
+        'Навіть маленькі зміни — освоєння нової технології чи робота в новій команді — можуть допомогти нам стати сильнішими. Коротко кажучи, адаптивність — це ключ до щасливого й успішного життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does an adaptable person do, according to the text?', uk: 'Що робить адаптивна людина, за текстом?' },
+        options: [
+          { en: 'Accepts change and finds new ways to solve problems', uk: 'Приймає зміни й знаходить нові способи розвʼязувати проблеми' },
+          { en: 'Waits until the change passes', uk: 'Чекає, доки зміни минуть' },
+          { en: 'Keeps doing everything the old way', uk: 'Продовжує робити все по-старому' },
+        ],
+        correct: 0,
+        explain: { en: '“An adaptable person accepts change, learns quickly, and finds new ways to solve problems.”', uk: '«An adaptable person accepts change, learns quickly, and finds new ways to solve problems.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the text say about controlling change?', uk: 'Що текст каже про контроль над змінами?' },
+        options: [
+          { en: 'We cannot always control it', uk: 'Ми не завжди можемо їх контролювати' },
+          { en: 'We can control it if we plan well', uk: 'Можемо контролювати, якщо добре плануємо' },
+          { en: 'Only leaders can control it', uk: 'Лише лідери можуть їх контролювати' },
+        ],
+        correct: 0,
+        explain: { en: '“Change is a part of life, and we cannot always control it.”', uk: '«Change is a part of life, and we cannot always control it.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing adaptability has helped you achieve?', uk: 'Чого вам допомогла досягти адаптивність?' },
+        sample: { en: 'Answers will vary. A strong answer describes a specific change and what the writer did differently because of it.', uk: 'Відповіді різнитимуться. Сильна відповідь описує конкретну зміну й те, що автор через неї зробив інакше.' },
+      },
+    ],
+  },
+  {
+    id: 'growing-a-little-every-day',
+    title: { en: 'Growing a Little Every Day', uk: 'Зростати потроху щодня' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1185189473986492' },
+    topics: ['growth', 'comfort zone', 'self-improvement'],
+    body: {
+      en: [
+        'Hello, everyone. Today I want to talk about the importance of growth in our life.',
+        'Growth is very important because it helps us become better every day and reach our full potential. When we learn new things and step out of our comfort zone, we grow. Growth is not just about getting bigger in size, but also about improving our mind, skills, and character. It helps us face challenges with a positive attitude and build a better future. Students, workers, and leaders all need growth to succeed.',
+        'Even small efforts like reading a book or learning a new skill can help us grow a little every day. In short, growth is the key to a happy and successful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість зростання в нашому житті.',
+        'Зростання дуже важливе, бо воно допомагає нам ставати кращими щодня й розкривати весь свій потенціал. Коли ми вчимося нового й виходимо із зони комфорту, ми зростаємо. Зростання — це не лише більший розмір, а й вдосконалення розуму, навичок і характеру. Воно допомагає зустрічати виклики з позитивним ставленням і будувати краще майбутнє. Учням, працівникам і лідерам — усім потрібне зростання, щоб досягати успіху.',
+        'Навіть маленькі зусилля — прочитати книжку чи опанувати нову навичку — можуть допомагати нам зростати потроху щодня. Коротко кажучи, зростання — це ключ до щасливого й успішного життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'When do we grow, according to the text?', uk: 'Коли ми зростаємо, за текстом?' },
+        options: [
+          { en: 'When we learn new things and leave our comfort zone', uk: 'Коли вчимося нового й виходимо із зони комфорту' },
+          { en: 'When we repeat what we already know', uk: 'Коли повторюємо те, що вже знаємо' },
+          { en: 'When we avoid all challenges', uk: 'Коли уникаємо всіх викликів' },
+        ],
+        correct: 0,
+        explain: { en: '“When we learn new things and step out of our comfort zone, we grow.”', uk: '«When we learn new things and step out of our comfort zone, we grow.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What is growth about, besides size?', uk: 'Що ще, крім розміру, охоплює зростання?' },
+        options: [
+          { en: 'Improving our mind, skills, and character', uk: 'Вдосконалення розуму, навичок і характеру' },
+          { en: 'Earning more money', uk: 'Більший заробіток' },
+          { en: 'Meeting more people', uk: 'Більше знайомств' },
+        ],
+        correct: 0,
+        explain: { en: '“Growth is not just about getting bigger in size, but also about improving our mind, skills, and character.”', uk: '«…improving our mind, skills, and character.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing growth has helped you achieve?', uk: 'Чого вам допомогло досягти зростання?' },
+        sample: { en: 'Answers will vary. A strong answer compares the writer now with the writer a year ago on one concrete point.', uk: 'Відповіді різнитимуться. Сильна відповідь порівнює автора сьогодні з автором рік тому за одним конкретним пунктом.' },
+      },
+    ],
+  },
+  {
+    id: 'coming-back-stronger',
+    title: { en: 'Coming Back Stronger', uk: 'Повертатися сильнішим' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/1442759571022411' },
+    topics: ['resilience', 'tough times', 'mental strength'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of resilience in our life.',
+        'Resilience is very important because it helps us face difficulties and come back stronger. Life is not always easy. We all face failures, problems, and tough times. A resilient person does not give up. They stay calm, learn from mistakes, and keep moving forward. Resilience builds mental strength, confidence, and a positive mind. It helps us stay hopeful even when things go wrong. Students, workers, and leaders all need resilience to succeed.',
+        'Even small steps, like trying again after a failure or staying positive in hard times, can make a big difference. In short, resilience is the key to a stronger and happier life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість стійкості в нашому житті.',
+        'Стійкість дуже важлива, бо вона допомагає нам зустрічати труднощі й повертатися сильнішими. Життя не завжди легке. Ми всі стикаємося з невдачами, проблемами й важкими часами. Стійка людина не здається. Вона лишається спокійною, вчиться на помилках і рухається вперед. Стійкість зміцнює силу духу, впевненість і позитивне мислення. Вона допомагає зберігати надію навіть тоді, коли все йде не так. Учням, працівникам і лідерам — усім потрібна стійкість, щоб досягати успіху.',
+        'Навіть маленькі кроки — спробувати знову після невдачі чи лишатися позитивним у важкі часи — можуть багато що змінити. Коротко кажучи, стійкість — це ключ до сильнішого й щасливішого життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What does a resilient person do, according to the text?', uk: 'Що робить стійка людина, за текстом?' },
+        options: [
+          { en: 'Stays calm, learns from mistakes, and keeps moving forward', uk: 'Лишається спокійною, вчиться на помилках і рухається вперед' },
+          { en: 'Avoids all difficult situations', uk: 'Уникає всіх складних ситуацій' },
+          { en: 'Waits for the problem to disappear', uk: 'Чекає, доки проблема зникне' },
+        ],
+        correct: 0,
+        explain: { en: '“They stay calm, learn from mistakes, and keep moving forward.”', uk: '«They stay calm, learn from mistakes, and keep moving forward.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does resilience help us do when things go wrong?', uk: 'Що стійкість допомагає нам робити, коли все йде не так?' },
+        options: [
+          { en: 'Stay hopeful', uk: 'Зберігати надію' },
+          { en: 'Forget the problem', uk: 'Забути проблему' },
+          { en: 'Blame other people', uk: 'Звинувачувати інших' },
+        ],
+        correct: 0,
+        explain: { en: '“It helps us stay hopeful even when things go wrong.”', uk: '«It helps us stay hopeful even when things go wrong.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing resilience has helped you achieve?', uk: 'Чого вам допомогла досягти стійкість?' },
+        sample: { en: 'Answers will vary. A strong answer describes a setback and what the writer did in the days right after it.', uk: 'Відповіді різнитимуться. Сильна відповідь описує невдачу й те, що автор робив у перші дні після неї.' },
+      },
+    ],
+  },
+  {
+    id: 'self-confidence-without-fear',
+    title: { en: 'Self-Confidence Without Fear', uk: 'Впевненість у собі без страху' },
+    category: 'mindset',
+    level: 'b1',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/2090661661546091' },
+    topics: ['self-confidence', 'risk', 'personality'],
+    body: {
+      en: [
+        'Hello everyone. Today I want to talk about the importance of self-confidence in our life.',
+        'Self-confidence is very important because it helps us believe in ourselves and face any situation in life. When we have confidence, we can speak, act, and make decisions without fear. It helps us try new things, take risks, and learn from our mistakes. A confident person stays positive, handles challenges calmly, and never gives up. Self-confidence builds courage, respect, and a strong personality. It helps us grow and achieve our dreams. Students, workers, and leaders all need self-confidence to succeed.',
+        'Even small steps like speaking in class or sharing our ideas can build more confidence over time. In short, self-confidence is the key to a happy, successful, and peaceful life.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім. Сьогодні я хочу поговорити про важливість впевненості в собі в нашому житті.',
+        'Впевненість у собі дуже важлива, бо вона допомагає нам вірити в себе й давати раду будь-якій ситуації в житті. Коли ми впевнені, ми можемо говорити, діяти та ухвалювати рішення без страху. Вона допомагає пробувати нове, ризикувати й вчитися на власних помилках. Впевнена людина лишається позитивною, спокійно дає раду викликам і ніколи не здається. Впевненість у собі формує сміливість, повагу й сильну особистість. Вона допомагає нам рости й здійснювати мрії. Учням, працівникам і лідерам — усім потрібна впевненість у собі, щоб досягати успіху.',
+        'Навіть маленькі кроки — виступити в класі чи поділитися своїми ідеями — можуть з часом додати впевненості. Коротко кажучи, впевненість у собі — це ключ до щасливого, успішного й спокійного життя.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'What can we do when we have confidence?', uk: 'Що ми можемо робити, коли ми впевнені?' },
+        options: [
+          { en: 'Speak, act, and make decisions without fear', uk: 'Говорити, діяти й ухвалювати рішення без страху' },
+          { en: 'Avoid every mistake', uk: 'Уникати будь-яких помилок' },
+          { en: 'Work without any effort', uk: 'Працювати без жодних зусиль' },
+        ],
+        correct: 0,
+        explain: { en: '“When we have confidence, we can speak, act, and make decisions without fear.”', uk: '«…we can speak, act, and make decisions without fear.»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does self-confidence build, according to the text?', uk: 'Що, за текстом, формує впевненість у собі?' },
+        options: [
+          { en: 'Courage, respect, and a strong personality', uk: 'Сміливість, повагу й сильну особистість' },
+          { en: 'Comfort, rest, and free time', uk: 'Комфорт, відпочинок і вільний час' },
+          { en: 'Luck, money, and popularity', uk: 'Удачу, гроші й популярність' },
+        ],
+        correct: 0,
+        explain: { en: '“Self-confidence builds courage, respect, and a strong personality.”', uk: '«Self-confidence builds courage, respect, and a strong personality.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'What is one thing self-confidence has helped you achieve?', uk: 'Чого вам допомогла досягти впевненість у собі?' },
+        sample: { en: 'Answers will vary. A strong answer names a moment where the writer acted despite doubt, and the result.', uk: 'Відповіді різнитимуться. Сильна відповідь називає момент, коли автор діяв попри сумнів, і результат.' },
+      },
+    ],
+  },
 ];

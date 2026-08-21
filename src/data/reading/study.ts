@@ -2105,4 +2105,55 @@ export const studyTexts: ReadingText[] = [
     ],
     source: { author: 'Power of Positivity' },
   },
+  // CHANGED (Wave LE1, §15): +1 from the "Learn English" reel series (_examples/Reading/reading new.txt).
+  // Same speaker/format throughout: a spoken essay that closes on a reflective question — that
+  // closing question is carried into the `open` question, not left in the body.
+  {
+    id: 'my-english-learning-journey',
+    title: { en: 'My English Learning Journey', uk: 'Мій шлях вивчення англійської' },
+    category: 'study',
+    level: 'a2',
+    minutes: 1,
+    source: { author: 'Learn English', url: 'https://www.facebook.com/reel/2875690239470838' },
+    topics: ['learning english', 'speaking', 'confidence'],
+    body: {
+      en: [
+        'Hello, everyone! Today I would like to talk about my English learning journey.',
+        'At first, speaking English was very hard for me. I was afraid of making mistakes. So, I often stayed quiet when I wanted to speak. Later, I decided to practice every day. I started with simple words and short sentences. I listened to English videos, read small stories, and tried to speak without fear. I still make mistakes, but now I feel more confident. I have learned that learning English takes time, patience, and regular practice. The most important thing is not to speak perfect English, but to never stop trying.',
+      ].join('\n\n'),
+      uk: [
+        'Привіт усім! Сьогодні я хотів би розповісти про свій шлях вивчення англійської.',
+        'Спочатку говорити англійською було для мене дуже важко. Я боявся робити помилки, тому часто мовчав тоді, коли хотів заговорити. Згодом я вирішив практикуватися щодня. Я почав із простих слів і коротких речень. Я слухав англомовні відео, читав маленькі історії й намагався говорити без страху. Я досі роблю помилки, але тепер почуваюся впевненіше. Я зрозумів, що вивчення англійської потребує часу, терпіння й регулярної практики. Найважливіше — не говорити ідеальною англійською, а ніколи не переставати пробувати.',
+      ].join('\n\n'),
+    },
+    questions: [
+      {
+        kind: 'mcq',
+        q: { en: 'Why did the speaker often stay quiet at first?', uk: 'Чому оповідач спочатку часто мовчав?' },
+        options: [
+          { en: 'The speaker was afraid of making mistakes', uk: 'Оповідач боявся робити помилки' },
+          { en: 'The speaker did not like English', uk: 'Оповідачеві не подобалася англійська' },
+          { en: 'The speaker had nobody to talk to', uk: 'Оповідачеві не було з ким говорити' },
+        ],
+        correct: 0,
+        explain: { en: '“I was afraid of making mistakes. So, I often stayed quiet when I wanted to speak.”', uk: '«I was afraid of making mistakes. So, I often stayed quiet…»' },
+      },
+      {
+        kind: 'mcq',
+        q: { en: 'What does the speaker call the most important thing?', uk: 'Що оповідач називає найважливішим?' },
+        options: [
+          { en: 'Never to stop trying', uk: 'Ніколи не переставати пробувати' },
+          { en: 'To speak perfect English', uk: 'Говорити ідеальною англійською' },
+          { en: 'To learn as fast as possible', uk: 'Вчитися якомога швидше' },
+        ],
+        correct: 0,
+        explain: { en: '“The most important thing is not to speak perfect English, but to never stop trying.”', uk: '«…not to speak perfect English, but to never stop trying.»' },
+      },
+      {
+        kind: 'open',
+        q: { en: 'How is your English learning journey going?', uk: 'Як просувається ваше вивчення англійської?' },
+        sample: { en: 'Answers will vary. A strong answer names where the writer started, what they do now, and the hardest part today.', uk: 'Відповіді різнитимуться. Сильна відповідь називає, з чого автор починав, що робить зараз і що найважче сьогодні.' },
+      },
+    ],
+  },
 ];
