@@ -7,10 +7,10 @@
 
 export const PHRASE_COUNTS = {
   /** data/idioms.ts total — idioms + phrasal verbs. */
-  expressions: 252,
-  idioms: 183,
-  phrasals: 69,
+  expressions: 262,
+  idioms: 185,
+  phrasals: 77,
   /** data/collocations.ts total (V12). */
-  collocations: 162,
+  collocations: 203,
   irregular: 75,
 } as const;

@@ -40,13 +40,13 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   IPA + TTS pronunciation, UA translations, bilingual definitions, **7 examples per word (4 general +
   business / office / dev)**, forms, collocations, cross-links; **A–Z rail** + search by English word
   **or** Ukrainian translation; filters by CEFR level, part of speech, topic.
-- **Idioms ★ (word study)** — `#/idioms`, an engaging trainer for **multi-word English** (252 idioms ·
+- **Idioms ★ (word study)** — `#/idioms`, an engaging trainer for **multi-word English** (262 idioms ·
   phrasal verbs — a dataset kept separate from single words): each card carries its **Ukrainian
   equivalent**, real examples with TTS and — for idioms — the **story behind it**. Three modes:
   **Learn** (browse by category/theme), **Guess** (meaning → recall the expression), **Match** (pair
   expressions to meanings). Mastery per expression.
 - **Collocations ★ (word study)** — `#/collocations`, the tab for the pairs English simply insists on:
-  you *make* a decision but *do* your homework, and rain is *heavy*, never *strong*. 162 entries in
+  you *make* a decision but *do* your homework, and rain is *heavy*, never *strong*. 203 entries in
   eight categories (Make vs Do · Verb + Noun · Adjective + Noun · Adverb + Adjective / Verb · Business ·
   Workplace & Tech · Soft skills & interview · Everyday & routine), each with its Ukrainian version, two
   real examples and — where learners slip — the **wrong version and its fix**. Four modes: **Learn**,
@@ -143,15 +143,15 @@ sim) and `m22` Requests & politeness.
 **D1 — shipped:** the **Definitions** study page (`#/definitions`) over the shared word corpus — A–Z +
 Study / Recall / Describe / Cloze + mastery — and the **first custom word wave (20 cards)**, taking the
 dictionary to **170 words (150 A1 + 20 custom)**. See `DEFINITIONS.md`.
-**D2–D10 — shipped:** nine more Definitions waves (**+424 cards**) — the dictionary is now **594 words
-(150 A1 + 444 custom)**. D7 (+68) is the first monthly wave from `_examples/definition_v2.txt` (business/
+**D2–D11 — shipped:** ten more Definitions waves (**+435 cards**) — the dictionary is now **605 words
+(150 A1 + 455 custom)**. D7 (+68) is the first monthly wave from `_examples/definition_v2.txt` (business/
 office & career vocabulary). The teachable single-word backlog is cleared (the ~178 short phrases go to a
 future idioms tab).
 **T4 — shipped:** Section II **Tenses complete (6/6)** — `m11` Choosing Tenses & Narrative (+ the ★
 `tense-chooser`: three meaning questions → the tense) and the ★ `sentence-morpher` on `m6` (one
 sentence morphed through all 12 cells). Now **6 sections · 34 modules · 12 authored**.
-**V1–V12 — shipped:** the **Words hub** (five tabs), the **Idioms trainer** (252 entries — **183 idioms** in
-11 categories · 69 phrasal verbs), the **Collocations trainer** (**162 entries** in 8 categories, with the
+**V1–V12 — shipped:** the **Words hub** (five tabs), the **Idioms trainer** (262 entries — **185 idioms** in
+11 categories · 77 phrasal verbs), the **Collocations trainer** (**203 entries** in 8 categories, with the
 ★ *Which word?* drill — V12) and the **Irregular-verbs trainer** (75 verbs, table + 3-forms drill).
 **RB1 — shipped:** Reading grew 100 → **131 texts**, incl. a new *Biographies & Speeches* category.
 **R1 — shipped:** **`#/review`, the SRS trainer** — SM-2-lite ported 1:1, four corpus decks over the 769
@@ -167,7 +167,7 @@ ships only nav metadata, so a module page shows its title, mental model and tabl
 and streams the lesson in. First load is now **326 kB** — down from 1.39 MB across M1+M2 (**−77%**), and
 over half of what's left is React itself. Build gates enforce it: a corpus or a module body that sneaks
 back onto the first load fails the build.
-**Next:** content again — dictionary wave W2 (594 → ~1,000 words) and Section III (Core Grammar) with the
+**Next:** content again — dictionary wave W2 (605 → ~1,000 words) and Section III (Core Grammar) with the
 `conditionals-machine` sim; more Reading and idiom waves.
 
 ---
@@ -210,13 +210,13 @@ Collocations · Irregular verbs**. Усі «словникові» поверх�
 (TTS), переклади, тлумачення, **7 прикладів на слово (4 загальні + business / office / dev)**, форми,
 collocations, перехресні посилання; **рейка A–Z** + пошук за англійським словом **або** українським
 перекладом; фільтри за рівнем, частиною мови, темою.
-**Idioms ★ (вивчення слів)** — `#/idioms`, захопливий тренажер **багатослівної англійської** (252 ідіоми
+**Idioms ★ (вивчення слів)** — `#/idioms`, захопливий тренажер **багатослівної англійської** (262 ідіоми
 та phrasal verbs — датасет, окремий від окремих слів): кожна картка має **український відповідник**,
 живі приклади з озвученням і — для ідіом — **історію походження**. Три режими: **Learn** (перегляд за
 категорією/темою), **Guess** (значення → пригадай вираз), **Match** (спаруй вирази зі значеннями).
 Mastery на кожен вираз.
 **Collocations ★ (вивчення слів)** — `#/collocations`, вкладка про пари, на яких англійська наполягає:
-ви *make* a decision, але *do* your homework, а дощ буває *heavy*, ніколи не *strong*. 162 записи у
+ви *make* a decision, але *do* your homework, а дощ буває *heavy*, ніколи не *strong*. 203 записи у
 восьми категоріях (Make vs Do · Verb + Noun · Adjective + Noun · Adverb + Adjective / Verb · Business ·
 Workplace & Tech · Soft skills · Побут), кожен з українським відповідником, двома прикладами і — там, де
 найчастіше помиляються — **типовою помилкою та її виправленням**. Чотири режими: **Learn**,
