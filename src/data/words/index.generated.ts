@@ -16,9 +16,9 @@ export type WordIndexEntry = {
 };
 
 export const WORD_COUNTS = {
-  total: 594,
+  total: 605,
   a1: 150,
-  custom: 444,
+  custom: 455,
 } as const;
 
 export const WORD_INDEX: readonly WordIndexEntry[] = [
@@ -616,4 +616,15 @@ export const WORD_INDEX: readonly WordIndexEntry[] = [
   { id: "playful", word: "playful", level: "b2", translations: "грайливий, жартівливий, пустотливий" },
   { id: "qualification", word: "qualification", level: "b2", translations: "кваліфікація, диплом чи фах, застереження" },
   { id: "fit", word: "fit", level: "a2", translations: "підходити за розміром, вміщатися, у добрій формі, відповідність" },
+  { id: "align", word: "align", level: "b2", translations: "узгоджувати, вирівнювати, ставати на бік (когось)" },
+  { id: "struggle", word: "struggle", level: "b2", translations: "боротися, насилу давати раду, боротьба, труднощі" },
+  { id: "humility", word: "humility", level: "c1", translations: "скромність, смиренність, уміння визнати свої межі" },
+  { id: "lack", word: "lack", level: "b1", translations: "брак, нестача, бракувати, не мати" },
+  { id: "notably", word: "notably", level: "b2", translations: "зокрема, особливо, помітно" },
+  { id: "ridiculous", word: "ridiculous", level: "c1", translations: "безглуздий, смішний, абсурдний, шалений (про ціну, кількість)" },
+  { id: "agenda", word: "agenda", level: "b2", translations: "порядок денний, план зустрічі, прихована мета" },
+  { id: "input", word: "input", level: "b2", translations: "внесок, думки, поради, вхідні дані, вводити (дані)" },
+  { id: "outweigh", word: "outweigh", level: "c1", translations: "переважати, бути вагомішим, переважувати" },
+  { id: "roadmap", word: "roadmap", level: "b2", translations: "дорожня карта, план дій, роадмап" },
+  { id: "consensus", word: "consensus", level: "c1", translations: "консенсус, загальна згода, одностайність" },
 ];
