@@ -38,6 +38,3 @@ per-category lazy split at ~400 texts is getting closer.
 CLAUDE.md: §14 LE1 entry, plus two corrections to the §15 runbook (dedupe on
 content not frame; check a renamed title against its own answer key).
 
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01JnAQ39D3wTHM3RgXqBgEBY
-
