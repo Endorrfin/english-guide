@@ -78,6 +78,9 @@ const SIM_CANARIES: Record<string, string[]> = {
   // "Maya worked …"); the Tense Chooser renders its Q1 step (the title is stable across EN/UK).
   SentenceMorpher: ['Sentence Morpher', 'worked'],
   TenseChooser: ['Tense Chooser'],
+  // CHANGED (C1): the Conditionals Machine renders its default cell (real × future → Type 1) with the
+  // if-clause highlighted; the label and forms stay English in both languages.
+  ConditionalsMachine: ['Conditionals Machine', 'Type 1 — first conditional', 'If the client approves the design'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -89,6 +92,8 @@ const FIG_CANARIES: Record<string, string[]> = {
   // (the legend is always in the DOM; grammar terms stay English across EN/UK).
   TenseTimelineFuture: ['will / going to', 'Future Continuous'],
   TenseTimelinePerfect: ['Past Simple', 'Present Perfect'],
+  // CHANGED (C1): m13's distance-from-reality figure — the Type 2 and Type 3 rows.
+  ConditionalDistance: ['if + Past Simple', 'would have + V3'],
 };
 
 async function main(): Promise<void> {
@@ -258,7 +263,7 @@ async function main(): Promise<void> {
   const bodies = new Map<string, Awaited<ReturnType<typeof loadModule>>>();
   for (const id of ["m17-modal-system", "m6-tense-system", "m7-present-simple-continuous",
                     "m8-past-simple-continuous", "m9-future-forms", "m10-perfect-family",
-                    "m11-choosing-narrative"]) {
+                    "m11-choosing-narrative", "m13-conditionals-0-1-2"]) {
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -312,6 +317,12 @@ async function main(): Promise<void> {
       "Past Perfect",
       "was going to",
     ]);
+    // CHANGED (C1): m13 authored body at dive 4 — the advice formula (topic 2) and the dive-4
+    // in case of + noun note (topic 3) prove both the core and the deepest blocks render.
+    check("ModuleBody:m13", bodyEl("m13-conditionals-0-1-2"), lang, 6000, [
+      "If I were you",
+      "In case of",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -326,6 +337,7 @@ async function main(): Promise<void> {
     "#/m/m17-modal-system/function-x-time-grid",
     "#/m/m6-tense-system", // CHANGED (T1)
     "#/m/m11-choosing-narrative", // CHANGED (T4)
+    "#/m/m13-conditionals-0-1-2", // CHANGED (C1)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",

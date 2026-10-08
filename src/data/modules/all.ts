@@ -39,6 +39,9 @@ import { m10 } from './m10-perfect-family';
 // CHANGED (T4): m11 authored — Choosing Tenses & Narrative (+ the ★ tense-chooser sim; the
 // ★ sentence-morpher lands on m6). Section II Tenses is COMPLETE (6/6).
 import { m11 } from './m11-choosing-narrative';
+// CHANGED (C1): m13 authored — Section III Core Grammar begins (conditionals 0/1/2 + the
+// ★ conditionals-machine sim). The import replaces the former stub() entry below.
+import { m13 } from './m13-conditionals-0-1-2';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -99,7 +102,7 @@ export const modules: Module[] = [
 
   // Section III (roman) — Core Grammar (B1) — ids/nums untouched by the restructure
   stub('m12-comparatives', 12, 's2-core-grammar', 1, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),
-  stub('m13-conditionals-0-1-2', 13, 's2-core-grammar', 2, 'b1', { en: 'Conditionals 0 / 1 / 2', uk: 'Conditionals 0 / 1 / 2' }, true),
+  m13, // CHANGED (C1)
   stub('m14-passive-intro', 14, 's2-core-grammar', 3, 'b1', { en: 'Passive: the essentials', uk: 'Passive: основи' }),
   stub('m15-reported-speech', 15, 's2-core-grammar', 4, 'b1', { en: 'Reported speech', uk: 'Reported speech' }),
   stub('m16-gerund-infinitive', 16, 's2-core-grammar', 5, 'b1', { en: 'Gerund vs infinitive', uk: 'Gerund проти infinitive' }),
