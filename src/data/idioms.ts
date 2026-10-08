@@ -1,12 +1,14 @@
 // CHANGED (V2): the Idioms hub dataset (#/idioms) — a SEPARATE SSOT from the single-word corpus
 // (owner decision, CLAUDE.md §14 D3/D6). Multi-word expressions built for engaged study: true
 // idioms (with a Ukrainian equivalent + a short origin hook) and the highest-value phrasal verbs.
-// Every human-readable string is bilingual; examples lean work/dev-flavoured to match the guide's
+// Every human-readable string is bilingual; examples lean work/dev-flavored to match the guide's
 // tradition. Ids are stable progress keys — append, never rename. check:data enforces the contract;
 // lib/idioms.ts holds the pure helpers the page consumes.
 // CHANGED (V12): the fixed collocations moved to `data/collocations.ts` (own tab, own lazy chunk).
 // Their ids did NOT change. check:data enforces id + phrase uniqueness across BOTH files.
 // CHANGED (D11 2026-09-24): +8 phrasal verbs + 2 idioms from the owner's inline list (duplicates skipped).
+// CHANGED (V13): BrE → AmE sweep (continues D10): themes `humour`→`humor`; text neighbour→neighbor,
+// theatre→theater. ids + phrases untouched (progress keys); deliberate BrE synonyms left alone.
 import type { IdiomEntry } from './types';
 
 export const IDIOMS: readonly IdiomEntry[] = [
@@ -1370,7 +1372,7 @@ export const IDIOMS: readonly IdiomEntry[] = [
       { text: { en: 'A lot happens behind the scenes to keep it running.', uk: 'За лаштунками відбувається багато, щоб це працювало.' } },
       { text: { en: 'Behind the scenes, the framework batches the updates.', uk: 'За лаштунками фреймворк батчить оновлення.' } },
     ],
-    origin: { en: 'From theatre — the work done backstage, out of the audience’s view.', uk: 'З театру — робота за лаштунками, поза очима глядача.' },
+    origin: { en: 'From theater — the work done backstage, out of the audience’s view.', uk: 'З театру — робота за лаштунками, поза очима глядача.' },
   },
   {
     id: 'put-all-your-eggs-in-one-basket',
@@ -2497,7 +2499,7 @@ export const IDIOMS: readonly IdiomEntry[] = [
     level: 'b1',
     meaning: { en: 'To tease someone playfully or trick them as a joke.', uk: 'Жартома дражнити чи розігрувати.' },
     uaEquivalent: 'брати на кпини / морочити / жартувати',
-    themes: ['communication', 'humour'],
+    themes: ['communication', 'humor'],
     examples: [
       { text: { en: 'Relax, I’m just pulling your leg — the demo went fine.', uk: 'Спокійно, я просто жартую — демо пройшло добре.' } },
       { text: { en: 'Are you pulling my leg, or did we really win the contract?', uk: 'Ти мене розігруєш, чи ми справді виграли контракт?' } },
@@ -3402,7 +3404,7 @@ export const IDIOMS: readonly IdiomEntry[] = [
     level: 'b2',
     meaning: { en: 'To die (very informal, humorous).', uk: 'Померти (дуже розмовно, жартівливо).' },
     uaEquivalent: 'врізати дуба / відкинути копита',
-    themes: ['everyday', 'humour'],
+    themes: ['everyday', 'humor'],
     examples: [
       { text: { en: 'I’d love to see Japan before I kick the bucket.', uk: 'Хотів би побачити Японію, перш ніж врізати дуба.' } },
       { text: { en: 'My old laptop finally kicked the bucket.', uk: 'Мій старий ноут нарешті відкинув копита.' } },
@@ -3684,7 +3686,7 @@ export const IDIOMS: readonly IdiomEntry[] = [
     themes: ['work', 'social'],
     examples: [
       { text: { en: 'Who looks after the CI pipeline while she’s on leave?', uk: 'Хто доглядає за CI-пайплайном, поки вона у відпустці?' } },
-      { text: { en: 'He looked after his neighbour’s cat for a week.', uk: 'Він тиждень доглядав кота сусіда.' } },
+      { text: { en: 'He looked after his neighbor’s cat for a week.', uk: 'Він тиждень доглядав кота сусіда.' } },
     ],
   },
   {
