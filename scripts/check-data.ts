@@ -21,7 +21,7 @@ import { READING_CATEGORIES, READING_TEXTS } from '../src/data/reading';
 import { COLLOCATIONS } from '../src/data/collocations'; // CHANGED (V12)
 import { IDIOMS } from '../src/data/idioms'; // CHANGED (V2)
 import { IRREGULAR } from '../src/data/irregular'; // CHANGED (V3)
-import { isCollocationGroup } from '../src/lib/collocations'; // CHANGED (V10/V12)
+import { COLLOCATION_GROUP_IDS, isCollocationGroup } from '../src/lib/collocations'; // CHANGED (V10/V12/V13)
 import { isIdiomCategory } from '../src/lib/idioms'; // CHANGED (V11)
 // CHANGED (TM3): the Tense Machine shades + satellites + showcase contracts (spec §4.3–§4.4).
 import { SATELLITES, SHOWCASE_UA, USES } from '../src/data/tenseMachine';
@@ -278,6 +278,11 @@ for (const e of EXPRESSIONS) {
   if (e.kind === 'idiom') err(isIdiomCategory(e.category), `${at}: idiom needs a known category (got '${e.category}')`);
   else err(e.category === undefined, `${at}: only idioms may have a category`);
   if (e.note) locOk(e.note, `${at}.note`);
+}
+// CHANGED (V13): every collocation category is populated — an empty one is a dead chip on the bar.
+{
+  const used = new Set(COLLOCATIONS.map((e) => e.group));
+  for (const g of COLLOCATION_GROUP_IDS) err(used.has(g), `collocation group '${g}' has no entries (dead category chip)`);
 }
 
 // --- irregular verbs checks (V3 — the Words-hub Irregular tab) --------------

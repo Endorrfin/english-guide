@@ -13,12 +13,22 @@ import { shuffle } from './phrases';
 // adverb-adjective) and semantic DOMAIN (business · workplace · soft-skills · everyday). V10 shipped
 // that mix; V12 extends it. Because a phrase can plausibly fit both axes, assignment follows a fixed
 // precedence — see COLLOCATION_GROUP_RULE below — so the same phrase always lands in the same bucket.
+//
+// CHANGED (V13): KNOWN COMPROMISE, kept on purpose. `meetings` is a fifth DOMAIN bucket on the same
+// single axis, not a second axis: a phrase lives in exactly one group, so "present findings" leaves
+// verb-noun to sit in meetings. The clean fix — a separate `domain` field next to a purely
+// grammatical `group` — was considered and NOT taken (owner decision V13): it would double the
+// filter UI and re-tag ~200 entries for a bar that works today. Revisit if a phrase ever needs to be
+// findable under both a pattern and a domain.
 export const COLLOCATION_GROUP_IDS = [
   'make-do',
   'verb-noun',
   'adjective-noun',
   'adverb-adjective',
   'business',
+  // CHANGED (V13): meetings · agendas · minutes · slides · talks — split out of business / the
+  // grammatical buckets (id order = display order only; the id itself is the stored filter value).
+  'meetings',
   'workplace',
   // CHANGED (V12): two new categories the V10 six could not house.
   'soft-skills',
@@ -30,16 +40,19 @@ export type CollocationGroupId = (typeof COLLOCATION_GROUP_IDS)[number];
  * The assignment rule, in precedence order — apply the FIRST that matches:
  *   1. `make` / `do` head                                   → make-do
  *   2. CV / interview / soft-skill register                 → soft-skills
- *   3. meetings · contracts · deals · funding · targets     → business
- *   4. tech · office process · engineering                  → workplace
- *   5. home · leisure · daily routine · health · weather    → everyday
- *   6. otherwise fall through to the grammatical pattern    → verb-noun | adjective-noun |
+ *   3. meetings · agendas · minutes · presenting · slides   → meetings      (CHANGED V13)
+ *   4. contracts · deals · funding · targets · strategy     → business
+ *   5. tech · office process · engineering                  → workplace
+ *   6. home · leisure · daily routine · health · weather    → everyday
+ *   7. otherwise fall through to the grammatical pattern    → verb-noun | adjective-noun |
  *                                                             adverb-adjective
+ * Rule 1 wins even for meeting phrases: a `make`/`do` head goes to make-do ("make a presentation"
+ * would). Known exception left as shipped: `make-a-pitch` sits in business (pre-V13; see §14 V13).
  * Documented (not executable) on purpose: authoring is a human judgement call, but it must be a
  * REPEATABLE one — check:data only enforces that the group exists, not that it is the right one.
  */
 export const COLLOCATION_GROUP_RULE =
-  'make-do → soft-skills → business → workplace → everyday → grammatical pattern';
+  'make-do → soft-skills → meetings → business → workplace → everyday → grammatical pattern'; // CHANGED (V13)
 
 /** True if `g` is one of the known collocation category ids (used by check:data + the page). */
 export function isCollocationGroup(g: string | undefined): g is CollocationGroupId {
@@ -83,10 +96,33 @@ export function groupCollocations(list: readonly IdiomEntry[]): { group: string;
 //
 // HONEST LIMITATION: English tolerates more than one collocate for some bases ("deeply concerned" is
 // the target, but "seriously concerned" is attested too). The engine removes distractors that form a
-// real corpus phrase or that the entry itself lists as a synonym; beyond that, a near-miss distractor
-// is possible. That is why a wrong answer REVEALS the entry's `note` and meaning rather than just
-// scoring — the drill is meant to teach on failure. Do not add a distractor source that is not
-// filtered through `avoid`.
+// real corpus phrase OR any phrase listed as a synonym on ANY card (`buildAvoidSet`), plus the entry's
+// own synonym heads; beyond what the corpus records, a near-miss distractor is still possible. That
+// is why a wrong answer REVEALS the entry's `note` and meaning rather than just scoring — the drill is
+// meant to teach on failure. Do not add a distractor source that is not filtered through `avoid`.
+// CHANGED (V13): `avoid` used to be built in the page from `phrase` only, so a synonym recorded on a
+// DIFFERENT card leaked through — "completely" could be marked wrong for "___ aware" although
+// "completely aware" is listed on `fully-aware` (same for "highly important"). The set is now built
+// here, by one pure function the test exercises exactly as the page does.
+
+/** Lower-case, trim and collapse inner whitespace — the one key shape `avoid` lookups use. */
+function normPhrase(p: string): string {
+  return p.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+/**
+ * CHANGED (V13): every phrase the drill must never mark wrong — each card's `phrase` ∪ every
+ * `synonym` on every card, normalized. Pass the result as `PickOptions.avoid`. Built from the pool the
+ * page already holds (COLLOCATIONS), so it costs no extra chunk.
+ */
+export function buildAvoidSet(pool: readonly IdiomEntry[]): Set<string> {
+  const out = new Set<string>();
+  for (const e of pool) {
+    out.add(normPhrase(e.phrase));
+    for (const s of e.synonyms ?? []) out.add(normPhrase(s));
+  }
+  return out;
+}
 
 /** Phrases that begin with an article are noun phrases — the first word carries no teaching value. */
 const LEADING_ARTICLE = /^(a|an|the)\s/i;
@@ -128,9 +164,10 @@ export type PickRound = {
 
 export type PickOptions = {
   /**
-   * Normalized (lower-cased) phrases that already exist in the corpus. A distractor `d` is rejected
-   * when `d + rest` is one of them — otherwise the drill would offer a second CORRECT answer
-   * ('take a decision' is valid BrE next to 'make a decision').
+   * Normalized phrases the corpus records as correct — build it with `buildAvoidSet` (phrases ∪
+   * synonyms of every card). A distractor `d` is rejected when `d + rest` is one of them — otherwise
+   * the drill would offer a second CORRECT answer ('take a decision' is valid BrE next to 'make a
+   * decision').
    */
   avoid?: ReadonlySet<string>;
   /**
@@ -200,7 +237,7 @@ export function buildPickRound(
     const lc = head.toLowerCase();
     if (seen.has(lc)) continue;
     // Never offer a distractor that is itself a correct collocate of this base.
-    if (avoid.has(`${lc} ${rest}`.toLowerCase())) continue;
+    if (avoid.has(normPhrase(`${lc} ${rest}`))) continue; // CHANGED (V13): same key shape as buildAvoidSet
     if (synonymHeads.has(lc)) continue;
     seen.add(lc);
     candidates.push({ head, group: other.group });

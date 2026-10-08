@@ -262,6 +262,8 @@ export const ui = {
   // so the LABEL widens. The id stays `adverb-adjective` — it is a stored filter value.
   collGroupAdvAdj: { en: 'Adverb + Adjective / Verb', uk: 'Прислівник + прикметник / дієслово' },
   collGroupBusiness: { en: 'Business English', uk: 'Ділова англійська' },
+  // CHANGED (V13): the meetings & presentations category.
+  collGroupMeetings: { en: 'Meetings & presentations', uk: 'Зустрічі та презентації' },
   collGroupWorkplace: { en: 'Workplace & Tech', uk: 'Робота й tech' },
   // CHANGED (V12): two categories the V10 six could not house.
   collGroupSoftSkills: { en: 'Soft skills & interview', uk: 'Soft skills та співбесіда' },

@@ -16,6 +16,7 @@ import type { IdiomEntry, Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import {
+  buildAvoidSet,
   buildPickRound,
   COLLOCATION_GROUP_IDS,
   groupCollocations,
@@ -42,6 +43,7 @@ const GROUP_LABEL: Record<string, typeof ui.collGroupMakeDo> = {
   'adjective-noun': ui.collGroupAdjNoun,
   'adverb-adjective': ui.collGroupAdvAdj,
   business: ui.collGroupBusiness,
+  meetings: ui.collGroupMeetings, // CHANGED (V13)
   workplace: ui.collGroupWorkplace,
   'soft-skills': ui.collGroupSoftSkills,
   everyday: ui.collGroupEveryday,
@@ -81,13 +83,15 @@ function LearnView({ list }: { list: IdiomEntry[] }) {
  * ★ Which word? — the collocate drill. The base is given ("___ a decision"), you supply the word
  * that English actually pairs with it. Distractors come from the SAME category of the FULL corpus
  * (not the filtered list) so narrowing the search box never degrades the options; the engine drops
- * any distractor that would itself form a real phrase. A wrong answer reveals the meaning and the
+ * any distractor that would itself form a real phrase or any card's synonym (buildAvoidSet). A wrong answer reveals the meaning and the
  * "Common mistake" note — this mode is meant to teach on failure, not just score.
  */
 function PickView({ list }: { list: IdiomEntry[] }) {
   const { t } = useLang();
   const pickable = useMemo(() => pickableCollocations(list), [list]);
-  const avoid = useMemo(() => new Set(COLLOCATIONS.map((e) => e.phrase.toLowerCase())), []);
+  // CHANGED (V13): phrases ∪ synonyms of EVERY card — a phrase recorded only as another card's
+  // synonym ("completely aware") must not come back as a wrong answer.
+  const avoid = useMemo(() => buildAvoidSet(COLLOCATIONS), []);
   // Both indexes are corpus-wide and static, so they are built once per chunk load, not per round.
   const classOf = useMemo(() => headClassIndex(COLLOCATIONS), []);
 
