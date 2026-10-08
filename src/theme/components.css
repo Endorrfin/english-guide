@@ -3971,3 +3971,140 @@
 .coll-pick-verdict.is-wrong {
   color: var(--danger);
 }
+
+/* ── CHANGED (C1): ★ Conditionals Machine (m13) — reuses .mn-*; Section III sky accent ─────────*/
+.cm .mn-func[aria-checked='true'],
+.cm .mn-time[aria-checked='true'] {
+  border-color: var(--sec-core);
+  color: var(--tx);
+  background: color-mix(in srgb, var(--sec-core) 14%, transparent);
+}
+.cm-reality {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+.cm-gloss {
+  font-size: 0.76rem;
+  color: var(--tx3);
+}
+.cm-gap {
+  margin-top: 0.9rem;
+}
+.cm-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) repeat(3, minmax(0, 1fr));
+  gap: 0.25rem;
+  font-size: 0.72rem;
+}
+.cm-map-row {
+  display: contents;
+}
+.cm-map-h {
+  color: var(--tx3);
+  align-self: center;
+  overflow-wrap: anywhere;
+}
+.cm-map-cell {
+  padding: 0.35rem 0.2rem;
+  border-radius: var(--r-sm, 6px);
+  border: 1px solid var(--line);
+  background: var(--s2);
+  color: var(--tx2);
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+.cm-map-cell.cm-na {
+  opacity: 0.55;
+}
+.cm-map-cell.cm-preview {
+  border-style: dashed;
+}
+.cm-map-cell.on {
+  border-color: var(--sec-core);
+  color: var(--tx);
+  background: color-mix(in srgb, var(--sec-core) 18%, transparent);
+}
+.cm .cm-type {
+  color: var(--sec-core);
+  font-size: 1.05rem;
+}
+.cm-badge {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  color: var(--tx3);
+}
+.cm-forms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0.2rem 0 0.3rem;
+  font-size: 0.86rem;
+}
+.cm-forms > span {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+.cm-forms-k {
+  color: var(--tx3);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.cm-cond {
+  background: color-mix(in srgb, var(--sec-core) 20%, transparent);
+  color: var(--tx);
+  border-radius: 4px;
+  padding: 0 0.15rem;
+}
+.cm-take {
+  border-left: 3px solid var(--sec-core);
+  padding-left: 0.6rem;
+  margin: 0.4rem 0 0.6rem;
+}
+.cm-take-no {
+  border-left-color: var(--danger);
+}
+.cm-trap {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+  margin: 0.2rem 0;
+}
+.cm-wrong {
+  font-family: var(--font-mono);
+  color: var(--danger);
+  overflow-wrap: anywhere;
+}
+.cm-near {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0.35rem 0;
+  font-size: 0.88rem;
+}
+.cm-jump {
+  cursor: pointer;
+}
+.cm-sample {
+  font-style: italic;
+  margin: 0.3rem 0 0.7rem;
+}
+.cm-mixed {
+  font-size: 0.84rem;
+  margin: 0.6rem 0 0;
+}
+/* CHANGED (C1): keep the Conditionals Machine inside a 390px column — a grid track of 1fr cannot shrink
+   below its children's min-content, and the form <code> strings + the 3 × 3 map set that floor. */
+.cm .mn-grid > * {
+  min-width: 0;
+}
+.cm-forms code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

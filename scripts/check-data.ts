@@ -125,7 +125,10 @@ for (const m of modules) {
     const isModal = m.section === 's3-modal-verbs';
     // CHANGED (T1): tense modules carry the second-flagship bar (≥12 drills — CURRICULUM §A).
     const isTense = m.section === 's6-tenses';
-    const minEx = isModal ? 15 : isTense ? 12 : 8;
+    // CHANGED (C1): Core Grammar (Section III) is B1 — the owner's priority level (BRIEF §2) — so it
+    // carries the same ≥12 bar as Tenses.
+    const isCore = m.section === 's2-core-grammar';
+    const minEx = isModal ? 15 : isTense || isCore ? 12 : 8;
     err((m.exercises?.length ?? 0) >= minEx,
       `${m.id}: authored module needs ≥${minEx} exercises, has ${m.exercises?.length ?? 0}`);
     err(m.keyPoints.length >= 3, `${m.id}: authored module needs ≥3 key points`);

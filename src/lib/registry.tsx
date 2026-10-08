@@ -30,6 +30,9 @@ export const sims: Record<string, LazyComp> = {
   // ★ tense-chooser (three meaning questions → the tense) — Section II interactives complete.
   'sentence-morpher': lazyNamed(() => import('../components/sims/SentenceMorpher'), 'SentenceMorpher'),
   'tense-chooser': lazyNamed(() => import('../components/sims/TenseChooser'), 'TenseChooser'),
+  // CHANGED (C1): m13's ★ conditionals-machine (reality × time + a connector lens) — the
+  // signature sim of Section III Core Grammar.
+  'conditionals-machine': lazyNamed(() => import('../components/sims/ConditionalsMachine'), 'ConditionalsMachine'),
 };
 
 /** Figures by kebab key. */
@@ -51,6 +54,8 @@ export const figures: Record<string, LazyComp> = {
   // one-export-wrapper pattern as present/past above.
   'timeline-future': lazyNamed(() => import('../components/figures/TenseTimelineFuture'), 'TenseTimelineFuture'),
   'timeline-perfect': lazyNamed(() => import('../components/figures/TenseTimelinePerfect'), 'TenseTimelinePerfect'),
+  // CHANGED (C1): m13 figure — distance from reality = one tense back in the if-clause.
+  'conditional-distance': lazyNamed(() => import('../components/figures/ConditionalDistance'), 'ConditionalDistance'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

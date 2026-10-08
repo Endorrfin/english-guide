@@ -161,12 +161,13 @@ from the `definition.txt` backlog. The Dictionary page stays for now (demote/red
 ## F. Totals & asset budget
 
 **6 sections · 34 modules · 8 sims** (built: `modal-navigator` ★ · `deduction-lab` · and all three
-Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4);
-planned: `conditionals-machine` ★ · `article-tree` ★ · `word-formation-lab` ★) + the parametric
+Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4) ·
+`conditionals-machine` ★ (C1, m13 — reality × time + a connector lens);
+planned: `article-tree` ★ · `word-formation-lab` ★) + the parametric
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
 12-step tour, `uses[]` shade chips on the big five, 4 satellite cards, Decide tab) ·
-~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses ≥12) · dictionary **≥3,000
+~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses + core grammar ≥12) · dictionary **≥3,000
 words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live** (`#/review` SRS ★R1 —
 769 cards across 4 decks · `#/practice` ·
 `#/irregular` · per-module drills).
@@ -218,7 +219,9 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    library passes ~300 texts; the accordion would use a generated index and defer body search the
    way word search defers definition search (M1's `primeWordCorpus` pattern). Then words → W2.
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).
-7. Section III (`m12`–`m16`) + `conditionals-machine` + W3 (~2,000).
+7. Section III (`m12`–`m16`) + `conditionals-machine` — in three waves: **C1 (done)** `m13` +
+   ★ `conditionals-machine` + the `conditional-distance` figure (check:data bar for the section raised
+   to ≥12 drills) → **C2** `m15` + `m16` → **C3** `m14` + `m12` + section polish. Then W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.

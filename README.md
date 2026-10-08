@@ -18,7 +18,8 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
 - **★ Signature interactives** — built: `modal-navigator` (function × time → the right modal),
   `deduction-lab` (certainty × time), `tense-navigator` (time × aspect → tense), `sentence-morpher`
   (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
-  + the parametric `TenseTimeline` figure. Planned: `conditionals-machine`, `article-tree`,
+  + the parametric `TenseTimeline` figure, and `conditionals-machine` (how real × what time → the
+  conditional, with an if · unless · in case · as long as · when lens). Planned: `article-tree`,
   `word-formation-lab`.
 - **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
   time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
@@ -167,8 +168,13 @@ ships only nav metadata, so a module page shows its title, mental model and tabl
 and streams the lesson in. First load is now **326 kB** — down from 1.39 MB across M1+M2 (**−77%**), and
 over half of what's left is React itself. Build gates enforce it: a corpus or a module body that sneaks
 back onto the first load fails the build.
-**Next:** content again — dictionary wave W2 (605 → ~1,000 words) and Section III (Core Grammar) with the
-`conditionals-machine` sim; more Reading and idiom waves.
+**C1 — shipped:** **Section III Core Grammar begins** — `m13` Conditionals 0 / 1 / 2 (16 drills, seven
+UA-speaker pitfalls) with the ★ `conditionals-machine` sim (set how real the condition is and what time it's
+about → the type, both clause forms, examples, the UA trap and near-misses; a connector lens shows where
+unless · in case · as long as · when fit and where they don't) and the `conditional-distance` figure. Now
+**6 sections · 34 modules · 13 authored**.
+**Next:** the rest of Section III — `m15` Reported speech + `m16` Gerund vs infinitive (C2), then `m14`
+Passive + `m12` Comparatives (C3); dictionary wave W2; more Reading and idiom waves.
 
 ---
 
@@ -189,7 +195,8 @@ mental model, key points, pitfalls (типові помилки україном
 **★ Signature-інтерактиви:** готові — `modal-navigator` (функція × час → потрібний modal),
 `deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense), `sentence-morpher` (одне
 речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
-`TenseTimeline`. Заплановані — `conditionals-machine`, `article-tree`, `word-formation-lab`.
+`TenseTimeline`, а також `conditionals-machine` (наскільки реально × про який час → conditional, з лінзою
+if · unless · in case · as long as · when). Заплановані — `article-tree`, `word-formation-lab`.
 **★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
 time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
 ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); перемикач **повних ↔
