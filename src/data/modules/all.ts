@@ -46,6 +46,10 @@ import { m13 } from './m13-conditionals-0-1-2';
 // infinitive (+ the verb-pattern-map and meaning-switch figures). Imports replace the former stubs.
 import { m15 } from './m15-reported-speech';
 import { m16 } from './m16-gerund-infinitive';
+// CHANGED (C3): m12 + m14 authored — comparatives (+ the comparison-scale figure) and the passive
+// essentials (+ the passive-flip figure). Section III Core Grammar is COMPLETE (5/5).
+import { m12 } from './m12-comparatives';
+import { m14 } from './m14-passive-intro';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -105,9 +109,9 @@ export const modules: Module[] = [
   m11, // CHANGED (T4): authored — Choosing Tenses & Narrative (+ ★ tense-chooser) — Section II complete
 
   // Section III (roman) — Core Grammar (B1) — ids/nums untouched by the restructure
-  stub('m12-comparatives', 12, 's2-core-grammar', 1, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),
+  m12, // CHANGED (C3)
   m13, // CHANGED (C1)
-  stub('m14-passive-intro', 14, 's2-core-grammar', 3, 'b1', { en: 'Passive: the essentials', uk: 'Passive: основи' }),
+  m14, // CHANGED (C3) — Section III complete
   m15, // CHANGED (C2)
   m16, // CHANGED (C2)
 

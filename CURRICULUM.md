@@ -87,9 +87,9 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
-| 12 | `m12-comparatives` | Comparatives & superlatives | b1 | er-more, as-as, superlatives, too-enough | — |
+| 12 | `m12-comparatives` | Comparatives & superlatives | b1 | er-more, as-as, superlatives, too-enough | `comparison-scale` fig |
 | 13 | `m13-conditionals-0-1-2` | Conditionals 0 / 1 / 2 | b1 | zero-first, second, unless-in-case, common-mistakes | `conditionals-machine` ★ |
-| 14 | `m14-passive-intro` | Passive: the essentials | b1 | form-present-past, when-to-use, by-agent, passive-vs-active | — |
+| 14 | `m14-passive-intro` | Passive: the essentials | b1 | form-present-past, when-to-use, by-agent, passive-vs-active | `passive-flip` fig |
 | 15 | `m15-reported-speech` | Reported speech | b1 | backshift, say-vs-tell, reported-questions, reporting-verbs | `reported-speech-lab` ★ |
 | 16 | `m16-gerund-infinitive` | Gerund vs infinitive | b1 | verb-patterns, stop-remember-try, like-love-hate, purpose | — |
 
@@ -223,7 +223,9 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
 7. Section III (`m12`–`m16`) + `conditionals-machine` — in three waves: **C1 (done)** `m13` +
    ★ `conditionals-machine` + the `conditional-distance` figure (check:data bar for the section raised
    to ≥12 drills) → **C2 (done)** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` /
-   `meaning-switch` figures → **C3** `m14` + `m12` + section polish. Then W3 (~2,000).
+   `meaning-switch` figures → **C3 (done)** `m14` + the `passive-flip` figure · `m12` + the
+   `comparison-scale` figure + section polish (cross-links m11/m16 → m14) — **Section III COMPLETE
+   (5/5)**. Then W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.

@@ -62,6 +62,10 @@ export const figures: Record<string, LazyComp> = {
   // to-looks-forward switch of stop · remember · forget · regret.
   'verb-pattern-map': lazyNamed(() => import('../components/figures/VerbPatternMap'), 'VerbPatternMap'),
   'meaning-switch': lazyNamed(() => import('../components/figures/MeaningSwitch'), 'MeaningSwitch'),
+  // CHANGED (C3): m12 + m14 figures — four services on one latency scale (the comparison shapes),
+  // and the active → passive flip (object to the front, be + V3, optional by-phrase).
+  'comparison-scale': lazyNamed(() => import('../components/figures/ComparisonScale'), 'ComparisonScale'),
+  'passive-flip': lazyNamed(() => import('../components/figures/PassiveFlip'), 'PassiveFlip'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

@@ -815,6 +815,7 @@ export const m11: Module = {
     'm8-past-simple-continuous',
     'm9-future-forms',
     'm10-perfect-family',
+    'm14-passive-intro', // CHANGED (C3): headlines drop the be of a passive — m14 puts it back
     'm15-reported-speech',
     'm17-modal-system',
   ],

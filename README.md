@@ -179,8 +179,12 @@ unless · in case · as long as · when fit and where they don't) and the `condi
 still true) to see every shift highlighted: tense, pronoun, time/place word, statement order, if/whether,
 to-infinitive — and `m16` Gerund vs infinitive (16 drills) with the `verb-pattern-map` and `meaning-switch`
 figures. Now **15 of 34 modules authored · 229 drills**.
-**Next:** C3 — `m14` Passive + `m12` Comparatives + Section III polish; dictionary wave W2; more Reading and
-idiom waves.
+**C3 — shipped: Section III Core Grammar is complete (5/5).** `m14` Passive: the essentials (16 drills) —
+be + V3 with the tense living in be, the voice of postmortems, tickets, docs and release notes, plus when
+NOT to use it (*Mistakes were made*) — with the `passive-flip` figure; and `m12` Comparatives & superlatives
+(16 drills) — -er vs more, as … as, the -est of a group, too / enough — with the `comparison-scale` figure
+(four services on one latency scale). Now **17 of 34 modules authored · 261 drills**.
+**Next:** dictionary wave W2; Section VI (Vocabulary in Action) or Section I; more Reading and idiom waves.
 
 ---
 
