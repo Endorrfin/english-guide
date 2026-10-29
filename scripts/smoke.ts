@@ -84,6 +84,11 @@ const SIM_CANARIES: Record<string, string[]> = {
   // CHANGED (C2): the Reported Speech Lab renders its default (statement · finished-review · said) —
   // the highlighted shift is one <mark>, so its text is contiguous; English in both languages.
   ReportedSpeechLab: ['Reported Speech Lab', 'she had finished', 'Past Perfect'],
+  // CHANGED (A1): the TokenMorph sims render their default frame statically under SSR; the plain
+  // sentence lives in TokenMorph's sr-only span (the animated words are separate spans), so the
+  // canary is the whole sentence. m23: past × past, story 1, frame 3; m24: laptop, frame 2.
+  CounterfactualRewind: ['Counterfactual Rewind', 'Type 3 — third conditional', 'If we had run the migration on staging, it wouldn’t have failed in production.'],
+  CausativeSwitch: ['Causative Switch', 'have + object + V3', 'I had my laptop repaired.'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -274,7 +279,8 @@ async function main(): Promise<void> {
                     "m8-past-simple-continuous", "m9-future-forms", "m10-perfect-family",
                     "m11-choosing-narrative", "m13-conditionals-0-1-2",
                     "m15-reported-speech", "m16-gerund-infinitive", // CHANGED (C2)
-                    "m12-comparatives", "m14-passive-intro"]) { // CHANGED (C3)
+                    "m12-comparatives", "m14-passive-intro", // CHANGED (C3)
+                    "m23-conditionals-3-mixed", "m24-passive-advanced"]) { // CHANGED (A1)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -356,6 +362,17 @@ async function main(): Promise<void> {
       "The bug was introduced in v2.3.",
       "was shut down",
     ]);
+    // CHANGED (A1): m23 + m24 authored bodies at dive 4 — a core table row and a dive-4 block each
+    // (m23: the mixed-conditional example + the “Had I known” inversion note; m24: the modal-perfect
+    // row + the “There is believed to be” note). English study text, present in both languages.
+    check("ModuleBody:m23", bodyEl("m23-conditionals-3-mixed"), lang, 6000, [
+      "If we had written tests last year, we wouldn’t be afraid to refactor now.",
+      "Had I known",
+    ]);
+    check("ModuleBody:m24", bodyEl("m24-passive-advanced"), lang, 6000, [
+      "This should have been caught in code review.",
+      "There is believed to be",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -375,6 +392,8 @@ async function main(): Promise<void> {
     "#/m/m16-gerund-infinitive", // CHANGED (C2)
     "#/m/m12-comparatives", // CHANGED (C3)
     "#/m/m14-passive-intro", // CHANGED (C3)
+    "#/m/m23-conditionals-3-mixed", // CHANGED (A1)
+    "#/m/m24-passive-advanced", // CHANGED (A1)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
