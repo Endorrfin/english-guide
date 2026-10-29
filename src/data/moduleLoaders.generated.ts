@@ -2,7 +2,7 @@
 // Regenerate with `npm run gen:index` (predev/prebuild do it for you). `npm run check:index`
 // fails the build if this file is stale. Source of truth stays in the real data modules.
 //
-// One lazy chunk per authored module body (15 of 34). Consumed by
+// One lazy chunk per authored module body (17 of 34). Consumed by
 // `concepts.loadModule()`; a stub id resolves to undefined there, which is what the module page
 // renders as ComingSoon.
 import type { Module } from './types';
@@ -14,7 +14,9 @@ export const moduleLoaders: Readonly<Record<string, () => Promise<Module>>> = {
   "m9-future-forms": () => import('./modules/m9-future-forms').then((mod) => mod.m9),
   "m10-perfect-family": () => import('./modules/m10-perfect-family').then((mod) => mod.m10),
   "m11-choosing-narrative": () => import('./modules/m11-choosing-narrative').then((mod) => mod.m11),
+  "m12-comparatives": () => import('./modules/m12-comparatives').then((mod) => mod.m12),
   "m13-conditionals-0-1-2": () => import('./modules/m13-conditionals-0-1-2').then((mod) => mod.m13),
+  "m14-passive-intro": () => import('./modules/m14-passive-intro').then((mod) => mod.m14),
   "m15-reported-speech": () => import('./modules/m15-reported-speech').then((mod) => mod.m15),
   "m16-gerund-infinitive": () => import('./modules/m16-gerund-infinitive').then((mod) => mod.m16),
   "m17-modal-system": () => import('./modules/m17-modal-system').then((mod) => mod.m17),

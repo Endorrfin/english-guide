@@ -101,8 +101,8 @@ export const m16: Module = {
           tone: 'warn',
           title: { en: 'make and let: no to', uk: 'make і let: без to' },
           md: {
-            en: 'UA *«змусив мене **переписати**»* tempts a *to*: ✕ *He made me **to rewrite** it* → ✓ *He **made me rewrite** it* · ✕ *Let me **to check*** → ✓ ***Let me check**.* *help* works both ways: *She helped me (to) set up the VPN.* (In the passive *make* does take *to*: *I was made **to rewrite** it* — recognize it, rarely use it.)',
-            uk: 'UA *«змусив мене **переписати**»* підштовхує до *to*: ✕ *He made me **to rewrite** it* → ✓ *He **made me rewrite** it* · ✕ *Let me **to check*** → ✓ ***Let me check**.* *help* працює обома способами: *She helped me (to) set up the VPN.* (У passive *make* таки бере *to*: *I was made **to rewrite** it* — упізнавайте, але вживайте рідко.)',
+            en: 'UA *«змусив мене **переписати**»* tempts a *to*: ✕ *He made me **to rewrite** it* → ✓ *He **made me rewrite** it* · ✕ *Let me **to check*** → ✓ ***Let me check**.* *help* works both ways: *She helped me (to) set up the VPN.* (In the [passive](#/m/m14-passive-intro) *make* does take *to*: *I was made **to rewrite** it* — recognize it, rarely use it.)',
+            uk: 'UA *«змусив мене **переписати**»* підштовхує до *to*: ✕ *He made me **to rewrite** it* → ✓ *He **made me rewrite** it* · ✕ *Let me **to check*** → ✓ ***Let me check**.* *help* працює обома способами: *She helped me (to) set up the VPN.* (У [passive](#/m/m14-passive-intro) *make* таки бере *to*: *I was made **to rewrite** it* — упізнавайте, але вживайте рідко.)',
           },
         },
         {
@@ -669,7 +669,8 @@ export const m16: Module = {
       tags: ['gerund-infinitive', 'verb-patterns', 'ua-trap'],
     },
   ],
-  seeAlso: ['m15-reported-speech', 'm8-past-simple-continuous', 'm13-conditionals-0-1-2', 'm17-modal-system', 'm22-requests-politeness'],
+  // CHANGED (C3): + m14 (make … to in the passive; need + -ing = a passive meaning).
+  seeAlso: ['m15-reported-speech', 'm8-past-simple-continuous', 'm13-conditionals-0-1-2', 'm14-passive-intro', 'm17-modal-system', 'm22-requests-politeness'],
   sources: [
     {
       title: 'Cambridge Dictionary — Verb patterns: verb + infinitive or verb + -ing?',

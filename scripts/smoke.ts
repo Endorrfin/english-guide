@@ -100,6 +100,9 @@ const FIG_CANARIES: Record<string, string[]> = {
   // CHANGED (C2): m16's figures — a bucket head + a member verb; the two forms of one switch row.
   VerbPatternMap: ['verb + to + V1', 'look forward to'],
   MeaningSwitch: ['remember locking it', 'stop to check email'],
+  // CHANGED (C3): m12 + m14 figures — two of the four bar sentences; the passive row + the be + V3 hinge.
+  ComparisonScale: ['as fast as search', 'the slowest'],
+  PassiveFlip: ['was deleted', 'be + V3'],
 };
 
 async function main(): Promise<void> {
@@ -270,7 +273,8 @@ async function main(): Promise<void> {
   for (const id of ["m17-modal-system", "m6-tense-system", "m7-present-simple-continuous",
                     "m8-past-simple-continuous", "m9-future-forms", "m10-perfect-family",
                     "m11-choosing-narrative", "m13-conditionals-0-1-2",
-                    "m15-reported-speech", "m16-gerund-infinitive"]) { // CHANGED (C2)
+                    "m15-reported-speech", "m16-gerund-infinitive", // CHANGED (C2)
+                    "m12-comparatives", "m14-passive-intro"]) { // CHANGED (C3)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -341,6 +345,17 @@ async function main(): Promise<void> {
       "look forward",
       "needs refactoring",
     ]);
+    // CHANGED (C3): m12 + m14 authored bodies at dive 4 — a core table row and a dive-3/4 block each
+    // (m12: a spelling-table form + the dive-4 further-details note; m14: the postmortem passive +
+    // the dive-4 crashed-vs-shut-down contrast). English study text, present in both languages.
+    check("ModuleBody:m12", bodyEl("m12-comparatives"), lang, 6000, [
+      "more reliable · the most reliable",
+      "further",
+    ]);
+    check("ModuleBody:m14", bodyEl("m14-passive-intro"), lang, 6000, [
+      "The bug was introduced in v2.3.",
+      "was shut down",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -358,6 +373,8 @@ async function main(): Promise<void> {
     "#/m/m13-conditionals-0-1-2", // CHANGED (C1)
     "#/m/m15-reported-speech", // CHANGED (C2)
     "#/m/m16-gerund-infinitive", // CHANGED (C2)
+    "#/m/m12-comparatives", // CHANGED (C3)
+    "#/m/m14-passive-intro", // CHANGED (C3)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
