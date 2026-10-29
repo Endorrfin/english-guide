@@ -33,6 +33,8 @@ export const sims: Record<string, LazyComp> = {
   // CHANGED (C1): m13's ★ conditionals-machine (reality × time + a connector lens) — the
   // signature sim of Section III Core Grammar.
   'conditionals-machine': lazyNamed(() => import('../components/sims/ConditionalsMachine'), 'ConditionalsMachine'),
+  // CHANGED (C2): m15's ★ reported-speech-lab (speech kind × reporting frame → the highlighted shifts).
+  'reported-speech-lab': lazyNamed(() => import('../components/sims/ReportedSpeechLab'), 'ReportedSpeechLab'),
 };
 
 /** Figures by kebab key. */
@@ -56,6 +58,10 @@ export const figures: Record<string, LazyComp> = {
   'timeline-perfect': lazyNamed(() => import('../components/figures/TenseTimelinePerfect'), 'TenseTimelinePerfect'),
   // CHANGED (C1): m13 figure — distance from reality = one tense back in the if-clause.
   'conditional-distance': lazyNamed(() => import('../components/figures/ConditionalDistance'), 'ConditionalDistance'),
+  // CHANGED (C2): m16 figures — the four verb-pattern buckets, and the -ing-looks-back /
+  // to-looks-forward switch of stop · remember · forget · regret.
+  'verb-pattern-map': lazyNamed(() => import('../components/figures/VerbPatternMap'), 'VerbPatternMap'),
+  'meaning-switch': lazyNamed(() => import('../components/figures/MeaningSwitch'), 'MeaningSwitch'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

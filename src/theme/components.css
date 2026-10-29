@@ -4108,3 +4108,57 @@
   white-space: normal;
   overflow-wrap: anywhere;
 }
+
+/* ── CHANGED (C2): ★ Reported Speech Lab (m15) — reuses .mn-* + .cm-*; one hue per shift kind ──*/
+.rsl {
+  --rsl-tense: var(--time-past);
+  --rsl-pronoun: var(--time-present);
+  --rsl-time: var(--time-future);
+  --rsl-order: var(--amber);
+  --rsl-connector: var(--lv-a2);
+}
+.rsl-direct-opt {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.rsl-direct {
+  border-style: dashed;
+}
+.rsl-shift {
+  color: var(--tx);
+  border-radius: 4px;
+  padding: 0 0.15rem;
+  border-bottom: 2px solid var(--rsl-c, var(--sec-core));
+  background: color-mix(in srgb, var(--rsl-c, var(--sec-core)) 18%, transparent);
+}
+.rsl-tense { --rsl-c: var(--rsl-tense); }
+.rsl-pronoun { --rsl-c: var(--rsl-pronoun); }
+.rsl-time,
+.rsl-place { --rsl-c: var(--rsl-time); }
+.rsl-order { --rsl-c: var(--rsl-order); }
+.rsl-connector,
+.rsl-infinitive { --rsl-c: var(--rsl-connector); }
+.rsl-shifts {
+  list-style: none;
+  margin: 0.2rem 0 0.5rem;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+}
+.rsl-shifts li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.4rem;
+}
+.rsl-from {
+  font-family: var(--font-mono);
+  color: var(--tx3);
+  text-decoration: line-through;
+  overflow-wrap: anywhere;
+}
+.rsl-kinds {
+  font-size: 0.74rem;
+  color: var(--tx3);
+}

@@ -19,7 +19,8 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   `deduction-lab` (certainty × time), `tense-navigator` (time × aspect → tense), `sentence-morpher`
   (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
   + the parametric `TenseTimeline` figure, and `conditionals-machine` (how real × what time → the
-  conditional, with an if · unless · in case · as long as · when lens). Planned: `article-tree`,
+  conditional, with an if · unless · in case · as long as · when lens), and `reported-speech-lab`
+  (what was said × how you report it → every shift highlighted). Planned: `article-tree`,
   `word-formation-lab`.
 - **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
   time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
@@ -173,8 +174,13 @@ UA-speaker pitfalls) with the ★ `conditionals-machine` sim (set how real the c
 about → the type, both clause forms, examples, the UA trap and near-misses; a connector lens shows where
 unless · in case · as long as · when fit and where they don't) and the `conditional-distance` figure. Now
 **6 sections · 34 modules · 13 authored**.
-**Next:** the rest of Section III — `m15` Reported speech + `m16` Gerund vs infinitive (C2), then `m14`
-Passive + `m12` Comparatives (C3); dictionary wave W2; more Reading and idiom waves.
+**C2 — shipped:** `m15` Reported speech (16 drills) with the ★ `reported-speech-lab` sim — pick what was said
+(statement · yes/no question · wh-question · request) and how you report it (says · said a week later · said,
+still true) to see every shift highlighted: tense, pronoun, time/place word, statement order, if/whether,
+to-infinitive — and `m16` Gerund vs infinitive (16 drills) with the `verb-pattern-map` and `meaning-switch`
+figures. Now **15 of 34 modules authored · 229 drills**.
+**Next:** C3 — `m14` Passive + `m12` Comparatives + Section III polish; dictionary wave W2; more Reading and
+idiom waves.
 
 ---
 
@@ -196,7 +202,8 @@ mental model, key points, pitfalls (типові помилки україном
 `deduction-lab` (певність × час), `tense-navigator` (час × аспект → tense), `sentence-morpher` (одне
 речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
 `TenseTimeline`, а також `conditionals-machine` (наскільки реально × про який час → conditional, з лінзою
-if · unless · in case · as long as · when). Заплановані — `article-tree`, `word-formation-lab`.
+if · unless · in case · as long as · when) і `reported-speech-lab` (що сказали × як ви це передаєте →
+кожен зсув підсвічено). Заплановані — `article-tree`, `word-formation-lab`.
 **★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
 time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
 ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); перемикач **повних ↔

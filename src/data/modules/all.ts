@@ -42,6 +42,10 @@ import { m11 } from './m11-choosing-narrative';
 // CHANGED (C1): m13 authored — Section III Core Grammar begins (conditionals 0/1/2 + the
 // ★ conditionals-machine sim). The import replaces the former stub() entry below.
 import { m13 } from './m13-conditionals-0-1-2';
+// CHANGED (C2): m15 + m16 authored — reported speech (+ the ★ reported-speech-lab sim) and gerund vs
+// infinitive (+ the verb-pattern-map and meaning-switch figures). Imports replace the former stubs.
+import { m15 } from './m15-reported-speech';
+import { m16 } from './m16-gerund-infinitive';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -104,8 +108,8 @@ export const modules: Module[] = [
   stub('m12-comparatives', 12, 's2-core-grammar', 1, 'b1', { en: 'Comparatives & superlatives', uk: 'Ступені порівняння' }),
   m13, // CHANGED (C1)
   stub('m14-passive-intro', 14, 's2-core-grammar', 3, 'b1', { en: 'Passive: the essentials', uk: 'Passive: основи' }),
-  stub('m15-reported-speech', 15, 's2-core-grammar', 4, 'b1', { en: 'Reported speech', uk: 'Reported speech' }),
-  stub('m16-gerund-infinitive', 16, 's2-core-grammar', 5, 'b1', { en: 'Gerund vs infinitive', uk: 'Gerund проти infinitive' }),
+  m15, // CHANGED (C2)
+  m16, // CHANGED (C2)
 
   // Section IV (roman) — Modal Verbs ★ flagship (B1–B2)
   m17,
