@@ -184,7 +184,16 @@ be + V3 with the tense living in be, the voice of postmortems, tickets, docs and
 NOT to use it (*Mistakes were made*) — with the `passive-flip` figure; and `m12` Comparatives & superlatives
 (16 drills) — -er vs more, as … as, the -est of a group, too / enough — with the `comparison-scale` figure
 (four services on one latency scale). Now **17 of 34 modules authored · 261 drills**.
-**Next:** dictionary wave W2; Section VI (Vocabulary in Action) or Section I; more Reading and idiom waves.
+**A1 — shipped: Section V Advanced Grammar begins.** A shared animation engine, **TokenMorph**, lets you
+*watch* a grammar rule happen: words fly to their new places between hand-written frames, departing
+words fade, new ones light up. `m23` Conditionals 3, mixed & wishes (16 drills) with ★ **Counterfactual
+Rewind** — change a past event or a present state, pick when the result lands, and watch a fact rewind
+into Type 3 / mixed / Type 2 on a real-vs-imagined timeline (plus *I wish … / If only …*); `m24` Advanced
+passive & causative (16 drills) with ★ **Causative Switch** — *I repaired → I had … repaired → I got … to
+repair → I had my laptop stolen*, with a who-acts scene, and *It is said that … / X is said to …*.
+Now **19 of 34 modules authored · 293 drills**.
+**Next:** Section V waves A2 (`m25` relative clauses · `m26` participle clauses) → A3 (`m28` articles +
+`article-tree` · `m30` linking) → A4 (`m27` inversion & emphasis · `m29` subjunctive & formal).
 
 ---
 

@@ -113,8 +113,8 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
-| 23 | `m23-conditionals-3-mixed` | Conditionals 3, mixed & wishes | b2 | third-conditional, mixed, wish-if-only, regrets | — |
-| 24 | `m24-passive-advanced` | Advanced passive & causative | b2 | perfect-continuous-passive, causative-have-get, it-is-said, register | — |
+| 23 | `m23-conditionals-3-mixed` | Conditionals 3, mixed & wishes | b2 | third-conditional, mixed, wish-if-only, regrets | `counterfactual-rewind` ★ (A1, built) |
+| 24 | `m24-passive-advanced` | Advanced passive & causative | b2 | perfect-continuous-passive, causative-have-get, it-is-said, register | `causative-switch` ★ (A1, built) |
 | 25 | `m25-relative-clauses` | Relative clauses | b2 | defining, non-defining, whose-where-whom, reduced-clauses | — |
 | 26 | `m26-participle-clauses` | Participle clauses | c1 | ing-clauses, ed-clauses, having-done, dangling-participles | — |
 | 27 | `m27-inversion-emphasis` | Inversion, cleft & emphasis | c1 | negative-inversion, not-only, cleft-sentences, fronting | — |
@@ -226,7 +226,11 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    `meaning-switch` figures → **C3 (done)** `m14` + the `passive-flip` figure · `m12` + the
    `comparison-scale` figure + section polish (cross-links m11/m16 → m14) — **Section III COMPLETE
    (5/5)**. Then W3 (~2,000).
-8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).
+8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000). **In progress (owner plan 2026-10-29):**
+   one live TokenMorph sim per module (shared engine: words fly between authored frames), ≥12 drills,
+   four waves — **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` →
+   A2 `m25` Clause Welder + `m26` Clause Compressor → A3 `m28` + `article-tree` · `m30` Connector
+   Bridge → A4 `m27` Emphasis Spotlight + `m29` Register Dial.
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.
 

@@ -145,7 +145,7 @@ unauthored (zero progress-key impact). Dictionary waves W1–W5 (150 → 1,000 �
 
 ## 6. Signature interactives + diagram-first baseline
 
-**9 sims (S5 + C2):** `modal-navigator` ★golden (built) · `deduction-lab` (m21, built) ·
+**9 sims (S5 + C2) + the Section V TokenMorph family (A1–A4, one sim per module m23–m30):** `modal-navigator` ★golden (built) · `deduction-lab` (m21, built) ·
 `tense-navigator` ★ (m6, built T1, golden of Tenses: 3×4 time × aspect matrix → meaning, forms +/−/?,
 mini-timeline, EN/UA examples + TTS, near-misses, corpus-frequency badge — 5 forms = 96% of speech) ·
 `sentence-morpher` (m6, built T4: one sentence morphed through all 12 cells — animated timeline + form
@@ -160,7 +160,18 @@ frame (says · said a week later · said, still true) → 8 curated sentences, e
 its shifts as exact in-order substrings, highlighted by kind; engine `lib/reportedSpeech.ts`, golden
 `scripts/test-reported-speech.ts` — no question order, do-support or `?` in any report) ·
 `article-tree` (m28) ·
-`word-formation-lab` (m31). The old standalone `tense-timeline` sim is superseded by the parametric
+`word-formation-lab` (m31). <!-- CHANGED (A1) --> **Section V = the TokenMorph family:** Advanced
+Grammar is mostly sentence TRANSFORMATIONS, so one shared engine animates them — `lib/tokenMorph.ts`
+(pure: parse an authored line into keyed tokens; identity = lower-cased word + occurrence, so a word that
+survives a frame change FLIES to its new place) + `components/motion/TokenMorph.tsx` (FLIP via the Web
+Animations API, leaving words fade as ghosts, arriving words highlighted against a `baseline` frame —
+the plain fact — never punctuation) + `MorphBits` (Radios · MorphControls · SpeakButton) + `lib/motion.ts`
+(`useReducedMotion`, `usePlayback`). Every frame is AUTHORED, never generated; reduced motion = no
+auto-play, no flight. Built: ★ `counterfactual-rewind` (m23: change-time × result-time 2 × 2 + wishes,
+two-lane real/imagined timeline; golden `test-counterfactual`) · ★ `causative-switch` (m24: six
+who-does-it forms with a You → pro → thing scene + the It-is-said track; golden `test-causative`).
+Planned: m25 Clause Welder · m26 Clause Compressor · m28 `article-tree` · m30 Connector Bridge ·
+m27 Emphasis Spotlight · m29 Register Dial. The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 **★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
 sim**: the standalone live home of the tense system — the 12-cell WALL conjugated live by the pure
@@ -315,6 +326,7 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C1 (done):** Section III begins — `m13` + ★ `conditionals-machine` + `conditional-distance` figure. →
 **C2 (done):** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` / `meaning-switch` figures. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
+**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → A2 `m25` + `m26` → A3 `m28` + `article-tree` · `m30` → A4 `m27` + `m29`. →
 VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -366,6 +378,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **C3** (2026-10-29) — `m14` + `passive-flip` · `m12` + `comparison-scale` — Section III COMPLETE (17/34, 261 drills, eager 351.0 kB).
 - **DOCS1** (2026-10-29) — journal moved to `SESSIONS.md`; §14 → one-line index; §16 → SESSIONS appendix.
 - **UX1** (2026-10-29) — 390 px page overflow fixed: the cause was `.ex-top` chips (no wrap), not `.dtable`; all 34 modules + `#/practice` fit.
+- **A1** (2026-10-29) — Section V begins: TokenMorph engine + `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch`; Section V ≥12-drill bar (19/34, 293 drills, eager 355.6 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

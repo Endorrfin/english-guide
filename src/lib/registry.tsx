@@ -35,6 +35,9 @@ export const sims: Record<string, LazyComp> = {
   'conditionals-machine': lazyNamed(() => import('../components/sims/ConditionalsMachine'), 'ConditionalsMachine'),
   // CHANGED (C2): m15's ★ reported-speech-lab (speech kind × reporting frame → the highlighted shifts).
   'reported-speech-lab': lazyNamed(() => import('../components/sims/ReportedSpeechLab'), 'ReportedSpeechLab'),
+  // CHANGED (A1): Section V — the first two TokenMorph sims (m23 rewind, m24 causative / reporting).
+  'counterfactual-rewind': lazyNamed(() => import('../components/sims/CounterfactualRewind'), 'CounterfactualRewind'),
+  'causative-switch': lazyNamed(() => import('../components/sims/CausativeSwitch'), 'CausativeSwitch'),
 };
 
 /** Figures by kebab key. */

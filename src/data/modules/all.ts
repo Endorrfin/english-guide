@@ -50,6 +50,10 @@ import { m16 } from './m16-gerund-infinitive';
 // essentials (+ the passive-flip figure). Section III Core Grammar is COMPLETE (5/5).
 import { m12 } from './m12-comparatives';
 import { m14 } from './m14-passive-intro';
+// CHANGED (A1): Section V begins — m23 (+ ★ counterfactual-rewind) and m24 (+ ★ causative-switch),
+// the first two sims on the shared TokenMorph engine. Imports replace the former stubs.
+import { m23 } from './m23-conditionals-3-mixed';
+import { m24 } from './m24-passive-advanced';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -124,8 +128,8 @@ export const modules: Module[] = [
   m22, // CHANGED (S4): authored
 
   // Section V (roman) — Advanced Grammar (B2–C1)
-  stub('m23-conditionals-3-mixed', 23, 's4-advanced-grammar', 1, 'b2', { en: 'Conditionals 3, mixed & wishes', uk: 'Conditionals 3, mixed і wishes' }),
-  stub('m24-passive-advanced', 24, 's4-advanced-grammar', 2, 'b2', { en: 'Advanced passive & causative', uk: 'Поглиблений passive і causative' }),
+  m23, // CHANGED (A1)
+  m24, // CHANGED (A1)
   stub('m25-relative-clauses', 25, 's4-advanced-grammar', 3, 'b2', { en: 'Relative clauses', uk: 'Relative clauses' }),
   stub('m26-participle-clauses', 26, 's4-advanced-grammar', 4, 'c1', { en: 'Participle clauses', uk: 'Participle clauses' }),
   stub('m27-inversion-emphasis', 27, 's4-advanced-grammar', 5, 'c1', { en: 'Inversion, cleft & emphasis', uk: 'Інверсія, cleft і емфаза' }),
