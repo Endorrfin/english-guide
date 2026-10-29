@@ -90,7 +90,7 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 | 12 | `m12-comparatives` | Comparatives & superlatives | b1 | er-more, as-as, superlatives, too-enough | — |
 | 13 | `m13-conditionals-0-1-2` | Conditionals 0 / 1 / 2 | b1 | zero-first, second, unless-in-case, common-mistakes | `conditionals-machine` ★ |
 | 14 | `m14-passive-intro` | Passive: the essentials | b1 | form-present-past, when-to-use, by-agent, passive-vs-active | — |
-| 15 | `m15-reported-speech` | Reported speech | b1 | backshift, say-vs-tell, reported-questions, reporting-verbs | — |
+| 15 | `m15-reported-speech` | Reported speech | b1 | backshift, say-vs-tell, reported-questions, reporting-verbs | `reported-speech-lab` ★ |
 | 16 | `m16-gerund-infinitive` | Gerund vs infinitive | b1 | verb-patterns, stop-remember-try, like-love-hate, purpose | — |
 
 > S5 note: the three old tense stubs (`m9-present-perfect` + its planned `tense-timeline` ★,
@@ -160,9 +160,10 @@ from the `definition.txt` backlog. The Dictionary page stays for now (demote/red
 
 ## F. Totals & asset budget
 
-**6 sections · 34 modules · 8 sims** (built: `modal-navigator` ★ · `deduction-lab` · and all three
+**6 sections · 34 modules · 9 sims** (built: `modal-navigator` ★ · `deduction-lab` · and all three
 Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4) ·
-`conditionals-machine` ★ (C1, m13 — reality × time + a connector lens);
+`conditionals-machine` ★ (C1, m13 — reality × time + a connector lens) ·
+`reported-speech-lab` ★ (C2, m15 — speech kind × reporting frame → highlighted shifts);
 planned: `article-tree` ★ · `word-formation-lab` ★) + the parametric
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
@@ -221,7 +222,8 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
 6. Section I (`m1`–`m5`) + W2 complete (~1,000).
 7. Section III (`m12`–`m16`) + `conditionals-machine` — in three waves: **C1 (done)** `m13` +
    ★ `conditionals-machine` + the `conditional-distance` figure (check:data bar for the section raised
-   to ≥12 drills) → **C2** `m15` + `m16` → **C3** `m14` + `m12` + section polish. Then W3 (~2,000).
+   to ≥12 drills) → **C2 (done)** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` /
+   `meaning-switch` figures → **C3** `m14` + `m12` + section polish. Then W3 (~2,000).
 8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000).
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.

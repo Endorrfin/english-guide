@@ -81,6 +81,9 @@ const SIM_CANARIES: Record<string, string[]> = {
   // CHANGED (C1): the Conditionals Machine renders its default cell (real × future → Type 1) with the
   // if-clause highlighted; the label and forms stay English in both languages.
   ConditionalsMachine: ['Conditionals Machine', 'Type 1 — first conditional', 'If the client approves the design'],
+  // CHANGED (C2): the Reported Speech Lab renders its default (statement · finished-review · said) —
+  // the highlighted shift is one <mark>, so its text is contiguous; English in both languages.
+  ReportedSpeechLab: ['Reported Speech Lab', 'she had finished', 'Past Perfect'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -94,6 +97,9 @@ const FIG_CANARIES: Record<string, string[]> = {
   TenseTimelinePerfect: ['Past Simple', 'Present Perfect'],
   // CHANGED (C1): m13's distance-from-reality figure — the Type 2 and Type 3 rows.
   ConditionalDistance: ['if + Past Simple', 'would have + V3'],
+  // CHANGED (C2): m16's figures — a bucket head + a member verb; the two forms of one switch row.
+  VerbPatternMap: ['verb + to + V1', 'look forward to'],
+  MeaningSwitch: ['remember locking it', 'stop to check email'],
 };
 
 async function main(): Promise<void> {
@@ -263,7 +269,8 @@ async function main(): Promise<void> {
   const bodies = new Map<string, Awaited<ReturnType<typeof loadModule>>>();
   for (const id of ["m17-modal-system", "m6-tense-system", "m7-present-simple-continuous",
                     "m8-past-simple-continuous", "m9-future-forms", "m10-perfect-family",
-                    "m11-choosing-narrative", "m13-conditionals-0-1-2"]) {
+                    "m11-choosing-narrative", "m13-conditionals-0-1-2",
+                    "m15-reported-speech", "m16-gerund-infinitive"]) { // CHANGED (C2)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -323,6 +330,17 @@ async function main(): Promise<void> {
       "If I were you",
       "In case of",
     ]);
+    // CHANGED (C2): m15 + m16 authored bodies at dive 4 — a core table row and a dive-3/4 block each
+    // (m15: a backshift-table example + the dive-4 Past Perfect note; m16: the preposition rule +
+    // the dive-4 need + -ing note). Canaries are English study text present in both languages.
+    check("ModuleBody:m15", bodyEl("m15-reported-speech"), lang, 6000, [
+      "She said she had sent it.",
+      "I had already left",
+    ]);
+    check("ModuleBody:m16", bodyEl("m16-gerund-infinitive"), lang, 6000, [
+      "look forward",
+      "needs refactoring",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -338,6 +356,8 @@ async function main(): Promise<void> {
     "#/m/m6-tense-system", // CHANGED (T1)
     "#/m/m11-choosing-narrative", // CHANGED (T4)
     "#/m/m13-conditionals-0-1-2", // CHANGED (C1)
+    "#/m/m15-reported-speech", // CHANGED (C2)
+    "#/m/m16-gerund-infinitive", // CHANGED (C2)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
