@@ -12,8 +12,10 @@
 // generator would happily produce "If I would have left"). Golden-tested via scripts/test-token-morph.ts.
 
 /** Semantic hue of a token, beyond the automatic "new in this frame" highlight. */
-export type TokenRole = 'cond' | 'result' | 'agent' | 'thing' | 'actor';
-export const TOKEN_ROLES: readonly TokenRole[] = ['cond', 'result', 'agent', 'thing', 'actor'];
+// CHANGED (A2): + link (the shared noun a relative clause hangs on, and the word it replaces) · rel (the
+// relative word) · part (a participle) · subj (the main-clause subject a participle borrows).
+export type TokenRole = 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj';
+export const TOKEN_ROLES: readonly TokenRole[] = ['cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj'];
 
 export type MorphToken = {
   /** Stable identity across frames: lower-cased word + '#' + occurrence in the line. */
@@ -37,15 +39,29 @@ function base(w: string): string {
  * Parse an authored line. Words are separated by single spaces; trailing punctuation splits off into
  * glue tokens; an optional `|role` suffix sets a semantic hue (`mechanic|agent`). Throws on an
  * unknown role so a typo fails the golden test instead of silently losing a colour.
+ *
+ * CHANGED (A2): an optional `~tag` (before any `|role`: `I~m|subj`) pins a word's identity to
+ * `word~tag` instead of its occurrence number. Needed when a transformation deletes an EARLIER copy
+ * of a repeated word: in "When I opened the logs, I~m found …" → "Opening the logs, I~m found …"
+ * the main-clause I must stay put while the first I leaves — by occurrence alone the first I would
+ * fly into the main clause and the wrong one would fade. Tagged words don't count as occurrences;
+ * a duplicate tag in one line throws.
  */
 export function parseLine(src: string): MorphToken[] {
   const out: MorphToken[] = [];
   const seen = new Map<string, number>();
-  const push = (w: string, glue: boolean, role?: TokenRole) => {
+  const push = (w: string, glue: boolean, role?: TokenRole, tag?: string) => {
     const b = base(w);
-    const n = (seen.get(b) ?? 0) + 1;
-    seen.set(b, n);
-    out.push({ k: `${b}#${n}`, w, glue, ...(role ? { role } : {}) });
+    let k: string;
+    if (tag) {
+      k = `${b}~${tag}`;
+      if (out.some((t) => t.k === k)) throw new Error(`tokenMorph: duplicate tag "${k}" in "${src}"`);
+    } else {
+      const n = (seen.get(b) ?? 0) + 1;
+      seen.set(b, n);
+      k = `${b}#${n}`;
+    }
+    out.push({ k, w, glue, ...(role ? { role } : {}) });
   };
   for (const chunk of src.trim().split(/\s+/)) {
     if (!chunk) continue;
@@ -59,16 +75,24 @@ export function parseLine(src: string): MorphToken[] {
       role = r as TokenRole;
       word = word.slice(0, bar) + tail;
     }
+    let tag: string | undefined;
+    const tl = word.indexOf('~');
+    if (tl >= 0) {
+      const rest = word.slice(tl + 1);
+      tag = rest.replace(/[,.;:!?]+$/, '');
+      if (!/^[a-z0-9]+$/.test(tag)) throw new Error(`tokenMorph: bad tag "${tag}" in "${src}"`);
+      word = word.slice(0, tl) + rest.slice(tag.length);
+    }
     if (PUNCT.test(word)) {
       push(word, true);
       continue;
     }
     const m = TRAILING.exec(word);
     if (m && m[1]) {
-      push(m[1], false, role);
+      push(m[1], false, role, tag);
       push(m[2], true);
     } else {
-      push(word, false, role);
+      push(word, false, role, tag);
     }
   }
   return out;

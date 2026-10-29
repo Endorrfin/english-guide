@@ -54,6 +54,21 @@ try {
 }
 ok(threw, 'an unknown role throws (a typo must fail loudly)');
 
+// CHANGED (A2): ~tag pins identity — the deleted EARLIER copy leaves, the tagged one stays.
+const c1 = parseLine('When I opened the logs, I~m|subj found it.');
+const c2 = parseLine('Opening the logs, I~m|subj found it.');
+ok(textOf(c1) === 'When I opened the logs, I found it.', `a tag is stripped from the text: ${textOf(c1)}`);
+ok(c1[1].k === 'i#1' && c1[6].k === 'i~m' && c1[6].role === 'subj', `tag + role: ${c1[6].k} ${c1[6].role}`);
+ok(leftKeys(c1, c2).has('i#1') && !leftKeys(c1, c2).has('i~m'), 'the subordinate I leaves, the tagged main I stays');
+ok(parseLine('the logs, I~m.')[3].w === 'I' && parseLine('the logs, I~m.')[4].w === '.','a tag before punctuation keeps the punctuation');
+threw = false;
+try {
+  parseLine('I~m and I~m');
+} catch {
+  threw = true;
+}
+ok(threw, 'a duplicate tag in one line throws');
+
 if (failures > 0) {
   console.error(`\n✖ test-token-morph: ${failures} failure(s).`);
   process.exit(1);
