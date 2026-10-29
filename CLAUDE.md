@@ -169,8 +169,15 @@ the plain fact — never punctuation) + `MorphBits` (Radios · MorphControls · 
 (`useReducedMotion`, `usePlayback`). Every frame is AUTHORED, never generated; reduced motion = no
 auto-play, no flight. Built: ★ `counterfactual-rewind` (m23: change-time × result-time 2 × 2 + wishes,
 two-lane real/imagined timeline; golden `test-counterfactual`) · ★ `causative-switch` (m24: six
-who-does-it forms with a You → pro → thing scene + the It-is-said track; golden `test-causative`).
-Planned: m25 Clause Welder · m26 Clause Compressor · m28 `article-tree` · m30 Connector Bridge ·
+who-does-it forms with a You → pro → thing scene + the It-is-said track; golden `test-causative`) ·
+<!-- CHANGED (A2) --> ★ `clause-welder` (m25: 5 joints — what the shared word did in sentence 2 picks the
+relative word — + a Commas track with a some/all set scene; golden `test-clause-welder`: the shared word
+vanishes exactly once, reduced/zero/stranded frames are exact transforms) · ★ `clause-compressor` (m26:
+5 compressions with a word meter + a **dangling-participle detector** whose verdict is COMPUTED from
+`|part` / `|subj` tokens vs the scenario's declared doer; golden `test-clause-compressor`). The engine
+gained `word~tag` identity pins (when a transform deletes an EARLIER copy of a repeated word, e.g. the
+subordinate *I*) and the roles `link · rel · part · subj`.
+Planned: m28 `article-tree` · m30 Connector Bridge ·
 m27 Emphasis Spotlight · m29 Register Dial. The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 **★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
@@ -326,7 +333,7 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C1 (done):** Section III begins — `m13` + ★ `conditionals-machine` + `conditional-distance` figure. →
 **C2 (done):** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` / `meaning-switch` figures. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
-**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → A2 `m25` + `m26` → A3 `m28` + `article-tree` · `m30` → A4 `m27` + `m29`. →
+**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → A3 `m28` + `article-tree` · `m30` → A4 `m27` + `m29`. →
 VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
 V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
@@ -379,6 +386,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **DOCS1** (2026-10-29) — journal moved to `SESSIONS.md`; §14 → one-line index; §16 → SESSIONS appendix.
 - **UX1** (2026-10-29) — 390 px page overflow fixed: the cause was `.ex-top` chips (no wrap), not `.dtable`; all 34 modules + `#/practice` fit.
 - **A1** (2026-10-29) — Section V begins: TokenMorph engine + `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch`; Section V ≥12-drill bar (19/34, 293 drills, eager 355.6 kB).
+- **A2** (2026-10-29) — `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` (dangling detector); TokenMorph `~tag` + 4 roles (21/34, 325 drills, test ×21, eager 360.1 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

@@ -89,6 +89,10 @@ const SIM_CANARIES: Record<string, string[]> = {
   // canary is the whole sentence. m23: past × past, story 1, frame 3; m24: laptop, frame 2.
   CounterfactualRewind: ['Counterfactual Rewind', 'Type 3 — third conditional', 'If we had run the migration on staging, it wouldn’t have failed in production.'],
   CausativeSwitch: ['Causative Switch', 'have + object + V3', 'I had my laptop repaired.'],
+  // CHANGED (A2): m25 renders object joint · pr · frame 2 (the weld); m26 renders earlier · build · frame
+  // 3 with the detector's computed ✓ verdict naming the borrowed subject (English chip text in both).
+  ClauseWelder: ['Clause Welder', 'noun + that / who / which + subject + verb', 'I reviewed the PR that Anna opened yesterday.'],
+  ClauseCompressor: ['Clause Compressor', 'Having + V3', 'Having tested the build, we deployed it.', 'pcc-check--ok'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -280,7 +284,8 @@ async function main(): Promise<void> {
                     "m11-choosing-narrative", "m13-conditionals-0-1-2",
                     "m15-reported-speech", "m16-gerund-infinitive", // CHANGED (C2)
                     "m12-comparatives", "m14-passive-intro", // CHANGED (C3)
-                    "m23-conditionals-3-mixed", "m24-passive-advanced"]) { // CHANGED (A1)
+                    "m23-conditionals-3-mixed", "m24-passive-advanced", // CHANGED (A1)
+                    "m25-relative-clauses", "m26-participle-clauses"]) { // CHANGED (A2)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -373,6 +378,16 @@ async function main(): Promise<void> {
       "This should have been caught in code review.",
       "There is believed to be",
     ]);
+    // CHANGED (A2): m25 + m26 authored bodies at dive 4 — a core table row and a dive-4 block each
+    // (m25: the whose row + the “two of whom” note; m26: the dangling-fix row + the absolute clause).
+    check("ModuleBody:m25", bodyEl("m25-relative-clauses"), lang, 6000, [
+      "We restarted the service whose logs were full of errors.",
+      "two of whom",
+    ]);
+    check("ModuleBody:m26", bodyEl("m26-participle-clauses"), lang, 6000, [
+      "Having finished the migration, we restarted the database.",
+      "Weather permitting",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -394,6 +409,8 @@ async function main(): Promise<void> {
     "#/m/m14-passive-intro", // CHANGED (C3)
     "#/m/m23-conditionals-3-mixed", // CHANGED (A1)
     "#/m/m24-passive-advanced", // CHANGED (A1)
+    "#/m/m25-relative-clauses", // CHANGED (A2)
+    "#/m/m26-participle-clauses", // CHANGED (A2)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",

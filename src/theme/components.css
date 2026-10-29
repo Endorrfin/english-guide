@@ -4415,3 +4415,166 @@
     padding: 0.3rem 0.45rem;
   }
 }
+
+/* ── CHANGED (A2): ★ Clause Welder (m25) + ★ Clause Compressor (m26). New TokenMorph roles: link = the
+   shared noun and its stand-in (amber) · rel = the relative word (cyan) · part = the participle
+   (cyan) · subj = the main subject it borrows (amber). ───────────────────────────────────────────*/
+.tkm-link { color: var(--amber); }
+.tkm-rel { color: var(--time-present); font-weight: 600; }
+.tkm-part { color: var(--time-present); font-weight: 600; }
+.tkm-subj { color: var(--amber); font-weight: 600; }
+/* Long patterns wrap instead of running out of the card at 390 px (found in the A2 browser pass). */
+.rcw .mn-answer-row,
+.pcc .mn-answer-row {
+  flex-wrap: wrap;
+}
+.rcw .cs-pattern,
+.pcc .cs-pattern {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Welder — the joint chip (she → who) and the commas-track set scene. */
+.rcw-joint {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.55rem 0 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+.rcw-chip {
+  padding: 0.12rem 0.55rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.rcw-arrow {
+  color: var(--tx3);
+}
+.rcw-wait {
+  opacity: 0.45;
+  border-style: dashed;
+}
+.rcw-zero {
+  border-style: dashed;
+}
+.rcw-set {
+  margin: 0.6rem 0 0.15rem;
+}
+.rcw-dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.rcw-dot {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 4px;
+  border: 1.5px solid var(--line2);
+  background: var(--s2);
+  transition: background var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease), opacity var(--dur-slow) var(--ease);
+}
+.rcw-dot.on {
+  border-color: var(--amber);
+  background: var(--amber-soft);
+}
+.rcw-set--whole .rcw-dots {
+  padding: 0.25rem 0.45rem;
+  border: 1.5px dashed var(--time-present);
+  border-radius: var(--r-md);
+  width: fit-content;
+}
+.rcw-noun {
+  margin-left: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--tx2);
+}
+.rcw-set-cap {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  color: var(--tx2);
+}
+
+/* Compressor — the word meter and the doer check (the dangling detector). */
+.pcc-meter {
+  position: relative;
+  height: 1.35rem;
+  margin: 0.6rem 0 0.1rem;
+  border-radius: 999px;
+  background: var(--s2);
+  overflow: hidden;
+}
+.pcc-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in srgb, var(--sec-advanced) 32%, transparent);
+  border-right: 2px solid var(--sec-advanced);
+  transition: width 600ms var(--ease);
+}
+.pcc-count {
+  position: relative;
+  padding-left: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.35rem;
+  color: var(--tx);
+}
+.pcc-check {
+  margin: 0.2rem 0 0.4rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line2);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.pcc-check--ok { border-left-color: var(--ok); }
+.pcc-check--dangling {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+}
+.pcc-check--full { border-left-color: var(--tx3); }
+.pcc-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+}
+.pcc-chip {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.pcc-none {
+  color: var(--tx3);
+  border-style: dashed;
+}
+.pcc-link {
+  font-family: var(--font-sans, inherit);
+  font-size: 0.72rem;
+  color: var(--tx3);
+}
+.pcc-link::after {
+  content: ' →';
+}
+.pcc-badge {
+  font-weight: 700;
+}
+.pcc-check--ok .pcc-badge { color: var(--ok); }
+.pcc-check--dangling .pcc-badge,
+.pcc-check--dangling .tkm-subj { color: var(--danger); }
+.pcc-verdict {
+  margin: 0.35rem 0 0;
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rcw-chip,
+  .rcw-dot,
+  .pcc-bar {
+    transition: none;
+  }
+}

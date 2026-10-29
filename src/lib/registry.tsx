@@ -38,6 +38,10 @@ export const sims: Record<string, LazyComp> = {
   // CHANGED (A1): Section V — the first two TokenMorph sims (m23 rewind, m24 causative / reporting).
   'counterfactual-rewind': lazyNamed(() => import('../components/sims/CounterfactualRewind'), 'CounterfactualRewind'),
   'causative-switch': lazyNamed(() => import('../components/sims/CausativeSwitch'), 'CausativeSwitch'),
+  // CHANGED (A2): wave A2 — m25 welds two sentences into a relative clause; m26 compresses a clause
+  // into a participle and runs the dangling-participle detector.
+  'clause-welder': lazyNamed(() => import('../components/sims/ClauseWelder'), 'ClauseWelder'),
+  'clause-compressor': lazyNamed(() => import('../components/sims/ClauseCompressor'), 'ClauseCompressor'),
 };
 
 /** Figures by kebab key. */

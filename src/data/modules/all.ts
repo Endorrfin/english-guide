@@ -54,6 +54,10 @@ import { m14 } from './m14-passive-intro';
 // the first two sims on the shared TokenMorph engine. Imports replace the former stubs.
 import { m23 } from './m23-conditionals-3-mixed';
 import { m24 } from './m24-passive-advanced';
+// CHANGED (A2): wave A2 — m25 (+ ★ clause-welder) and m26 (+ ★ clause-compressor with the dangling-
+// participle detector), both on the shared TokenMorph engine. Imports replace the former stubs.
+import { m25 } from './m25-relative-clauses';
+import { m26 } from './m26-participle-clauses';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -130,8 +134,8 @@ export const modules: Module[] = [
   // Section V (roman) — Advanced Grammar (B2–C1)
   m23, // CHANGED (A1)
   m24, // CHANGED (A1)
-  stub('m25-relative-clauses', 25, 's4-advanced-grammar', 3, 'b2', { en: 'Relative clauses', uk: 'Relative clauses' }),
-  stub('m26-participle-clauses', 26, 's4-advanced-grammar', 4, 'c1', { en: 'Participle clauses', uk: 'Participle clauses' }),
+  m25, // CHANGED (A2)
+  m26, // CHANGED (A2)
   stub('m27-inversion-emphasis', 27, 's4-advanced-grammar', 5, 'c1', { en: 'Inversion, cleft & emphasis', uk: 'Інверсія, cleft і емфаза' }),
   stub('m28-articles-advanced', 28, 's4-advanced-grammar', 6, 'b2', { en: 'Articles: the hard cases', uk: 'Артиклі: складні випадки' }, true),
   stub('m29-subjunctive-formal', 29, 's4-advanced-grammar', 7, 'c1', { en: 'Subjunctive & formal English', uk: 'Subjunctive і формальна англійська' }),

@@ -192,7 +192,15 @@ into Type 3 / mixed / Type 2 on a real-vs-imagined timeline (plus *I wish … / 
 passive & causative (16 drills) with ★ **Causative Switch** — *I repaired → I had … repaired → I got … to
 repair → I had my laptop stolen*, with a who-acts scene, and *It is said that … / X is said to …*.
 Now **19 of 34 modules authored · 293 drills**.
-**Next:** Section V waves A2 (`m25` relative clauses · `m26` participle clauses) → A3 (`m28` articles +
+**A2 — shipped.** `m25` Relative clauses (16 drills) with ★ **Clause Welder** — two sentences that share a
+person or thing are welded into one: the shared word fades out, *who / that / whose / where* flies in, then
+the lighter form (*the PR Anna opened · the engineer sitting next to me · the client I talked to*), plus a
+Commas track that shows *some* vs *all* of the servers; `m26` Participle clauses (16 drills) with
+★ **Clause Compressor** — a full clause shrinks to *Opening… · Written… · Having tested…* while a word meter
+drops, and a **dangling-participle detector** checks, frame by frame, whether the subject after the comma
+really did the action (*Having finished the migration, the database was restarted* ✕).
+Now **21 of 34 modules authored · 325 drills**.
+**Next:** Section V waves A3 (`m28` articles +
 `article-tree` · `m30` linking) → A4 (`m27` inversion & emphasis · `m29` subjunctive & formal).
 
 ---
