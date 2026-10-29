@@ -365,6 +365,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **C2** (2026-10-29) — `m15` + ★`reported-speech-lab` + `m16` + 2 figures (15/34, 229 drills).
 - **C3** (2026-10-29) — `m14` + `passive-flip` · `m12` + `comparison-scale` — Section III COMPLETE (17/34, 261 drills, eager 351.0 kB).
 - **DOCS1** (2026-10-29) — journal moved to `SESSIONS.md`; §14 → one-line index; §16 → SESSIONS appendix.
+- **UX1** (2026-10-29) — 390 px page overflow fixed: the cause was `.ex-top` chips (no wrap), not `.dtable`; all 34 modules + `#/practice` fit.
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

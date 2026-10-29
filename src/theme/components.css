@@ -1582,6 +1582,7 @@
 }
 .ex-top {
   display: flex;
+  flex-wrap: wrap; /* CHANGED (UX1): long tag chips overflowed 390px pages (m9/m13/m15/m16/m21) */
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
