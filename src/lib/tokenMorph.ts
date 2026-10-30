@@ -16,8 +16,14 @@
 // relative word) · part (a participle) · subj (the main-clause subject a participle borrows).
 // CHANGED (A3): + art (the article a decision tree drops into a slot) · slot (the empty ___ it fills) ·
 // conn (a linking word) · verb (a finite verb — what makes a clause a clause, e.g. after *despite*).
-export type TokenRole = 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj' | 'art' | 'slot' | 'conn' | 'verb';
-export const TOKEN_ROLES: readonly TokenRole[] = ['cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj', 'art', 'slot', 'conn', 'verb'];
+// CHANGED (A4): + aux (the operator that inverts: have · can · do / did) · trig (a negative / restrictive
+// adverbial that forces inversion when it opens the sentence) · focus (what a cleft or fronting spotlights).
+export type TokenRole =
+  | 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj' | 'art' | 'slot' | 'conn' | 'verb'
+  | 'aux' | 'trig' | 'focus';
+export const TOKEN_ROLES: readonly TokenRole[] = [
+  'cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj', 'art', 'slot', 'conn', 'verb', 'aux', 'trig', 'focus',
+];
 
 export type MorphToken = {
   /** Stable identity across frames: lower-cased word + '#' + occurrence in the line. */

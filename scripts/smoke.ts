@@ -98,6 +98,15 @@ const SIM_CANARIES: Record<string, string[]> = {
   // frame 3 (the linking adverb) with the computed clean verdict.
   ArticleTree: ['Article Tree', 'After the crash, she spent a week in the hospital.', 'at-leaf--specific', 'After the crash, she spent a week in hospital.'],
   ConnectorBridge: ['Connector Bridge', 'The build passed all the tests. However, it failed in production.', 'cb-scene--ok'],
+  // CHANGED (A4): m27 renders negative · migration at its last frame (the computed operator over the
+  // subject, clean verdict); m29 renders deploy · official with the computed BrE chip (should + base).
+  EmphasisSpotlight: ['Emphasis Spotlight', 'Never have we seen such a clean migration.', 'es-scene--ok'],
+  RegisterDial: [
+    'Register Dial',
+    'It is essential that the deployment be postponed until Monday, pursuant to the testing requirements.',
+    'It is essential that the deployment should be postponed until Monday, pursuant to the testing requirements.',
+    'rd-scene--ok',
+  ],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -291,7 +300,8 @@ async function main(): Promise<void> {
                     "m12-comparatives", "m14-passive-intro", // CHANGED (C3)
                     "m23-conditionals-3-mixed", "m24-passive-advanced", // CHANGED (A1)
                     "m25-relative-clauses", "m26-participle-clauses", // CHANGED (A2)
-                    "m28-articles-advanced", "m30-linking-discourse"]) { // CHANGED (A3)
+                    "m28-articles-advanced", "m30-linking-discourse", // CHANGED (A3)
+                    "m27-inversion-emphasis", "m29-subjunctive-formal"]) { // CHANGED (A4)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -405,6 +415,17 @@ async function main(): Promise<void> {
       "Despite passing all the tests, the build failed in production.",
       "The tests passed. The deploy, ",
     ]);
+    // CHANGED (A4): m27 + m29 authored bodies at dive 4 — a core table row and a dive-4 block each
+    // (m27: the do-support row + the On the corner stood note; m29: the BrE should row + the shall note,
+    // whose canary starts after the markdown <strong>).
+    check("ModuleBody:m27", bodyEl("m27-inversion-emphasis"), lang, 6000, [
+      "Seldom did we test the restore path.",
+      "On the corner stood",
+    ]);
+    check("ModuleBody:m29", bodyEl("m29-subjunctive-formal"), lang, 6000, [
+      "We recommend that she should review the logs.",
+      " provide monthly reports.",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -430,6 +451,8 @@ async function main(): Promise<void> {
     "#/m/m26-participle-clauses", // CHANGED (A2)
     "#/m/m28-articles-advanced", // CHANGED (A3)
     "#/m/m30-linking-discourse", // CHANGED (A3)
+    "#/m/m27-inversion-emphasis", // CHANGED (A4)
+    "#/m/m29-subjunctive-formal", // CHANGED (A4)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",

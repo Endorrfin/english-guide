@@ -46,6 +46,11 @@ export const sims: Record<string, LazyComp> = {
   // sentence; the signature sim of Section V) and m30's connector-bridge (one meaning, four linker classes).
   'article-tree': lazyNamed(() => import('../components/sims/ArticleTree'), 'ArticleTree'),
   'connector-bridge': lazyNamed(() => import('../components/sims/ConnectorBridge'), 'ConnectorBridge'),
+  // CHANGED (A4): wave A4 — Section V complete. m27's ★ emphasis-spotlight (a fronted negative pulls the
+  // operator over the subject; clefts frame the focus) and m29's ★ register-dial (one message on four
+  // register stops, the needle placed by the computed marker score).
+  'emphasis-spotlight': lazyNamed(() => import('../components/sims/EmphasisSpotlight'), 'EmphasisSpotlight'),
+  'register-dial': lazyNamed(() => import('../components/sims/RegisterDial'), 'RegisterDial'),
 };
 
 /** Figures by kebab key. */

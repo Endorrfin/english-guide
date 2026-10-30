@@ -117,9 +117,9 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 | 24 | `m24-passive-advanced` | Advanced passive & causative | b2 | perfect-continuous-passive, causative-have-get, it-is-said, register | `causative-switch` ★ (A1, built) |
 | 25 | `m25-relative-clauses` | Relative clauses | b2 | defining, non-defining, whose-where-whom, reduced-clauses | `clause-welder` ★ (A2, built) |
 | 26 | `m26-participle-clauses` | Participle clauses | c1 | ing-clauses, ed-clauses, having-done, dangling-participles | `clause-compressor` ★ (A2, built — + dangling detector) |
-| 27 | `m27-inversion-emphasis` | Inversion, cleft & emphasis | c1 | negative-inversion, not-only, cleft-sentences, fronting | — |
+| 27 | `m27-inversion-emphasis` | Inversion, cleft & emphasis | c1 | negative-inversion, not-only, cleft-sentences, fronting | `emphasis-spotlight` (A4, built — operator + do-support computed from facts; inversion vs cleft vs fronting) |
 | 28 | `m28-articles-advanced` | Articles: the hard cases | b2 | abstract-generic, geography-institutions, idiomatic-zero, a-vs-the-nuance | `article-tree` ★ (A3, built — decision tree → TokenMorph slot, AmE base + BrE chip) |
-| 29 | `m29-subjunctive-formal` | Subjunctive & formal English | c1 | mandative-subjunctive, were-subjunctive, formal-linkers, register-shifts | — |
+| 29 | `m29-subjunctive-formal` | Subjunctive & formal English | c1 | mandative-subjunctive, were-subjunctive, formal-linkers, register-shifts | `register-dial` (A4, built — computed register-marker score → 4 stops, AmE base + computed BrE should chip) |
 | 30 | `m30-linking-discourse` | Linking & discourse markers | b2 | contrast, cause-result, addition-sequence, spoken-discourse | `connector-bridge` (A3, built — 4 linker classes + computed splice / double-linker / despite checks) |
 
 ### Section VI — Vocabulary in Action (`s5-vocabulary-in-action`, B1–B2, accent: violet; roman V → VI in S5)
@@ -164,7 +164,7 @@ from the `definition.txt` backlog. The Dictionary page stays for now (demote/red
 Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `tense-chooser` (T4) ·
 `conditionals-machine` ★ (C1, m13 — reality × time + a connector lens) ·
 `reported-speech-lab` ★ (C2, m15 — speech kind × reporting frame → highlighted shifts);
-+ the Section V TokenMorph family, built A1–A3: `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` · `article-tree` ★ · `connector-bridge`;
++ the Section V TokenMorph family, built A1–A4 (complete, 8/8): `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ★ · `register-dial` · `connector-bridge`;
 planned: `word-formation-lab` ★ + A4 Emphasis Spotlight · Register Dial) + the parametric
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
@@ -227,11 +227,11 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    `meaning-switch` figures → **C3 (done)** `m14` + the `passive-flip` figure · `m12` + the
    `comparison-scale` figure + section polish (cross-links m11/m16 → m14) — **Section III COMPLETE
    (5/5)**. Then W3 (~2,000).
-8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000). **In progress (owner plan 2026-10-29):**
-   one live TokenMorph sim per module (shared engine: words fly between authored frames), ≥12 drills,
-   four waves — **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` →
+8. Section V (`m23`–`m30`) + `article-tree` + W4 (~3,000). **Section V COMPLETE (8/8, A4 2026-10-30)**
+   (owner plan 2026-10-29): one live TokenMorph sim per module (shared engine: words fly between authored
+   frames), ≥12 drills, four waves — **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` →
    **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` +
-   ★ `connector-bridge` → A4 `m27` Emphasis Spotlight + `m29` Register Dial.
+   ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial`. W4 still open.
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.
 

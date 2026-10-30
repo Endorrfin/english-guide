@@ -186,7 +186,19 @@ golden `test-article-tree`: the engine's article == the article authored in the 
 preposition; `lib/connectors.ts` computes the class from a LEXICON and DIAGNOSES the comma splice, the
 «хоча …, але» double linker, a clause after a preposition (`|verb` marks finite verbs) and *despite of*; golden
 `test-connector-bridge`). Roles `art · slot · conn · verb`.
-Planned: m27 Emphasis Spotlight · m29 Register Dial. The old standalone `tense-timeline` sim is superseded by the parametric
+<!-- CHANGED (A4) --> ★ `emphasis-spotlight` (m27: negative inversion · not only · it-cleft · wh-cleft · fronting — a fronted
+NEGATIVE adverbial pulls the operator over the subject, anything else keeps normal order; scenarios declare FACTS
+(auxiliary, or simple tense + person; the verb's base + used form) and `lib/emphasis.ts` COMPUTES the operator incl.
+do-support, the construction, the step labels and the diagnosis — no inversion · missing do · did + V2 · hardly…than ·
+needless inversion · «That what» · which for a person; golden `test-emphasis`: computed operator == authored operator) ·
+★ `register-dial` (m29: one message on four stops chat · email · report · official; `lib/register.ts` COUNTS register
+markers — contractions, And/So openers, "!", informal/slang/formal/official LEXICONS, nominalisations by suffix, the
+passive (be + `|part`), the mandative subjunctive, BrE should, conditional inversion — and places the needle from
+that score; it builds the BrE should-variant chip and diagnoses mixed register · indicative after essential-that ·
+too formal / too casual for a declared context; golden `test-register`: the score rises strictly along every dial and
+each frame lands in its own stop's band). Roles `aux · trig · focus`. **Section V COMPLETE: 8 TokenMorph sims.**
+A4 also fixed two cross-module renderers: `Md.tsx` now nests *italic with **bold*** both ways (228 authored strings
+rendered stray asterisks) and module mental models render through `MdInline` (they were printed raw). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 **★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
 sim**: the standalone live home of the tense system — the 12-cell WALL conjugated live by the pure
@@ -341,9 +353,9 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C1 (done):** Section III begins — `m13` + ★ `conditionals-machine` + `conditional-distance` figure. →
 **C2 (done):** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` / `meaning-switch` figures. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
-**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → A4 `m27` + `m29`. →
-VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
-V (A4: m27 + m29), + dictionary waves W2–W5, **with Reading waves interleaved**. →
+**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial` — **Section V Advanced Grammar COMPLETE (8/8)**. →
+VI (m31–m34) + `word-formation-lab` · I (m1–m5),
++ dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
 CURRICULUM.md §G / §R.)
@@ -396,6 +408,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **A1** (2026-10-29) — Section V begins: TokenMorph engine + `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch`; Section V ≥12-drill bar (19/34, 293 drills, eager 355.6 kB).
 - **A2** (2026-10-29) — `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` (dangling detector); TokenMorph `~tag` + 4 roles (21/34, 325 drills, test ×21, eager 360.1 kB).
 - **A3** (2026-10-29) — `m28` + ★ `article-tree` (Section V signature; decision tree → TokenMorph slot, AmE base + computed BrE chip) · `m30` + ★ `connector-bridge` (4 linker classes + computed diagnosis); roles `art · slot · conn · verb` (23/34, 357 drills, test ×23, eager 366.0 kB).
+- **A4** (2026-10-30) — `m27` + ★ `emphasis-spotlight` (operator + do-support computed from facts) · `m29` + ★ `register-dial` (computed marker score → 4 stops, BrE should chip); roles `aux · trig · focus`; `Md` nesting + mental-model markdown fixed for all modules — **Section V COMPLETE** (25/34, 390 drills, test ×25, eager 372.0 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

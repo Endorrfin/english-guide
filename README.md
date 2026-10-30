@@ -20,8 +20,9 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   (one sentence morphed through all 12 cells), `tense-chooser` (three meaning questions → the tense)
   + the parametric `TenseTimeline` figure, and `conditionals-machine` (how real × what time → the
   conditional, with an if · unless · in case · as long as · when lens), and `reported-speech-lab`
-  (what was said × how you report it → every shift highlighted). Planned: `article-tree`,
-  `word-formation-lab`.
+  (what was said × how you report it → every shift highlighted), plus the **Section V TokenMorph family
+  (8/8)**: `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` ·
+  `emphasis-spotlight` · `article-tree` · `register-dial` · `connector-bridge`. Planned: `word-formation-lab`.
 - **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
   time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
   as you watch (a pure, golden-tested engine — no canned sentences); flip the **full ↔ short
@@ -211,7 +212,19 @@ one meaning, four grammars (*, but · Although … , · . However, · Despite + 
 itself around each linker, and a computed check catches the comma splice, *Although …, but …*,
 *despite + clause* and *despite of*.
 Now **23 of 34 modules authored · 357 drills**.
-**Next:** Section V wave A4 (`m27` inversion & emphasis · `m29` subjunctive & formal).
+**A4 — shipped. Section V Advanced Grammar is complete (8/8).** `m27` Inversion, cleft & emphasis
+(17 drills) with ★ **Emphasis Spotlight**: a neutral sentence re-orders itself into *Never have I…*,
+*Not only did we…*, *It was Anna who…*, *What we need is…* or a fronted object. In an inversion walk the
+adverbial flies to the front first (still wrong), then the operator jumps over the subject. The operator,
+including do-support, is computed from the sentence's facts, so *Rarely we check* and *did we fixed* are
+caught automatically. `m29` Subjunctive & formal English (16 drills) comes with ★ **Register Dial**: one
+message on four stops (chat → email → report → official). The engine counts the register markers it finds
+(contractions, slang, formal and official words, nominalisations, the passive, the subjunctive,
+*Should you…*) and places the needle from that score. Where a mandative subjunctive appears, a BrE chip
+shows the *should* form. A4 also fixed markdown rendering across every module: nested *italic with
+**bold*** and the mental-model cards no longer show stray asterisks.
+Now **25 of 34 modules authored · 390 drills**.
+**Next:** Section VI (`m31`–`m34`) + `word-formation-lab`, or Foundations (`m1`–`m5`).
 
 ---
 
@@ -234,7 +247,9 @@ mental model, key points, pitfalls (типові помилки україном
 речення крізь усі 12 клітинок), `tense-chooser` (три питання про зміст → tense) + параметрична фігура
 `TenseTimeline`, а також `conditionals-machine` (наскільки реально × про який час → conditional, з лінзою
 if · unless · in case · as long as · when) і `reported-speech-lab` (що сказали × як ви це передаєте →
-кожен зсув підсвічено). Заплановані — `article-tree`, `word-formation-lab`.
+кожен зсув підсвічено), а також **родина TokenMorph секції V (8/8)**: `counterfactual-rewind` ·
+`causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ·
+`register-dial` · `connector-bridge`. Запланований — `word-formation-lab`.
 **★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
 time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
 ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); перемикач **повних ↔
