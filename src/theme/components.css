@@ -4578,3 +4578,224 @@
     transition: none;
   }
 }
+/* ── CHANGED (A3): ★ Article Tree (m28) + ★ Connector Bridge (m30). New TokenMorph roles: art = the
+   article the tree drops in (amber, bold) · slot = the empty ___ (dashed, muted) · conn = a linker
+   (cyan) · verb = a finite verb, the mark of a clause (dotted underline). ─────────────────────────*/
+.tkm-art { color: var(--amber); font-weight: 700; }
+.tkm-slot {
+  color: var(--tx3);
+  letter-spacing: 0.04em;
+  border-bottom: 1.5px dashed var(--tx3);
+}
+.tkm-conn { color: var(--time-present); font-weight: 600; }
+.tkm-verb {
+  text-decoration: underline dotted var(--tx3);
+  text-underline-offset: 0.25em;
+}
+
+/* Article Tree — the guess row, the five questions, the leaf, the BrE chip. */
+.at-guess {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.2rem 0 0.4rem;
+}
+.at-guess .mn-col-label { margin: 0; }
+.at-guess-btn {
+  min-width: 2.6rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--tx);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+.at-guess-btn.on {
+  border-color: var(--amber);
+  background: var(--amber-soft);
+}
+.at-verdict {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.at-verdict.right { color: var(--ok); }
+.at-verdict.wrong { color: var(--danger); }
+.at-line { font-size: 1.08rem; }
+.at-variant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0.15rem 0 0.4rem;
+  font-size: 0.86rem;
+}
+.at-variant-tag {
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--time-future);
+  border-radius: 999px;
+  color: var(--time-future);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.at-changed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.15rem 0 0.4rem;
+}
+.at-changed .mn-col-label { margin: 0; }
+.at-fact {
+  padding: 0.05rem 0.5rem;
+  border: 1px dashed var(--amber);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--amber);
+}
+.at-tree {
+  margin: 0.35rem 0 0.5rem;
+}
+.at-qs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.at-q {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--line2);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  opacity: 0.5;
+  transition: opacity var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease);
+}
+.at-q.on { opacity: 1; border-left-color: var(--sec-advanced); }
+.at-q.now { border-color: var(--sec-advanced); }
+.at-q.skip { opacity: 0.32; border-style: dashed; }
+.at-q-text {
+  font-size: 0.84rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.at-q-ans {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+.at-q-why { overflow-wrap: anywhere; }
+.at-yn {
+  padding: 0 0.4rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.at-yn.yes { background: var(--ok-soft); color: var(--ok); }
+.at-yn.no { background: var(--s3); color: var(--tx2); }
+.at-leaf {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.45rem;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid var(--amber);
+  border-radius: var(--r-md);
+  background: var(--amber-soft);
+  opacity: 0;
+  transform: translateY(-0.3rem);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+.at-leaf.on { opacity: 1; transform: none; }
+.at-art {
+  flex: 0 0 auto;
+  min-width: 2.6rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+.at-leaf-text {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.82rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Connector Bridge — side · linker · side, the clause count, the rule and the verdict. */
+.cb-scene {
+  margin: 0.3rem 0 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line2);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.cb-scene--ok { border-left-color: var(--ok); }
+.cb-scene--bad { border-left-color: var(--danger); background: var(--danger-soft); }
+.cb-bridge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cb-side {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-md);
+  background: var(--s2);
+  font-size: 0.74rem;
+  text-align: center;
+  color: var(--tx2);
+  overflow-wrap: anywhere;
+}
+.cb-deck {
+  flex: 0 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.25rem 0.5rem;
+  border-top: 3px solid var(--time-present);
+}
+.cb-conn {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--time-present);
+  white-space: nowrap;
+}
+.cb-conn--bad { color: var(--danger); text-decoration: line-through; }
+.cb-class {
+  font-size: 0.68rem;
+  color: var(--tx3);
+  white-space: nowrap;
+}
+.cb-count,
+.cb-rule,
+.cb-verdict {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+.cb-count { font-family: var(--font-mono); font-size: 0.76rem; color: var(--tx2); }
+.cb-verdict { font-weight: 600; }
+.cb-scene--ok .cb-verdict { color: var(--ok); }
+.cb-scene--bad .cb-verdict { color: var(--danger); }
+@media (prefers-reduced-motion: reduce) {
+  .at-q,
+  .at-leaf {
+    transition: none;
+  }
+}

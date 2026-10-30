@@ -65,13 +65,16 @@ export function usePlayback(last: number, intervalMs = 1900, initial = 0): Playb
     (reduced: boolean) => {
       if (reduced) {
         setPlaying(false);
-        setStep(last);
+        // CHANGED (A3): "the last frame" of the walk that is about to be shown — replay is called in
+        // the same event that switches scenarios, so `last` here is still the OLD walk's length (a
+        // 2-frame → 3-frame switch stopped one frame short). The returned step is clamped below.
+        setStep(Number.MAX_SAFE_INTEGER);
         return;
       }
       setStep(0);
       setPlaying(true);
     },
-    [last],
+    [],
   );
 
   return { step: Math.min(step, last), playing, goto, toggle, replay };

@@ -42,6 +42,10 @@ export const sims: Record<string, LazyComp> = {
   // into a participle and runs the dangling-participle detector.
   'clause-welder': lazyNamed(() => import('../components/sims/ClauseWelder'), 'ClauseWelder'),
   'clause-compressor': lazyNamed(() => import('../components/sims/ClauseCompressor'), 'ClauseCompressor'),
+  // CHANGED (A3): wave A3 — m28's ★ article-tree (a decision tree that drops the article into the
+  // sentence; the signature sim of Section V) and m30's connector-bridge (one meaning, four linker classes).
+  'article-tree': lazyNamed(() => import('../components/sims/ArticleTree'), 'ArticleTree'),
+  'connector-bridge': lazyNamed(() => import('../components/sims/ConnectorBridge'), 'ConnectorBridge'),
 };
 
 /** Figures by kebab key. */

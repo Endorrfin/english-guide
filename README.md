@@ -200,8 +200,18 @@ Commas track that shows *some* vs *all* of the servers; `m26` Participle clauses
 drops, and a **dangling-participle detector** checks, frame by frame, whether the subject after the comma
 really did the action (*Having finished the migration, the database was restarted* ✕).
 Now **21 of 34 modules authored · 325 drills**.
-**Next:** Section V waves A3 (`m28` articles +
-`article-tree` · `m30` linking) → A4 (`m27` inversion & emphasis · `m29` subjunctive & formal).
+**A3 — shipped.** `m28` Articles: the hard cases (16 drills) with ★ **Article Tree**, the signature sim of
+Section V. Five questions are always asked in the same order: routine phrase? a name? which one? one thing?
+the whole kind? Each answer lights up with its reason, and at the leaf the article drops into the
+sentence. For ∅, the empty slot fades out and the words close the gap. A second track takes one noun
+through two contexts (*in prison* → *to the prison*) and names the fact that flipped the article. The
+base is American English; where British English differs (*in the hospital* / *in hospital*), a BrE chip
+shows the British answer. `m30` Linking & discourse markers (16 drills) comes with ★ **Connector Bridge**:
+one meaning, four grammars (*, but · Although … , · . However, · Despite + -ing*). The sentence rebuilds
+itself around each linker, and a computed check catches the comma splice, *Although …, but …*,
+*despite + clause* and *despite of*.
+Now **23 of 34 modules authored · 357 drills**.
+**Next:** Section V wave A4 (`m27` inversion & emphasis · `m29` subjunctive & formal).
 
 ---
 

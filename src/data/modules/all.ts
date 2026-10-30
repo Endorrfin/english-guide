@@ -58,6 +58,10 @@ import { m24 } from './m24-passive-advanced';
 // participle detector), both on the shared TokenMorph engine. Imports replace the former stubs.
 import { m25 } from './m25-relative-clauses';
 import { m26 } from './m26-participle-clauses';
+// CHANGED (A3): wave A3 — m28 (+ ★ article-tree, the signature module of Section V) and m30 (+ ★ connector-bridge),
+// both on the shared TokenMorph engine. Imports replace the former stubs.
+import { m28 } from './m28-articles-advanced';
+import { m30 } from './m30-linking-discourse';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -137,9 +141,9 @@ export const modules: Module[] = [
   m25, // CHANGED (A2)
   m26, // CHANGED (A2)
   stub('m27-inversion-emphasis', 27, 's4-advanced-grammar', 5, 'c1', { en: 'Inversion, cleft & emphasis', uk: 'Інверсія, cleft і емфаза' }),
-  stub('m28-articles-advanced', 28, 's4-advanced-grammar', 6, 'b2', { en: 'Articles: the hard cases', uk: 'Артиклі: складні випадки' }, true),
+  m28, // CHANGED (A3)
   stub('m29-subjunctive-formal', 29, 's4-advanced-grammar', 7, 'c1', { en: 'Subjunctive & formal English', uk: 'Subjunctive і формальна англійська' }),
-  stub('m30-linking-discourse', 30, 's4-advanced-grammar', 8, 'b2', { en: 'Linking & discourse markers', uk: 'Звʼязки і discourse markers' }),
+  m30, // CHANGED (A3)
 
   // Section VI (roman) — Vocabulary in Action (B1–B2)
   stub('m31-word-formation', 31, 's5-vocabulary-in-action', 1, 'b1', { en: 'Word formation', uk: 'Словотвір' }, true),

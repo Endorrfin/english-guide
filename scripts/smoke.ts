@@ -93,6 +93,11 @@ const SIM_CANARIES: Record<string, string[]> = {
   // 3 with the detector's computed ✓ verdict naming the borrowed subject (English chip text in both).
   ClauseWelder: ['Clause Welder', 'noun + that / who / which + subject + verb', 'I reviewed the PR that Anna opened yesterday.'],
   ClauseCompressor: ['Clause Compressor', 'Having + V3', 'Having tested the build, we deployed it.', 'pcc-check--ok'],
+  // CHANGED (A3): m28 renders places · hospital at the leaf — the engine's AmE article in the sentence,
+  // the computed leaf class, and the computed BrE chip (in hospital); m30 renders contrast · build ·
+  // frame 3 (the linking adverb) with the computed clean verdict.
+  ArticleTree: ['Article Tree', 'After the crash, she spent a week in the hospital.', 'at-leaf--specific', 'After the crash, she spent a week in hospital.'],
+  ConnectorBridge: ['Connector Bridge', 'The build passed all the tests. However, it failed in production.', 'cb-scene--ok'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -285,7 +290,8 @@ async function main(): Promise<void> {
                     "m15-reported-speech", "m16-gerund-infinitive", // CHANGED (C2)
                     "m12-comparatives", "m14-passive-intro", // CHANGED (C3)
                     "m23-conditionals-3-mixed", "m24-passive-advanced", // CHANGED (A1)
-                    "m25-relative-clauses", "m26-participle-clauses"]) { // CHANGED (A2)
+                    "m25-relative-clauses", "m26-participle-clauses", // CHANGED (A2)
+                    "m28-articles-advanced", "m30-linking-discourse"]) { // CHANGED (A3)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -388,6 +394,17 @@ async function main(): Promise<void> {
       "Having finished the migration, we restarted the database.",
       "Weather permitting",
     ]);
+    // CHANGED (A3): m28 + m30 authored bodies at dive 4 — a core table row and a dive-4 block each
+    // (m28: the AmE/BrE hospital row + the a / the + name note; m30: the despite row + the inner however —
+    // the canaries stop before the markdown <strong>, which differs from the source text).
+    check("ModuleBody:m28", bodyEl("m28-articles-advanced"), lang, 6000, [
+      "She spent a week in the hospital.",
+      "Mr. Kowalski called",
+    ]);
+    check("ModuleBody:m30", bodyEl("m30-linking-discourse"), lang, 6000, [
+      "Despite passing all the tests, the build failed in production.",
+      "The tests passed. The deploy, ",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -411,6 +428,8 @@ async function main(): Promise<void> {
     "#/m/m24-passive-advanced", // CHANGED (A1)
     "#/m/m25-relative-clauses", // CHANGED (A2)
     "#/m/m26-participle-clauses", // CHANGED (A2)
+    "#/m/m28-articles-advanced", // CHANGED (A3)
+    "#/m/m30-linking-discourse", // CHANGED (A3)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
