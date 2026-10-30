@@ -113,7 +113,8 @@ export function TokenMorph({
                 if (el) els.current.set(t.k, el);
                 else els.current.delete(t.k);
               }}
-              className={cx('tkm-w', isNew(t) && 'tkm-new', t.role && `tkm-${t.role}`)}
+              // CHANGED (A4): tkm-glue lets punctuation hug the previous word (no padding gap before , .).
+              className={cx('tkm-w', t.glue && 'tkm-glue', isNew(t) && 'tkm-new', t.role && `tkm-${t.role}`)}
             >
               {t.w}
             </span>

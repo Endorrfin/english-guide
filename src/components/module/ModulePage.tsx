@@ -15,6 +15,7 @@ import { useDive } from '../../lib/dive';
 import { hrefModule } from '../../lib/hashRouter';
 import { ComingSoon } from '../pages/ComingSoon';
 import { LevelBadge } from './LevelBadge';
+import { MdInline } from './Md';
 import { ModuleBody } from './ModuleBody';
 
 export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: string }) {
@@ -94,7 +95,11 @@ export function ModulePage({ moduleId, topicId }: { moduleId: string; topicId?: 
         <p className="module-tagline">{t(m.tagline)}</p>
         <div className="module-mm">
           <span className="module-mm-label">{t(ui.mentalModelLabel)}</span>
-          <p>{t(m.mentalModel)}</p>
+          {/* CHANGED (A4): every mental model is authored in markdown-lite (**bold**, *italic*) but was
+              printed raw, so the asterisks showed on all module pages (A4 browser pass). */}
+          <p>
+            <MdInline text={t(m.mentalModel)} />
+          </p>
         </div>
       </header>
 

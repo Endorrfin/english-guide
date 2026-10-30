@@ -4,8 +4,17 @@
 // use: the m6/m11 banners → ★ The Tense Machine). Content is trusted authored data (SSOT rule).
 import type { ReactNode } from 'react';
 
-const INLINE = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^\s)]+\))/g;
+// CHANGED (A4): an italic span may now CONTAIN bold — *We rolled back **because** it spiked.* ·
+// ***Never have I** seen…* · ***if need be*** — the authored pattern for "example with its key word in
+// bold" since S1. The old `\*[^*]+\*` could not nest, so those rendered with stray asterisks (found in
+// the A4 browser pass; it affected every module that used the pattern).
+// …and, symmetrically, bold may contain italic: **after *be*** · ***No* to**.
+// Lazy, so **mixed**: *Pursuant…* stays two spans; an italic never closes on the first * of a **.
+// The italic alternative goes first: at ***X** y* it must win over a bold that would run on to the
+// next ** in the paragraph (a plain **x** still falls through to bold — an italic cannot open on **).
+const INLINE = /(`[^`]+`|\[[^\]]+\]\([^\s)]+\)|\*(?:[^*]|\*\*[^*]+\*\*)+?\*(?!\*)|\*\*(?:[^*]|\*[^*]+\*)+?\*\*)/g;
 const LINK = /^\[([^\]]+)\]\(([^\s)]+)\)$/;
+const BOLD = /^\*\*(?:[^*]|\*[^*]+\*)+?\*\*$/;
 
 function renderInline(text: string, keyBase: string): ReactNode[] {
   return text
@@ -22,8 +31,8 @@ function renderInline(text: string, keyBase: string): ReactNode[] {
         );
       }
       if (part.startsWith('`') && part.endsWith('`')) return <code key={key}>{part.slice(1, -1)}</code>;
-      if (part.startsWith('**') && part.endsWith('**')) return <strong key={key}>{part.slice(2, -2)}</strong>;
-      if (part.startsWith('*') && part.endsWith('*')) return <em key={key}>{part.slice(1, -1)}</em>;
+      if (BOLD.test(part)) return <strong key={key}>{renderInline(part.slice(2, -2), `${key}-b`)}</strong>;
+      if (part.length > 1 && part.startsWith('*') && part.endsWith('*')) return <em key={key}>{renderInline(part.slice(1, -1), `${key}-e`)}</em>;
       return <span key={key}>{part}</span>;
     });
 }

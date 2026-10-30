@@ -4799,3 +4799,203 @@
     transition: none;
   }
 }
+
+/* ── CHANGED (A4): ★ Emphasis Spotlight (m27) + ★ Register Dial (m29). New TokenMorph roles: aux = the
+   operator that inverts (violet, bold) · trig = the fronted negative adverbial (rose) · focus = what a
+   cleft or fronting spotlights (amber wash, like a stage light). ─────────────────────────────────────*/
+.tkm-aux { color: var(--time-future); font-weight: 700; }
+.tkm-trig { color: var(--time-past); font-weight: 600; }
+/* Emerald, not amber: subj is already amber, and a fronted object sits right next to its subject.
+   (A4 browser pass.) */
+.tkm-focus {
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--lv-a1) 18%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--lv-a1) 18%, transparent);
+  color: var(--lv-a1);
+  font-weight: 600;
+}
+/* Punctuation hugs the word before it: the word's inline-block padding left a visible gap before
+   , and . in every TokenMorph sim (spotted in the A4 browser pass). */
+.tkm-glue { padding-left: 0; margin-left: -0.08em; }
+
+/* Emphasis Spotlight — what is fronted, the order strip, the operator note, the rule, the verdict. */
+.es-scene {
+  margin: 0.3rem 0 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line2);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.es-scene--ok { border-left-color: var(--ok); }
+.es-scene--bad { border-left-color: var(--danger); background: var(--danger-soft); }
+.es-front {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.es-chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  max-width: 100%;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--tx2);
+  overflow-wrap: anywhere;
+}
+.es-chip--trig { border-color: var(--time-past); color: var(--time-past); font-family: var(--font-mono); font-weight: 600; }
+.es-chip--focus {
+  border-color: var(--lv-a1);
+  background: color-mix(in srgb, var(--lv-a1) 14%, transparent);
+  color: var(--lv-a1);
+  font-weight: 600;
+}
+.es-chip-note { font-family: var(--font-body); font-weight: 400; font-size: 0.7rem; color: var(--tx3); }
+.es-order {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.45rem 0 0;
+  padding: 0;
+}
+.es-slot {
+  display: grid;
+  justify-items: center;
+  gap: 0.05rem;
+  min-width: 0;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--line2);
+  border-top-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--s2);
+}
+.es-slot--trig { border-top-color: var(--time-past); }
+.es-slot--aux { border-top-color: var(--time-future); }
+.es-slot--subj { border-top-color: var(--time-present); }
+.es-slot--verb { border-top-color: var(--tx3); }
+.es-slot-w { font-family: var(--font-mono); font-size: 0.82rem; overflow-wrap: anywhere; }
+.es-slot-r { font-size: 0.66rem; color: var(--tx3); }
+.es-op,
+.es-rule,
+.es-verdict {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+.es-op { font-family: var(--font-mono); font-size: 0.76rem; color: var(--time-future); }
+.es-verdict { font-weight: 600; }
+.es-scene--ok .es-verdict { color: var(--ok); }
+.es-scene--bad .es-verdict { color: var(--danger); }
+
+/* Register Dial — the gauge, the score, the ± marker chips, the context of a trap. */
+.rd-scene {
+  margin: 0.3rem 0 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line2);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.rd-scene--ok { border-left-color: var(--ok); }
+.rd-scene--bad { border-left-color: var(--danger); background: var(--danger-soft); }
+.rd-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+}
+.rd-gauge {
+  flex: 0 0 auto;
+  width: min(220px, 100%);
+  height: auto;
+}
+.rd-band {
+  fill: none;
+  stroke-width: 14;
+  opacity: 0.35;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.rd-band.on { opacity: 1; }
+.rd-band--chat { stroke: var(--lv-a1); }
+.rd-band--email { stroke: var(--lv-b1); }
+.rd-band--report { stroke: var(--lv-b2); }
+.rd-band--official { stroke: var(--lv-c1); }
+.rd-band-label {
+  fill: var(--tx3);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+}
+.rd-band-label.on { fill: var(--tx); font-weight: 700; }
+.rd-needle {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  transition: transform 640ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.rd-needle line { stroke: var(--amber); stroke-width: 3; stroke-linecap: round; }
+.rd-needle--still { transition: none; }
+.rd-hub { fill: var(--amber); }
+.rd-score {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+.rd-score-n {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+.rd-markers {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+.rd-marker {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+  max-width: 100%;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--line2);
+  /* Not a pill: a long marker wraps at 390 px and a 999px radius turned it into a blob. */
+  border-radius: 8px;
+  font-size: 0.74rem;
+  overflow-wrap: anywhere;
+}
+.rd-marker--up { border-color: var(--lv-c1); }
+.rd-marker--down { border-color: var(--lv-a1); }
+.rd-w { font-family: var(--font-mono); font-weight: 700; }
+.rd-marker--up .rd-w { color: var(--lv-c1); }
+.rd-marker--down .rd-w { color: var(--lv-a1); }
+.rd-kind { color: var(--tx3); }
+.rd-text { font-family: var(--font-mono); }
+.rd-none { margin: 0.4rem 0 0; font-size: 0.8rem; }
+.rd-verdict { margin: 0.4rem 0 0; font-size: 0.82rem; font-weight: 600; overflow-wrap: anywhere; }
+.rd-scene--ok .rd-verdict { color: var(--ok); }
+.rd-scene--bad .rd-verdict { color: var(--danger); }
+.rd-context {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+}
+.rd-context .mn-col-label { margin: 0; }
+.rd-context-stop { font-weight: 700; color: var(--lv-c1); }
+@media (prefers-reduced-motion: reduce) {
+  .rd-needle,
+  .rd-band {
+    transition: none;
+  }
+}

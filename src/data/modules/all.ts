@@ -62,6 +62,9 @@ import { m26 } from './m26-participle-clauses';
 // both on the shared TokenMorph engine. Imports replace the former stubs.
 import { m28 } from './m28-articles-advanced';
 import { m30 } from './m30-linking-discourse';
+// CHANGED (A4): wave A4 — m27 (+ ★ emphasis-spotlight) and m29 (+ ★ register-dial). Section V complete (8/8).
+import { m27 } from './m27-inversion-emphasis';
+import { m29 } from './m29-subjunctive-formal';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -140,9 +143,9 @@ export const modules: Module[] = [
   m24, // CHANGED (A1)
   m25, // CHANGED (A2)
   m26, // CHANGED (A2)
-  stub('m27-inversion-emphasis', 27, 's4-advanced-grammar', 5, 'c1', { en: 'Inversion, cleft & emphasis', uk: 'Інверсія, cleft і емфаза' }),
+  m27, // CHANGED (A4)
   m28, // CHANGED (A3)
-  stub('m29-subjunctive-formal', 29, 's4-advanced-grammar', 7, 'c1', { en: 'Subjunctive & formal English', uk: 'Subjunctive і формальна англійська' }),
+  m29, // CHANGED (A4)
   m30, // CHANGED (A3)
 
   // Section VI (roman) — Vocabulary in Action (B1–B2)
