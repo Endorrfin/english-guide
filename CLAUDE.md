@@ -177,8 +177,16 @@ vanishes exactly once, reduced/zero/stranded frames are exact transforms) · ★
 `|part` / `|subj` tokens vs the scenario's declared doer; golden `test-clause-compressor`). The engine
 gained `word~tag` identity pins (when a transform deletes an EARLIER copy of a repeated word, e.g. the
 subordinate *I*) and the roles `link · rel · part · subj`.
-Planned: m28 `article-tree` · m30 Connector Bridge ·
-m27 Emphasis Spotlight · m29 Register Dial. The old standalone `tense-timeline` sim is superseded by the parametric
+<!-- CHANGED (A3) --> ★ `article-tree` (m28, the Section V signature: a DECISION, not a transformation — the pure
+`lib/articles.ts` walks five fixed-order questions (routine? name? which one? one thing? the kind?) from the
+scenario's declared noun FACTS, picks a/an by the SOUND of the next word, and TokenMorph drops the article into
+a `___` slot (∅ = the slot fades); AmE base, the BrE answer computed per variant (only *hospital* differs);
+golden `test-article-tree`: the engine's article == the article authored in the sentence, every leaf reached) ·
+★ `connector-bridge` (m30: one meaning × four linker classes — coordinator · subordinator · linking adverb ·
+preposition; `lib/connectors.ts` computes the class from a LEXICON and DIAGNOSES the comma splice, the
+«хоча …, але» double linker, a clause after a preposition (`|verb` marks finite verbs) and *despite of*; golden
+`test-connector-bridge`). Roles `art · slot · conn · verb`.
+Planned: m27 Emphasis Spotlight · m29 Register Dial. The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 **★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
 sim**: the standalone live home of the tense system — the 12-cell WALL conjugated live by the pure
@@ -333,9 +341,9 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C1 (done):** Section III begins — `m13` + ★ `conditionals-machine` + `conditional-distance` figure. →
 **C2 (done):** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` / `meaning-switch` figures. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
-**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → A3 `m28` + `article-tree` · `m30` → A4 `m27` + `m29`. →
+**Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → A4 `m27` + `m29`. →
 VI (m31–m34) + `word-formation-lab` · I (m1–m5) ·
-V (m23–m30) + `article-tree`, + dictionary waves W2–W5, **with Reading waves interleaved**. →
+V (A4: m27 + m29), + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
 CURRICULUM.md §G / §R.)
@@ -387,6 +395,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **UX1** (2026-10-29) — 390 px page overflow fixed: the cause was `.ex-top` chips (no wrap), not `.dtable`; all 34 modules + `#/practice` fit.
 - **A1** (2026-10-29) — Section V begins: TokenMorph engine + `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch`; Section V ≥12-drill bar (19/34, 293 drills, eager 355.6 kB).
 - **A2** (2026-10-29) — `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` (dangling detector); TokenMorph `~tag` + 4 roles (21/34, 325 drills, test ×21, eager 360.1 kB).
+- **A3** (2026-10-29) — `m28` + ★ `article-tree` (Section V signature; decision tree → TokenMorph slot, AmE base + computed BrE chip) · `m30` + ★ `connector-bridge` (4 linker classes + computed diagnosis); roles `art · slot · conn · verb` (23/34, 357 drills, test ×23, eager 366.0 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

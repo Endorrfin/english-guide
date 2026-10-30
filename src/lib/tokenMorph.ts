@@ -14,8 +14,10 @@
 /** Semantic hue of a token, beyond the automatic "new in this frame" highlight. */
 // CHANGED (A2): + link (the shared noun a relative clause hangs on, and the word it replaces) · rel (the
 // relative word) · part (a participle) · subj (the main-clause subject a participle borrows).
-export type TokenRole = 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj';
-export const TOKEN_ROLES: readonly TokenRole[] = ['cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj'];
+// CHANGED (A3): + art (the article a decision tree drops into a slot) · slot (the empty ___ it fills) ·
+// conn (a linking word) · verb (a finite verb — what makes a clause a clause, e.g. after *despite*).
+export type TokenRole = 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj' | 'art' | 'slot' | 'conn' | 'verb';
+export const TOKEN_ROLES: readonly TokenRole[] = ['cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj', 'art', 'slot', 'conn', 'verb'];
 
 export type MorphToken = {
   /** Stable identity across frames: lower-cased word + '#' + occurrence in the line. */
