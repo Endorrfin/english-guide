@@ -2,7 +2,7 @@
 // Regenerate with `npm run gen:index` (predev/prebuild do it for you). `npm run check:index`
 // fails the build if this file is stale. Source of truth stays in the real data modules.
 //
-// One lazy chunk per authored module body (27 of 34). Consumed by
+// One lazy chunk per authored module body (29 of 34). Consumed by
 // `concepts.loadModule()`; a stub id resolves to undefined there, which is what the module page
 // renders as ComingSoon.
 import type { Module } from './types';
@@ -34,5 +34,7 @@ export const moduleLoaders: Readonly<Record<string, () => Promise<Module>>> = {
   "m29-subjunctive-formal": () => import('./modules/m29-subjunctive-formal').then((mod) => mod.m29),
   "m30-linking-discourse": () => import('./modules/m30-linking-discourse').then((mod) => mod.m30),
   "m31-word-formation": () => import('./modules/m31-word-formation').then((mod) => mod.m31),
+  "m32-phrasal-verbs-system": () => import('./modules/m32-phrasal-verbs-system').then((mod) => mod.m32),
+  "m33-collocations": () => import('./modules/m33-collocations').then((mod) => mod.m33),
   "m34-confusables": () => import('./modules/m34-confusables').then((mod) => mod.m34),
 };

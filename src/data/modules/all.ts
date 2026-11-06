@@ -68,6 +68,9 @@ import { m29 } from './m29-subjunctive-formal';
 // CHANGED (VA1): Section VI begins — m31 (+ ★ word-formation-lab, TokenMorph on letters) and m34 (+ the say-tell-frames figure).
 import { m31 } from './m31-word-formation';
 import { m34 } from './m34-confusables';
+// CHANGED (VA2): Section VI complete — m32 (+ ★ particle-hinge, the object swings around the particle) and m33 (+ the collocation-spectrum figure).
+import { m32 } from './m32-phrasal-verbs-system';
+import { m33 } from './m33-collocations';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -153,7 +156,7 @@ export const modules: Module[] = [
 
   // Section VI (roman) — Vocabulary in Action (B1–B2)
   m31, // CHANGED (VA1)
-  stub('m32-phrasal-verbs-system', 32, 's5-vocabulary-in-action', 2, 'b1', { en: 'The phrasal-verbs system', uk: 'Система phrasal verbs' }),
-  stub('m33-collocations', 33, 's5-vocabulary-in-action', 3, 'b2', { en: 'Collocations', uk: 'Колокації' }),
+  m32,
+  m33,
   m34, // CHANGED (VA1)
 ];

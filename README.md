@@ -23,7 +23,8 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   (what was said × how you report it → every shift highlighted), plus the **Section V TokenMorph family
   (8/8)**: `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` ·
   `emphasis-spotlight` · `article-tree` · `register-dial` · `connector-bridge`, and Section VI's `word-formation-lab`
-  (a root and an affix weld letter by letter; the spelling at the seam is computed).
+  (a root and an affix weld letter by letter; the spelling at the seam is computed) and `particle-hinge`
+  (the object swings around the particle of a phrasal verb: turn it off, but look after it).
 - **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
   time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
   as you watch (a pure, golden-tested engine — no canned sentences); flip the **full ↔ short
@@ -235,7 +236,16 @@ build a word · a word family · fix a misspelling (the engine names the broken 
 talk with the `say-tell-frames` figure, make / do, affect / effect / influence / impact, quite / quiet / quit
 and friends (lose / loose, advice / advise, sensible / sensitive, economic / economical); every word links
 to its card in the Words hub. Now **27 of 34 modules authored · 425 drills**.
-**Next:** VA2 — `m32` phrasal verbs + `m33` collocations; or Foundations (`m1`–`m5`).
+**VA2 — shipped. Section VI Vocabulary in Action complete (4/4).** `m32` The phrasal-verbs system (16 drills)
+with ★ **Particle Hinge**: the object swings around the particle. Whether a verb splits is a declared fact of
+one meaning (*take off a jacket* vs *a plane takes off*); the engine computes the kind of object and the verdict:
+*turn it off* · ✕ *turn off it* · *look after it* · ✕ *look it after* · *come up with it*, and a long object goes
+after the particle. `m33` Collocations (15 drills) with the `collocation-spectrum` figure: what Ukrainian
+«зробити» and «сильний» hide (*take a photo, take a break, heavy rain, strong wind*), the verbs of work
+(*attend a meeting, meet a deadline*). Both teach the system and link to the Words hub cards. VA2 also fixed
+table rendering across the guide: bold, italics and links in cells no longer show raw markup.
+Now **29 of 34 modules authored · 456 drills**.
+**Next:** Foundations (`m1`–`m5`), or dictionary wave W2.
 
 ---
 
@@ -261,7 +271,8 @@ if · unless · in case · as long as · when) і `reported-speech-lab` (що с
 кожен зсув підсвічено), а також **родина TokenMorph секції V (8/8)**: `counterfactual-rewind` ·
 `causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ·
 `register-dial` · `connector-bridge`, а також `word-formation-lab` секції VI (корінь і афікс зварюються літера
-за літерою; правопис на шві обчислюється).
+за літерою; правопис на шві обчислюється) і `particle-hinge` (додаток обертається навколо частки phrasal verb:
+turn it off, але look after it).
 **★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
 time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
 ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); перемикач **повних ↔

@@ -127,8 +127,8 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
 | 31 | `m31-word-formation` | Word formation | b1 | negative-prefixes, noun-suffixes, adjective-suffixes, word-families | `word-formation-lab` ★ (VA1, built — TokenMorph on letters: spelling at the seam + in- assimilation computed, affix / stress / irregular stem declared, AmE base + computed BrE chip) |
-| 32 | `m32-phrasal-verbs-system` | The phrasal-verbs system | b1 | separable-inseparable, particle-meanings, register, learning-strategy | — |
-| 33 | `m33-collocations` | Collocations | b2 | make-do-take-have, strong-collocations, business-collocations, collocation-strategy | — |
+| 32 | `m32-phrasal-verbs-system` | The phrasal-verbs system | b1 | separable-inseparable, particle-meanings, register, learning-strategy | `particle-hinge` (VA2, built — TokenMorph: the class is declared per sense; object kind, verdict and diagnosis computed) |
+| 33 | `m33-collocations` | Collocations | b2 | make-do-take-have, strong-collocations, business-collocations, collocation-strategy | — (VA2, built — `collocation-spectrum` figure; no sim: a lexical habit, nothing to compute) |
 | 34 | `m34-confusables` | Confusables UA speakers mix | b1 | say-tell-speak, make-do, affect-effect-influence-impact, quite-quiet-quit-and-friends | — (VA1, built — `say-tell-frames` figure; no sim by owner decision: a lexical choice, nothing to compute) |
 
 ## E. The dictionary plan (system, not a module)
@@ -165,7 +165,7 @@ Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `te
 `conditionals-machine` ★ (C1, m13 — reality × time + a connector lens) ·
 `reported-speech-lab` ★ (C2, m15 — speech kind × reporting frame → highlighted shifts);
 + the Section V TokenMorph family, built A1–A4 (complete, 8/8): `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ★ · `register-dial` · `connector-bridge`;
-+ Section VI: `word-formation-lab` ★ (VA1, m31 — TokenMorph on letters); all planned sims are built) + the parametric
++ Section VI: `word-formation-lab` ★ (VA1, m31 — TokenMorph on letters) · `particle-hinge` (VA2, m32 — the object swings around the particle); all planned sims are built) + the parametric
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
 12-step tour, `uses[]` shade chips on the big five, 4 satellite cards, Decide tab) ·
@@ -234,7 +234,7 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial`. W4 still open.
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms. ≥12 drills per module (owner bar VA1; this file's
    default for the section was 8). **VA1 (done, 2026-11-06)** `m31` + ★ `word-formation-lab` · `m34` + `say-tell-frames`
-   → **VA2** `m32` phrasal-verbs system · `m33` collocations (make-do-take-have; m34 only links to it). W5 still open.
+   → **VA2 (done, 2026-11-06)** `m32` + ★ `particle-hinge` · `m33` + `collocation-spectrum` (make-do-take-have; m34 only links to it). **Section VI complete (4/4).** W5 still open.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.
 
 Order inside 4–10 may be re-planned per session; Tenses (T1–T4) go first — the owner's S5 priority.

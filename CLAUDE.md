@@ -207,6 +207,17 @@ traps; `diagnose` models a misspelling as ONE mutation (a rule off, a rule force
 golden `test-word-formation`: engine word == authored word for every step, family member and trap; each trap has
 exactly one diagnosis == the authored `expect`. Roles `affix · seam · spell`; `.voc` = the Section VI violet accent.
 m34 has the `say-tell-frames` figure and no sim (owner decision VA1).
+ ★ `particle-hinge` (m32, VA2): the object swings around the particle. Whether a phrasal verb splits is a DECLARED fact
+and belongs to a SENSE (take off a jacket vs a plane takes off): classes separable · inseparable · three-part ·
+intransitive. The pure `lib/phrasalVerbs.ts` COMPUTES the object kind from its words (pronoun lexicon; long = 5+ words,
+per British Council), the verdict (`placement`: ok · awkward · wrong; a long object between is "less preferred", not an
+error) and, from the tokens alone, the diagnosis and the position. A walk is worst-first, so it always ends on a correct
+sentence. Golden `test-phrasal-hinge`: `arrange()` == the authored line and `diagnose(tokens)` == `placement()` for all 66
+cells; each trap has exactly its one issue; every sim verb and every `#/idioms|collocations/<id>` link in m32 + m33
+resolves to a real card. Roles `ptcl · obj`. m33 has the `collocation-spectrum` figure and no sim (a lexical habit,
+nothing to compute). **VA2 also fixed a cross-module renderer:** `blocks.tsx` table + compare cells render through
+`MdInline` (92 authored cells elsewhere, from m17 on, showed raw `**`; cell links could not work). Figure and table
+captions, drill prompts and explanations stay PLAIN text: no markdown there.
 (Back to A4:) A4 also fixed two cross-module renderers: `Md.tsx` now nests *italic with **bold*** both ways (228 authored strings
 rendered stray asterisks) and module mental models render through `MdInline` (they were printed raw). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
@@ -365,7 +376,8 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
 **Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial` — **Section V Advanced Grammar COMPLETE (8/8)**. →
 **VA1 (done):** `m31` + ★ `word-formation-lab` · `m34` + `say-tell-frames` — Section VI begins (≥12-drill bar). →
-**VA2:** `m32` phrasal-verbs system · `m33` collocations · then I (m1–m5),
+**VA2 (done):** `m32` + ★ `particle-hinge` · `m33` + `collocation-spectrum` — **Section VI Vocabulary in Action COMPLETE (4/4)**. →
+I (m1–m5),
 + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
@@ -421,6 +433,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **A3** (2026-10-29) — `m28` + ★ `article-tree` (Section V signature; decision tree → TokenMorph slot, AmE base + computed BrE chip) · `m30` + ★ `connector-bridge` (4 linker classes + computed diagnosis); roles `art · slot · conn · verb` (23/34, 357 drills, test ×23, eager 366.0 kB).
 - **A4** (2026-10-30) — `m27` + ★ `emphasis-spotlight` (operator + do-support computed from facts) · `m29` + ★ `register-dial` (computed marker score → 4 stops, BrE should chip); roles `aux · trig · focus`; `Md` nesting + mental-model markdown fixed for all modules — **Section V COMPLETE** (25/34, 390 drills, test ×25, eager 372.0 kB).
 - **VA1** (2026-11-06) — Section VI begins: `m31` + ★ `word-formation-lab` (TokenMorph on letters; spelling + in- assimilation computed, affix / stress / stem declared, computed BrE chip; `joined` TokenMorph, roles `affix · seam · spell`) · `m34` + `say-tell-frames` (no sim); Section VI ≥12-drill bar (27/34, 425 drills, test ×26, eager 377.2 kB).
+- **VA2** (2026-11-06) — `m32` + ★ `particle-hinge` (class declared per sense; object kind, verdict, diagnosis computed; roles `ptcl · obj`) · `m33` + `collocation-spectrum`; table + compare cells render markdown across all modules — **Section VI COMPLETE** (29/34, 456 drills, test ×27, eager 381.4 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

@@ -110,6 +110,8 @@ const SIM_CANARIES: Record<string, string[]> = {
   // CHANGED (VA1): m31 renders prefix · legal at its last frame — the welded word (sr-only letters run
   // together) and the computed assimilation chip.
   WordFormationLab: ['Word Formation Lab', 'illegal', 'in- → il-'],
+  // CHANGED (VA2): m32 renders separable + pronoun at its last frame — the correct sentence (sr-only run) and the computed object chip.
+  ParticleHinge: ['Particle Hinge', 'Please turn them off.', 'them → '],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -131,6 +133,8 @@ const FIG_CANARIES: Record<string, string[]> = {
   PassiveFlip: ['was deleted', 'be + V3'],
   // CHANGED (VA1): m34's say / tell / speak / talk frames — a frame line and the tell slip (single expressions, no markup).
   SayTellFrames: ['say + words · say that … · say (sth) to sb', '✕ She told that the build was green.'],
+  // CHANGED (VA2): m33's spectrum — the strong row and the idiom row (single expressions, no markup).
+  CollocationSpectrum: ['heavy rain · ✕ strong rain · ✕ big rain', 'kick the bucket = to die'],
 };
 
 async function main(): Promise<void> {
@@ -307,7 +311,8 @@ async function main(): Promise<void> {
                     "m25-relative-clauses", "m26-participle-clauses", // CHANGED (A2)
                     "m28-articles-advanced", "m30-linking-discourse", // CHANGED (A3)
                     "m27-inversion-emphasis", "m29-subjunctive-formal", // CHANGED (A4)
-                    "m31-word-formation", "m34-confusables"]) { // CHANGED (VA1)
+                    "m31-word-formation", "m34-confusables", // CHANGED (VA1)
+                    "m32-phrasal-verbs-system", "m33-collocations"]) { // CHANGED (VA2)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -442,6 +447,15 @@ async function main(): Promise<void> {
       "Customer feedback influenced the roadmap.",
       "Quit app",
     ]);
+    // CHANGED (VA2): m32 + m33 authored bodies at dive 4 — a core table cell and a dive-3/4 string each (no markdown inside).
+    check("ModuleBody:m32", bodyEl("m32-phrasal-verbs-system"), lang, 6000, [
+      "Let’s put it off. → The launch has been postponed.",
+      "a rollback",
+    ]);
+    check("ModuleBody:m33", bodyEl("m33-collocations"), lang, 6000, [
+      "attend a conference",
+      "strongly concerned",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -471,6 +485,8 @@ async function main(): Promise<void> {
     "#/m/m29-subjunctive-formal", // CHANGED (A4)
     "#/m/m31-word-formation", // CHANGED (VA1)
     "#/m/m34-confusables", // CHANGED (VA1)
+    "#/m/m32-phrasal-verbs-system", // CHANGED (VA2)
+    "#/m/m33-collocations", // CHANGED (VA2)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",
