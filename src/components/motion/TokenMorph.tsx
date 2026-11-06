@@ -28,6 +28,7 @@ export function TokenMorph({
   reduced,
   baseline,
   className,
+  joined,
 }: {
   tokens: readonly MorphToken[];
   reduced: boolean;
@@ -35,6 +36,9 @@ export function TokenMorph({
    *  from the previous frame — so a word that left and came back is not mistaken for a change. */
   baseline?: readonly MorphToken[];
   className?: string;
+  /** CHANGED (VA1): tokens are LETTERS of one word (Word Formation Lab) — no spaces between them, and
+   *  the screen-reader text is the letters run together. */
+  joined?: boolean;
 }) {
   const boxRef = useRef<HTMLSpanElement>(null);
   const els = useRef(new Map<string, HTMLSpanElement>());
@@ -107,7 +111,7 @@ export function TokenMorph({
       <span className="tkm" ref={boxRef} aria-hidden="true">
         {tokens.map((t, i) => (
           <span key={t.k}>
-            {!t.glue && i > 0 ? ' ' : ''}
+            {!joined && !t.glue && i > 0 ? ' ' : ''}
             <span
               ref={(el) => {
                 if (el) els.current.set(t.k, el);
@@ -130,7 +134,7 @@ export function TokenMorph({
           </span>
         ))}
       </span>
-      <span className="sr-only">{textOf(tokens)}</span>
+      <span className="sr-only">{joined ? tokens.map((t) => t.w).join('') : textOf(tokens)}</span>
     </span>
   );
 }

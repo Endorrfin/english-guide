@@ -160,7 +160,7 @@ frame (says · said a week later · said, still true) → 8 curated sentences, e
 its shifts as exact in-order substrings, highlighted by kind; engine `lib/reportedSpeech.ts`, golden
 `scripts/test-reported-speech.ts` — no question order, do-support or `?` in any report) ·
 `article-tree` (m28) ·
-`word-formation-lab` (m31). <!-- CHANGED (A1) --> **Section V = the TokenMorph family:** Advanced
+★ `word-formation-lab` (m31, built VA1 — see below). <!-- CHANGED (A1) --> **Section V = the TokenMorph family:** Advanced
 Grammar is mostly sentence TRANSFORMATIONS, so one shared engine animates them — `lib/tokenMorph.ts`
 (pure: parse an authored line into keyed tokens; identity = lower-cased word + occurrence, so a word that
 survives a frame change FLIES to its new place) + `components/motion/TokenMorph.tsx` (FLIP via the Web
@@ -197,7 +197,17 @@ passive (be + `|part`), the mandative subjunctive, BrE should, conditional inver
 that score; it builds the BrE should-variant chip and diagnoses mixed register · indicative after essential-that ·
 too formal / too casual for a declared context; golden `test-register`: the score rises strictly along every dial and
 each frame lands in its own stop's band). Roles `aux · trig · focus`. **Section V COMPLETE: 8 TokenMorph sims.**
-A4 also fixed two cross-module renderers: `Md.tsx` now nests *italic with **bold*** both ways (228 authored strings
+ ★ `word-formation-lab` (m31, VA1 — Section VI's first sim): TokenMorph on LETTERS (`<TokenMorph joined/>`: no
+spaces, letters highlight). The pure `lib/wordFormation.ts` assembles root + affixes step by step and COMPUTES the
+spelling at the seam (drop / merge / keep e incl. soft c·g + a/o, y → i / keep y before i, ie → y, -ble → -bil-,
+-le + -ly, CVC doubling, seam double letters) and in- → il- / im- / ir- (declaring im/il/ir throws); the affix, the
+STRESS (doubling needs it: begin / visit) and an irregular `stem` (decis-, argu-) are DECLARED facts. AmE base; BrE is
+computed (unstressed -l doubling, -ise for declared/suffix -ize, -our unless -ous/-ary). Tracks build · family ·
+traps; `diagnose` models a misspelling as ONE mutation (a rule off, a rule forced, a wrong prefix / suffix form);
+golden `test-word-formation`: engine word == authored word for every step, family member and trap; each trap has
+exactly one diagnosis == the authored `expect`. Roles `affix · seam · spell`; `.voc` = the Section VI violet accent.
+m34 has the `say-tell-frames` figure and no sim (owner decision VA1).
+(Back to A4:) A4 also fixed two cross-module renderers: `Md.tsx` now nests *italic with **bold*** both ways (228 authored strings
 rendered stray asterisks) and module mental models render through `MdInline` (they were printed raw). The old standalone `tense-timeline` sim is superseded by the parametric
 **`TenseTimeline` figure** (one component, per-tense data, play/step) used across m7–m10.
 **★ The Tense Machine** (`#/tenses`, TM1–TM3 — spec `TENSE-MACHINE-SPEC.md`) is a **page, not a
@@ -354,7 +364,8 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **C2 (done):** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` / `meaning-switch` figures. →
 **C3 (done):** `m14` + `passive-flip` · `m12` + `comparison-scale` + section polish — **Section III Core Grammar COMPLETE (5/5)**. →
 **Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial` — **Section V Advanced Grammar COMPLETE (8/8)**. →
-VI (m31–m34) + `word-formation-lab` · I (m1–m5),
+**VA1 (done):** `m31` + ★ `word-formation-lab` · `m34` + `say-tell-frames` — Section VI begins (≥12-drill bar). →
+**VA2:** `m32` phrasal-verbs system · `m33` collocations · then I (m1–m5),
 + dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
@@ -409,6 +420,7 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **A2** (2026-10-29) — `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` (dangling detector); TokenMorph `~tag` + 4 roles (21/34, 325 drills, test ×21, eager 360.1 kB).
 - **A3** (2026-10-29) — `m28` + ★ `article-tree` (Section V signature; decision tree → TokenMorph slot, AmE base + computed BrE chip) · `m30` + ★ `connector-bridge` (4 linker classes + computed diagnosis); roles `art · slot · conn · verb` (23/34, 357 drills, test ×23, eager 366.0 kB).
 - **A4** (2026-10-30) — `m27` + ★ `emphasis-spotlight` (operator + do-support computed from facts) · `m29` + ★ `register-dial` (computed marker score → 4 stops, BrE should chip); roles `aux · trig · focus`; `Md` nesting + mental-model markdown fixed for all modules — **Section V COMPLETE** (25/34, 390 drills, test ×25, eager 372.0 kB).
+- **VA1** (2026-11-06) — Section VI begins: `m31` + ★ `word-formation-lab` (TokenMorph on letters; spelling + in- assimilation computed, affix / stress / stem declared, computed BrE chip; `joined` TokenMorph, roles `affix · seam · spell`) · `m34` + `say-tell-frames` (no sim); Section VI ≥12-drill bar (27/34, 425 drills, test ×26, eager 377.2 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 
