@@ -132,7 +132,9 @@ for (const m of modules) {
     const isAdvanced = m.section === 's4-advanced-grammar';
     // CHANGED (VA1): Section VI Vocabulary in Action keeps the same ≥12 bar (owner decision, VA1 — CURRICULUM says 8).
     const isVocab = m.section === 's5-vocabulary-in-action';
-    const minEx = isModal ? 15 : isTense || isCore || isAdvanced || isVocab ? 12 : 8;
+    // CHANGED (F2): Section I Foundations joins the same ≥12 bar, so every section but Modals (≥15) now shares it (CURRICULUM's old default was 8).
+    const isFoundations = m.section === 's1-foundations';
+    const minEx = isModal ? 15 : isTense || isCore || isAdvanced || isVocab || isFoundations ? 12 : 8;
     err((m.exercises?.length ?? 0) >= minEx,
       `${m.id}: authored module needs ≥${minEx} exercises, has ${m.exercises?.length ?? 0}`);
     err(m.keyPoints.length >= 3, `${m.id}: authored module needs ≥3 key points`);

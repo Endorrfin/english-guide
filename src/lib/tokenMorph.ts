@@ -20,12 +20,13 @@
 // adverbial that forces inversion when it opens the sentence) · focus (what a cleft or fronting spotlights).
 // CHANGED (VA1): + affix (the prefix / suffix being attached) · seam (the + between parts) · spell (a letter
 // the spelling rule adds or changes) — the Word Formation Lab animates LETTERS, not words.
+// CHANGED (VA2): + ptcl (the particle of a phrasal verb) · obj (its object) — Particle Hinge moves the object around the particle.
 export type TokenRole =
   | 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj' | 'art' | 'slot' | 'conn' | 'verb'
-  | 'aux' | 'trig' | 'focus' | 'affix' | 'seam' | 'spell';
+  | 'aux' | 'trig' | 'focus' | 'affix' | 'seam' | 'spell' | 'ptcl' | 'obj';
 export const TOKEN_ROLES: readonly TokenRole[] = [
   'cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj', 'art', 'slot', 'conn', 'verb', 'aux', 'trig', 'focus',
-  'affix', 'seam', 'spell',
+  'affix', 'seam', 'spell', 'ptcl', 'obj',
 ];
 
 export type MorphToken = {

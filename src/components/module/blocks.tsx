@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 import type { Block, Localized } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { getFigure, getSim } from '../../lib/registry';
-import { Md } from './Md';
+import { Md, MdInline } from './Md';
 
 export function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
@@ -65,6 +65,8 @@ function SimBlock({ sim, caption }: { sim: string; caption?: Localized }) {
   );
 }
 
+// CHANGED (VA2): table + compare cells render markdown. They used to print raw, so 92 authored cells across the
+// guide (m17 on: She must **go**) showed stray asterisks, and a card link in a cell could not work.
 function TableBlock({ head, rows, caption }: { head: Localized[]; rows: Localized[][]; caption?: Localized }) {
   const { t } = useLang();
   return (
@@ -74,7 +76,7 @@ function TableBlock({ head, rows, caption }: { head: Localized[]; rows: Localize
           <tr>
             {head.map((h, i) => (
               <th key={i} scope="col">
-                {t(h)}
+                <MdInline text={t(h)} />
               </th>
             ))}
           </tr>
@@ -83,7 +85,9 @@ function TableBlock({ head, rows, caption }: { head: Localized[]; rows: Localize
           {rows.map((row, r) => (
             <tr key={r}>
               {row.map((cell, c) => (
-                <td key={c}>{t(cell)}</td>
+                <td key={c}>
+                  <MdInline text={t(cell)} />
+                </td>
               ))}
             </tr>
           ))}
@@ -143,16 +147,16 @@ function CompareBlock({ a, b, rows }: { a: Localized; b: Localized; rows: [Local
         <thead>
           <tr>
             <th scope="col" />
-            <th scope="col">{t(a)}</th>
-            <th scope="col">{t(b)}</th>
+            <th scope="col"><MdInline text={t(a)} /></th>
+            <th scope="col"><MdInline text={t(b)} /></th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, r) => (
             <tr key={r}>
-              <th scope="row">{t(row[0])}</th>
-              <td>{t(row[1])}</td>
-              <td>{t(row[2])}</td>
+              <th scope="row"><MdInline text={t(row[0])} /></th>
+              <td><MdInline text={t(row[1])} /></td>
+              <td><MdInline text={t(row[2])} /></td>
             </tr>
           ))}
         </tbody>

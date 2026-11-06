@@ -54,6 +54,8 @@ export const sims: Record<string, LazyComp> = {
   // CHANGED (VA1): Section VI — m31's ★ word-formation-lab (TokenMorph on LETTERS: root + affix weld, the
   // spelling at the seam computed, affix / stress / irregular stem declared).
   'word-formation-lab': lazyNamed(() => import('../components/sims/WordFormationLab'), 'WordFormationLab'),
+  // CHANGED (VA2): m32's ★ particle-hinge (TokenMorph: the object swings around the particle; class declared, verdict computed).
+  'particle-hinge': lazyNamed(() => import('../components/sims/ParticleHinge'), 'ParticleHinge'),
 };
 
 /** Figures by kebab key. */
@@ -87,6 +89,15 @@ export const figures: Record<string, LazyComp> = {
   'passive-flip': lazyNamed(() => import('../components/figures/PassiveFlip'), 'PassiveFlip'),
   // CHANGED (VA1): m34 figure — say / tell / speak / talk by the grammar frame each verb needs.
   'say-tell-frames': lazyNamed(() => import('../components/figures/SayTellFrames'), 'SayTellFrames'),
+  // CHANGED (VA2): m33 figure — the scale from a free combination through weak / strong collocations to an idiom.
+  'collocation-spectrum': lazyNamed(() => import('../components/figures/CollocationSpectrum'), 'CollocationSpectrum'),
+  // CHANGED (F1): m1 figure — be + the four pronoun jobs on one grid; m2 figure — a → the → it, plus the two other routes.
+  'pronoun-map': lazyNamed(() => import('../components/figures/PronounMap'), 'PronounMap'),
+  'first-mention-path': lazyNamed(() => import('../components/figures/FirstMentionPath'), 'FirstMentionPath'),
+  // CHANGED (F2): m3 — the noun's box picks its partners; m4 — every question on one set of slots; m5 — in / on / at from big to exact.
+  'countable-sorter': lazyNamed(() => import('../components/figures/CountableSorter'), 'CountableSorter'),
+  'question-slots': lazyNamed(() => import('../components/figures/QuestionSlots'), 'QuestionSlots'),
+  'in-on-at-funnel': lazyNamed(() => import('../components/figures/InOnAtFunnel'), 'InOnAtFunnel'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

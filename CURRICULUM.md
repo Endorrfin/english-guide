@@ -7,7 +7,7 @@
 
 - A **Module** is self-contained: a user can land on it directly, finish it, and leave. Every module
   opens with its **mental model** (one line/picture) and **key points**, and closes with **pitfalls**
-  (incl. typical UA-speaker mistakes) + **exercises** (≥8; modal modules ≥15; tense modules ≥12).
+  (incl. typical UA-speaker mistakes) + **exercises** (≥12; modal modules ≥15; the bar is enforced by `check:data`, F2).
 - A **Topic** is independently **deep-linkable** (`#/m/<module>/<topic>`).
 - **Skip / jump freely:** modules are not a forced sequence; the CEFR level filter is the main lens.
 
@@ -50,11 +50,11 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 
 | # | id | Module | Level | Topics (deep-links) | Signature sim |
 |---|---|---|---|---|---|
-| 1 | `m1-be-pronouns` | Be, pronouns & possessives | a1 | am-is-are, subject-object-pronouns, possessives, this-that | — |
-| 2 | `m2-articles-basics` | Articles: a/an/the basics | a1 | a-an, the, zero-article, first-mention | — |
-| 3 | `m3-nouns-quantifiers` | Nouns, plurals & quantifiers | a1 | plurals, countable-uncountable, some-any, much-many, there-is-are | — |
-| 4 | `m4-questions-negatives` | Questions & negatives | a2 | word-order, wh-questions, subject-questions, question-tags-intro | — |
-| 5 | `m5-prepositions-time-place` | Prepositions of time & place | a2 | in-on-at-time, in-on-at-place, movement, common-collocations | — |
+| 1 | `m1-be-pronouns` | Be, pronouns & possessives | a1 | am-is-are, subject-object-pronouns, possessives, this-that | — (F1, built — `pronoun-map` figure; no sim: a small closed table, nothing to compute) |
+| 2 | `m2-articles-basics` | Articles: a/an/the basics | a1 | a-an, the, zero-article, first-mention | — (F1, built — `first-mention-path` figure; no sim: the decision is m28's ★ `article-tree`, linked) |
+| 3 | `m3-nouns-quantifiers` | Nouns, plurals & quantifiers | a1 | plurals, countable-uncountable, some-any, much-many, there-is-are | — (F2, built — `countable-sorter` figure; no sim: countability is a fact of each noun) |
+| 4 | `m4-questions-negatives` | Questions & negatives | a2 | word-order, wh-questions, subject-questions, question-tags-intro | — (F2, built — `question-slots` figure; no sim: one slot table) |
+| 5 | `m5-prepositions-time-place` | Prepositions of time & place | a2 | in-on-at-time, in-on-at-place, movement, common-collocations | — (F2, built — `in-on-at-funnel` figure; no sim: largely lexical) |
 
 > S5 note: the three old tense stubs (`m2-present-simple-continuous`, `m5-past-simple`,
 > `m6-future-basics`) moved into Section II below; the remaining Foundations stubs were renamed so
@@ -127,8 +127,8 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
 | 31 | `m31-word-formation` | Word formation | b1 | negative-prefixes, noun-suffixes, adjective-suffixes, word-families | `word-formation-lab` ★ (VA1, built — TokenMorph on letters: spelling at the seam + in- assimilation computed, affix / stress / irregular stem declared, AmE base + computed BrE chip) |
-| 32 | `m32-phrasal-verbs-system` | The phrasal-verbs system | b1 | separable-inseparable, particle-meanings, register, learning-strategy | — |
-| 33 | `m33-collocations` | Collocations | b2 | make-do-take-have, strong-collocations, business-collocations, collocation-strategy | — |
+| 32 | `m32-phrasal-verbs-system` | The phrasal-verbs system | b1 | separable-inseparable, particle-meanings, register, learning-strategy | `particle-hinge` (VA2, built — TokenMorph: the class is declared per sense; object kind, verdict and diagnosis computed) |
+| 33 | `m33-collocations` | Collocations | b2 | make-do-take-have, strong-collocations, business-collocations, collocation-strategy | — (VA2, built — `collocation-spectrum` figure; no sim: a lexical habit, nothing to compute) |
 | 34 | `m34-confusables` | Confusables UA speakers mix | b1 | say-tell-speak, make-do, affect-effect-influence-impact, quite-quiet-quit-and-friends | — (VA1, built — `say-tell-frames` figure; no sim by owner decision: a lexical choice, nothing to compute) |
 
 ## E. The dictionary plan (system, not a module)
@@ -165,11 +165,11 @@ Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `te
 `conditionals-machine` ★ (C1, m13 — reality × time + a connector lens) ·
 `reported-speech-lab` ★ (C2, m15 — speech kind × reporting frame → highlighted shifts);
 + the Section V TokenMorph family, built A1–A4 (complete, 8/8): `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ★ · `register-dial` · `connector-bridge`;
-+ Section VI: `word-formation-lab` ★ (VA1, m31 — TokenMorph on letters); all planned sims are built) + the parametric
++ Section VI: `word-formation-lab` ★ (VA1, m31 — TokenMorph on letters) · `particle-hinge` (VA2, m32 — the object swings around the particle); all planned sims are built) + the parametric
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
 12-step tour, `uses[]` shade chips on the big five, 4 satellite cards, Decide tab) ·
-~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses + core grammar ≥12) · dictionary **≥3,000
+~138 topics · **537 exercises, all 34 modules authored** (F2; bar ≥12 per module, modals ≥15) · dictionary **≥3,000
 words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live** (`#/review` SRS ★R1 —
 769 cards across 4 decks · `#/practice` ·
 `#/irregular` · per-module drills).
@@ -220,7 +220,8 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    accordion, which today loads all 141 full bodies because it searches body text. Needed when the
    library passes ~300 texts; the accordion would use a generated index and defer body search the
    way word search defers definition search (M1's `primeWordCorpus` pattern). Then words → W2.
-6. Section I (`m1`–`m5`) + W2 complete (~1,000).
+6. Section I (`m1`–`m5`) + W2 complete (~1,000). **F1 (done, 2026-11-06)** `m1` + `pronoun-map` · `m2` + `first-mention-path`
+   → **F2 (done, 2026-11-06)** `m3` + `countable-sorter` · `m4` + `question-slots` · `m5` + `in-on-at-funnel`. **Section I complete (5/5); all 34 modules authored.** W2 still open.
 7. Section III (`m12`–`m16`) + `conditionals-machine` — in three waves: **C1 (done)** `m13` +
    ★ `conditionals-machine` + the `conditional-distance` figure (check:data bar for the section raised
    to ≥12 drills) → **C2 (done)** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` /
@@ -234,7 +235,7 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial`. W4 still open.
 9. Section VI (`m31`–`m34`) + `word-formation-lab` + W5 idioms. ≥12 drills per module (owner bar VA1; this file's
    default for the section was 8). **VA1 (done, 2026-11-06)** `m31` + ★ `word-formation-lab` · `m34` + `say-tell-frames`
-   → **VA2** `m32` phrasal-verbs system · `m33` collocations (make-do-take-have; m34 only links to it). W5 still open.
+   → **VA2 (done, 2026-11-06)** `m32` + ★ `particle-hinge` · `m33` + `collocation-spectrum` (make-do-take-have; m34 only links to it). **Section VI complete (4/4).** W5 still open.
 10. Landing map polish · mental-models gallery · meta split for modules · bilingual QA · a11y pass.
 
 Order inside 4–10 may be re-planned per session; Tenses (T1–T4) go first — the owner's S5 priority.

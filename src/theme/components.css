@@ -1444,6 +1444,34 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* CHANGED (F1): a phone-width card head wraps instead of pushing the page sideways (#/dictionary 478,
+   #/idioms 487, #/collocations 448 px at a 390 viewport): the head stays one line of word + tools + level,
+   and the translation / UA equivalent takes its own full-width line under it. The reading index reuses
+   .dict-head with a single ellipsised blurb that has to stay on one line, so it is excluded. */
+@media (max-width: 640px) {
+  .dict-head:not(.rd-cat-head) {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+  .dict-head:not(.rd-cat-head) > * {
+    min-width: 0;
+  }
+  .dict-head:not(.rd-cat-head) .dict-word {
+    overflow-wrap: anywhere;
+  }
+  .dict-head:not(.rd-cat-head) .badge-level {
+    order: 1;
+  }
+  .dict-head:not(.rd-cat-head) .dict-tr,
+  .dict-head:not(.rd-cat-head) .idiom-ua-inline {
+    order: 2;
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-left: 0;
+    text-align: left;
+    white-space: normal;
+  }
+}
 .dict-caret {
   color: var(--tx3);
   transition: transform var(--dur-fast) var(--ease);
@@ -5094,3 +5122,41 @@
 .wf-right { color: var(--ok); }
 .wf-diag { color: var(--tx); }
 .wf-variant { margin-top: 0.45rem; }
+
+/* ── CHANGED (VA2): ★ Particle Hinge (m32) — the object swings around the particle. Roles: ptcl = the particle
+   (amber) · obj = the object (cyan); the verb keeps its dotted underline. The hinge row shows both slots with
+   their computed verdicts. Reuses .voc + .wf-scene / .wf-chip from the Word Formation Lab. ──────────────*/
+.tkm-ptcl { color: var(--amber); font-weight: 600; }
+.tkm-obj { color: var(--time-present); }
+/* On the words, not on .tkm: text-decoration does not reach inline-block children (browser pass). */
+.ph-sentence--bad .tkm-w { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--danger) 70%, transparent); }
+.ph-hinge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.ph-part--ptcl { color: var(--amber); font-weight: 600; }
+.ph-slot {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.9rem;
+  height: 1.7rem;
+  border: 1.5px dashed var(--line2);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.ph-slot--ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 55%, transparent); }
+.ph-slot--awkward { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 55%, transparent); }
+.ph-slot--wrong { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 55%, transparent); }
+.ph-slot.on { border-style: solid; background: color-mix(in srgb, currentColor 14%, transparent); }
+.ph-none { font-family: var(--font-body); font-size: 0.78rem; color: var(--tx3); }
+.ph-scene--ok { border-left-color: var(--ok); }
+.ph-scene--awkward { border-left-color: var(--amber); }
+.ph-scene--wrong { border-left-color: var(--danger); }
+.ph-verdict, .ph-rule { margin: 0.2rem 0; font-size: 0.84rem; overflow-wrap: anywhere; }
+.ph-rule { color: var(--tx2); font-size: 0.82rem; }
+.ph-card { font-size: 0.78rem; white-space: nowrap; }

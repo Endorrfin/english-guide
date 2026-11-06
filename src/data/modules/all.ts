@@ -15,7 +15,7 @@
 // this list) and the gates `scripts/check-data.ts` + `scripts/smoke.ts`, which validate and render
 // the real thing. All three are Node, where eager is free.
 
-import type { Level, Localized, Module } from '../types';
+import type { Module } from '../types';
 import { m17 } from './m17-modal-system';
 // CHANGED (S2): m18–m20 authored — Modal Verbs section continues (ability/permission,
 // obligation/necessity, advice/criticism). Imports replace the former stub() entries below.
@@ -68,55 +68,27 @@ import { m29 } from './m29-subjunctive-formal';
 // CHANGED (VA1): Section VI begins — m31 (+ ★ word-formation-lab, TokenMorph on letters) and m34 (+ the say-tell-frames figure).
 import { m31 } from './m31-word-formation';
 import { m34 } from './m34-confusables';
-
-const STUB_TAGLINE: Localized = {
-  en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
-  uk: 'Заплановано в CURRICULUM.md — буде створено в наступних сесіях. Карта вже навігабельна.',
-};
-const STUB_MM: Localized = {
-  en: 'This module’s mental model arrives with its content.',
-  uk: 'Ментальна модель модуля зʼявиться разом з його змістом.',
-};
-
-/** A navigable skeleton entry for a not-yet-authored module (topics: [] ⇒ isAuthored() === false). */
-function stub(
-  id: string,
-  num: number,
-  section: string,
-  order: number,
-  level: Level,
-  title: Localized,
-  signature?: boolean,
-): Module {
-  return {
-    id,
-    num,
-    section,
-    order,
-    level,
-    ...(signature ? { signature } : {}),
-    title,
-    tagline: STUB_TAGLINE,
-    readMins: 10,
-    mentalModel: STUB_MM,
-    topics: [],
-    keyPoints: [],
-    pitfalls: [],
-    seeAlso: [],
-    sources: [],
-  };
-}
+// CHANGED (VA2): Section VI complete — m32 (+ ★ particle-hinge, the object swings around the particle) and m33 (+ the collocation-spectrum figure).
+import { m32 } from './m32-phrasal-verbs-system';
+import { m33 } from './m33-collocations';
+// CHANGED (F1): Section I begins — m1 (+ the pronoun-map figure) and m2 (+ the first-mention-path figure).
+import { m1 } from './m1-be-pronouns';
+import { m2 } from './m2-articles-basics';
+// CHANGED (F2): Section I complete — m3, m4, m5. Every module is now authored, so the stub() helper is gone.
+import { m3 } from './m3-nouns-quantifiers';
+import { m4 } from './m4-questions-negatives';
+import { m5 } from './m5-prepositions-time-place';
 
 export const modules: Module[] = [
   // Section I — Foundations (A1–A2)
   // CHANGED (T1): S5 restructure — the old tense stubs (m2/m5/m6/m9/m10/m11) are superseded by
   // Section II below; the remaining Foundations stubs are renamed so `num` stays contiguous and
   // equal to the id prefix. All swapped stubs were unauthored (verified S5) — zero progress-key impact.
-  stub('m1-be-pronouns', 1, 's1-foundations', 1, 'a1', { en: 'Be, pronouns & possessives', uk: 'Be, займенники і присвійні' }),
-  stub('m2-articles-basics', 2, 's1-foundations', 2, 'a1', { en: 'Articles: a/an/the basics', uk: 'Артиклі: основи a/an/the' }),
-  stub('m3-nouns-quantifiers', 3, 's1-foundations', 3, 'a1', { en: 'Nouns, plurals & quantifiers', uk: 'Іменники, множина і квантифікатори' }),
-  stub('m4-questions-negatives', 4, 's1-foundations', 4, 'a2', { en: 'Questions & negatives', uk: 'Питання і заперечення' }),
-  stub('m5-prepositions-time-place', 5, 's1-foundations', 5, 'a2', { en: 'Prepositions of time & place', uk: 'Прийменники часу і місця' }),
+  m1, // CHANGED (F1): authored (+ pronoun-map)
+  m2, // CHANGED (F1): authored (+ first-mention-path)
+  m3, // CHANGED (F2): authored (+ countable-sorter)
+  m4, // CHANGED (F2): authored (+ question-slots)
+  m5, // CHANGED (F2): authored (+ in-on-at-funnel)
 
   // Section II — Tenses ★ second flagship (A1–B2, added T1 per the S5 plan)
   m6, // CHANGED (T1): authored — the GOLDEN module of Section II (+ ★ tense-navigator)
@@ -153,7 +125,7 @@ export const modules: Module[] = [
 
   // Section VI (roman) — Vocabulary in Action (B1–B2)
   m31, // CHANGED (VA1)
-  stub('m32-phrasal-verbs-system', 32, 's5-vocabulary-in-action', 2, 'b1', { en: 'The phrasal-verbs system', uk: 'Система phrasal verbs' }),
-  stub('m33-collocations', 33, 's5-vocabulary-in-action', 3, 'b2', { en: 'Collocations', uk: 'Колокації' }),
+  m32,
+  m33,
   m34, // CHANGED (VA1)
 ];
