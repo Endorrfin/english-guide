@@ -18,11 +18,14 @@
 // conn (a linking word) · verb (a finite verb — what makes a clause a clause, e.g. after *despite*).
 // CHANGED (A4): + aux (the operator that inverts: have · can · do / did) · trig (a negative / restrictive
 // adverbial that forces inversion when it opens the sentence) · focus (what a cleft or fronting spotlights).
+// CHANGED (VA1): + affix (the prefix / suffix being attached) · seam (the + between parts) · spell (a letter
+// the spelling rule adds or changes) — the Word Formation Lab animates LETTERS, not words.
 export type TokenRole =
   | 'cond' | 'result' | 'agent' | 'thing' | 'actor' | 'link' | 'rel' | 'part' | 'subj' | 'art' | 'slot' | 'conn' | 'verb'
-  | 'aux' | 'trig' | 'focus';
+  | 'aux' | 'trig' | 'focus' | 'affix' | 'seam' | 'spell';
 export const TOKEN_ROLES: readonly TokenRole[] = [
   'cond', 'result', 'agent', 'thing', 'actor', 'link', 'rel', 'part', 'subj', 'art', 'slot', 'conn', 'verb', 'aux', 'trig', 'focus',
+  'affix', 'seam', 'spell',
 ];
 
 export type MorphToken = {

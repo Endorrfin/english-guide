@@ -65,6 +65,9 @@ import { m30 } from './m30-linking-discourse';
 // CHANGED (A4): wave A4 — m27 (+ ★ emphasis-spotlight) and m29 (+ ★ register-dial). Section V complete (8/8).
 import { m27 } from './m27-inversion-emphasis';
 import { m29 } from './m29-subjunctive-formal';
+// CHANGED (VA1): Section VI begins — m31 (+ ★ word-formation-lab, TokenMorph on letters) and m34 (+ the say-tell-frames figure).
+import { m31 } from './m31-word-formation';
+import { m34 } from './m34-confusables';
 
 const STUB_TAGLINE: Localized = {
   en: 'Planned in CURRICULUM.md — authored in an upcoming session. The map is navigable today.',
@@ -149,8 +152,8 @@ export const modules: Module[] = [
   m30, // CHANGED (A3)
 
   // Section VI (roman) — Vocabulary in Action (B1–B2)
-  stub('m31-word-formation', 31, 's5-vocabulary-in-action', 1, 'b1', { en: 'Word formation', uk: 'Словотвір' }, true),
+  m31, // CHANGED (VA1)
   stub('m32-phrasal-verbs-system', 32, 's5-vocabulary-in-action', 2, 'b1', { en: 'The phrasal-verbs system', uk: 'Система phrasal verbs' }),
   stub('m33-collocations', 33, 's5-vocabulary-in-action', 3, 'b2', { en: 'Collocations', uk: 'Колокації' }),
-  stub('m34-confusables', 34, 's5-vocabulary-in-action', 4, 'b1', { en: 'Confusables UA speakers mix', uk: 'Confusables, які плутають україномовні' }),
+  m34, // CHANGED (VA1)
 ];

@@ -107,6 +107,9 @@ const SIM_CANARIES: Record<string, string[]> = {
     'It is essential that the deployment should be postponed until Monday, pursuant to the testing requirements.',
     'rd-scene--ok',
   ],
+  // CHANGED (VA1): m31 renders prefix · legal at its last frame — the welded word (sr-only letters run
+  // together) and the computed assimilation chip.
+  WordFormationLab: ['Word Formation Lab', 'illegal', 'in- → il-'],
 };
 const FIG_CANARIES: Record<string, string[]> = {
   ModalMap: ['had to', 'could'],
@@ -126,6 +129,8 @@ const FIG_CANARIES: Record<string, string[]> = {
   // CHANGED (C3): m12 + m14 figures — two of the four bar sentences; the passive row + the be + V3 hinge.
   ComparisonScale: ['as fast as search', 'the slowest'],
   PassiveFlip: ['was deleted', 'be + V3'],
+  // CHANGED (VA1): m34's say / tell / speak / talk frames — a frame line and the tell slip (single expressions, no markup).
+  SayTellFrames: ['say + words · say that … · say (sth) to sb', '✕ She told that the build was green.'],
 };
 
 async function main(): Promise<void> {
@@ -301,7 +306,8 @@ async function main(): Promise<void> {
                     "m23-conditionals-3-mixed", "m24-passive-advanced", // CHANGED (A1)
                     "m25-relative-clauses", "m26-participle-clauses", // CHANGED (A2)
                     "m28-articles-advanced", "m30-linking-discourse", // CHANGED (A3)
-                    "m27-inversion-emphasis", "m29-subjunctive-formal"]) { // CHANGED (A4)
+                    "m27-inversion-emphasis", "m29-subjunctive-formal", // CHANGED (A4)
+                    "m31-word-formation", "m34-confusables"]) { // CHANGED (VA1)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -426,6 +432,16 @@ async function main(): Promise<void> {
       "We recommend that she should review the logs.",
       " provide monthly reports.",
     ]);
+    // CHANGED (VA1): m31 + m34 authored bodies at dive 4 — a core table row and a dive-4 block each (canaries
+    // chosen with no markdown inside: m31 the -ee row + the setup note; m34 the influence row + the quit note).
+    check("ModuleBody:m31", bodyEl("m31-word-formation"), lang, 6000, [
+      "employee · trainee · interviewee",
+      "log in → a login · back up → a backup",
+    ]);
+    check("ModuleBody:m34", bodyEl("m34-confusables"), lang, 6000, [
+      "Customer feedback influenced the roadmap.",
+      "Quit app",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -453,6 +469,8 @@ async function main(): Promise<void> {
     "#/m/m30-linking-discourse", // CHANGED (A3)
     "#/m/m27-inversion-emphasis", // CHANGED (A4)
     "#/m/m29-subjunctive-formal", // CHANGED (A4)
+    "#/m/m31-word-formation", // CHANGED (VA1)
+    "#/m/m34-confusables", // CHANGED (VA1)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",

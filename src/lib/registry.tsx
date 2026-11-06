@@ -51,6 +51,9 @@ export const sims: Record<string, LazyComp> = {
   // register stops, the needle placed by the computed marker score).
   'emphasis-spotlight': lazyNamed(() => import('../components/sims/EmphasisSpotlight'), 'EmphasisSpotlight'),
   'register-dial': lazyNamed(() => import('../components/sims/RegisterDial'), 'RegisterDial'),
+  // CHANGED (VA1): Section VI — m31's ★ word-formation-lab (TokenMorph on LETTERS: root + affix weld, the
+  // spelling at the seam computed, affix / stress / irregular stem declared).
+  'word-formation-lab': lazyNamed(() => import('../components/sims/WordFormationLab'), 'WordFormationLab'),
 };
 
 /** Figures by kebab key. */
@@ -82,6 +85,8 @@ export const figures: Record<string, LazyComp> = {
   // and the active → passive flip (object to the front, be + V3, optional by-phrase).
   'comparison-scale': lazyNamed(() => import('../components/figures/ComparisonScale'), 'ComparisonScale'),
   'passive-flip': lazyNamed(() => import('../components/figures/PassiveFlip'), 'PassiveFlip'),
+  // CHANGED (VA1): m34 figure — say / tell / speak / talk by the grammar frame each verb needs.
+  'say-tell-frames': lazyNamed(() => import('../components/figures/SayTellFrames'), 'SayTellFrames'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

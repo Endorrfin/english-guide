@@ -130,7 +130,9 @@ for (const m of modules) {
     const isCore = m.section === 's2-core-grammar';
     // CHANGED (A1): Section V Advanced Grammar carries the same ≥12 bar (owner decision, A1 plan).
     const isAdvanced = m.section === 's4-advanced-grammar';
-    const minEx = isModal ? 15 : isTense || isCore || isAdvanced ? 12 : 8;
+    // CHANGED (VA1): Section VI Vocabulary in Action keeps the same ≥12 bar (owner decision, VA1 — CURRICULUM says 8).
+    const isVocab = m.section === 's5-vocabulary-in-action';
+    const minEx = isModal ? 15 : isTense || isCore || isAdvanced || isVocab ? 12 : 8;
     err((m.exercises?.length ?? 0) >= minEx,
       `${m.id}: authored module needs ≥${minEx} exercises, has ${m.exercises?.length ?? 0}`);
     err(m.keyPoints.length >= 3, `${m.id}: authored module needs ≥3 key points`);

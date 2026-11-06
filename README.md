@@ -22,7 +22,8 @@ taught with prose **plus** tables, figures, mental models, hero simulators and t
   conditional, with an if · unless · in case · as long as · when lens), and `reported-speech-lab`
   (what was said × how you report it → every shift highlighted), plus the **Section V TokenMorph family
   (8/8)**: `counterfactual-rewind` · `causative-switch` · `clause-welder` · `clause-compressor` ·
-  `emphasis-spotlight` · `article-tree` · `register-dial` · `connector-bridge`. Planned: `word-formation-lab`.
+  `emphasis-spotlight` · `article-tree` · `register-dial` · `connector-bridge`, and Section VI's `word-formation-lab`
+  (a root and an affix weld letter by letter; the spelling at the seam is computed).
 - **★ The Tense Machine** — `#/tenses`, the standalone live home of the tense system: all **12
   time × aspect cells alive at once**, conjugating your choice of verb, subject and + − ? polarity
   as you watch (a pure, golden-tested engine — no canned sentences); flip the **full ↔ short
@@ -224,7 +225,17 @@ message on four stops (chat → email → report → official). The engine count
 shows the *should* form. A4 also fixed markdown rendering across every module: nested *italic with
 **bold*** and the mental-model cards no longer show stray asterisks.
 Now **25 of 34 modules authored · 390 drills**.
-**Next:** Section VI (`m31`–`m34`) + `word-formation-lab`, or Foundations (`m1`–`m5`).
+**VA1 — shipped. Section VI Vocabulary in Action begins.** `m31` Word formation (17 drills) with ★ **Word
+Formation Lab**: TokenMorph works on LETTERS here — *in + legal* welds into *illegal* (the *n* leaves, an *l*
+arrives), *rely + able* into *reliable* (*y → i*), *begin + ing* into *beginning*. The engine computes the
+spelling at the seam (silent e, doubling, y → i, -ble → -bil-, in- → il- / im- / ir-); the affix, the stress
+and an irregular stem (*decide → decision*) are declared facts, and the scene labels them that way. Tracks:
+build a word · a word family · fix a misspelling (the engine names the broken rule). AmE base, BrE chip
+(*travelled, organisation, colourful*). `m34` Confusables UA speakers mix (18 drills) — say / tell / speak /
+talk with the `say-tell-frames` figure, make / do, affect / effect / influence / impact, quite / quiet / quit
+and friends (lose / loose, advice / advise, sensible / sensitive, economic / economical); every word links
+to its card in the Words hub. Now **27 of 34 modules authored · 425 drills**.
+**Next:** VA2 — `m32` phrasal verbs + `m33` collocations; or Foundations (`m1`–`m5`).
 
 ---
 
@@ -249,7 +260,8 @@ mental model, key points, pitfalls (типові помилки україном
 if · unless · in case · as long as · when) і `reported-speech-lab` (що сказали × як ви це передаєте →
 кожен зсув підсвічено), а також **родина TokenMorph секції V (8/8)**: `counterfactual-rewind` ·
 `causative-switch` · `clause-welder` · `clause-compressor` · `emphasis-spotlight` · `article-tree` ·
-`register-dial` · `connector-bridge`. Запланований — `word-formation-lab`.
+`register-dial` · `connector-bridge`, а також `word-formation-lab` секції VI (корінь і афікс зварюються літера
+за літерою; правопис на шві обчислюється).
 **★ The Tense Machine** — `#/tenses`, окремий живий дім усієї системи часів: усі **12 клітинок
 time × aspect одночасно**, з живою кон'югацією обраного дієслова, підмета й полярності + − ? на
 ваших очах (чистий, golden-тестований движок — жодних заготовлених речень); перемикач **повних ↔
