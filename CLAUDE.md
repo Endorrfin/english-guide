@@ -123,7 +123,7 @@ _examples/words-backlog.txt (gitignored raw backlog, see §12)
 compare`) as in the standard §4.2; contract in `src/data/types.ts`. Blocks may additionally carry
 `dive?: 2|3|4` (S5 depth tags, §2) — no tag = 2, the backbone. Every module opens with a
 **mental model** + **key points** and closes with **pitfalls** (incl. typical UA-speaker mistakes) +
-**exercises** (≥8; modal modules ≥15). English-guide extensions in the same file: `WordEntry`,
+**exercises** (≥12; modal modules ≥15; `check:data` enforces it, F2). English-guide extensions in the same file: `WordEntry`,
 `WordExample` (tag `general|business|office|dev`), `Exercise` (`gap`|`mcq`, stable `id` = progress
 key), `IrregularVerb`, `Pos`, `EntryKind`.
 
@@ -377,8 +377,9 @@ Shades wave 2 (the remaining seven cells, 2–4 uses each) stays open. →
 **Section V in 4 waves (owner plan 2026-10-29: 8 sims on TokenMorph, ≥12 drills):** **A1 (done)** `m23` + ★ `counterfactual-rewind` · `m24` + ★ `causative-switch` (+ the engine) → **A2 (done)** `m25` + ★ `clause-welder` · `m26` + ★ `clause-compressor` → **A3 (done)** `m28` + ★ `article-tree` · `m30` + ★ `connector-bridge` → **A4 (done)** `m27` + ★ `emphasis-spotlight` · `m29` + ★ `register-dial` — **Section V Advanced Grammar COMPLETE (8/8)**. →
 **VA1 (done):** `m31` + ★ `word-formation-lab` · `m34` + `say-tell-frames` — Section VI begins (≥12-drill bar). →
 **VA2 (done):** `m32` + ★ `particle-hinge` · `m33` + `collocation-spectrum` — **Section VI Vocabulary in Action COMPLETE (4/4)**. →
-I (m1–m5),
-+ dictionary waves W2–W5, **with Reading waves interleaved**. →
+**F1 (done):** `m1` + `pronoun-map` · `m2` + `first-mention-path` — Section I begins; Words hub 390 px overflow fixed. →
+**F2 (done):** `m3` + `countable-sorter` · `m4` + `question-slots` · `m5` + `in-on-at-funnel` — **Section I Foundations COMPLETE (5/5); ALL 34 MODULES AUTHORED.** →
+dictionary waves W2–W5, **with Reading waves interleaved**. →
 polish: map · mental-models gallery · module + reading meta-splits · bilingual QA · a11y pass.
 (Re-plan per session allowed; Tenses go first — the owner's S5 priority. Full detail:
 CURRICULUM.md §G / §R.)
@@ -434,6 +435,8 @@ Read `SESSIONS.md` only when a task needs the history behind a decision.
 - **A4** (2026-10-30) — `m27` + ★ `emphasis-spotlight` (operator + do-support computed from facts) · `m29` + ★ `register-dial` (computed marker score → 4 stops, BrE should chip); roles `aux · trig · focus`; `Md` nesting + mental-model markdown fixed for all modules — **Section V COMPLETE** (25/34, 390 drills, test ×25, eager 372.0 kB).
 - **VA1** (2026-11-06) — Section VI begins: `m31` + ★ `word-formation-lab` (TokenMorph on letters; spelling + in- assimilation computed, affix / stress / stem declared, computed BrE chip; `joined` TokenMorph, roles `affix · seam · spell`) · `m34` + `say-tell-frames` (no sim); Section VI ≥12-drill bar (27/34, 425 drills, test ×26, eager 377.2 kB).
 - **VA2** (2026-11-06) — `m32` + ★ `particle-hinge` (class declared per sense; object kind, verdict, diagnosis computed; roles `ptcl · obj`) · `m33` + `collocation-spectrum`; table + compare cells render markdown across all modules — **Section VI COMPLETE** (29/34, 456 drills, test ×27, eager 381.4 kB).
+- **F1** (2026-11-06) — Section I begins: `m1` + `pronoun-map` · `m2` + `first-mention-path` (no sims); Words hub card heads wrap at phone width, `#/dictionary` · `#/idioms` · `#/collocations` no longer overflow at 390 px (31/34, 488 drills, eager 385.1 kB).
+- **F2** (2026-11-06) — `m3` + `countable-sorter` · `m4` + `question-slots` · `m5` + `in-on-at-funnel` (no sims); Section I joins the ≥12-drill bar; `stub()` removed — **Section I COMPLETE, ALL 34 MODULES AUTHORED** (537 drills, eager 391.0 kB / 420 kB).
 
 ## 15. Reading OCR wave — runbook (standing procedure)
 

@@ -245,7 +245,19 @@ after the particle. `m33` Collocations (15 drills) with the `collocation-spectru
 (*attend a meeting, meet a deadline*). Both teach the system and link to the Words hub cards. VA2 also fixed
 table rendering across the guide: bold, italics and links in cells no longer show raw markup.
 Now **29 of 34 modules authored · 456 drills**.
-**Next:** Foundations (`m1`–`m5`), or dictionary wave W2.
+**F1 — shipped. Section I Foundations begins.** `m1` Be, pronouns & possessives (16 drills) with the `pronoun-map`
+figure: the verb and subject Ukrainian can leave out (*I’m an engineer, It’s cold*), why a key is *it*, and why
+English has no «свій» (*She took her laptop*). `m2` Articles: a/an/the basics (16 drills) with the
+`first-mention-path` figure: *a* or *an* by sound (*a user, an hour, an MVP*), then the listener’s question,
+“which one?”, that picks *a*, *the* or no article. F1 also fixed the Words hub on phones: dictionary, idiom and
+collocation cards now wrap instead of pushing the page sideways. Now **31 of 34 modules authored · 488 drills**.
+**F2 — shipped. Section I Foundations complete (5/5), and with it every module in the guide.** `m3` Nouns, plurals
+& quantifiers (16 drills) with the `countable-sorter` figure: the number test that explains *some advice* and *the
+money is*. `m4` Questions & negatives (16 drills) with the `question-slots` figure: *What does this word mean?*, one
+negative per clause, *Who called you?* with no *do*, and question tags instead of «так?». `m5` Prepositions of time
+& place (17 drills) with the `in-on-at-funnel` figure: *in the kitchen, at work, on Monday morning, arrive in Kyiv,
+depend on*, and why «на» and «в» don’t map onto *on* and *in*. Now **all 34 modules authored · 537 drills**.
+**Next:** dictionary wave W2, or Reading.
 
 ---
 

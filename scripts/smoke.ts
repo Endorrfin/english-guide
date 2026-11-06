@@ -135,6 +135,13 @@ const FIG_CANARIES: Record<string, string[]> = {
   SayTellFrames: ['say + words · say that … · say (sth) to sb', '✕ She told that the build was green.'],
   // CHANGED (VA2): m33's spectrum — the strong row and the idiom row (single expressions, no markup).
   CollocationSpectrum: ['heavy rain · ✕ strong rain · ✕ big rain', 'kick the bucket = to die'],
+  // CHANGED (F1): m1's grid (a row word + the example line) and m2's path (the second step + the zero-article line).
+  PronounMap: ['theirs', 'She is here. · Call her. · her laptop · It’s hers.'],
+  FirstMentionPath: ['The bug is in the login form.', 'Bugs are expensive. · Water freezes.'],
+  // CHANGED (F2): m3's sorter, m4's slots (the subject row + its aux-free note's partner word) and m5's funnel.
+  CountableSorter: ['How many?', 'some · any · a lot of · the'],
+  QuestionSlots: ['broke', 'the build?'],
+  InOnAtFunnel: ['in 2026 · in July · in the morning', 'at 15 Main St · at the door'],
 };
 
 async function main(): Promise<void> {
@@ -312,7 +319,9 @@ async function main(): Promise<void> {
                     "m28-articles-advanced", "m30-linking-discourse", // CHANGED (A3)
                     "m27-inversion-emphasis", "m29-subjunctive-formal", // CHANGED (A4)
                     "m31-word-formation", "m34-confusables", // CHANGED (VA1)
-                    "m32-phrasal-verbs-system", "m33-collocations"]) { // CHANGED (VA2)
+                    "m32-phrasal-verbs-system", "m33-collocations", // CHANGED (VA2)
+                    "m1-be-pronouns", "m2-articles-basics", // CHANGED (F1)
+                    "m3-nouns-quantifiers", "m4-questions-negatives", "m5-prepositions-time-place"]) { // CHANGED (F2)
     const body = await loadModule(id);
     ok(!!body, `loadModule('${id}') resolves a body`);
     bodies.set(id, body);
@@ -456,6 +465,28 @@ async function main(): Promise<void> {
       "attend a conference",
       "strongly concerned",
     ]);
+    // CHANGED (F1): m1 + m2 authored bodies at dive 4 — a core table cell and a dive-3/4 string each (no markdown inside).
+    check("ModuleBody:m1", bodyEl("m1-be-pronouns"), lang, 6000, [
+      "the users’ data · my parents’ house",
+      "a friend of mine",
+    ]);
+    check("ModuleBody:m2", bodyEl("m2-articles-basics"), lang, 6000, [
+      "an MVP · an HTTP request · an SSD",
+      "an SQL query",
+    ]);
+    // CHANGED (F2): m3–m5 authored bodies at dive 4 — a core table cell and a dive-3/4 string each (no markdown inside).
+    check("ModuleBody:m3", bodyEl("m3-nouns-quantifiers"), lang, 6000, [
+      "entries · queries · companies",
+      "analysis → analyses",
+    ]);
+    check("ModuleBody:m4", bodyEl("m4-questions-negatives"), lang, 6000, [
+      "Does she work here?",
+      "Whom did you contact?",
+    ]);
+    check("ModuleBody:m5", bodyEl("m5-prepositions-time-place"), lang, 6000, [
+      "on Monday · on May 5 · on my birthday",
+      "on the last weekend in July",
+    ]);
   }
 
   // ── Layer D: eager app shell + hash router (lazy routes render as the Suspense fallback) ────────────
@@ -487,6 +518,11 @@ async function main(): Promise<void> {
     "#/m/m34-confusables", // CHANGED (VA1)
     "#/m/m32-phrasal-verbs-system", // CHANGED (VA2)
     "#/m/m33-collocations", // CHANGED (VA2)
+    "#/m/m1-be-pronouns", // CHANGED (F1)
+    "#/m/m2-articles-basics", // CHANGED (F1)
+    "#/m/m3-nouns-quantifiers", // CHANGED (F2)
+    "#/m/m4-questions-negatives", // CHANGED (F2)
+    "#/m/m5-prepositions-time-place", // CHANGED (F2)
     "#/definitions", // CHANGED (D1)
     "#/definitions/circumstances", // CHANGED (D1)
     "#/dictionary",

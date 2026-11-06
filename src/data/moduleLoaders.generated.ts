@@ -2,12 +2,17 @@
 // Regenerate with `npm run gen:index` (predev/prebuild do it for you). `npm run check:index`
 // fails the build if this file is stale. Source of truth stays in the real data modules.
 //
-// One lazy chunk per authored module body (29 of 34). Consumed by
+// One lazy chunk per authored module body (34 of 34). Consumed by
 // `concepts.loadModule()`; a stub id resolves to undefined there, which is what the module page
 // renders as ComingSoon.
 import type { Module } from './types';
 
 export const moduleLoaders: Readonly<Record<string, () => Promise<Module>>> = {
+  "m1-be-pronouns": () => import('./modules/m1-be-pronouns').then((mod) => mod.m1),
+  "m2-articles-basics": () => import('./modules/m2-articles-basics').then((mod) => mod.m2),
+  "m3-nouns-quantifiers": () => import('./modules/m3-nouns-quantifiers').then((mod) => mod.m3),
+  "m4-questions-negatives": () => import('./modules/m4-questions-negatives').then((mod) => mod.m4),
+  "m5-prepositions-time-place": () => import('./modules/m5-prepositions-time-place').then((mod) => mod.m5),
   "m6-tense-system": () => import('./modules/m6-tense-system').then((mod) => mod.m6),
   "m7-present-simple-continuous": () => import('./modules/m7-present-simple-continuous').then((mod) => mod.m7),
   "m8-past-simple-continuous": () => import('./modules/m8-past-simple-continuous').then((mod) => mod.m8),

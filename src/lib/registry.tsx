@@ -91,6 +91,13 @@ export const figures: Record<string, LazyComp> = {
   'say-tell-frames': lazyNamed(() => import('../components/figures/SayTellFrames'), 'SayTellFrames'),
   // CHANGED (VA2): m33 figure — the scale from a free combination through weak / strong collocations to an idiom.
   'collocation-spectrum': lazyNamed(() => import('../components/figures/CollocationSpectrum'), 'CollocationSpectrum'),
+  // CHANGED (F1): m1 figure — be + the four pronoun jobs on one grid; m2 figure — a → the → it, plus the two other routes.
+  'pronoun-map': lazyNamed(() => import('../components/figures/PronounMap'), 'PronounMap'),
+  'first-mention-path': lazyNamed(() => import('../components/figures/FirstMentionPath'), 'FirstMentionPath'),
+  // CHANGED (F2): m3 — the noun's box picks its partners; m4 — every question on one set of slots; m5 — in / on / at from big to exact.
+  'countable-sorter': lazyNamed(() => import('../components/figures/CountableSorter'), 'CountableSorter'),
+  'question-slots': lazyNamed(() => import('../components/figures/QuestionSlots'), 'QuestionSlots'),
+  'in-on-at-funnel': lazyNamed(() => import('../components/figures/InOnAtFunnel'), 'InOnAtFunnel'),
 };
 
 export function getSim(key: string): LazyComp | undefined {

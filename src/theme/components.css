@@ -1444,6 +1444,34 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* CHANGED (F1): a phone-width card head wraps instead of pushing the page sideways (#/dictionary 478,
+   #/idioms 487, #/collocations 448 px at a 390 viewport): the head stays one line of word + tools + level,
+   and the translation / UA equivalent takes its own full-width line under it. The reading index reuses
+   .dict-head with a single ellipsised blurb that has to stay on one line, so it is excluded. */
+@media (max-width: 640px) {
+  .dict-head:not(.rd-cat-head) {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+  .dict-head:not(.rd-cat-head) > * {
+    min-width: 0;
+  }
+  .dict-head:not(.rd-cat-head) .dict-word {
+    overflow-wrap: anywhere;
+  }
+  .dict-head:not(.rd-cat-head) .badge-level {
+    order: 1;
+  }
+  .dict-head:not(.rd-cat-head) .dict-tr,
+  .dict-head:not(.rd-cat-head) .idiom-ua-inline {
+    order: 2;
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-left: 0;
+    text-align: left;
+    white-space: normal;
+  }
+}
 .dict-caret {
   color: var(--tx3);
   transition: transform var(--dur-fast) var(--ease);

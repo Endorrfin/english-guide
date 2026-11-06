@@ -7,7 +7,7 @@
 
 - A **Module** is self-contained: a user can land on it directly, finish it, and leave. Every module
   opens with its **mental model** (one line/picture) and **key points**, and closes with **pitfalls**
-  (incl. typical UA-speaker mistakes) + **exercises** (≥8; modal modules ≥15; tense modules ≥12).
+  (incl. typical UA-speaker mistakes) + **exercises** (≥12; modal modules ≥15; the bar is enforced by `check:data`, F2).
 - A **Topic** is independently **deep-linkable** (`#/m/<module>/<topic>`).
 - **Skip / jump freely:** modules are not a forced sequence; the CEFR level filter is the main lens.
 
@@ -50,11 +50,11 @@ definition matching to a lazy corpus upgrade rather than dropping it (`primeWord
 
 | # | id | Module | Level | Topics (deep-links) | Signature sim |
 |---|---|---|---|---|---|
-| 1 | `m1-be-pronouns` | Be, pronouns & possessives | a1 | am-is-are, subject-object-pronouns, possessives, this-that | — |
-| 2 | `m2-articles-basics` | Articles: a/an/the basics | a1 | a-an, the, zero-article, first-mention | — |
-| 3 | `m3-nouns-quantifiers` | Nouns, plurals & quantifiers | a1 | plurals, countable-uncountable, some-any, much-many, there-is-are | — |
-| 4 | `m4-questions-negatives` | Questions & negatives | a2 | word-order, wh-questions, subject-questions, question-tags-intro | — |
-| 5 | `m5-prepositions-time-place` | Prepositions of time & place | a2 | in-on-at-time, in-on-at-place, movement, common-collocations | — |
+| 1 | `m1-be-pronouns` | Be, pronouns & possessives | a1 | am-is-are, subject-object-pronouns, possessives, this-that | — (F1, built — `pronoun-map` figure; no sim: a small closed table, nothing to compute) |
+| 2 | `m2-articles-basics` | Articles: a/an/the basics | a1 | a-an, the, zero-article, first-mention | — (F1, built — `first-mention-path` figure; no sim: the decision is m28's ★ `article-tree`, linked) |
+| 3 | `m3-nouns-quantifiers` | Nouns, plurals & quantifiers | a1 | plurals, countable-uncountable, some-any, much-many, there-is-are | — (F2, built — `countable-sorter` figure; no sim: countability is a fact of each noun) |
+| 4 | `m4-questions-negatives` | Questions & negatives | a2 | word-order, wh-questions, subject-questions, question-tags-intro | — (F2, built — `question-slots` figure; no sim: one slot table) |
+| 5 | `m5-prepositions-time-place` | Prepositions of time & place | a2 | in-on-at-time, in-on-at-place, movement, common-collocations | — (F2, built — `in-on-at-funnel` figure; no sim: largely lexical) |
 
 > S5 note: the three old tense stubs (`m2-present-simple-continuous`, `m5-past-simple`,
 > `m6-future-basics`) moved into Section II below; the remaining Foundations stubs were renamed so
@@ -169,7 +169,7 @@ Section II sims — `tense-navigator` ★ (T1) · `sentence-morpher` (T4) · `te
 **`TenseTimeline` figure** + **★ The Tense Machine page** (`#/tenses`, TM1–TM3 — the live 12-cell
 wall over the pure `lib/conjugator.ts` with a full ↔ short contractions toggle, master time axis +
 12-step tour, `uses[]` shade chips on the big five, 4 satellite cards, Decide tab) ·
-~138 topics · **≥330 exercises** (34 modules × ≥8; modals ≥15; tenses + core grammar ≥12) · dictionary **≥3,000
+~138 topics · **537 exercises, all 34 modules authored** (F2; bar ≥12 per module, modals ≥15) · dictionary **≥3,000
 words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live** (`#/review` SRS ★R1 —
 769 cards across 4 decks · `#/practice` ·
 `#/irregular` · per-module drills).
@@ -220,7 +220,8 @@ words + 100–300 idioms** · **~150 irregular verbs** · **4 trainers, all live
    accordion, which today loads all 141 full bodies because it searches body text. Needed when the
    library passes ~300 texts; the accordion would use a generated index and defer body search the
    way word search defers definition search (M1's `primeWordCorpus` pattern). Then words → W2.
-6. Section I (`m1`–`m5`) + W2 complete (~1,000).
+6. Section I (`m1`–`m5`) + W2 complete (~1,000). **F1 (done, 2026-11-06)** `m1` + `pronoun-map` · `m2` + `first-mention-path`
+   → **F2 (done, 2026-11-06)** `m3` + `countable-sorter` · `m4` + `question-slots` · `m5` + `in-on-at-funnel`. **Section I complete (5/5); all 34 modules authored.** W2 still open.
 7. Section III (`m12`–`m16`) + `conditionals-machine` — in three waves: **C1 (done)** `m13` +
    ★ `conditionals-machine` + the `conditional-distance` figure (check:data bar for the section raised
    to ≥12 drills) → **C2 (done)** `m15` + ★ `reported-speech-lab` + `m16` + the `verb-pattern-map` /
